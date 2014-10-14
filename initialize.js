@@ -3,7 +3,7 @@ var fs = require('fs');
 
 //Config for the app
 var config = require('./lib/conf.js');
-var ctx = config('dev').initContext();
+var ctx = config('dev').context();
 
 //
 //Google credential

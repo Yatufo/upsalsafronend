@@ -9,12 +9,14 @@ var params = {
 };
 google.calendar.events.list(params, function(err, cal) {
     console.log('Error: ', err);
-    var localEventList = [];
+    var LocalEventList = [];
     
-    cal.items.forEach(function(e) {
-        localEventList.push(convertGoogleCalendar(e));
+    cal.items.forEach(function(gEvent) {
+        var lEvent = new LocalEvent();
+        google.fillEvent(lEvent, gEvent)
+        LocalEventList.push(lEvent);
     });
-    console.log(localEventList);
+    console.log(LocalEventList);
 });
 
 
@@ -24,20 +26,6 @@ function LocalEvent(){
     this.timeZone = "";
 };
 
-//Converts google calendar to the app structure
-function convertGoogleCalendar(event){
-    var localEvent = new LocalEvent();
-
-    localEvent.start.startDate = event.start.dateTime
-    localEvent.end.startDate = event.end.dateTime
-    localEvent.timeZone = event.timeZone
-    localEvent.id = event.id
-    localEvent.location = event.location
-    localEvent.summary = event.summary
-    localEvent.id = event.id
-
-    return localEvent;
-}
 
 
 //Start using the service    
