@@ -6,6 +6,7 @@
 	"dependencies": {
 		"express": "latest",
 		"googleapis": "latest",
-		"fs": "latest"
+		"fs": "latest",
+		"angularjs": "latest"
 	}
 }	
