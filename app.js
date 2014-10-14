@@ -1,30 +1,50 @@
-var google = require('googleapis');
-var calendar = google.calendar('v3');
-//Config for the app
+var google = require('./lib/google.js');
 var config = require('./lib/conf.js');
-var ctx = config('dev').initContext();
-
-//
-//Google credential
-var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(ctx.googlesetup.client_id, ctx.googlesetup.client_secret, ctx.googlesetup.redirect_uris[0]);
-
-oauth2Client.setCredentials({
-    access_token: ctx.googletokens.access_token,
-    refresh_token: ctx.googletokens.refresh_token
-});
-
-google.options({
-    //proxy: 'http://localhost:8080',
-    //strictSSL: false,
-    auth: oauth2Client
-});
+//Config for the app
+var ctx = config('dev').context();
 //
 //Call the service
-calendar.calendarList.list(function(err, user) {
+var params = {
+    calendarId: ctx.CALENDAR_ID
+};
+google.calendar.events.list(params, function(err, cal) {
     console.log('Error: ', err);
-    console.log('User: ', user);
+    var localEventList = [];
+    
+    cal.items.forEach(function(e) {
+        localEventList.push(convertGoogleCalendar(e));
+    });
+    console.log(localEventList);
 });
-//process.exit(0);
-//app.listen(3000);
-//console.log('Listening on port 3000...');
+
+
+function LocalEvent(){
+    this.start = {"dateTime" : {}};
+    this.end = {"dateTime" : {}};
+    this.timeZone = "";
+};
+
+//Converts google calendar to the app structure
+function convertGoogleCalendar(event){
+    var localEvent = new LocalEvent();
+
+    localEvent.start.startDate = event.start.dateTime
+    localEvent.end.startDate = event.end.dateTime
+    localEvent.timeZone = event.timeZone
+    localEvent.id = event.id
+    localEvent.location = event.location
+    localEvent.summary = event.summary
+    localEvent.id = event.id
+
+    return localEvent;
+}
+
+
+//Start using the service    
+var express = require('express');
+var app = express();
+app.get('/', function(req, res) {
+    res.send('hello world');
+});
+app.listen(3000);
+console.log('Listening on port 3000...');
