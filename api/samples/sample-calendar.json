@@ -1,81 +1,76 @@
 {
-"kind": "calendar#events",
-"etag": "\"1413234788064000\"",
-"summary": "project.demonio@gmail.com",
-"updated": "2014-10-13T21:13:08.064Z",
-"timeZone": "America/Toronto",
-"accessRole": "owner",
-"defaultReminders": [
-{
-"method": "popup",
-"minutes": 30
-}
-],
-"nextSyncToken": "CIC2m-zFqsECEIC2m-zFqsECGAU=",
-"items": [
-{
-"kind": "calendar#event",
-"etag": "\"2826321215482000\"",
-"id": "d308o2iid11dva9p04n49fidvk",
-"status": "confirmed",
-"htmlLink": "https://www.google.com/calendar/event?eid=ZDMwOG8yaWlkMTFkdmE5cDA0bjQ5ZmlkdmsgcHJvamVjdC5kZW1vbmlvQG0",
-"created": "2014-10-13T00:36:47.000Z",
-"updated": "2014-10-13T00:36:47.741Z",
-"summary": "Dance",
-"location": "Comomango Dance Company, 486 Rue Sainte-Catherine Ouest, Montréal, QC H3B 1A6, Canada",
-"creator": {
-"email": "project.demonio@gmail.com",
-"displayName": "Alex Marquez",
-"self": true
-},
-"organizer": {
-"email": "project.demonio@gmail.com",
-"displayName": "Alex Marquez",
-"self": true
-},
-"start": {
-"dateTime": "2014-10-14T09:30:00-04:00"
-},
-"end": {
-"dateTime": "2014-10-14T10:30:00-04:00"
-},
-"iCalUID": "d308o2iid11dva9p04n49fidvk@google.com",
-"sequence": 0,
-"reminders": {
-"useDefault": true
-}
-},
-{
-"kind": "calendar#event",
-"etag": "\"2826469576128000\"",
-"id": "1mkfkf7j4u882qis0bmi3acq3o",
-"status": "confirmed",
-"htmlLink": "https://www.google.com/calendar/event?eid=MW1rZmtmN2o0dTg4MnFpczBibWkzYWNxM28gcHJvamVjdC5kZW1vbmlvQG0",
-"created": "2014-10-13T21:12:38.000Z",
-"updated": "2014-10-13T21:13:08.064Z",
-"summary": "Bachata class",
-"location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
-"creator": {
-"email": "project.demonio@gmail.com",
-"displayName": "Alex Marquez",
-"self": true
-},
-"organizer": {
-"email": "project.demonio@gmail.com",
-"displayName": "Alex Marquez",
-"self": true
-},
-"start": {
-"dateTime": "2014-10-16T10:00:00-04:00"
-},
-"end": {
-"dateTime": "2014-10-16T11:00:00-04:00"
-},
-"iCalUID": "1mkfkf7j4u882qis0bmi3acq3o@google.com",
-"sequence": 0,
-"reminders": {
-"useDefault": true
-}
-}
-]
+    "kind": "calendar#events",
+    "etag": "\"1413234788064000\"",
+    "summary": "project.demonio@gmail.com",
+    "updated": "2014-10-13T21:13:08.064Z",
+    "timeZone": "America/Toronto",
+    "accessRole": "owner",
+    "defaultReminders": [{
+        "method": "popup",
+        "minutes": 30
+    }],
+    "nextSyncToken": "CIC2m-zFqsECEIC2m-zFqsECGAU=",
+    "items": [{
+        "kind": "calendar#event",
+        "etag": "\"2826321215482000\"",
+        "id": "d308o2iid11dva9p04n49fidvk",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=ZDMwOG8yaWlkMTFkdmE5cDA0bjQ5ZmlkdmsgcHJvamVjdC5kZW1vbmlvQG0",
+        "created": "2014-10-13T00:36:47.000Z",
+        "updated": "2014-10-13T00:36:47.741Z",
+        "summary": "Dance",
+        "location": "Comomango Dance Company, 486 Rue Sainte-Catherine Ouest, Montréal, QC H3B 1A6, Canada",
+        "creator": {
+            "email": "project.demonio@gmail.com",
+            "displayName": "Alex Marquez",
+            "self": true
+        },
+        "organizer": {
+            "email": "project.demonio@gmail.com",
+            "displayName": "Alex Marquez",
+            "self": true
+        },
+        "start": {
+            "dateTime": "2014-10-14T09:30:00-04:00"
+        },
+        "end": {
+            "dateTime": "2014-10-14T10:30:00-04:00"
+        },
+        "iCalUID": "d308o2iid11dva9p04n49fidvk@google.com",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    }, {
+        "kind": "calendar#event",
+        "etag": "\"2826469576128000\"",
+        "id": "1mkfkf7j4u882qis0bmi3acq3o",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=MW1rZmtmN2o0dTg4MnFpczBibWkzYWNxM28gcHJvamVjdC5kZW1vbmlvQG0",
+        "created": "2014-10-13T21:12:38.000Z",
+        "updated": "2014-10-13T21:13:08.064Z",
+        "summary": "Bachata class",
+        "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
+        "creator": {
+            "email": "project.demonio@gmail.com",
+            "displayName": "Alex Marquez",
+            "self": true
+        },
+        "organizer": {
+            "email": "project.demonio@gmail.com",
+            "displayName": "Alex Marquez",
+            "self": true
+        },
+        "start": {
+            "dateTime": "2014-10-16T10:00:00-04:00"
+        },
+        "end": {
+            "dateTime": "2014-10-16T11:00:00-04:00"
+        },
+        "iCalUID": "1mkfkf7j4u882qis0bmi3acq3o@google.com",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    }]
 }

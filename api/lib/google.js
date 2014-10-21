@@ -22,8 +22,8 @@ exports.calendar = google.calendar('v3');
 //Converts google calendar to the app structure
 exports.fillEvent = function (lEvent, gEvent){
 
-    lEvent.start.startDate = gEvent.start.dateTime
-    lEvent.end.startDate = gEvent.end.dateTime
+    lEvent.start.dateTime = gEvent.start.dateTime
+    lEvent.end.dateTime = gEvent.end.dateTime
     lEvent.timeZone = gEvent.timeZone
     lEvent.id = gEvent.id
     lEvent.location = gEvent.location
