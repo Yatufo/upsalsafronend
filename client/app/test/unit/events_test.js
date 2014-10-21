@@ -1,17 +1,42 @@
-
 'use strict';
 
-describe('myApp.events module', function() {
+/* jasmine specs for controllers go here */
+describe('My App controllers', function() {
 
-  beforeEach(module('myApp.events'));
+    describe('EventsCtrl', function() {
+        var scope, ctrl, $httpBackend;
 
-  describe('events controller', function(){
+        beforeEach(module('myApp'));
+        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, CONFIG) {
+            $httpBackend = _$httpBackend_;
+            $httpBackend.expectGET(CONFIG.EVENTS_ENDPOINT).
+            respond([{
+                summary: 'Salsa'
+            }, {
+                summary: 'Bachata'
+            }]);
 
-    it('should ....', inject(function($controller) {
-      //spec body
-      var eventsCtrl = $controller('eventsCtrl');
-      expect(eventsCtrl).toBeDefined();
-    }));
+            scope = $rootScope.$new();
+            ctrl = $controller('EventsCtrl', {
+                $scope: scope
+            });
+        }));
 
-  });
+
+        it('should add to scope "events" model with 2 events fetched from xhr', function() {
+            expect(scope.phones).toBeUndefined();
+            $httpBackend.flush();
+
+            expect(scope.phones).toEqual([{
+                summary: 'Salsa'
+            }, {
+                summary: 'Bachata'
+            }]);
+        });
+
+
+    });
+
+
+    describe('PhoneDetailCtrl', function() {});
 });
