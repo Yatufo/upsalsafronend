@@ -1,0 +1,51 @@
+[{
+    "start": {
+        "dateTime": "2014-10-14T09:30:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-14T10:30:00-04:00"
+    },
+    "id": "d308o2iid11dva9p04n49fidvk",
+    "location": "Comomango Dance Company, 486 Rue Sainte-Catherine Ouest, Montréal, QC H3B 1A6, Canada",
+    "summary": "Dance"
+}, {
+    "start": {
+        "dateTime": "2014-10-16T10:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-16T11:00:00-04:00"
+    },
+    "id": "1mkfkf7j4u882qis0bmi3acq3o",
+    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
+    "summary": "Bachata class"
+}, {
+    "start": {
+        "dateTime": "2014-10-18T10:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-19T11:00:00-04:00"
+    },
+    "id": "1mkfkf7j4u882qis0bmi3acq3o",
+    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
+    "summary": "Bachata class"
+}, {
+    "start": {
+        "dateTime": "2014-10-20T10:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-22T11:00:00-04:00"
+    },
+    "id": "1mkfkf7j4u882qis0bmi3acq3o",
+    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
+    "summary": "Bachata class"
+}, {
+    "start": {
+        "dateTime": "2014-11-19T10:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-11-20T11:00:00-04:00"
+    },
+    "id": "1mkfkf7j4u882qis0bmi3acq3o",
+    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
+    "summary": "Bachata class"
+}]
