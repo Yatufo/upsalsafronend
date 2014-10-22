@@ -20,32 +20,114 @@
     "summary": "Bachata class"
 }, {
     "start": {
-        "dateTime": "2014-10-18T10:00:00-04:00"
+        "dateTime": "2014-10-26T17:00:00-04:00"
     },
     "end": {
-        "dateTime": "2014-10-19T11:00:00-04:00"
+        "dateTime": "2014-10-26T18:00:00-04:00"
     },
-    "id": "1mkfkf7j4u882qis0bmi3acq3o",
-    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
-    "summary": "Bachata class"
+    "id": "dqu9gej21ut4u4cm45nl64bnis"
 }, {
     "start": {
-        "dateTime": "2014-10-20T10:00:00-04:00"
+        "dateTime": "2014-10-26T19:00:00-04:00"
     },
     "end": {
-        "dateTime": "2014-10-22T11:00:00-04:00"
+        "dateTime": "2014-10-26T20:00:00-04:00"
     },
-    "id": "1mkfkf7j4u882qis0bmi3acq3o",
-    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
-    "summary": "Bachata class"
+    "id": "5dn41khe86dmcg1bdtga125osk"
 }, {
     "start": {
-        "dateTime": "2014-11-19T10:00:00-04:00"
+        "dateTime": "2014-10-27T17:30:00-04:00"
     },
     "end": {
-        "dateTime": "2014-11-20T11:00:00-04:00"
+        "dateTime": "2014-10-27T18:30:00-04:00"
     },
-    "id": "1mkfkf7j4u882qis0bmi3acq3o",
-    "location": "Latin groove Salsa Classes, 1112 St Catherine St W, Montreal, QC H3B 1H4, Canada",
-    "summary": "Bachata class"
+    "id": "9m60g8t7nh1d5cj1u7qncrikq8"
+}, {
+    "start": {
+        "dateTime": "2014-10-28T17:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-28T20:00:00-04:00"
+    },
+    "id": "grsupmh7kbgavajpurocntn5co"
+}, {
+    "start": {
+        "dateTime": "2014-10-29T16:30:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-29T17:30:00-04:00"
+    },
+    "id": "l215bpjgiitdeu6b1kgt4mbl84"
+}, {
+    "start": {
+        "dateTime": "2014-10-30T16:30:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-30T17:30:00-04:00"
+    },
+    "id": "la3u5eg86vbt04afom18qss1as"
+}, {
+    "start": {
+        "dateTime": "2014-10-31T16:30:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-31T17:30:00-04:00"
+    },
+    "id": "bbq1138b0rrknm9vp2she7dd4s"
+}, {
+    "start": {
+        "dateTime": "2014-10-31T18:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-10-31T19:00:00-04:00"
+    },
+    "id": "t6frgsbh2q7p04so7t3vc5s75s"
+}, {
+    "start": {
+        "dateTime": "2014-11-01T16:30:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-11-01T17:30:00-04:00"
+    },
+    "id": "rukf547qqgqfkjlql7tdradgv4"
+}, {
+    "start": {
+        "dateTime": "2014-11-01T18:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-11-01T19:00:00-04:00"
+    },
+    "id": "8hraeep7bkqkf6nmub5j08v774"
+}, {
+    "start": {
+        "dateTime": "2014-10-31T20:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-11-01T00:00:00-04:00"
+    },
+    "id": "h091ermfefg9pa8tsuud2n0mgo"
+}, {
+    "start": {
+        "dateTime": "2014-11-01T20:00:00-04:00"
+    },
+    "end": {
+        "dateTime": "2014-11-02T00:00:00-04:00"
+    },
+    "id": "noiq3rvi1tuf00l3hm4vlgsemo"
+}, {
+    "start": {
+        "dateTime": "2014-11-02T21:00:00-05:00"
+    },
+    "end": {
+        "dateTime": "2014-11-02T22:00:00-05:00"
+    },
+    "id": "a7jkhq0irkt9bu69ftjq9e1chg"
+}, {
+    "start": {
+        "dateTime": "2014-11-02T17:00:00-05:00"
+    },
+    "end": {
+        "dateTime": "2014-11-02T18:00:00-05:00"
+    },
+    "id": "7l59530pmlabu20p1f2kehn9u0"
 }]
