@@ -4,7 +4,10 @@
 var express = require('express');
 var events = require('./routes/events.js');
 var app = express();
+
+app.use(express.static(__dirname + '/public'));
 app.get('/events', events.findAll);
+
 
 
 

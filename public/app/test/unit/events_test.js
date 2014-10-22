@@ -24,10 +24,10 @@ describe('My App controllers', function() {
 
 
         it('should add to scope "events" model with 2 events fetched from xhr', function() {
-            expect(scope.phones).toBeUndefined();
+            expect(scope.events).toBeUndefined();
             $httpBackend.flush();
 
-            expect(scope.phones).toEqual([{
+            expect(scope.events).toEqual([{
                 summary: 'Salsa'
             }, {
                 summary: 'Bachata'
