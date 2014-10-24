@@ -22,6 +22,7 @@ myAppControllers.controller('EventsCtrl', ['$scope', '$http', 'CONFIG',
                 const MINIMUM = 0;
                 const ONE_DAY_MILIS = 86400000;
                 const WEEKEND_DAYS = [5,6,0];
+                const WEEK_DAYS = [1,2,3,4];
                 var eventDate = new Date(event.start.dateTime);
                 var timeDiff = eventDate - $scope.localTime;
 
@@ -30,13 +31,12 @@ myAppControllers.controller('EventsCtrl', ['$scope', '$http', 'CONFIG',
                 } else if (angular.equals('tomorrow', query)) {
                     return (timeDiff > ONE_DAY_MILIS && timeDiff < 2 * ONE_DAY_MILIS)
                 } else if (angular.equals('weekend', query)) {
-                    console.log(eventDate.getDay());
                     return (timeDiff > ONE_DAY_MILIS && timeDiff < 7 * ONE_DAY_MILIS 
                         && WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
+                } else if (angular.equals('week', query)) {
+                    return (timeDiff > ONE_DAY_MILIS && timeDiff < 3 * ONE_DAY_MILIS 
+                        && WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
                 }
-
-
-
 
                 return false;
             }
