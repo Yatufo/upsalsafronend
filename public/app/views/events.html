@@ -2,11 +2,30 @@
 Events view:
 <div>
 
+{{localTime}}
 
+	Today:
     <ul class="event">
-        <li ng-repeat="event in events">
-            <p>Start: {{event.start.dateTime}}</p>
-            <p>End: {{event.start.dateTime}}</p>
+        <li ng-repeat="event in events | filter:datePosition('today')">
+            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.start.dateTime | date:'EEE h:mma'}}</p>
+            <p>Location: {{event.location}}</p>
+            <p>Summary: {{event.summary}}</p>
+        </li>
+    </ul>
+    
+ 	Tomorrow:
+   <ul class="event">
+        <li ng-repeat="event in events | filter:datePosition('tomorrow')">
+            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.start.dateTime | date:'EEE h:mma'}}</p>
+            <p>Location: {{event.location}}</p>
+            <p>Summary: {{event.summary}}</p>
+        </li>
+    </ul>
+    
+    Weekend:
+   <ul class="event">
+        <li ng-repeat="event in events | filter:datePosition('weekend')">
+            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.start.dateTime | date:'EEE h:mma'}}</p>
             <p>Location: {{event.location}}</p>
             <p>Summary: {{event.summary}}</p>
         </li>
