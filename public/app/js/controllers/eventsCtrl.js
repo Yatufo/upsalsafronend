@@ -8,7 +8,7 @@ myAppControllers.controller('EventsCtrl', ['$scope', '$http', 'CONFIG',
     function($scope, $http, CONFIG) {
 
         $scope.localTime = new Date(CONFIG.TODAY);
-        $scope.happensOn = CONFIG.DEFAULT_HAPPENSON;
+        $scope.daysRange = CONFIG.DEFAULT_HAPPENSON;
 
         console.log($scope.localTime);
         $http.get(CONFIG.EVENTS_ENDPOINT).success(function(data) {
