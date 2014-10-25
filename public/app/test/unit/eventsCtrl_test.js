@@ -6,7 +6,13 @@ describe('My App controllers', function() {
     describe('EventsCtrl', function() {
         var scope, ctrl, $httpBackend;
 
-        beforeEach(module('myApp'));
+        beforeEach(module('myApp', [
+            'ngRoute',
+            'myApp.controllers',
+            'myApp.filters',
+            'myApp.config'
+        ]));
+
         beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, CONFIG) {
             $httpBackend = _$httpBackend_;
             $httpBackend.expectGET(CONFIG.EVENTS_ENDPOINT).
@@ -15,12 +21,13 @@ describe('My App controllers', function() {
             }, {
                 summary: 'Bachata'
             }]);
-
+            console.log('demonio');
             scope = $rootScope.$new();
             ctrl = $controller('EventsCtrl', {
                 $scope: scope
             });
         }));
+        
 
         it('should add to scope "events" model with 2 events fetched from xhr', function() {
             expect(scope.events).toBeUndefined();

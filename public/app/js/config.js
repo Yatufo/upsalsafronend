@@ -1,3 +1,5 @@
+'use strict';
+
 var config_module = angular.module('myApp.config', [])
     .constant('CONFIG', {
         'APP_NAME': 'Mulatti',
