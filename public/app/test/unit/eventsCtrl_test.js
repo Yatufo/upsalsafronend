@@ -4,13 +4,13 @@
 describe('My App controllers', function() {
 
     describe('EventsCtrl', function() {
-        var scope, ctrl, $httpBackend, config;
+        var scope, ctrl, mockHttp, config;
 
         beforeEach(module('myApp'));
 
         beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, CONFIG) {
-            $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET(CONFIG.EVENTS_ENDPOINT).
+            mockHttp = _$httpBackend_;
+            mockHttp.expectGET(CONFIG.EVENTS_ENDPOINT).
             respond([{
                 summary: 'Salsa'
             }]);
@@ -27,7 +27,7 @@ describe('My App controllers', function() {
             expect(scope.localTime).toBe(config.TODAY);
             expect(scope.daysRange).toBe(config.DEFAULT_HAPPENSON);
             expect(scope.events).toBeUndefined();
-            $httpBackend.flush();
+            mockHttp.flush();
 
             expect(scope.events).toEqual([{
                 summary: 'Salsa'

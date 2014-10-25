@@ -1,6 +1,6 @@
 'use strict';
 
-/* Controllers */
+/* Filters */
 
 var myAppFilters = angular.module('myAppFilters', []);
 
@@ -13,8 +13,6 @@ myAppFilters.filter('happensOn', function() {
             console.log('Using the browsers local time');
             localTime = new Date();
         }
-
-        console.log('At least calling the filter ' + localTime);
         var includedEvents = [];
 
         for (var event of array) {
