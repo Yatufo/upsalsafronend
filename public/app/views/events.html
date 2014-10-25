@@ -1,36 +1,23 @@
-
 Events view:
 <div>
 
-<p>Local Time {{localTime}}</p>
+    <p>Local Time {{localTime}}</p>
+    <p>
+        <input type="radio" ng-model="daysRange" value="today">Today 
+        <input type="radio" ng-model="daysRange" value="tomorrow">Tomorrow
+        <input type="radio" ng-model="daysRange" value="weekend">Weekend
+    </p>
 
 
-	Today:
+    {{daysRange}}:
     <ul class="event">
-        <li ng-repeat="event in events | filter:datePosition('today') | orderBy : event.start.dateTime ">
-            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
+        <li ng-repeat="event in events | happensOn:daysRange:localTime | orderBy : event.start.dateTime ">
+            <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
             <p>Location: {{event.location}}</p>
             <p>Summary: {{event.summary}}</p>
         </li>
     </ul>
-    
- 	Tomorrow:
-   <ul class="event">
-        <li ng-repeat="event in events | filter:datePosition('tomorrow') | orderBy : event.start.dateTime ">
-            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
-            <p>Location: {{event.location}}</p>
-            <p>Summary: {{event.summary}}</p>
-        </li>
-    </ul>
-    
-    Weekend:
-   <ul class="event">
-        <li ng-repeat="event in events | filter:datePosition('weekend') | orderBy : event.start.dateTime ">
-            <p>Starts: {{event.start.dateTime | date: 'short' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
-            <p>Location: {{event.location}}</p>
-            <p>Summary: {{event.summary}}</p>
-        </li>
-    </ul>
+
 
 
 </div>
