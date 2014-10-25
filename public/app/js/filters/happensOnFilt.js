@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var myAppFilters = angular.module('myApp.filters', []);
+var myAppFilters = angular.module('myAppFilters', []);
 
 myAppFilters.filter('happensOn', function() {
     return function(array, query, localTime) {

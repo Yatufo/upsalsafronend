@@ -1,6 +1,6 @@
 'use strict';
 
-var config_module = angular.module('myApp.config', [])
+var config_module = angular.module('myAppConfig', [])
     .constant('CONFIG', {
         'APP_NAME': 'Mulatti',
         'APP_VERSION': '0.1',

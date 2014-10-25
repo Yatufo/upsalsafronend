@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var myAppControllers = angular.module('myApp.controllers', ['myApp.config']);
+var myAppControllers = angular.module('myAppControllers', ['myAppConfig']);
 
 myAppControllers.controller('EventsCtrl', ['$scope', '$http', 'CONFIG',
     function($scope, $http, CONFIG) {
