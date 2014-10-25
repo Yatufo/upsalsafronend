@@ -2,25 +2,27 @@
 
 /* Filters */
 
-var myAppFilters = angular.module('myAppFilters', []);
+var myAppFilters = angular.module('myAppFilters', ['myAppConfig']);
 
-myAppFilters.filter('happensOn', function() {
+myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
+
     return function(array, query, localTime) {
         if (!angular.isArray(array)) return false;
-        
+
         //Production Behavior: Uses the time id the client if there is no testing going on.
-        if (angular.isUndefined(localTime)){
+        if (angular.isUndefined(localTime)) {
             console.log('Using the browsers local time');
             localTime = new Date();
         }
         var includedEvents = [];
 
         for (var event of array) {
+            
+            if (angular.isUndefined(event.start) || !angular.isDate(event.start.dateTime) ){
+                console.log('Event without a start date');
+                break;
+            }
 
-            var MINIMUM = 0;
-            var ONE_DAY_MILIS = 86400000;
-            var WEEKEND_DAYS = [5, 6, 0];
-            var WEEK_DAYS = [1, 2, 3, 4];
             var eventDate = new Date(event.start.dateTime);
             var timeDiff = eventDate - localTime;
             var included = false;
@@ -28,16 +30,16 @@ myAppFilters.filter('happensOn', function() {
 
             switch (query) {
                 case "today":
-                    included = (timeDiff > MINIMUM && timeDiff < ONE_DAY_MILIS)
+                    included = (timeDiff >= 0 && timeDiff < cfg.ONE_DAY_MILIS)
                     break;
                 case "tomorrow":
-                    included = (timeDiff > ONE_DAY_MILIS && timeDiff < 2 * ONE_DAY_MILIS)
+                    included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 2 * cfg.ONE_DAY_MILIS)
                     break;
                 case "weekend":
-                    included = (timeDiff > ONE_DAY_MILIS && timeDiff < 7 * ONE_DAY_MILIS && WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
+                    included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 7 * cfg.ONE_DAY_MILIS && cfg.WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
                     break;
                 case "week":
-                    included = (timeDiff > ONE_DAY_MILIS && timeDiff < 3 * ONE_DAY_MILIS && WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
+                    included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 3 * cfg.ONE_DAY_MILIS && cfg.WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
                     break;
                 default:
                     included = false;
@@ -51,4 +53,4 @@ myAppFilters.filter('happensOn', function() {
 
         return includedEvents;
     };
-});
+}]);

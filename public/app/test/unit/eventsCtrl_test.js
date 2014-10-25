@@ -1,10 +1,10 @@
 'use strict';
 
 /* jasmine specs for controllers go here */
-describe('My App controllers', function() {
+describe('MyApp controllers', function() {
 
     describe('EventsCtrl', function() {
-        var scope, ctrl, mockHttp, config;
+        var scope, mockHttp, config;
 
         beforeEach(module('myApp'));
 
@@ -17,7 +17,7 @@ describe('My App controllers', function() {
 
             config = CONFIG;
             scope = $rootScope.$new();
-            ctrl = $controller('EventsCtrl', {
+            $controller('EventsCtrl', {
                 $scope: scope
             });
         }));
@@ -27,6 +27,7 @@ describe('My App controllers', function() {
             expect(scope.localTime).toBe(config.TODAY);
             expect(scope.daysRange).toBe(config.DEFAULT_HAPPENSON);
             expect(scope.events).toBeUndefined();
+            
             mockHttp.flush();
 
             expect(scope.events).toEqual([{
