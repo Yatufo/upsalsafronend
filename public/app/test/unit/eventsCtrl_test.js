@@ -4,7 +4,7 @@
 describe('My App controllers', function() {
 
     describe('EventsCtrl', function() {
-        var scope, ctrl, $httpBackend;
+        var scope, ctrl, $httpBackend, config;
 
         beforeEach(module('myApp'));
 
@@ -13,10 +13,9 @@ describe('My App controllers', function() {
             $httpBackend.expectGET(CONFIG.EVENTS_ENDPOINT).
             respond([{
                 summary: 'Salsa'
-            }, {
-                summary: 'Bachata'
             }]);
 
+            config = CONFIG;
             scope = $rootScope.$new();
             ctrl = $controller('EventsCtrl', {
                 $scope: scope
@@ -24,14 +23,14 @@ describe('My App controllers', function() {
         }));
 
 
-        it('should add to scope "events" model with 2 events fetched from xhr', function() {
+        it('All variables must be initialized', function() {
+            expect(scope.localTime).toBe(config.TODAY);
+            expect(scope.daysRange).toBe(config.DEFAULT_HAPPENSON);
             expect(scope.events).toBeUndefined();
             $httpBackend.flush();
 
             expect(scope.events).toEqual([{
                 summary: 'Salsa'
-            }, {
-                summary: 'Bachata'
             }]);
         });
 
