@@ -4,47 +4,62 @@
 describe('MyApp Filters', function() {
 
     describe('HappensOnFilt', function() {
+        var dayMilis, filter;
+
         beforeEach(module('myApp'));
-        var config = {};
-        config.ONE_DAY_MILIS = 86400000;
 
         beforeEach(inject(function($filter, CONFIG) {
-            console.log(CONFIG.ONE_DAY_MILIS);
-            config = CONFIG;
+            filter = $filter('happensOn');
+            //TODO: Inejct the config in this test
+            dayMilis = CONFIG.ONE_DAY_MILIS;
         }));
 
-        //For the test a TUESDAY will be the sample date
-        var localTime = new Date('2014-10-21T00:00:01-04:00');
 
-        var todayEvent = {
+        //For the test a MONDAY will be the sample date
+        var localTime = new Date('2014-10-20T22:00:01-04:00');
+        console.log(localTime);
+        
+        var eventByDay = [];
+        //Generates one event per day of the week
+        for (var i = 0; i < 7; i++) {
+            eventByDay.push({
+                start: {
+                    dateTime: localTime.valueOf() + (i * 86400000)
+                }
+            });
+        }
+
+        var happeningNow = {
             start: {
-                dateTime: localTime
+                dateTime: localTime.valueOf() - (400000)
+            },
+            end: {
+                dateTime: localTime.valueOf() + (400000)
             }
-        };
+        }
 
-        var tomorrowEvent = {
-            start: {
-                dateTime: localTime + config.ONE_DAY_MILIS
-            }
-        };
+        var todaysEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], happeningNow];
 
-        var tomorrowEvent = {
-            start: {
-                dateTime: localTime + (2 * config.ONE_DAY_MILIS)
-            }
-        };
+        it('should filter the events for TODAY interval', function() {
+            expect(filter(todaysEvents, 'today', localTime).length).toBe(3);
+        });
+
+        var tomorrowsEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], happeningNow];
+        it('should filter the events for TOMORROW interval', function() {
+            expect(filter(tomorrowsEvents, 'tomorrow', localTime).length).toBe(1);
+        });
+
+        var weekEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], eventByDay[5], eventByDay[3], eventByDay[6], eventByDay[0], happeningNow];
+        it('should filter the events for WEEK interval', function() {
+            expect(filter(weekEvents, 'week', localTime).length).toBe(8);
+        });
+
+        var weekendEvents = [eventByDay[0], eventByDay[1], eventByDay[4], eventByDay[5], eventByDay[4], eventByDay[6], eventByDay[1], eventByDay[0], happeningNow];
+        it('should filter the events for WEEKEND interval', function() {
+            expect(filter(weekendEvents, 'weekend', localTime).length).toBe(4);
+        });
 
 
 
-
-
-
-        var todaysEvents = [todayEvent, {}, {}, {}];
-
-
-        it('should filter the events by the date interval',
-            inject(function(happensOnFilter) {
-                expect(happensOnFilter(todaysEvents, 'today', localTime).length).toBe(1);
-            }));
     });
 });

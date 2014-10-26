@@ -17,29 +17,34 @@ myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
         var includedEvents = [];
 
         for (var event of array) {
-            
-            if (angular.isUndefined(event.start) || !angular.isDate(event.start.dateTime) ){
-                console.log('Event without a start date');
-                break;
+
+            if (angular.isUndefined(event.start) || angular.isUndefined(event.start.dateTime)) {
+                console.log('Event without a start date - Ommiting');
+                continue;
             }
 
-            var eventDate = new Date(event.start.dateTime);
-            var timeDiff = eventDate - localTime;
+            var startDate = new Date(event.start.dateTime);
+            var timeDiff = startDate - localTime;
             var included = false;
 
+            // The event belongs in this week if it's contained in the next seven days.
 
             switch (query) {
                 case "today":
-                    included = (timeDiff >= 0 && timeDiff < cfg.ONE_DAY_MILIS)
+                    //Includes happening now events
+                    var happeningNow = !(angular.isUndefined(event.end) || angular.isUndefined(event.end.dateTime))
+                        && (new Date(event.end.dateTime) - localTime > 0) ;
+
+                    included = (timeDiff >= 0 && timeDiff < cfg.ONE_DAY_MILIS) || happeningNow
                     break;
                 case "tomorrow":
                     included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 2 * cfg.ONE_DAY_MILIS)
                     break;
                 case "weekend":
-                    included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 7 * cfg.ONE_DAY_MILIS && cfg.WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
+                    included = (timeDiff >= 0 && timeDiff < 7 * cfg.ONE_DAY_MILIS && cfg.WEEKEND_DAYS.indexOf(startDate.getDay()) > -1)
                     break;
                 case "week":
-                    included = (timeDiff >= cfg.ONE_DAY_MILIS && timeDiff < 3 * cfg.ONE_DAY_MILIS && cfg.WEEKEND_DAYS.indexOf(eventDate.getDay()) > -1)
+                    included = (timeDiff >= 0 && timeDiff < 7 * cfg.ONE_DAY_MILIS && cfg.WEEK_DAYS.indexOf(startDate.getDay()) > -1)
                     break;
                 default:
                     included = false;
