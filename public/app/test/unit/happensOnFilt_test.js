@@ -16,13 +16,16 @@ describe('MyApp Filters', function() {
         //For the test a MONDAY will be the sample date
         var localTime = new Date('2014-10-20T22:00:01-04:00');
         console.log(localTime);
-        
+
         var eventByDay = [];
         //Generates one event per day of the week
         for (var i = 0; i < 7; i++) {
             eventByDay.push({
                 start: {
                     dateTime: localTime.valueOf() + (i * 86400000)
+                },
+                end: { //Ends 4 hours later
+                    dateTime: localTime.valueOf() + (i * 86400000) + 14400000
                 }
             });
         }

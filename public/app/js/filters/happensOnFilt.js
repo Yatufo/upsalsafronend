@@ -33,7 +33,7 @@ myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
                 case "today":
                     //Includes happening now events
                     var happeningNow = !(angular.isUndefined(event.end) || angular.isUndefined(event.end.dateTime))
-                        && (new Date(event.end.dateTime) - localTime > 0) ;
+                        && (timeDiff < 0 && new Date(event.end.dateTime) - localTime > 0) ;
 
                     included = (timeDiff >= 0 && timeDiff < cfg.ONE_DAY_MILIS) || happeningNow
                     break;
