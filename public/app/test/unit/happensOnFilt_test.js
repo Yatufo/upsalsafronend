@@ -3,15 +3,13 @@
 /* jasmine specs for filters go here */
 describe('MyApp Filters', function() {
 
-    describe('HappensOnFilt', function() {
+    describe('HappensOn Filter', function() {
         var dayMilis, filter;
 
         beforeEach(module('myApp'));
 
         beforeEach(inject(function($filter, CONFIG) {
             filter = $filter('happensOn');
-            //TODO: Inejct the config in this test
-            dayMilis = CONFIG.ONE_DAY_MILIS;
         }));
 
 
