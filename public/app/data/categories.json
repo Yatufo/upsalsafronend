@@ -1,0 +1,90 @@
+[{
+        "id": "eventtype",
+        "name": "Type of event",
+        "categories": [{
+            "id": "class",
+            "name": "Class",
+            "parent": "eventtype",
+            "categories": [{
+                "id": "firstclass",
+                "name": "First Class",
+                "parent": "class"
+            }, {
+                "id": "secondclass",
+                "name": "Second Class",
+                "parent": "class"
+            }, {
+                "id": "dropin",
+                "name": "Drop In",
+                "parent": "class"
+            }, {
+                "id": "workshop",
+                "name": "Concert",
+                "parent": "class"
+            }]
+        }, {
+            "id": "party",
+            "parent": "eventtype",
+            "name": "Party"
+        }, {
+            "id": "schoolparty",
+            "parent": "eventtype",
+            "name": "School Party"
+        }, {
+            "id": "concert",
+            "parent": "eventtype",
+            "name": "Concert"
+        }, {
+            "id": "party",
+            "parent": "eventtype",
+            "name": "Party"
+        }]
+    }, {
+        "id": "musictype",
+        "name": "Type of music",
+        "categories": [{
+            "id": "bachata",
+            "parent": "musictype",
+            "name": "Bachata"
+        }, {
+            "id": "salsa",
+            "parent": "musictype",
+            "name": "Salsa",
+            "categories": [{
+                "id": "cuban",
+                "name": "Cuban",
+                "parent": "salsa"
+            }, {
+                "id": "newyork",
+                "name": "New York",
+                "parent": "salsa"
+            }, {
+                "id": "losangeles",
+                "name": "Los Angeles",
+                "parent": "salsa"
+            }]
+        }, {
+            "id": "kisomba",
+            "parent": "musictype",
+            "name": "Kisomba"
+        }, {
+            "id": "chacha",
+            "parent": "musictype",
+            "name": "Cha Cha"
+        }]
+    }, {
+        "id": "level",
+        "name": "Level",
+        "categories": [{
+            "id": "beginner",
+            "parent": "level",
+            "name": "Beginner"
+        }, {
+            "id": "intermediate",
+            "parent": "level",
+            "name": "Intermediate"
+        }, {
+            "id": "advanced",
+            "parent": "level",
+            "name": "Advanced"
+        }]

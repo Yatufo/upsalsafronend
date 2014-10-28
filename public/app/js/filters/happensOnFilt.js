@@ -6,8 +6,8 @@ var myAppFilters = angular.module('myAppFilters', ['myAppConfig']);
 
 myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
 
-    return function(array, query, localTime) {
-        if (!angular.isArray(array)) return false;
+    return function(eventsList, query, localTime) {
+        if (!angular.isArray(eventsList)) return false;
 
         //Production Behavior: Uses the time id the client if there is no testing going on.
         if (angular.isUndefined(localTime)) {
@@ -16,7 +16,8 @@ myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
         }
         var includedEvents = [];
 
-        for (var event of array) {
+        for (var i = 0; i < eventsList.length; i++) {
+            var event = eventsList[i];
 
             if (angular.isUndefined(event.start) || angular.isUndefined(event.start.dateTime)) {
                 console.log('Event without a start date - Ommiting');
@@ -32,8 +33,7 @@ myAppFilters.filter('happensOn', ['CONFIG', function(cfg) {
             switch (query) {
                 case "today":
                     //Includes happening now events
-                    var happeningNow = !(angular.isUndefined(event.end) || angular.isUndefined(event.end.dateTime))
-                        && (timeDiff < 0 && new Date(event.end.dateTime) - localTime > 0) ;
+                    var happeningNow = !(angular.isUndefined(event.end) || angular.isUndefined(event.end.dateTime)) && (timeDiff < 0 && new Date(event.end.dateTime) - localTime > 0);
 
                     included = (timeDiff >= 0 && timeDiff < cfg.ONE_DAY_MILIS) || happeningNow
                     break;
