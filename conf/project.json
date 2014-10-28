@@ -15,5 +15,8 @@
         "refresh_token": "1/i9d-bkIj72CybGpMGwA25qTs2GZc7Gs7CdnyzB9Ud-Y",
         "expiry_date": 1413232433845
     },
-    "CALENDAR_ID": "project.demonio@gmail.com"
+    "CALENDAR_ID": "project.demonio@gmail.com",
+    "CATEGORIES_JSON": "./data/categories.json"
+
+
 }

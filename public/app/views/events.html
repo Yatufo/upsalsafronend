@@ -1,23 +1,22 @@
 Events view:
 <div>
 
-    <p>Local Time {{localTime}}</p>
-    <p>
-        <input type="radio" ng-model="daysRange" value="today">Today 
-        <input type="radio" ng-model="daysRange" value="tomorrow">Tomorrow
-        <input type="radio" ng-model="daysRange" value="weekend">Weekend
-    </p>
+    <p>Local Time: {{localTime}}</p>
+    <p>Happens On: "{{selectedCategory['happenson']}}"</p>
 
+    <div style="float:left">
+        <div ng-repeat="category in categories" ng-include="'views/components/categories-selector.html'">
+        </div>
+    </div>
 
-    {{daysRange}}:
-    <ul class="event">
-        <li ng-repeat="event in events | happensOn:daysRange:localTime | orderBy : event.start.dateTime ">
-            <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
-            <p>Location: {{event.location}}</p>
-            <p>Summary: {{event.summary}}</p>
-        </li>
-    </ul>
-
-
+    <div style="float:left">
+        <ul class="event">
+            <li ng-repeat="event in events | happensOn:selectedCategory['happenson']:localTime | orderBy : event.start.dateTime ">
+                <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
+                <p>Location: {{event.location}}</p>
+                <p>Summary: {{event.summary}}</p>
+            </li>
+        </ul>
+    </div>
 
 </div>
