@@ -1,7 +1,6 @@
 //Config for the app
 var google = require('../lib/google.js');
-var config = require('../lib/conf.js');
-var ctx = config('dev').context();
+var ctx = require('../lib/conf.js').context();
 //
 // 
 exports.findAll = function(req, res) {
@@ -11,6 +10,7 @@ exports.findAll = function(req, res) {
     };
     google.calendar.events.list(params, function(err, cal) {
         console.log('Error: ', err);
+
         cal.items.forEach(function(gEvent) {
             var lEvent = new LocalEvent();
             google.fillEvent(lEvent, gEvent)
