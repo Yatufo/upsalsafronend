@@ -42,22 +42,22 @@ describe('MyApp Filters', function() {
         var todaysEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], happeningNow];
 
         it('should filter the events for TODAY interval', function() {
-            expect(filter(todaysEvents, 'today', localTime).length).toBe(3);
+            expect(filter(todaysEvents, 'today', localTime)).toBeArrayOfSize(3);
         });
 
         var tomorrowsEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], happeningNow];
         it('should filter the events for TOMORROW interval', function() {
-            expect(filter(tomorrowsEvents, 'tomorrow', localTime).length).toBe(1);
+            expect(filter(tomorrowsEvents, 'tomorrow', localTime)).toBeArrayOfSize(1);
         });
 
         var weekEvents = [eventByDay[0], eventByDay[1], eventByDay[0], eventByDay[2], eventByDay[5], eventByDay[3], eventByDay[6], eventByDay[0], happeningNow];
         it('should filter the events for WEEK interval', function() {
-            expect(filter(weekEvents, 'week', localTime).length).toBe(8);
+            expect(filter(weekEvents, 'week', localTime)).toBeArrayOfSize(8);
         });
 
         var weekendEvents = [eventByDay[0], eventByDay[1], eventByDay[4], eventByDay[5], eventByDay[4], eventByDay[6], eventByDay[1], eventByDay[0], happeningNow];
         it('should filter the events for WEEKEND interval', function() {
-            expect(filter(weekendEvents, 'weekend', localTime).length).toBe(4);
+            expect(filter(weekendEvents, 'weekend', localTime)).toBeArrayOfSize(4);
         });
 
 

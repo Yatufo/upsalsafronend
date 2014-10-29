@@ -1,5 +1,5 @@
 <p>Categories Seletor for: {{category.name}}</p>
 
 <div ng-repeat="child in category.categories">
-    <input name="{{category.id}}" type="radio" value="{{child.id}}" ng-model="selectedCategory[category.id]" />{{child.name}}
+    <input name="{{category.id}}" type="radio" value="{{child.id}}" ng-model="selectedCategories[category.id]" />{{child.name}}
 </div>

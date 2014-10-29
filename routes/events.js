@@ -9,8 +9,6 @@ exports.findAll = function(req, res) {
         calendarId: ctx.CALENDAR_ID
     };
     google.calendar.events.list(params, function(err, cal) {
-        console.log('Error: ', err);
-
         cal.items.forEach(function(gEvent) {
             var lEvent = new LocalEvent();
             google.fillEvent(lEvent, gEvent)

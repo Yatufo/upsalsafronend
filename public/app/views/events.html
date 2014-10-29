@@ -2,7 +2,8 @@ Events view:
 <div>
 
     <p>Local Time: {{localTime}}</p>
-    <p>Happens On: "{{selectedCategory['happenson']}}"</p>
+    <p>Happens On: "{{selectedCategories['happenson']}}"</p>
+    <p>Happens On: "{{selectedCategories}}"</p>
 
     <div style="float:left">
         <div ng-repeat="category in categories" ng-include="'views/components/categories-selector.html'">
@@ -11,10 +12,11 @@ Events view:
 
     <div style="float:left">
         <ul class="event">
-            <li ng-repeat="event in events | happensOn:selectedCategory['happenson']:localTime | orderBy : event.start.dateTime ">
+            <li ng-repeat="event in events | happensOn:selectedCategories['happenson']:localTime | categories:selectedCategories | orderBy : event.start.dateTime ">
                 <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
                 <p>Location: {{event.location}}</p>
                 <p>Summary: {{event.summary}}</p>
+                <p>Categories: {{event.categories}}</p>
             </li>
         </ul>
     </div>

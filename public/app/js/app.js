@@ -9,6 +9,9 @@ var myApp = angular.module('myApp', [
     'myAppConfig'
 ]);
 
+angular.module('myAppControllers', ['myAppConfig']);
+angular.module('myAppFilters', ['myAppConfig']);
+
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.

@@ -15,15 +15,7 @@ describe('MyApp controllers', function() {
                 summary: 'Salsa'
             }]);
             mockHttp.expectGET(CONFIG.CATEGORIES_ENDPOINT).
-            respond([{
-                id: 'parent',
-                categories: [{
-                    "id": 'child1'
-                }, {
-                    "id": 'child2'
-                }]
-            }]);
-
+            respond(categoriesListMock);
             config = CONFIG;
             scope = $rootScope.$new();
             $controller('EventsCtrl', {
@@ -42,13 +34,41 @@ describe('MyApp controllers', function() {
                 summary: 'Salsa'
             }]);
 
-            expect(scope.categories[0].id).toEqual("parent");
-            expect(scope.selectedCategory["parent"]).toEqual("child1");
+        });
+
+        it('Categories must have the first child as default', function() {
+            expect(scope.categories).toBeUndefined();
+            mockHttp.flush();
+            expect(scope.categories).toBeDefined();
+
+            expect(scope.categories[0].id).toEqual("1-parent");
+            expect(scope.selectedCategories["1-parent"]).toEqual("11-child");
+            expect(scope.selectedCategories["2-parent"]).toEqual("21-child");
+            expect(scope.selectedCategories["12-child"]).toEqual("121-grandchild");
 
         });
 
-
     });
+
+
+    var categoriesListMock = [{
+        id: '1-parent',
+        categories: [{
+            "id": '11-child'
+        }, {
+            "id": '12-child',
+            categories: [{
+                "id": '121-grandchild'
+            }, {
+                "id": '122-grandchild'
+            }]
+        }]
+    }, {
+        id: '2-parent',
+        categories: [{
+            "id": '21-child'
+        }]
+    }];
 
 
 });

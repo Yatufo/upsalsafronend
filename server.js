@@ -11,6 +11,9 @@ app.get('/api/events', events.findAll);
 app.get('/api/categories', categories.findAll);
 
 
+process.on('uncaughtException', function (error) {
+   console.log(error.stack);
+});
 
 
 app.listen(3000);
