@@ -1,127 +1,131 @@
-[{
-    "id": "eventtype",
-    "name": "Type of event",
+{
+    "id": "root",
+    "name": "root category",
     "categories": [{
-        "id": "class",
-        "name": "Class",
-        "parent": "eventtype",
+        "id": "eventtype",
+        "name": "Type of event",
         "categories": [{
-            "id": "firstclass",
-            "name": "First Class",
-            "parent": "class"
+            "id": "class",
+            "name": "Class",
+            "parent": "eventtype",
+            "categories": [{
+                "id": "firstclass",
+                "name": "First Class",
+                "parent": "class"
+            }, {
+                "id": "secondclass",
+                "name": "Second Class",
+                "parent": "class"
+            }, {
+                "id": "dropin",
+                "name": "Drop In",
+                "parent": "class"
+            }, {
+                "id": "workshop",
+                "name": "Workshop",
+                "parent": "class"
+            }]
         }, {
-            "id": "secondclass",
-            "name": "Second Class",
-            "parent": "class"
+            "id": "party",
+            "parent": "eventtype",
+            "name": "Party"
         }, {
-            "id": "dropin",
-            "name": "Drop In",
-            "parent": "class"
+            "id": "schoolparty",
+            "parent": "eventtype",
+            "name": "School Party"
         }, {
-            "id": "workshop",
-            "name": "Workshop",
-            "parent": "class"
+            "id": "concert",
+            "parent": "eventtype",
+            "name": "Concert"
         }]
     }, {
-        "id": "party",
-        "parent": "eventtype",
-        "name": "Party"
-    }, {
-        "id": "schoolparty",
-        "parent": "eventtype",
-        "name": "School Party"
-    }, {
-        "id": "concert",
-        "parent": "eventtype",
-        "name": "Concert"
-    }]
-}, {
-    "id": "musictype",
-    "name": "Type of music",
-    "categories": [{
-        "id": "bachata",
-        "parent": "musictype",
-        "name": "Bachata"
-    }, {
-        "id": "salsa",
-        "parent": "musictype",
-        "name": "Salsa",
+        "id": "musictype",
+        "name": "Type of music",
         "categories": [{
-            "id": "cuban",
-            "name": "Cuban",
-            "parent": "salsa"
+            "id": "bachata",
+            "parent": "musictype",
+            "name": "Bachata"
         }, {
-            "id": "newyork",
-            "name": "New York",
-            "parent": "salsa"
+            "id": "salsa",
+            "parent": "musictype",
+            "name": "Salsa",
+            "categories": [{
+                "id": "cuban",
+                "name": "Cuban",
+                "parent": "salsa"
+            }, {
+                "id": "newyork",
+                "name": "New York",
+                "parent": "salsa"
+            }, {
+                "id": "losangeles",
+                "name": "Los Angeles",
+                "parent": "salsa"
+            }]
         }, {
-            "id": "losangeles",
-            "name": "Los Angeles",
-            "parent": "salsa"
+            "id": "kisomba",
+            "parent": "musictype",
+            "name": "Kisomba"
+        }, {
+            "id": "chacha",
+            "parent": "musictype",
+            "name": "Cha Cha"
         }]
     }, {
-        "id": "kisomba",
-        "parent": "musictype",
-        "name": "Kisomba"
+        "id": "level",
+        "name": "Level",
+        "categories": [{
+            "id": "beginner",
+            "parent": "level",
+            "name": "Beginner"
+        }, {
+            "id": "intermediate",
+            "parent": "level",
+            "name": "Intermediate"
+        }, {
+            "id": "advanced",
+            "parent": "level",
+            "name": "Advanced"
+        }]
     }, {
-        "id": "chacha",
-        "parent": "musictype",
-        "name": "Cha Cha"
+        "id": "pricerange",
+        "name": "Price Range",
+        "categories": [{
+            "id": "free",
+            "parent": "pricerange",
+            "name": "Free"
+        }, {
+            "id": "low",
+            "parent": "pricerange",
+            "name": "Low"
+        }, {
+            "id": "medium",
+            "parent": "pricerange",
+            "name": "Medium"
+        }, {
+            "id": "high",
+            "parent": "pricerange",
+            "name": "High"
+        }]
+    }, {
+        "id": "happenson",
+        "name": "Happens On",
+        "categories": [{
+            "id": "today",
+            "parent": "happenson",
+            "name": "Today"
+        }, {
+            "id": "tomorrow",
+            "parent": "happenson",
+            "name": "Tomorrow"
+        }, {
+            "id": "week",
+            "parent": "happenson",
+            "name": "Week"
+        }, {
+            "id": "weekend",
+            "parent": "happenson",
+            "name": "Weekend"
+        }]
     }]
-}, {
-    "id": "level",
-    "name": "Level",
-    "categories": [{
-        "id": "beginner",
-        "parent": "level",
-        "name": "Beginner"
-    }, {
-        "id": "intermediate",
-        "parent": "level",
-        "name": "Intermediate"
-    }, {
-        "id": "advanced",
-        "parent": "level",
-        "name": "Advanced"
-    }]
-}, {
-    "id": "pricerange",
-    "name": "Price Range",
-    "categories": [{
-        "id": "free",
-        "parent": "pricerange",
-        "name": "Free"
-    }, {
-        "id": "low",
-        "parent": "pricerange",
-        "name": "Low"
-    }, {
-        "id": "medium",
-        "parent": "pricerange",
-        "name": "Medium"
-    }, {
-        "id": "high",
-        "parent": "pricerange",
-        "name": "High"
-    }]
-}, {
-    "id": "happenson",
-    "name": "Happens On",
-    "categories": [{
-        "id": "today",
-        "parent": "happenson",
-        "name": "Today"
-    }, {
-        "id": "tomorrow",
-        "parent": "happenson",
-        "name": "Tomorrow"
-    }, {
-        "id": "week",
-        "parent": "happenson",
-        "name": "Week"
-    }, {
-        "id": "weekend",
-        "parent": "happenson",
-        "name": "Weekend"
-    }]
-}]
+}

@@ -27,6 +27,9 @@ describe('MyApp Filters', function() {
     var event5 = {"id":"5" ,"categories" : ["b","c","f"]};
     
     var categoryEvents = [event1, event2, event3, event4]; 
-    var selectedCategories = [["type1","a"],["type2","c"],["type2", null]];
+    var selectedCategories = [];
+    selectedCategories["type1"] = "a";
+    selectedCategories["type2"] = "c";
+    selectedCategories["type3"] = null;
 });
 

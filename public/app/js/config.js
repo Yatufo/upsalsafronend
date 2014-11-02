@@ -10,5 +10,7 @@ var config_module = angular.module('myAppConfig', [])
         'DEFAULT_HAPPENSON': 'today',
         'ONE_DAY_MILIS': 86400000,
         'WEEKEND_DAYS': [5, 6, 0],
-        'WEEK_DAYS': [1, 2, 3, 4, 5, 6, 0]
+        'WEEK_DAYS': [1, 2, 3, 4, 5, 6, 0],
+        'CATEGORY_SELECTOR' : 'views/components/categories-selector.html'
+
     });

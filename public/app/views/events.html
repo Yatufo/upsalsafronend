@@ -3,11 +3,9 @@ Events view:
 
     <p>Local Time: {{localTime}}</p>
     <p>Happens On: "{{selectedCategories['happenson']}}"</p>
-    <p>Happens On: "{{selectedCategories}}"</p>
 
-    <div style="float:left">
-        <div ng-repeat="category in categories" ng-include="'views/components/categories-selector.html'">
-        </div>
+    <div ng-controller="CategoriesCtrl" style="float:left">
+        <div ng-include="CONFIG.CATEGORY_SELECTOR" />
     </div>
 
     <div style="float:left">

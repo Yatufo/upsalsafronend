@@ -5,13 +5,12 @@
 angular.module('myAppFilters')
     .filter('categories', ['CONFIG', function(cfg) {
 
-        return function(eventsList, selectedCategories, param) {
-
+        return function(eventsList, selectedCategories) {
             if (!angular.isArray(eventsList)) return false;
             var includedEvents = eventsList.slice(0);
 
-            for (var i = 0; i < selectedCategories.length; i++) {
-                var category = selectedCategories[i][1];
+            for (var key in selectedCategories) {
+                var category = selectedCategories[key];
 
                 if (angular.isDefined(category) && category != null) {
 
@@ -19,6 +18,7 @@ angular.module('myAppFilters')
                         var index = includedEvents[j].categories.indexOf(category);
 
                         if (index == -1) {
+                            console.log("Envent " + includedEvents[j].summary  + " Does not have the category: " +  category);
                             includedEvents.splice(j, 1);
                         }
                     }
