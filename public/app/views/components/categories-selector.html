@@ -1,10 +1,11 @@
-<p>Categories Selector for: {{categoryTree.name}}</p>
+<p>Categories Selector for: {{categoryTree.name}} And IsRoot: {{categoryTree.isRoot}}</p>
 
 <div ng-repeat="child in categoryTree.categories">
-    <input name="{{categoryTree.id}}" type="radio" value="{{child.id}}" ng-model="selectedCategories[categoryTree.id]" />{{child.name}}
+    <input ng-if="!child.isRoot" name="{{categoryTree.id}}" type="radio" value="{{child.id}}" ng-model="selectedCategories[categoryTree.id]" />{{child.name}}
 
 
     <br/>
+
     <div ng-if="showSubcategories(child, categoryTree)" >
         <br/>
         <div ng-init="categoryTree = child" ng-include="CONFIG.CATEGORY_SELECTOR">

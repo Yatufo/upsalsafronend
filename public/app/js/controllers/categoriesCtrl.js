@@ -9,16 +9,25 @@ angular.module('myAppControllers')
 
             $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
                 $scope.categoryTree = data;
-                setDefaultCategories(data);
+                setCategorySelectionTree($scope.categoryTree, 0);
+                setDefaultValues();
             });
+            var setDefaultValues = function() {
+                for (var key in CONFIG.DEFAULT_CATEGORIES){
+                    console.log("Setting default key: " + key);
+                    $rootScope.selectedCategories[key] = CONFIG.DEFAULT_CATEGORIES[key]
+                }
+            }
 
 
-            var setDefaultCategories = function(categoryNode) {
+            var setCategorySelectionTree = function(categoryNode, level) {
+                categoryNode.isRoot = (level < 2);
+                categoryNode.isNotRoot = !categoryNode.isRoot;
+
                 var categories = categoryNode.categories;
                 if (hasCategories(categoryNode)) {
-                    $rootScope.selectedCategories[categoryNode.id] = categoryNode.categories[0].id;
                     for (var category of categoryNode.categories) {
-                        setDefaultCategories(category);
+                        setCategorySelectionTree(category, level + 1);
                     }
                 }
             }
@@ -27,10 +36,10 @@ angular.module('myAppControllers')
                 return angular.isDefined(categoryNode.categories) && angular.isArray(categoryNode.categories) && categoryNode.categories.length > 0;
             }
 
-            $scope.showSubcategories = function(childNode, parentNode) {
-                var parentSelected = $rootScope.selectedCategories[parentNode.id] === childNode.id;
-                return hasCategories(childNode) && parentSelected;
-                            }
+            $scope.showSubcategories = function(node, parent) {
+                var isSelected = $rootScope.selectedCategories[parent.id] === node.id ;
+                return (hasCategories(node) && isSelected) || node.isRoot ;
+            }
 
         }
 

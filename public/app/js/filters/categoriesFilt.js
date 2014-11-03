@@ -12,13 +12,14 @@ angular.module('myAppFilters')
             for (var key in selectedCategories) {
                 var category = selectedCategories[key];
 
-                if (angular.isDefined(category) && category != null) {
-
+                if (key !== "happenson" && angular.isDefined(category) && category !== null) {
                     for (var j = includedEvents.length - 1; j >= 0; j--) {
-                        var index = includedEvents[j].categories.indexOf(category);
+                        var index = -1;
+                        if (angular.isArray(includedEvents[j].categories)) {
+                            includedEvents[j].categories.indexOf(category);
+                        }
 
                         if (index == -1) {
-                            console.log("Envent " + includedEvents[j].summary  + " Does not have the category: " +  category);
                             includedEvents.splice(j, 1);
                         }
                     }

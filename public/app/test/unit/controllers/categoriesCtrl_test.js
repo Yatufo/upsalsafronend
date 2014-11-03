@@ -23,12 +23,6 @@ describe('MyApp controllers', function() {
             expect(scope.categoryTree).toBeUndefined();
             mockHttp.flush();
             expect(scope.categoryTree).toBeDefined();
-
-            expect(scope.categoryTree.categories[0].id).toEqual("1-parent");
-            expect(scope.selectedCategories["1-parent"]).toEqual("11-child");
-            expect(scope.selectedCategories["2-parent"]).toEqual("21-child");
-            expect(scope.selectedCategories["12-child"]).toEqual("121-grandchild");
-
         });
 
     });
