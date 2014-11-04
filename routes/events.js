@@ -8,10 +8,11 @@ exports.findAll = function(req, res) {
     var params = {
         calendarId: ctx.CALENDAR_ID,
         timeMin: (ctx.SIMULATED_NOW ? ctx.SIMULATED_NOW : new Date().toISOString()),
-        maxResults: (ctx.EVENTS_MAXRESULTS ? ctx.EVENTS_MAXRESULTS : null)
+        maxResults: ctx.EVENTS_MAXRESULTS
     };
 
     google.calendar.events.list(params, function(err, cal) {
+
         if (cal != null && cal.items != null) {
             cal.items.forEach(function(gEvent) {
                 var lEvent = new LocalEvent();
