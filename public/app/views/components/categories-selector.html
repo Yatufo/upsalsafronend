@@ -1,14 +1,9 @@
-<p>Category: {{categoryTree.name}} Selection: {{selectedCategories[categoryTree.id]}}</p>
+<div ng-repeat="root in rootCategories">
+    <div ng-if="isSelected(root)">
+        <p>Category: {{root.name}} </p>
 
-<div class="btn-group" ng-repeat="child in categoryTree.categories">
-    <label class="btn btn-primary" ng-if="!child.isRoot"  ng-model="selectedCategories[categoryTree.id]" btn-radio="'{{child.id}}'">{{child.name}}</label> <br/>
-</div>
-
-<div class="btn-group" ng-repeat="child in categoryTree.categories">
-    <div ng-if="showSubcategories(child, categoryTree)" >
-        <br/>
-        <div ng-init="categoryTree = child" ng-include="CONFIG.CATEGORY_SELECTOR">
+        <div class="btn-group" ng-repeat="category in categories[root.id]">
+            <label class="btn btn-primary" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'">{{category.name}}</label>
         </div>
-        <br/>
     </div>
 </div>
