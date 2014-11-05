@@ -13,6 +13,12 @@ angular.module('myAppControllers')
                 setDefaultValues();
             });
 
+            $scope.restoreFilters = function(){
+                console.log("reseting");
+                $rootScope.selectedCategories = [];
+                setDefaultValues();
+            }
+
             var setDefaultValues = function() {
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
                     console.log("Setting default key: " + key);

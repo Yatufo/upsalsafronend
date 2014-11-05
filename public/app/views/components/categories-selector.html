@@ -1,9 +1,16 @@
-<div ng-repeat="root in rootCategories">
-    <div ng-if="isSelected(root)">
-        <p>Category: {{root.name}} </p>
-
-        <div class="btn-group" ng-repeat="category in categories[root.id]">
-            <label class="btn btn-primary" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'">{{category.name}}</label>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Filters:
+        <button type="button" class="btn btn-default" ng-click="restoreFilters()">reset all</button>
     </div>
+
+
+
+    <ul class="list-group" ng-repeat="root in rootCategories">
+        <li ng-if="isSelected(root)" class="list-group-item">
+            <div class="btn-group" ng-repeat="category in categories[root.id]">
+                <label class="btn btn-primary" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'">{{category.name}}</label>
+            </div>
+        </li>
+    </ul>
+
 </div>

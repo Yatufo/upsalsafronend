@@ -1,22 +1,23 @@
-Events view:
-<div>
+<p>Local Time: {{localTime}}</p>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
 
-    <p>Local Time: {{localTime}}</p>
-    <p>Happens On: "{{selectedCategories['happenson']}}"</p>
+            <div ng-controller="CategoriesCtrl">
+                <div ng-include="CONFIG.CATEGORY_SELECTOR" />
+            </div>
 
-    <div ng-controller="CategoriesCtrl" style="float:left">
-        <div ng-include="CONFIG.CATEGORY_SELECTOR" />
+        </div>
+        <div class="span10">
+            <div class="panel panel-primary" ng-repeat="event in events | happensOn:selectedCategories['happenson']:localTime | categories:selectedCategories | orderBy : event.start.dateTime ">
+                <div class="panel-heading">Summary: {{event.summary}}</div>
+
+                <div class="panel-body">
+                    <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
+                    <p>Location: {{event.location}}</p>
+                    <p>Categories: {{event.categories}}</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div style="float:left">
-        <ul class="event">
-            <li ng-repeat="event in events | happensOn:selectedCategories['happenson']:localTime | categories:selectedCategories | orderBy : event.start.dateTime ">
-                <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
-                <p>Location: {{event.location}}</p>
-                <p>Summary: {{event.summary}}</p>
-                <p>Categories: {{event.categories}}</p>
-            </li>
-        </ul>
-    </div>
-
 </div>
