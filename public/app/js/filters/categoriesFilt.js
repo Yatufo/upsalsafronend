@@ -16,7 +16,7 @@ angular.module('myAppFilters')
                     for (var j = includedEvents.length - 1; j >= 0; j--) {
                         var index = -1;
                         if (angular.isArray(includedEvents[j].categories)) {
-                            includedEvents[j].categories.indexOf(category);
+                            index = includedEvents[j].categories.indexOf(category);
                         }
 
                         if (index == -1) {
