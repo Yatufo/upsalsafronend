@@ -7,23 +7,15 @@ var myApp = angular.module('myApp', [
     'myAppControllers',
     'myAppFilters',
     'myAppConfig',
+    'myAppServices',
     'ui.bootstrap'
 ]);
 
-angular.module('myAppControllers', ['myAppConfig']);
+angular.module('myAppControllers', ['myAppConfig', 'myAppServices']);
 angular.module('myAppFilters', ['myAppConfig']);
+angular.module('myAppServices', ['myAppConfig']);
 
 
-
-myApp.directive('categorySelector', function() {
-        return {
-            restrict: 'E',
-            scope: {
-                node: '='
-            },
-            templateUrl: 'views/components/categories-selector.html'
-        };
-    });
 
 myApp.config(['$routeProvider',
     function($routeProvider) {

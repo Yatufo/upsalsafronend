@@ -9,7 +9,7 @@
 
         </div>
         <div class="span10">
-            <div class="panel panel-primary" ng-repeat="event in events | happensOn:selectedCategories['happenson']:localTime | categories:selectedCategories | orderBy : event.start.dateTime ">
+            <div class="panel panel-primary" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
                 <div class="panel-heading">Summary: {{event.summary}}</div>
 
                 <div class="panel-body">

@@ -3,9 +3,16 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('CategoriesCtrl', ['$scope', '$rootScope', '$http', 'CONFIG',
-        function($scope, $rootScope, $http, CONFIG) {
-            $rootScope.selectedCategories = [];
+    .controller('CategoriesCtrl', ['$scope', '$http', 'CONFIG', 'diffusionService',
+        function($scope, $http, CONFIG, diffusionService) {
+
+
+            $scope.selectedCategories = {};
+
+            $scope.$watch('selectedCategories', function() {
+                diffusionService.changeCategories($scope.selectedCategories);
+            }, true);
+
 
             $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
                 $scope.categories = data;
@@ -13,21 +20,20 @@ angular.module('myAppControllers')
                 setDefaultValues();
             });
 
-            $scope.restoreFilters = function(){
+            $scope.restoreFilters = function() {
                 console.log("reseting");
-                $rootScope.selectedCategories = [];
                 setDefaultValues();
             }
 
             var setDefaultValues = function() {
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
                     console.log("Setting default key: " + key);
-                    $rootScope.selectedCategories[key] = CONFIG.DEFAULT_CATEGORIES[key]
+                    $scope.selectedCategories[key] = CONFIG.DEFAULT_CATEGORIES[key];
                 }
             }
 
             $scope.isSelected = function(category) {
-                return angular.isUndefined(category.parent) || $rootScope.selectedCategories[category.parent] === category.id;
+                return angular.isUndefined(category.parent) || $scope.selectedCategories[category.parent] === category.id;
             }
 
         }
