@@ -7,6 +7,7 @@ angular.module('myAppFilters')
 
         return function(eventsList, query, localTime) {
             if (!angular.isArray(eventsList)) return false;
+            if (!angular.isString(query)) return eventsList;
 
             //Production Behavior: Uses the time id the client if there is no testing going on.
             if (angular.isUndefined(localTime)) {

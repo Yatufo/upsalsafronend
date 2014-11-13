@@ -7,6 +7,7 @@ angular.module('myAppServices')
         function($rootScope) {
 
             var CHANGE_CATEGORIES = "changeCategories";
+            var CHANGE_EVENTS = "changeEvents";
 
 
             var changeCategories = function(selectedCategories) {
@@ -17,15 +18,27 @@ angular.module('myAppServices')
 
             var onChangeCategories = function($scope, handler) {
                 $scope.$on(CHANGE_CATEGORIES, function(event, message) {
-                    console.log('Handling the messgae' + JSON.stringify(message.selected));
+                    handler(message);
+                });
+            };
+            
+            var changeEvents = function(eventsCategories) {
+                $rootScope.$broadcast(CHANGE_EVENTS, {
+                    eventsCategories: eventsCategories
+                });
+            };
+
+            var onChangeEvents = function($scope, handler) {
+                $scope.$on(CHANGE_EVENTS, function(event, message) {
                     handler(message);
                 });
             };
 
-
             return {
                 changeCategories: changeCategories,
-                onChangeCategories: onChangeCategories
+                onChangeCategories: onChangeCategories,
+                changeEvents: changeEvents,
+                onChangeEvents: onChangeEvents
             }
 
         }

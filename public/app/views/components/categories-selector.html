@@ -6,9 +6,9 @@
 
 
     <ul class="list-group" ng-repeat="root in rootCategories">
-        <li ng-if="isSelected(root)" class="list-group-item">
+        <li ng-if="root.visible" class="list-group-item">
             <div class="btn-group" ng-repeat="category in categories[root.id]">
-                <label class="btn btn-primary" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'">{{category.name}}</label>
+                <label ng-if="category.visible" class="btn btn-primary" data-toggle="button" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'" uncheckable >{{category.name}}</label>
             </div>
         </li>
     </ul>
