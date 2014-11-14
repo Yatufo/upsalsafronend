@@ -7,8 +7,10 @@ angular.module('myAppControllers')
         function($scope, $http, CONFIG, diffusionService) {
 
 
+            $scope.isCollapsed = false;
             $scope.selectedCategories = {};
             $scope.categories = {};
+            $scope.rootCategories = {};
 
             $scope.$watch('selectedCategories', function() {
                 diffusionService.changeCategories($scope.selectedCategories);
@@ -22,6 +24,7 @@ angular.module('myAppControllers')
             });
 
             $scope.restoreFilters = function() {
+                $scope.selectedCategories = {};
                 setDefaultValues();
             }
 

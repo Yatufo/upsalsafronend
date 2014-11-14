@@ -1,14 +1,15 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Filters:
-        <button type="button" class="btn btn-default" ng-click="restoreFilters()">reset all</button>
+    <div class="panel-heading">
+        <button class="btn btn-default" ng-click="restoreFilters()">Reset</button>
+        <button class="btn btn-default pull-right" ng-click="isCollapsed = !isCollapsed">Toggle</button>
     </div>
 
 
 
-    <ul class="list-group" ng-repeat="root in rootCategories">
+    <ul collapse="isCollapsed" class="list-group" ng-repeat="root in rootCategories">
         <li ng-if="root.visible" class="list-group-item">
             <div class="btn-group" ng-repeat="category in categories[root.id]">
-                <label ng-if="category.visible" class="btn btn-primary" data-toggle="button" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'" uncheckable >{{category.name}}</label>
+                <label ng-if="category.visible" class="btn btn-primary btn-sm" data-toggle="button" ng-model="selectedCategories[root.id]" btn-radio="'{{category.id}}'" uncheckable>{{category.name}}</label>
             </div>
         </li>
     </ul>
