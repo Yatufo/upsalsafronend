@@ -3,14 +3,15 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('EventsCtrl', ['$scope', '$http', '$filter', 'CONFIG', 'diffusionService',
-        function($scope, $http, $filter, CONFIG, diffusionService) {
+    .controller('EventsCtrl', ['$scope', '$http', '$filter', '$routeParams',  'CONFIG', 'diffusionService',
+        function($scope, $http, $filter, $routeParams, CONFIG, diffusionService) {
 
             $scope.localTime = CONFIG.TODAY;
             $scope.daysRange = CONFIG.DEFAULT_HAPPENSON;
 
             $scope.eventsCategories = new Set();
             $scope.filteredEvents = [];
+
 
             $scope.$watch('eventsCategories.content', function() {
                 diffusionService.changeEvents($scope.eventsCategories.asArray());

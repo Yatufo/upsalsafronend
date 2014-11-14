@@ -10,7 +10,7 @@ angular.module('myAppControllers')
             $scope.isCollapsed = false;
             $scope.selectedCategories = {};
             $scope.categories = {};
-            $scope.rootCategories = {};
+            $scope.rootCategories = [];
 
             $scope.$watch('selectedCategories', function() {
                 diffusionService.changeCategories($scope.selectedCategories);

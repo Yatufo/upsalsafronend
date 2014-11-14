@@ -20,12 +20,12 @@ angular.module('myAppServices', ['myAppConfig']);
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/events', {
+        when('/city/:city/events', {
             templateUrl: 'views/events.html',
             controller: 'EventsCtrl'
         }).
         otherwise({
-            redirectTo: '/events'
+            redirectTo: '/city/montreal/events'
         });
     }
 ]);
