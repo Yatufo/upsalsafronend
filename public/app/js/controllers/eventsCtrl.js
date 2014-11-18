@@ -7,11 +7,13 @@ angular.module('myAppControllers')
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService) {
 
             $scope.localTime = CONFIG.TODAY;
-            $scope.daysRange = CONFIG.DEFAULT_HAPPENSON;
-
             $scope.eventsCategories = new Set();
             $scope.filteredEvents = [];
-
+            
+            //TODO: replace this with a proper configuration depending on the environment.
+            if ($routeParams.testDate) {
+                $scope.localTime = new Date($routeParams.testDate);
+            }
 
             $scope.$watch('eventsCategories.content', function() {
                 diffusionService.changeEvents($scope.eventsCategories.asArray());
