@@ -47,20 +47,22 @@ angular.module('myAppControllers')
             });
 
             var changeCategoriesStatus = function() {
-                
-                for (var root of $scope.rootCategories) {
+
+                $scope.rootCategories.forEach(function(root) {
+
                     var visibleCount = 0;
-                    for (var category of $scope.categories[root.id]) {
+                    $scope.categories[root.id].forEach(function(category) { 
                         category.visible = updateCategoryStatus(category);
-                        if (category.visible){
+                        if (category.visible) {
                             visibleCount++;
                         }
-                    }
+                    });
 
                     root.visible = updateRootCategoryStatus(root, visibleCount);
-                }
 
+                });
             }
+
             
             var updateRootCategoryStatus = function(category, count) {
                 var isChildToggled = angular.isString($scope.selectedCategories[category.id]);
