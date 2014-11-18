@@ -15,7 +15,9 @@ angular.module('myAppControllers', ['myAppConfig', 'myAppServices']);
 angular.module('myAppFilters', ['myAppConfig']);
 angular.module('myAppServices', ['myAppConfig']);
 
-
+myApp.config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+}]);
 
 myApp.config(['$routeProvider',
     function($routeProvider) {
@@ -29,5 +31,3 @@ myApp.config(['$routeProvider',
         });
     }
 ]);
-
-
