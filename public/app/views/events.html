@@ -2,15 +2,17 @@
     <div class="row">
 
 
-         <div class="col-md-4">
-
-            <div ng-controller="CategoriesCtrl">
-                <div ng-include="'views/components/categories-selector.html'"></div>
-            </div>
-
+        <div class="col-md-2">
         </div>
 
         <div class="col-md-4">
+            <div ng-controller="CategoriesCtrl">
+
+                <div ng-include="'views/components/categories-selector.html'"></div>
+            </div>
+
+
+
             <div class="panel panel-red" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
                 <div class="panel-heading">Summary: {{event.summary}}</div>
 
@@ -21,8 +23,14 @@
                 </div>
             </div>
         </div>
-<!--     <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
+        <div class="col-md-4">
+            <!--     <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
     &q=dance+salsa&zoom=8">
     </iframe> -->
+        </div>
+        <div class="col-md-2">
+        </div>
+
+
     </div>
 </div>

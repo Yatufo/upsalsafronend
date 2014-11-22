@@ -30,7 +30,8 @@ var configuration = {
         "CALENDAR_ID": "project.demonio@gmail.com",
         "CATEGORIES_JSON": "./data/categories.json",
         "SIMULATED_NOW": "2014-10-01T04:00:01.000Z",
-        "EVENTS_MAXRESULTS": 200
+        "EVENTS_MAXRESULTS": 200,
+        "EVENTS_SINGLE" : true
     },
     "prod": {
         "googlesetup": {
@@ -52,6 +53,7 @@ var configuration = {
         "CATEGORIES_JSON": "./data/categories.json",
         "SIMULATED_NOW": false,
         "EVENTS_MAXRESULTS": 20,
+        "EVENTS_SINGLE" : true,
         "prerenderToken": "jJ9tuSryPgzvzFEytcA2"
     }
 

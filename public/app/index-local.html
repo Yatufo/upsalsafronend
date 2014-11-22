@@ -4,94 +4,42 @@
 
 
 <head>
-    <meta name="fragment" content="!">  
+    <meta name="fragment" content="!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Up Salsa Montreal</title>
 
-    <div ng-include="'views/components/theme-css.html'"></div>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
 
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="assets/css/theme-colors/red.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
 
 <body ng-controller="HomeCtrl">
 
     <div ng-include="'views/components/theme-header.html'"></div>
-    <!--=== Slider ===-->
-    <div class="slider-inner">
-        <div id="da-slider" class="da-slider">
-            <div class="da-slide">
-                <h2><i>FIND A</i> 
-                    <br /> <i>GREAT PLACE</i> 
-                    <br /> <i>TO DANCE!</i>
-                </h2>
-                <p><i>Find the best places </i> 
-                    <br /> <i>with the music of</i> 
-                    <br /> <i> your preference now.</i>
-                </p>
-                <div class="da-img">
-                    <img class="img-responsive"  alt="">
-                </div>
-            </div>
-
-            <div class="da-slide">
-                <h2><i>IMPROVE YOUR SALSA</i> 
-                    <br /> <i>WITH</i> 
-                    <br /> <i>LADY STYLING</i>
-                </h2>
-                <p><i>Take </i> 
-                    <br /> <i>salsa to the next level</i> 
-                    <br /> <i> and be ready to impress.</i>
-                </p>
-                <div class="da-img">
-                    <img class="img-responsive" alt="">
-                </div>
-            </div>
-            <div class="da-slide">
-                <h2><i>KIZOMBA</i> 
-                    <br /> <i>IS NOT JUST FOR </i> 
-                    <br /> <i>COUPLES</i>
-                </h2>
-                <p><i>Learn a dance</i> 
-                    <br /> <i>that is captivating the</i> 
-                    <br /> <i>world with it's sensuality.</i>
-                </p>
-                <div class="da-img">
-                    <img class="img-responsive" alt="" />
-                </div>
-            </div>
-            <div class="da-arrows">
-                <span class="da-arrows-prev"></span>
-                <span class="da-arrows-next"></span>
-            </div>
-        </div>
-    </div>
-    <!--/slider-->
-    <!--=== End Slider ===-->
     <div ng-view></div>
     <div ng-include="'views/components/theme-footer.html'"></div>
 
 
     <!-- JS Global Compulsory -->
-    <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- JS Implementing Plugins -->
     <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
-    <script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-    <!-- JS Customization -->
-    <script type="text/javascript" src="assets/js/custom.js"></script>
-    <!-- JS Page Level -->
-    <script type="text/javascript" src="assets/js/app.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/parallax-slider.js"></script>
-    <script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();
-        App.initSliders();
-        ParallaxSlider.initParallaxSlider();
-    });
-    </script>
+
+
 
 
     <script src="bower_components/angular/angular.js"></script>
