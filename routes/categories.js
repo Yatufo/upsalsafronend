@@ -1,6 +1,6 @@
 //Config for the route
 var fs = require('fs');
-var ctx = require('../lib/conf.js').context();
+var ctx = require('./util/conf.js').context();
 //
 // 
 exports.findAll = function(req, res) {

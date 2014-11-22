@@ -1,6 +1,6 @@
 //Config for the app
-var google = require('../lib/google.js');
-var ctx = require('../lib/conf.js').context();
+var google = require('./util/google.js');
+var ctx = require('./util/conf.js').context();
 //
 // 
 exports.findAll = function(req, res) {
