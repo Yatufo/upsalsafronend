@@ -35,6 +35,7 @@ angular.module('myAppControllers')
                 populateEventsCategories();
             });
 
+            // gets all the unique categories that can be selected by gathering them from the filtered events.
             var populateEventsCategories = function() {
                 $scope.eventsCategories.content = {};
                 for (var i = $scope.filteredEvents.length - 1; i >= 0; i--) {
