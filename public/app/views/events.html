@@ -14,19 +14,20 @@
 
 
             <div class="panel panel-red" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
-                <div class="panel-heading">Summary: {{event.summary}}</div>
+                <div class="panel-heading">{{event.summary}}</div>
 
                 <div class="panel-body">
-                    <p>Starts: {{event.start.dateTime | date: 'fullDate' }} Ends: {{event.end.dateTime | date:'EEE h:mma'}}</p>
-                    <p>Location: {{event.location}}</p>
-                    <p>Categories: {{event.categories}}</p>
+                    <p><i class="fa fa-calendar fa-lg"> </i>
+                        {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }} <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
+                    <p><i class="fa fa-map-marker fa-lg"></i> {{event.location}}</p>
+                    <p><i class="fa fa-list fa-lg"></i>{{event.categories}}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <!--     <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
+            <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
     &q=dance+salsa&zoom=8">
-    </iframe> -->
+            </iframe>
         </div>
         <div class="col-md-2">
         </div>

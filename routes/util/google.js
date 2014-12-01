@@ -18,26 +18,31 @@ google.options({
 
 exports.calendar = google.calendar('v3');
 
+//This how the tags about the event are contained in the decription
+var jsonRegex = /\{.*?\}/;
 
 //Converts google calendar to the app structure
 exports.fillEvent = function(lEvent, gEvent) {
 
     //TODO: Validate nulls and data in general
 
-    lEvent.start.dateTime = gEvent.start.dateTime
-    lEvent.end.dateTime = gEvent.end.dateTime
-    lEvent.timeZone = gEvent.timeZone
-    lEvent.id = gEvent.id
-    lEvent.location = gEvent.location
-    lEvent.summary = gEvent.summary
-    lEvent.id = gEvent.id
+    lEvent.start.dateTime = Date.parse(gEvent.start.dateTime);
+    lEvent.end.dateTime = Date.parse(gEvent.end.dateTime);
+    lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime)/360000)/10;
+
+    lEvent.timeZone = gEvent.timeZone;
+    lEvent.id = gEvent.id;
+    lEvent.location = gEvent.location;
+    lEvent.summary = gEvent.summary;
+    lEvent.id = gEvent.id;
     
     try {
         if (gEvent.description){
-            lEvent.categories = JSON.parse(gEvent.description).categories;
+            jsonContent = gEvent.description.match(jsonRegex);
+            lEvent.categories = JSON.parse(jsonContent).categories;
         }
     } catch (err) {
-        console.log("Not able to parse the categories from google:", err, gEvent.description)
+        console.log("Not able to parse the categories from google:", err, gEvent.description, "ID: ", gEvent.id)
     }
 
 

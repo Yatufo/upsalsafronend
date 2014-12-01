@@ -54,12 +54,8 @@
         "name": "Concert"
     }],
     "class": [{
-        "id": "firstclass",
-        "name": "First Class",
-        "parent": "class"
-    }, {
-        "id": "secondclass",
-        "name": "Second Class",
+        "id": "season",
+        "name": "Season Class",
         "parent": "class"
     }, {
         "id": "dropin",
@@ -79,9 +75,9 @@
         "parent": "musictype",
         "name": "Salsa"
     }, {
-        "id": "kisomba",
+        "id": "kizomba",
         "parent": "musictype",
-        "name": "Kisomba"
+        "name": "Kizomba"
     }, {
         "id": "chacha",
         "parent": "musictype",
@@ -117,6 +113,10 @@
         "id": "free",
         "parent": "pricerange",
         "name": "Free"
+    }, {
+        "id": "paid",
+        "parent": "pricerange",
+        "name": "Paid"
     }, {
         "id": "low",
         "parent": "pricerange",
