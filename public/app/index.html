@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="HomeCtrl">
 
 
 <head>
@@ -17,19 +17,9 @@
     <link rel="stylesheet" href="assets/css/theme-colors/red.css">
 </head>
 
-<body ng-controller="HomeCtrl">
+<body>
 
     <div ng-include="'views/components/theme-header.html'"></div>
-
-    <div class="mainimage">
-        <img src="assets/img/bg.jpg" alt="" />
-        <div>
-            <h2><i>FIND A GREAT PLACE TO DANCE!</i>
-                </h2>
-            <p><i>Find the best places with the music of your preference now.</i>
-            </p>
-        </div>
-    </div>
 
     <div ng-view></div>
     <div ng-include="'views/components/theme-footer.html'"></div> 

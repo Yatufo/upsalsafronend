@@ -17,24 +17,23 @@
                 <div class="panel-heading">{{event.summary}}</div>
 
                 <div class="panel-body">
-                    <p><i class="fa fa-calendar fa-lg"> </i>
-                        {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }}</p>
+                    <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }}</p>
                     <p> <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
                     <p><i ng-if="event.location" class="fa fa-map-marker fa-lg"></i> {{event.location}}</p>
                     <p>
                         <ul class="list-inline">
-                            <i class="fa fa-list fa-lg"></i> 
+                            <i class="fa fa-list fa-lg"></i>
                             <li ng-repeat="category in event.categories">{{category}}</li>
                         </ul>
                     </p>
                 </div>
             </div>
         </div>
-       <!--  <div class="col-md-4">
+        <div class="col-md-4">
             <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
     &q=salsa, Montreal+QC&zoom=11">
             </iframe>
-        </div>  -->
+        </div>
         <div class="col-md-2">
         </div>
 
