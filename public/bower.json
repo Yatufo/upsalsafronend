@@ -10,7 +10,7 @@
     "angular-route": "1.3.x",
     "angular-loader": "1.3.x",
     "angular-mocks": "~1.3.x",
-    "jquery": "1.x",
+    "jquery": "1.11",
     "bootstrap": "latest",
     "font-awesome": "latest",
     "html5-boilerplate": "~4.3.0"
