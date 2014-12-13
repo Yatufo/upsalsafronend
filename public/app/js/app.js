@@ -23,7 +23,7 @@ myApp.config(['$compileProvider', function($compileProvider) {
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/events/:city/:category', {
+        when('/:city/events/:category', {
             templateUrl: 'views/events.html',
             controller: 'EventsCtrl'
         }).
