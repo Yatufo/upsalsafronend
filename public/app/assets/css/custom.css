@@ -3,7 +3,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
 body {
     padding-top: 50px;
+    padding-bottom: 70px; 
 }
+
 #logo-header {
     max-height: 50px;
     margin-top: -15px;
@@ -51,10 +53,17 @@ h2 span {
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
 }
-
 div .image-selector h3 {
     margin-top: 0px;
 }
+
+
+
+.footer p {
+    color: #EEE;
+    margin-top: 14px;
+}
+
 
 /* Smartphones (portrait and landscape) ----------- */
 
@@ -79,6 +88,9 @@ div .image-selector h3 {
     .mainimage > div > p > i {
         font-size: 10px;
     }
+    div .image-selector h3 {
+        font-size: 14px;
+    }
 }
 /* To center the images */
 
@@ -99,3 +111,7 @@ div .image-selector h3 {
     }
 }
 }
+
+
+
+

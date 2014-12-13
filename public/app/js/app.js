@@ -23,12 +23,16 @@ myApp.config(['$compileProvider', function($compileProvider) {
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/city/:city/events', {
+        when('/events/:city/:category', {
             templateUrl: 'views/events.html',
             controller: 'EventsCtrl'
         }).
+        when('/:city', {
+            templateUrl: 'views/home.html',
+            controller: 'HomeCtrl'
+        }).
         otherwise({
-            redirectTo: '/city/montreal/events'
+            redirectTo: '/montreal'
         });
     }
 ]);

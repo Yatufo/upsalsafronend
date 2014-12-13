@@ -5,11 +5,8 @@
         
         <div class="col-md-6 col-xs-12">
             <div ng-controller="CategoriesCtrl">
-
                 <div ng-include="'views/components/categories-selector.html'"></div>
             </div>
-
-
 
             <div class="panel panel-red" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
                 <div class="panel-heading">{{event.summary}}</div>

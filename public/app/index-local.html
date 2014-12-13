@@ -7,7 +7,7 @@
     <meta name="fragment" content="!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Up Salsa Montreal</title>
+    <title>Up Salsa {{city}}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico">
@@ -29,9 +29,10 @@
     <div ng-include="'views/components/theme-header.html'"></div>
 
     <div ng-view></div>
+    
     <div ng-include="'views/components/theme-footer.html'"></div> 
 
-    <!-- JS Global Compulsory -->
+    <!-- JS Global Compulsory -->   
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- JS Implementing Plugins -->
