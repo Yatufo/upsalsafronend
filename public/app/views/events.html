@@ -1,24 +1,21 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-2 text-center img-responsive">
-            <a href="#/{{city}}/events/{{category}}">
-                <img src="assets/img/{{category}}.jpg" class="img-circle img-responsive" alt="Selected category {{category}}">
+    
+    <div class="row" ng-controller="CategoriesCtrl">
+        <div class="col-xs-12 col-md-2 text-center image-selector">
+             <a href="#/{{city}}/events/{{category}}">
+                <img src="assets/img/{{category}}.jpg" class="img-circle category-circle img-responsive " alt="Selected category {{category}}">
                 <div class="caption">
-                    <h3>Party</h3>
+                    <h3>{{category}}</h3>
                 </div>
             </a>
         </div>
 
-        <div class="col-xs-12 col-md-10 ">
-            <div ng-controller="CategoriesCtrl">
-                <div ng-include="'views/components/categories-selector.html'"></div>
-            </div>
-        </div>
+        <div class="col-xs-12 col-md-10 " ng-include="'views/components/categories-selector.html'"></div>
     </div>
-    <div class="row">
-        <div class="hidden-xs  col-md-2">
-        </div>
 
+    <div class="row">
+        <div class="hidden-xs col-md-2">
+        </div>
         <div class="col-xs-12 col-md-6">
             <div class="panel panel-red" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
                 <div class="panel-heading">{{event.summary}}</div>

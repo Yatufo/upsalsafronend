@@ -56,8 +56,6 @@ div .image-selector h3 {
     margin-top: 0px;
 }
 
-
-
 .footer p {
     color: #EEE;
     margin-top: 14px;
@@ -127,6 +125,9 @@ div .image-selector h3 {
     }
     .well {
         margin-bottom: 5px
+    }
+    .category-circle{
+        height: 100px !important;
     }
 }
 /* To center the images */
