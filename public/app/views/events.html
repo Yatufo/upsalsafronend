@@ -1,8 +1,8 @@
 <div class="container">
-    
+
     <div class="row" ng-controller="CategoriesCtrl">
         <div class="col-xs-12 col-md-2 text-center image-selector">
-             <a href="#/{{city}}/events/{{category}}">
+            <a href="#/{{city}}/events/{{category}}">
                 <img src="assets/img/{{category}}.jpg" class="img-circle category-circle img-responsive " alt="Selected category {{category}}">
                 <div class="caption">
                     <h3>{{category}}</h3>
@@ -10,7 +10,14 @@
             </a>
         </div>
 
-        <div class="col-xs-12 col-md-10 " ng-include="'views/components/categories-selector.html'"></div>
+        <div class="col-xs-12 col-md-6 " ng-include="'views/components/categories-selector.html'"></div>
+
+        <div class="hidden-xs col-md-4 ">
+            <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
+    &q=salsa, Montreal+QC&zoom=11">
+            </iframe>
+        </div>
+
     </div>
 
     <div class="row">
@@ -33,13 +40,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="hidden-xs col-md-4">
-            <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
-    &q=salsa, Montreal+QC&zoom=11">
-            </iframe>
-        </div>
-
-
     </div>
 </div>
