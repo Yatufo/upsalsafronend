@@ -1,8 +1,6 @@
-
-
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-3 text-center img-responsive">
+        <div class="col-xs-12 col-md-2 text-center img-responsive">
             <a href="#/{{city}}/events/{{category}}">
                 <img src="assets/img/{{category}}.jpg" class="img-circle img-responsive" alt="Selected category {{category}}">
                 <div class="caption">
@@ -10,12 +8,18 @@
                 </div>
             </a>
         </div>
-        
-        <div class="col-xs-12 col-md-9">
+
+        <div class="col-xs-12 col-md-10 ">
             <div ng-controller="CategoriesCtrl">
                 <div ng-include="'views/components/categories-selector.html'"></div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="hidden-xs  col-md-2">
+        </div>
 
+        <div class="col-xs-12 col-md-6">
             <div class="panel panel-red" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
                 <div class="panel-heading">{{event.summary}}</div>
 
@@ -33,8 +37,7 @@
             </div>
         </div>
 
-
-        <div class="col-md-6 hidden-xs" >
+        <div class="hidden-xs col-md-4">
             <iframe width="400" height="290" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs
     &q=salsa, Montreal+QC&zoom=11">
             </iframe>

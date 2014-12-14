@@ -9,6 +9,7 @@ angular.module('myAppControllers')
 
             $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
                 $scope.city = toTitleCase(current.params.city);
+                $scope.category = current.params.category;
             });
 
 

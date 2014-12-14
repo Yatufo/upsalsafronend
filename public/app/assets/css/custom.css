@@ -1,6 +1,5 @@
 /*Import Google Font*/
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
 body {
     padding-top: 50px;
     padding-bottom: 70px; 
@@ -65,6 +64,40 @@ div .image-selector h3 {
 }
 
 
+/*Back To Top
+------------------------------------*/
+#topcontrol {
+  color: #E74C3C;
+  z-index: 99;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  background: #222;
+  position: relative;
+  right: 14px !important;
+  bottom: 11px !important;
+  border-radius: 3px !important;
+}
+
+#topcontrol:after {
+  top: 10px;
+  left: 20px;
+  content: "\f106";
+  position: absolute;
+  text-align: center;
+  font-family: FontAwesome;
+}
+
+#topcontrol:hover {
+  color: #fff;
+  background: #E74C3C;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {
@@ -73,23 +106,27 @@ div .image-selector h3 {
     .mainimage > div {
         margin-left: 4%;
         position: absolute;
-        top: 120px;
+        top: 100px;
     }
     .mainimage {
         position: relative;
         width: 100%;
         background: url(../img/bg-mobile.jpg) repeat-x;
-        height: 280px;
+        height: 240px;
     }
     .mainimage > div > h2 > i {
         padding: 0px 0px;
-        font-size: 24px;
+        font-size: 20px;
+        line-height: 0.5;
     }
     .mainimage > div > p > i {
         font-size: 10px;
     }
     div .image-selector h3 {
         font-size: 14px;
+    }
+    .well {
+        margin-bottom: 5px
     }
 }
 /* To center the images */
