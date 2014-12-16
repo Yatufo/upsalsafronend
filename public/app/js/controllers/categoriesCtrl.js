@@ -11,10 +11,10 @@ angular.module('myAppControllers')
             $scope.selectedCategories = {};
             $scope.categories = {};
             $scope.rootCategories = [];
-
-            $scope.$watch('selectedCategories', function() {
-                diffusionService.changeCategories($scope.selectedCategories);
-            }, true);
+            $scope.reloadCategories = false;
+            // $scope.$watch('selectedCategories', function() {
+            //     diffusionService.changeCategories($scope.selectedCategories);
+            // }, true);
 
 
             $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
@@ -37,8 +37,11 @@ angular.module('myAppControllers')
             };
 
             $scope.changeSelectCategory = function(rootId, childId) {
-                $scope.selectedCategories[rootId] = childId;
-                diffusionService.changeCategories($scope.selectedCategories);
+                if ($scope.selectedCategories[rootId] !== childId) {
+                    $scope.selectedCategories[rootId] = childId;
+                    diffusionService.changeCategories($scope.selectedCategories);
+                    changeCategoriesStatus();
+                }
             };
 
 
@@ -91,7 +94,7 @@ angular.module('myAppControllers')
                 }
 
                 category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || isToggled);
-                category.disabled =  !(isHappensOn || isContainedInEvents) || isToggled;
+                category.disabled = !(isHappensOn || isContainedInEvents) || isToggled;
             }
 
         }

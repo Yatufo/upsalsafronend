@@ -3,7 +3,7 @@
         <i class="fa fa-th-list"></i> Filters
     </div>
 
-    <ul collapse="isCollapsed" class="list-group" ng-repeat="root in rootCategories">
+    <ul class="list-group" ng-repeat="root in rootCategories">
         <li ng-if="root.visible" class="btn-group btn-group-justified" role="group">
             <a ng-class="{disabled: child.disabled}" ng-click="changeSelectCategory(root.id, child.id)" class="btn btn-default" role="button" ng-repeat="child in categories[root.id]">{{child.name}}</a>
         </li>

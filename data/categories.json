@@ -114,17 +114,5 @@
         "id": "paid",
         "parent": "pricerange",
         "name": "Paid"
-    }, {
-        "id": "low",
-        "parent": "pricerange",
-        "name": "Low"
-    }, {
-        "id": "medium",
-        "parent": "pricerange",
-        "name": "Medium"
-    }, {
-        "id": "high",
-        "parent": "pricerange",
-        "name": "High"
     }]
 }
