@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="row" ng-controller="CategoriesCtrl">
-        <div class="col-xs-12 visible-xs-block text-center image-selector">
+        <div class="col-xs-12 col-md-5 col-md-push-7 text-center image-selector">
             <a href="#/{{city}}/events/{{eventType}}">
                 <img src="assets/img/{{eventType}}.jpg" class="img-circle category-circle img-responsive " alt="Selected type:  {{eventType}}">
                 <div class="caption">
@@ -9,15 +9,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-xs-12 col-md-7 " ng-include="'views/components/categories-selector.html'"></div>
-        <div class="hidden-xs col-md-5 text-center image-selector">
-            <a href="#/{{city}}/events/{{eventType}}">
-                <img src="assets/img/{{eventType}}.jpg" class="img-circle category-circle img-responsive " alt="Selected type:  {{eventType}}">
-                <div class="caption">
-                    <h3>{{eventType}}</h3>
-                </div>
-            </a>
-        </div>
+        <div class="col-xs-12 col-md-7 col-md-pull-5" ng-include="'views/components/categories-selector.html'"></div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-7 well well-sm">Showing {{filteredEvents.length}} results</div>
