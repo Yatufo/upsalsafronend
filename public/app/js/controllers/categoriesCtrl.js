@@ -84,17 +84,18 @@ angular.module('myAppControllers')
 
             var updateCategoryStatus = function(category) {
 
+                category.selected = $scope.selectedCategories[category.parent] === category.id;
+                
                 var isHappensOn = category.parent === "happenson"
                 var isContainedInEvents = $scope.eventsCategories.indexOf(category.id) != -1;
-                var isToggled = $scope.selectedCategories[category.parent] === category.id;
                 var isNoSiblingToggled = !angular.isString($scope.selectedCategories[category.parent]);
 
-                if (isToggled && !isHappensOn && !isContainedInEvents) {
+                if (category.selected && !isHappensOn && !isContainedInEvents) {
                     $scope.selectedCategories[category.parent] = null;
                 }
 
-                category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || isToggled);
-                category.disabled = !(isHappensOn || isContainedInEvents) || isToggled;
+                category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || category.selected);
+                category.disabled = !(isHappensOn || isContainedInEvents) || category.selected;
             }
 
         }

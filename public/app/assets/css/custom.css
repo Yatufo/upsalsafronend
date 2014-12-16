@@ -3,7 +3,6 @@
 body {
     padding-top: 50px;
 }
-
 #logo-header {
     max-height: 50px;
     margin-top: -15px;
@@ -54,55 +53,47 @@ h2 span {
 div .image-selector h3 {
     margin-top: 0px;
 }
-
 .footer p {
     color: #EEE;
     margin-top: 14px;
 }
 
-
-.highlight {
-    padding: 9px 14px;
-    margin-bottom: 14px;
-    background-color: #F7F7F9;
-    border: 1px solid #E1E1E8;
-    border-radius: 4px;
+.btn.btn-default.selected {
+    color: #A94442;
+    background-color: #F2DEDE !important;
 }
 
 /*Back To Top
 ------------------------------------*/
+
 #topcontrol {
-  color: #E74C3C;
-  z-index: 99;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  background: #222;
-  position: relative;
-  right: 14px !important;
-  bottom: 11px !important;
-  border-radius: 3px !important;
+    color: #E74C3C;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    background: #222;
+    position: relative;
+    right: 14px !important;
+    bottom: 11px !important;
+    border-radius: 3px !important;
 }
-
 #topcontrol:after {
-  top: 10px;
-  left: 20px;
-  content: "\f106";
-  position: absolute;
-  text-align: center;
-  font-family: FontAwesome;
+    top: 10px;
+    left: 20px;
+    content: "\f106";
+    position: absolute;
+    text-align: center;
+    font-family: FontAwesome;
 }
-
 #topcontrol:hover {
-  color: #fff;
-  background: #E74C3C;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+    color: #fff;
+    background: #E74C3C;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
-
-
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {
@@ -133,7 +124,7 @@ div .image-selector h3 {
     .well {
         margin-bottom: 5px
     }
-    .category-circle{
+    .category-circle {
         height: 100px !important;
     }
 }
@@ -156,7 +147,3 @@ div .image-selector h3 {
     }
 }
 }
-
-
-
-
