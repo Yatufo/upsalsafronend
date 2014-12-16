@@ -7,8 +7,7 @@ var myApp = angular.module('myApp', [
     'myAppControllers',
     'myAppFilters',
     'myAppConfig',
-    'myAppServices',
-    'ui.bootstrap'
+    'myAppServices'
 ]);
 
 angular.module('myAppControllers', ['myAppConfig', 'myAppServices']);

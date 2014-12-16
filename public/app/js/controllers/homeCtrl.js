@@ -12,7 +12,6 @@ angular.module('myAppControllers')
                 $scope.category = current.params.category;
             });
 
-
             var toTitleCase = function(str) {
                 if (str) {
                     return str.replace(/\w\S*/g, function(txt) {

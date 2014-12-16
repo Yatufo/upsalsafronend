@@ -3,9 +3,6 @@
         "id": "happenson",
         "name": "Happens On"
     }, {
-        "id": "eventtype",
-        "name": "Type of event"
-    }, {
         "id": "musictype",
         "name": "Type of music"
     }, {

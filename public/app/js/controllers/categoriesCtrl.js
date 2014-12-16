@@ -26,7 +26,7 @@ angular.module('myAppControllers')
             $scope.restoreFilters = function() {
                 $scope.selectedCategories = {};
                 setDefaultValues();
-            }
+            };
 
             var setDefaultValues = function() {
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
@@ -34,11 +34,17 @@ angular.module('myAppControllers')
                 }
 
                 diffusionService.changeCategories($scope.selectedCategories);
-            }
+            };
+
+            $scope.changeSelectCategory = function(rootId, childId) {
+                $scope.selectedCategories[rootId] = childId;
+                diffusionService.changeCategories($scope.selectedCategories);
+            };
+
 
             $scope.isGroupVisible = function(category) {
                 return angular.isUndefined(category.parent) || $scope.selectedCategories[category.parent] === category.id;
-            }
+            };
 
 
             diffusionService.onChangeEvents($scope, function(message) {
@@ -51,8 +57,9 @@ angular.module('myAppControllers')
                 $scope.rootCategories.forEach(function(root) {
 
                     var visibleCount = 0;
-                    $scope.categories[root.id].forEach(function(category) { 
-                        category.visible = updateCategoryStatus(category);
+                    $scope.categories[root.id].forEach(function(category) {
+                        updateCategoryStatus(category);
+
                         if (category.visible) {
                             visibleCount++;
                         }
@@ -63,11 +70,11 @@ angular.module('myAppControllers')
                 });
             }
 
-            
+
             var updateRootCategoryStatus = function(category, count) {
                 var isChildToggled = angular.isString($scope.selectedCategories[category.id]);
                 var isVisibleChildren = count > 1;
-                
+
                 return isChildToggled || isVisibleChildren;
             }
 
@@ -79,12 +86,12 @@ angular.module('myAppControllers')
                 var isToggled = $scope.selectedCategories[category.parent] === category.id;
                 var isNoSiblingToggled = !angular.isString($scope.selectedCategories[category.parent]);
 
-                if (isToggled && !isHappensOn && !isContainedInEvents){
+                if (isToggled && !isHappensOn && !isContainedInEvents) {
                     $scope.selectedCategories[category.parent] = null;
                 }
 
-
-                return (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || isToggled);
+                category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || isToggled);
+                category.disabled =  !(isHappensOn || isContainedInEvents) || isToggled;
             }
 
         }

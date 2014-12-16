@@ -143,7 +143,7 @@ div .image-selector h3 {
         position: relative;
         width: 100%;
         background: url(../img/bg.jpg) repeat-x;
-        height: 320px;
+        height: 280px;
         /* for IE 6 */
     }
 }
