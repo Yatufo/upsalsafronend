@@ -37,11 +37,9 @@ angular.module('myAppControllers')
             };
 
             $scope.changeSelectCategory = function(rootId, childId) {
-                if ($scope.selectedCategories[rootId] !== childId) {
-                    $scope.selectedCategories[rootId] = childId;
-                    diffusionService.changeCategories($scope.selectedCategories);
-                    changeCategoriesStatus();
-                }
+                $scope.selectedCategories[rootId] = ($scope.selectedCategories[rootId] !== childId ? childId : null);
+                diffusionService.changeCategories($scope.selectedCategories);
+                changeCategoriesStatus();
             };
 
 
@@ -85,7 +83,7 @@ angular.module('myAppControllers')
             var updateCategoryStatus = function(category) {
 
                 category.selected = $scope.selectedCategories[category.parent] === category.id;
-                
+
                 var isHappensOn = category.parent === "happenson"
                 var isContainedInEvents = $scope.eventsCategories.indexOf(category.id) != -1;
                 var isNoSiblingToggled = !angular.isString($scope.selectedCategories[category.parent]);
@@ -95,7 +93,7 @@ angular.module('myAppControllers')
                 }
 
                 category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || category.selected);
-                category.disabled = !(isHappensOn || isContainedInEvents) || category.selected;
+                category.disabled = !(isHappensOn || isContainedInEvents);
             }
 
         }
