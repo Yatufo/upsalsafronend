@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('CategoriesCtrl', ['$scope', '$http', 'CONFIG', 'diffusionService',
-        function($scope, $http, CONFIG, diffusionService) {
+    .controller('CategoriesCtrl', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService',
+        function($scope, $http, $routeParams, CONFIG, diffusionService) {
 
 
             $scope.isCollapsed = false;
@@ -12,10 +12,6 @@ angular.module('myAppControllers')
             $scope.categories = {};
             $scope.rootCategories = [];
             $scope.reloadCategories = false;
-            // $scope.$watch('selectedCategories', function() {
-            //     diffusionService.changeCategories($scope.selectedCategories);
-            // }, true);
-
 
             $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
                 $scope.categories = data;
@@ -23,17 +19,15 @@ angular.module('myAppControllers')
                 setDefaultValues();
             });
 
-            $scope.restoreFilters = function() {
-                $scope.selectedCategories = {};
-                setDefaultValues();
-            };
-
             var setDefaultValues = function() {
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
                     $scope.selectedCategories[key] = CONFIG.DEFAULT_CATEGORIES[key];
                 }
 
-                diffusionService.changeCategories($scope.selectedCategories);
+                //the event type selected by the user
+                if ($routeParams.eventType) {
+                    $scope.changeSelectCategory("eventtype", $routeParams.eventType);
+                }
             };
 
             $scope.changeSelectCategory = function(rootId, childId) {
