@@ -9,9 +9,9 @@ var app = express();
 
 
 
-if(ctx.prerenderToken){
-	console.log("Prerender On");
-	app.use(require('prerender-node').set('prerenderToken', ctx.prerenderToken));
+if (ctx.prerenderToken) {
+    console.log("Prerender On");
+    app.use(require('prerender-node').set('prerenderToken', ctx.prerenderToken));
 }
 
 
@@ -20,13 +20,16 @@ app.set('port', (process.env.PORT || 5000))
 
 app.use(express.static(__dirname + '/public/app'));
 app.get('/api/events', events.findAll);
+app.get('/api/events/:id', events.findById);
 app.get('/api/categories', categories.findAll);
 
 
-process.on('uncaughtException', function (error) {
-   console.log(error.stack);
+app.use(function(err, req, res, next) {
+    console.log(error.stack);
+    res.status(500).send('Something broke!');
 });
 
+
 app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
+    console.log("Node app is running at localhost:" + app.get('port'))
 })

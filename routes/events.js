@@ -6,12 +6,12 @@ var ctx = require('./util/conf.js').context();
 exports.findAll = function(req, res) {
     var localEventList = [];
     var params = {
-        orderBy : "startTime",
+        orderBy: "startTime",
         singleEvents: ctx.EVENTS_SINGLE,
         calendarId: ctx.CALENDAR_ID,
         timeMin: (ctx.SIMULATED_NOW ? ctx.SIMULATED_NOW : new Date().toISOString()),
         maxResults: ctx.EVENTS_MAXRESULTS,
-        fields : "description,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
+        fields: "description,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
     };
 
     google.calendar.events.list(params, function(err, cal) {
@@ -27,6 +27,24 @@ exports.findAll = function(req, res) {
         res.send(localEventList);
     });
 };
+
+
+exports.findById = function(req, res) {
+    var localEventList = [];
+    var params = {
+        eventId: req.params.id,
+        calendarId: ctx.CALENDAR_ID,
+        fields: "created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary"
+    };
+
+    google.calendar.events.get(params, function(err, gEvent) {
+        var lEvent = new LocalEvent();
+        google.fillEvent(lEvent, gEvent);
+        res.send(lEvent);
+    });
+};
+
+
 
 function LocalEvent() {
     this.start = {

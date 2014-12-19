@@ -1,11 +1,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://www.upsalsa.com/#/Montreal/events/class</loc>
+        <loc>http://www.upsalsa.com/#/Montreal/categories/class/events</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.upsalsa.com/#/Montreal/events/party</loc>
+        <loc>http://www.upsalsa.com/#/Montreal/categories/party/events</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>

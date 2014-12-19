@@ -25,7 +25,6 @@ var jsonRegex = /\{.*?\}/;
 exports.fillEvent = function(lEvent, gEvent) {
 
     //TODO: Validate nulls and data in general
-
     lEvent.start.dateTime = Date.parse(gEvent.start.dateTime);
     lEvent.end.dateTime = Date.parse(gEvent.end.dateTime);
     lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime)/360000)/10;

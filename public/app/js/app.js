@@ -22,9 +22,13 @@ myApp.config(['$compileProvider', function($compileProvider) {
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/:city/events/:eventType', {
+        when('/:city/categories/:eventType/events/', {
             templateUrl: 'views/events.html',
             controller: 'EventsCtrl'
+        }).
+        when('/:city/events/:eventId', {
+            templateUrl: 'views/events-details.html',
+            controller: 'EventsDetailsCtrl'
         }).
         when('/:city', {
             templateUrl: 'views/home.html',
