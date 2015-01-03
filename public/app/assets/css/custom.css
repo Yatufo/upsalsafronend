@@ -57,12 +57,10 @@ div .image-selector h3 {
     color: #EEE;
     margin-top: 14px;
 }
-
 .btn.btn-default.selected {
     color: #A94442;
     background-color: #F2DEDE !important;
 }
-
 /*Back To Top
 ------------------------------------*/
 
@@ -93,6 +91,12 @@ div .image-selector h3 {
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+#map-canvas {
+    height: 400px;
+    margin: 0px;
+    padding: 0px
 }
 /* Smartphones (portrait and landscape) ----------- */
 
