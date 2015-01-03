@@ -18,20 +18,8 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-7">
-            <div class="panel panel-danger" ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
-                <div class="panel-heading"><a href="#/{{city}}/events/{{event.id}}">{{event.summary}}</a></div>
-
-                <div class="panel-body">
-                    <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }}</p>
-                    <p> <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
-                    <p><i ng-if="event.location" class="fa fa-map-marker fa-lg"></i> {{event.location}}</p>
-                    <p>
-                        <ul class="list-inline">
-                            <li class="fa fa-list fa-lg"></li>
-                            <li ng-repeat="category in event.categories">{{category}}</li>
-                        </ul>
-                    </p>
-                </div>
+            <div ng-repeat="event in filteredEvents | orderBy : event.start.dateTime ">
+                <eventcard data-event="event" data-city="city"></eventcard>
             </div>
         </div>
         <div id="map-canvas"  class="hidden-xs col-md-5">

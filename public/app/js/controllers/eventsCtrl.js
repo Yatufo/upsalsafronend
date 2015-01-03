@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('EventsCtrl', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService',
-        function($scope, $http, $filter, $routeParams, CONFIG, diffusionService) {
+    .controller('EventsCtrl', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
+        function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 
             $scope.localTime = CONFIG.TODAY;
             $scope.eventsCategories = new Set();
@@ -50,20 +50,8 @@ angular.module('myAppControllers')
                 };
             };
 
-            var initMap = function() {
-                var mapOptions = {
-                    center: {
-                        lat: 45.560,
-                        lng: -73.712
-                    },
-                    zoom: 10    
-                };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
 
-            }
-
-            initMap();
+            MapsService.init();
 
             function Set() {
                 this.content = {};

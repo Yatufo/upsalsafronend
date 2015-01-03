@@ -3,8 +3,9 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('EventsDetailsCtrl', ['$scope', '$http', '$routeParams', 'CONFIG',
-        function($scope, $http, $routeParams, CONFIG) {
+    .controller('EventsDetailsCtrl', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
+        function($scope, $http, $routeParams, CONFIG, MapsService) {
+
 
             $scope.event = {};
 
@@ -15,5 +16,9 @@ angular.module('myAppControllers')
             error(function(data, status, headers, config) {
                 console.log("Something went wrong");
             });
+
+            MapsService.init();
+
+
         }
     ]);
