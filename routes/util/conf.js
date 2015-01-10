@@ -31,7 +31,8 @@ var configuration = {
         "CATEGORIES_JSON": "./data/categories.json",
         "SIMULATED_NOW": "2014-10-01T04:00:01.000Z",
         "EVENTS_MAXRESULTS": 200,
-        "EVENTS_SINGLE" : true
+        "EVENTS_SINGLE" : true,
+        "MONGO_CONNECTION": "mongodb://localhost/upsalsa" 
     },
     "prod": {
         "googlesetup": {
@@ -54,7 +55,8 @@ var configuration = {
         "SIMULATED_NOW": false,
         "EVENTS_MAXRESULTS": 20,
         "EVENTS_SINGLE" : true,
-        "prerenderToken": "jJ9tuSryPgzvzFEytcA2"
+        "prerenderToken": "jJ9tuSryPgzvzFEytcA2",
+        "MONGO_CONNECTION": "mongodb://localhost/upsalsa"         
     }
 
 

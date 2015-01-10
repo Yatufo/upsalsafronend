@@ -1,11 +1,12 @@
 {
-	"name": "onesalsa",
-	"description": "All salsa events in one place",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"express": "latest",
-		"googleapis": "latest",
-		"prerender-node" : "latest"
-	}
-}	
+  "name": "onesalsa",
+  "description": "All salsa events in one place",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "latest",
+    "googleapis": "latest",
+    "prerender-node": "latest",
+    "mongoose": "latest"
+  }
+}
