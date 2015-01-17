@@ -22,10 +22,25 @@
         }]
     }, {
         "_id": "eventtype",
+        "name": "Type of event",
         "categories": [{
             "_id": "class",
             "name": "Class",
-            "parent": "eventtype"
+            "parent": "eventtype",
+            "categories": [{
+                "_id": "season",
+                "name": "Season Class",
+                "parent": "class"
+            }, {
+                "_id": "dropin",
+                "name": "Drop In",
+                "parent": "class"
+            }, {
+                "_id": "workshop",
+                "name": "Workshop",
+                "parent": "class"
+            }]
+
         }, {
             "_id": "party",
             "parent": "eventtype",
@@ -40,21 +55,6 @@
             "name": "Concert"
         }]
     }, {
-        "_id": "class",
-        "categories": [{
-            "_id": "season",
-            "name": "Season Class",
-            "parent": "class"
-        }, {
-            "_id": "dropin",
-            "name": "Drop In",
-            "parent": "class"
-        }, {
-            "_id": "workshop",
-            "name": "Workshop",
-            "parent": "class"
-        }]
-    }, {
         "_id": "musictype",
         "name": "Type of music",
         "categories": [{
@@ -64,7 +64,20 @@
         }, {
             "_id": "salsa",
             "parent": "musictype",
-            "name": "Salsa"
+            "name": "Salsa",
+            "categories": [{
+                "_id": "cuban",
+                "name": "Cuban",
+                "parent": "salsa"
+            }, {
+                "_id": "newyork",
+                "name": "New York",
+                "parent": "salsa"
+            }, {
+                "_id": "losangeles",
+                "name": "Los Angeles",
+                "parent": "salsa"
+            }]
         }, {
             "_id": "kizomba",
             "parent": "musictype",
@@ -73,22 +86,6 @@
             "_id": "chacha",
             "parent": "musictype",
             "name": "Cha Cha"
-        }]
-    }, {
-        "_id": "salsa",
-        "name": "Salsa",
-        "categories": [{
-            "_id": "cuban",
-            "name": "Cuban",
-            "parent": "salsa"
-        }, {
-            "_id": "newyork",
-            "name": "New York",
-            "parent": "salsa"
-        }, {
-            "_id": "losangeles",
-            "name": "Los Angeles",
-            "parent": "salsa"
         }]
     }, {
         "_id": "level",
@@ -114,9 +111,9 @@
             "parent": "pricerange",
             "name": "Free"
         }, {
-            "_id": "pa_id",
+            "_id": "paid",
             "parent": "pricerange",
-            "name": "Pa_id"
+            "name": "Paid"
         }]
     }]
 }

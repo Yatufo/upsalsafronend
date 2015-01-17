@@ -19,7 +19,7 @@ var EventSchema = new Schema({
         dateTime: Date
     },
     categories: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'Category'
     }]
 });
@@ -47,3 +47,4 @@ exports.connect = function() {
 exports.disconnect = function() {
     mongoose.disconnect();
 }
+
