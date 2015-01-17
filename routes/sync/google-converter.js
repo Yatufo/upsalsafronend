@@ -12,9 +12,12 @@ exports.convert = function(gEvent, callback) {
     lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime) / 360000) / 10;
 
     lEvent.timeZone = gEvent.timeZone;
-    lEvent.id = gEvent.id;
+    lEvent.sync = {
+        "uid" : gEvent.id,
+        "lastUpdate": new Date()
+    };
     lEvent.location = gEvent.location;
-    lEvent.summary = gEvent.summary;
+    lEvent.title = gEvent.summary;
     lEvent.id = gEvent.id;
 
     try {
@@ -40,5 +43,3 @@ var Event = function() {
     };
     this.timeZone = "";
 };
-
-

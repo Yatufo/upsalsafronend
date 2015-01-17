@@ -8,5 +8,8 @@
     "googleapis": "latest",
     "prerender-node": "latest",
     "mongoose": "latest"
+  },
+  "devDependencies": {
+    "bson": "^0.2.17"
   }
 }

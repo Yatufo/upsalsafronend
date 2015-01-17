@@ -1,34 +1,49 @@
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/upsalsa');
-
 var Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
-    id: { type: [String], index: true },
     title: String,
     location: String,
-    sync: [{
-        uid: { type: [String], index: true },
+    sync: {
+        uid: {
+            type: String,
+            index: true
+        },
         lastUpdate: Date
-    }],
+    },
     timeZone: String,
-    start: [{
+    start: {
         dateTime: Date
-    }],
-    end: [{
+    },
+    end: {
         dateTime: Date
-    }],
-    categories: [CategorySchema]
+    },
+    categories: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }]
 });
 
 var CategorySchema = new Schema({
-    id: { type: [String], index: true },
+    _id: {
+        type: String,
+        index: true
+    },
     name: String,
-    parent: CategorySchema,
-    categories: [CategorySchema]
+    categories: [{
+        type: String,
+        ref: 'Category'
+    }]
 });
 
 
-exports.Cagegory = mongoose.model('Category', CategorySchema);
+exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
+
+exports.connect = function() {
+    mongoose.connect('mongodb://localhost/upsalsa');
+}
+
+exports.disconnect = function() {
+    mongoose.disconnect();
+}
