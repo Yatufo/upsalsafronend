@@ -18,6 +18,7 @@ var EventSchema = new Schema({
     end: {
         dateTime: Date
     },
+    recurrence : [String],
     categories: [{
         type: String,
         ref: 'Category'

@@ -1,31 +1,21 @@
 //Config for the app
-var google = require('./util/google.js');
+var data = require('./model/core-data.js');
 var ctx = require('./util/conf.js').context();
 //
 // 
 exports.findAll = function(req, res) {
+
+
+    var timeMin = (ctx.SIMULATED_NOW ? ctx.SIMULATED_NOW : new Date().toISOString());
+    var maxResults = ctx.EVENTS_MAXRESULTS;
     var localEventList = [];
-    var params = {
-        orderBy: "startTime",
-        singleEvents: ctx.EVENTS_SINGLE,
-        calendarId: ctx.CALENDAR_ID,
-        timeMin: (ctx.SIMULATED_NOW ? ctx.SIMULATED_NOW : new Date().toISOString()),
-        maxResults: ctx.EVENTS_MAXRESULTS,
-        fields: "description,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
-    };
 
-    google.calendar.events.list(params, function(err, cal) {
-        //console.log(JSON.stringify(cal));
-
-        if (cal != null && cal.items != null) {
-            cal.items.forEach(function(gEvent) {
-                var lEvent = new LocalEvent();
-                google.fillEvent(lEvent, gEvent)
-                localEventList.push(lEvent);
-            });
-        }
-        res.send(localEventList);
-    });
+    data.Event.find()
+        .where("end.dateTime").gt(timeMin)
+        .limit(maxResults)
+        .exec(function(err, events) {
+            res.send(events);
+        });
 };
 
 

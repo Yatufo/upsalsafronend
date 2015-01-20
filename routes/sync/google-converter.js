@@ -4,17 +4,21 @@ var jsonRegex = /\{.*?\}/;
 //Converts google calendar to the app structure
 exports.convert = function(gEvent, callback) {
 
-    var lEvent = new Event();
+    var lEvent = {};
 
     //TODO: Validate nulls and data in general
-    lEvent.start.dateTime = Date.parse(gEvent.start.dateTime);
-    lEvent.end.dateTime = Date.parse(gEvent.end.dateTime);
+    lEvent.start = {
+        dateTime: Date.parse(gEvent.start.dateTime)
+    };
+    lEvent.end = {
+        dateTime: Date.parse(gEvent.end.dateTime)
+    };
     lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime) / 360000) / 10;
-
+    lEvent.recurrence = gEvent.recurrence;
     lEvent.timeZone = gEvent.timeZone;
     lEvent.sync = {
-        "uid" : gEvent.id,
-        "lastUpdate": new Date()
+        uid: gEvent.id,
+        lastUpdate: new Date()
     };
     lEvent.location = gEvent.location;
     lEvent.title = gEvent.summary;
@@ -32,14 +36,3 @@ exports.convert = function(gEvent, callback) {
 
     callback(undefined, lEvent);
 }
-
-
-var Event = function() {
-    this.start = {
-        "dateTime": {}
-    };
-    this.end = {
-        "dateTime": {}
-    };
-    this.timeZone = "";
-};
