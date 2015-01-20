@@ -22,7 +22,7 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req, res) {
 
-    data.Event.findOne({ '_id': req.params.id })
+    data.Event.findById(req.params.id)
         .exec(function(err, singleEvent) {
             res.send(singleEvent);
         });
