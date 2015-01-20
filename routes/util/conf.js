@@ -29,7 +29,7 @@ var configuration = {
         },
         CALENDAR_ID: "project.demonio@gmail.com",
         CATEGORIES_JSON: "./data/categories.json",
-        SIMULATED_NOW: "2014-12-01T04:00:01.000Z",
+        SIMULATED_NOW: "2014-10-01T04:00:01.000Z",
         EVENTS_MAXRESULTS: 200,
         EVENTS_SINGLE: false,
         MONGO_CONNECTION: "mongodb://localhost/upsalsa",
@@ -59,7 +59,7 @@ var configuration = {
         EVENTS_SINGLE: true,
         prerenderToken: "jJ9tuSryPgzvzFEytcA2",
         MONGO_CONNECTION: "mongodb://localhost/upsalsa",
-        UPDATE_MIN_SUBSTRACTION: 8640000000
+        UPDATE_MIN_SUBSTRACTION: 30*24*60*60*1000
     }
 
 

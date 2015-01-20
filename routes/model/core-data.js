@@ -41,6 +41,7 @@ var CategorySchema = new Schema({
 exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
 
+
 exports.connect = function() {
     mongoose.connect('mongodb://localhost/upsalsa');
 }
@@ -48,4 +49,6 @@ exports.connect = function() {
 exports.disconnect = function() {
     mongoose.disconnect();
 }
+
+exports.connect();
 

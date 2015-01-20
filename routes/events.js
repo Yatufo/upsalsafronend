@@ -10,6 +10,7 @@ exports.findAll = function(req, res) {
     var maxResults = ctx.EVENTS_MAXRESULTS;
     var localEventList = [];
 
+    console.log(timeMin);
     data.Event.find()
         .where("end.dateTime").gt(timeMin)
         .limit(maxResults)
@@ -20,28 +21,12 @@ exports.findAll = function(req, res) {
 
 
 exports.findById = function(req, res) {
-    var localEventList = [];
-    var params = {
-        eventId: req.params.id,
-        calendarId: ctx.CALENDAR_ID,
-        fields: "created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary"
-    };
 
-    google.calendar.events.get(params, function(err, gEvent) {
-        var lEvent = new LocalEvent();
-        google.fillEvent(lEvent, gEvent);
-        res.send(lEvent);
-    });
+    data.Event.findOne({ '_id': req.params.id })
+        .exec(function(err, singleEvent) {
+            res.send(singleEvent);
+        });
 };
 
 
 
-function LocalEvent() {
-    this.start = {
-        "dateTime": {}
-    };
-    this.end = {
-        "dateTime": {}
-    };
-    this.timeZone = "";
-};

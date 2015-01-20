@@ -2,27 +2,34 @@ var calendar = require('../sync/google-calendar-api.js');
 var data = require('../model/core-data.js');
 var ctx = require('../util/conf.js').context();
 
-data.connect();
 
-var syncParams = {
-    syncToken: null,
-    pageToken: null
-};
+exports.syncEvents = function(req, res) {
 
-//read sycn tock
-if (syncParams.syncToken) {
-    console.log("Performing incremental sync");
-} else {
-    console.log("Performing full sync for the latest events");
-    syncParams.updateMin = new Date(new Date().getTime() - ctx.UPDATE_MIN_SUBSTRACTION);
+    var syncParams = {
+        syncToken: ctx.EVENT_SYNC_TOKEN,
+        pageToken: null
+    };
+
+    //read sycn tock
+    if (syncParams.syncToken) {
+        console.log("Performing incremental sync");
+    } else {
+        console.log("Performing full sync for the latest events");
+        syncParams.updateMin = new Date(new Date().getTime() - ctx.UPDATE_MIN_SUBSTRACTION);
+    }
+
+    syncEvents(syncParams);
+
+    res.send("request received");
 }
 
 
 
-var syncEvents = function(syncParams){
+
+var syncEvents = function(syncParams) {
 
     calendar.findAll(syncParams, function(localEventList, cal) {
-     
+
         localEventList.forEach(function(lEvent) {
             var eventData = new data.Event(lEvent);
             eventData.save(function(err) {
@@ -30,24 +37,19 @@ var syncEvents = function(syncParams){
                     console.log('there was an error trying to save the eventData', err);
                     return;
                 }
-                console.log("saved");
             });
         });
 
         if (cal.nextPageToken) {
-        	syncParams.pageToken = cal.nextPageToken;
-        	syncEvents(syncParams); // Continue until the end of the pages
+            syncParams.pageToken = cal.nextPageToken;
+            syncEvents(syncParams); // Continue until the end of the pages
         }
 
-        if (cal.nextSyncToken){
-	        syncParams.syncToken = cal.nextSyncToken;
-        	console.log("Demono" + JSON.stringify(syncParams));
-	        //save the sync token and try later.
+        if (cal.nextSyncToken) {
+            ctx.EVENT_SYNC_TOKEN = cal.nextSyncToken;
+            console.log("Sync data for future updates: " + ctx.EVENT_SYNC_TOKEN);
+            //save the sync token and try later.
         }
-
+        
     });
 }
-
-
-syncEvents(syncParams);
-
