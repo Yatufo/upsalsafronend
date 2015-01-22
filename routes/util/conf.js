@@ -58,7 +58,7 @@ var configuration = {
         EVENTS_MAXRESULTS: 20,
         EVENTS_SINGLE: true,
         prerenderToken: "jJ9tuSryPgzvzFEytcA2",
-        MONGO_CONNECTION: "mongodb://localhost/upsalsa",
+        MONGO_CONNECTION: "mongodb://admin:Merimesi1!@ds031641.mongolab.com:31641/heroku_app31647259",
         UPDATE_MIN_SUBSTRACTION: 30*24*60*60*1000
     }
 

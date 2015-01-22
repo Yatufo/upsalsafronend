@@ -2,9 +2,9 @@
 //
 //Main App   
 var express = require('express');
-var events = require('./routes/events.js');
+var events = require('./routes/api/events.js');
+var categories = require('./routes/api/categories.js');
 var ctx = require('./routes/util/conf.js').context('prod');
-var categories = require('./routes/categories.js');
 var sync = require('./routes/sync/sync-events.js');
 var app = express();
 

@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var ctx = require('../util/conf.js').context();
+
 var Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
@@ -18,7 +20,7 @@ var EventSchema = new Schema({
     end: {
         dateTime: Date
     },
-    recurrence : [String],
+    recurrence: [String],
     categories: [{
         type: String,
         ref: 'Category'
@@ -37,13 +39,31 @@ var CategorySchema = new Schema({
     }]
 });
 
+var LocationSchema = new Schema({
+    code: {
+        type: String,
+        index: true
+    },
+    name: String,
+    address: String,
+    url: String,
+    phone: String,
+    coordinates: {
+        longitude: Number,
+        latitude: Number
+    }
+});
+
+
+
 
 exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
+exports.Location = mongoose.model('Location', LocationSchema);
 
 
 exports.connect = function() {
-    mongoose.connect('mongodb://localhost/upsalsa');
+    mongoose.connect(ctx.MONGO_CONNECTION);
 }
 
 exports.disconnect = function() {
@@ -51,4 +71,3 @@ exports.disconnect = function() {
 }
 
 exports.connect();
-

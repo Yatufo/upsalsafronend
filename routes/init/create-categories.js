@@ -5,7 +5,6 @@ var ctx = require('../util/conf.js').context();
 //
 //
 //
-data.connect();
 
 var saveCategory = function(lCategory) {
     var categoryData = new data.Category(lCategory);

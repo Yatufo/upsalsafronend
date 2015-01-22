@@ -1,6 +1,6 @@
 //Config for the app
-var data = require('./model/core-data.js');
-var ctx = require('./util/conf.js').context();
+var data = require('../model/core-data.js');
+var ctx = require('../util/conf.js').context();
 //
 // 
 exports.findAll = function(req, res) {
@@ -10,7 +10,6 @@ exports.findAll = function(req, res) {
     var maxResults = ctx.EVENTS_MAXRESULTS;
     var localEventList = [];
 
-    console.log(timeMin);
     data.Event.find()
         .where("end.dateTime").gt(timeMin)
         .limit(maxResults)

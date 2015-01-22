@@ -1,4 +1,4 @@
-var data = require('./model/core-data.js');
+var data = require('../model/core-data.js');
 
 //
 // 
