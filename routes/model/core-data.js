@@ -5,7 +5,10 @@ var Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
     title: String,
-    location: String,
+    location: {
+        type: Schema.Types.ObjectId,
+        ref: 'Location'
+    },
     sync: {
         uid: {
             type: String,

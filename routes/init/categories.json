@@ -1,0 +1,29 @@
+{ "_id" : "advanced", "name" : "Advanced", "categories" : [], "__v" : 0 }
+{ "_id" : "bachata", "name" : "Bachata", "categories" : [], "__v" : 0 }
+{ "_id" : "beginner", "name" : "Beginner", "categories" : [], "__v" : 0 }
+{ "_id" : "chacha", "name" : "Cha Cha", "categories" : [], "__v" : 0 }
+{ "_id" : "class", "name" : "Class", "categories" : [ "season", "dropin", "workshop" ], "__v" : 0 }
+{ "_id" : "concert", "name" : "Concert", "categories" : [], "__v" : 0 }
+{ "_id" : "cuban", "name" : "Cuban", "categories" : [], "__v" : 0 }
+{ "_id" : "dropin", "name" : "Drop In", "categories" : [], "__v" : 0 }
+{ "_id" : "eventtype", "name" : "Type of event", "categories" : [ "class", "party", "schoolparty", "concert" ], "__v" : 0 }
+{ "_id" : "free", "name" : "Free", "categories" : [], "__v" : 0 }
+{ "_id" : "happenson", "name" : "Happens On", "categories" : [ "today", "tomorrow", "week", "weekend" ], "__v" : 0 }
+{ "_id" : "intermediate", "name" : "Intermediate", "categories" : [], "__v" : 0 }
+{ "_id" : "kizomba", "name" : "Kizomba", "categories" : [], "__v" : 0 }
+{ "_id" : "level", "name" : "Level", "categories" : [ "beginner", "intermediate", "advanced" ], "__v" : 0 }
+{ "_id" : "losangeles", "name" : "Los Angeles", "categories" : [], "__v" : 0 }
+{ "_id" : "musictype", "name" : "Type of music", "categories" : [ "bachata", "salsa", "kizomba", "chacha" ], "__v" : 0 }
+{ "_id" : "newyork", "name" : "New York", "categories" : [], "__v" : 0 }
+{ "_id" : "paid", "name" : "Paid", "categories" : [], "__v" : 0 }
+{ "_id" : "party", "name" : "Party", "categories" : [], "__v" : 0 }
+{ "_id" : "pricerange", "name" : "Price Range", "categories" : [ "free", "paid" ], "__v" : 0 }
+{ "_id" : "root", "categories" : [ "happenson", "eventtype", "musictype", "level", "pricerange" ], "__v" : 0 }
+{ "_id" : "salsa", "name" : "Salsa", "categories" : [ "cuban", "newyork", "losangeles" ], "__v" : 0 }
+{ "_id" : "schoolparty", "name" : "School Party", "categories" : [], "__v" : 0 }
+{ "_id" : "season", "name" : "Season Class", "categories" : [], "__v" : 0 }
+{ "_id" : "today", "name" : "Today", "categories" : [], "__v" : 0 }
+{ "_id" : "tomorrow", "name" : "Tomorrow", "categories" : [], "__v" : 0 }
+{ "_id" : "week", "name" : "Week", "categories" : [], "__v" : 0 }
+{ "_id" : "weekend", "name" : "Weekend", "categories" : [], "__v" : 0 }
+{ "_id" : "workshop", "name" : "Workshop", "categories" : [], "__v" : 0 }

@@ -31,12 +31,14 @@ var syncEvents = function(syncParams) {
     calendar.findAll(syncParams, function(localEventList, cal) {
 
         localEventList.forEach(function(lEvent) {
-            var eventData = new data.Event(lEvent);
-            eventData.save(function(err) {
-                if (err) {
-                    console.log('there was an error trying to save the eventData', err);
-                    return;
-                }
+
+            createEventData(lEvent, function(eventData) {
+                eventData.save(function(err) {
+                    if (err) {
+                        console.log('there was an error trying to save the eventData', err);
+                        return;
+                    }
+                });
             });
         });
 
@@ -50,6 +52,26 @@ var syncEvents = function(syncParams) {
             console.log("Sync data for future updates: " + ctx.EVENT_SYNC_TOKEN);
             //save the sync token and try later.
         }
-        
+
     });
+}
+
+
+var createEventData = function(lEvent, callback) {
+    if (lEvent.location && lEvent.location.code) {
+
+        data.Location.findOne({
+            "code": lEvent.location.code
+        }).select('_id').exec(function(err, location) {
+            if (err) throw err;
+
+            lEvent.location = location._id;
+            callback(new data.Event(lEvent));
+        })
+    } else {
+        lEvent.location = null;
+        callback(new data.Event(lEvent));
+        console.error("The event does not have a proper location " + lEvent.id);
+    }
+
 }

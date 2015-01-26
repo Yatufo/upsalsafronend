@@ -6,7 +6,7 @@ var google = require('googleapis');
 var fs = require('fs');
 
 //Config for the app
-var ctx = require('./lib/conf.js').context();
+var ctx = require('../util/conf.js').context();
 
 //
 //Google credential
