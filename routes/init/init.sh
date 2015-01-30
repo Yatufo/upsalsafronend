@@ -3,3 +3,4 @@
 
 echo "Importing locations: " 
 mongoimport -h localhost:27017 -c locations -d upsalsa --file locations.json 
+mongoimport -h localhost:27017 -c categories -d upsalsa --file categories.json 

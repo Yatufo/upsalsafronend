@@ -30,6 +30,10 @@ var EventSchema = new Schema({
     }]
 });
 
+EventSchema.virtual('duration').get(function() { return Math.round((this.end.dateTime - this.start.dateTime)/360000)/10; });
+EventSchema.set('toJSON', { virtuals: true });  
+
+
 var CategorySchema = new Schema({
     _id: {
         type: String,
@@ -48,13 +52,7 @@ var CategorySchema = new Schema({
 
 
 CategorySchema.virtual('id').get(function() { return this._id; });
-CategorySchema.set('toObject', { virtuals: true }) // console.log() statements would 
-                                                // print the virtual fields.
-
-
-CategorySchema.set('toJSON', { virtuals: true });  //virtual fields are visible when 
-                                                //the mongodb 
- 
+CategorySchema.set('toJSON', { virtuals: true });  
 
 
 var LocationSchema = new Schema({

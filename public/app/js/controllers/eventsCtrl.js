@@ -34,22 +34,26 @@ angular.module('myAppControllers')
                 $scope.filteredEvents = $filter('categories')($scope.filteredEvents, $scope.selectedCategories);
 
                 populateEventsCategories();
+                populateEventsLocations();
                 diffusionService.changeEvents($scope.eventsCategories.asArray());
             };
 
             // gets all the unique categories that can be selected by gathering them from the filtered events.
             var populateEventsCategories = function() {
                 $scope.eventsCategories.content = {};
-                for (var i = $scope.filteredEvents.length - 1; i >= 0; i--) {
-                    var categories = $scope.filteredEvents[i].categories;
-                    if (angular.isArray(categories)) {
-                        for (var j = categories.length - 1; j >= 0; j--) {
-                            $scope.eventsCategories.add(categories[j]);
-                        }
+                $scope.filteredEvents.forEach(function(lEvent) {
+                    if (angular.isArray(lEvent.categories)) {
+                        lEvent.categories.forEach(function(category) {
+                            $scope.eventsCategories.add(category);
+                        });
                     }
-                };
+                });
             };
-
+            var populateEventsLocations = function() {
+                $scope.filteredEvents.forEach(function(lEvent) {
+                    MapsService.addLocation(lEvent.location);
+                });
+            }
 
             MapsService.init();
         }

@@ -28,7 +28,7 @@ exports.convert = function(gEvent, callback) {
             jsonContent = gEvent.description.match(jsonRegex);
             var genericContent = JSON.parse(jsonContent);
             lEvent.categories = genericContent.categories;
-            lEvent.location = { code : genericContent.locationCode }; 
+            lEvent.location = { id : genericContent.locationCode }; 
         }
     } catch (err) {
         console.log("Not able to parse the categories from google:", err, gEvent.description, "ID: ", gEvent.id)

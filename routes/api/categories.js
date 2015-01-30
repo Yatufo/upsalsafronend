@@ -12,7 +12,6 @@ exports.findAll = function(req, res) {
         })
         .exec(function(err, categories) {
             if (err) console.log(err);
-            console.log(JSON.stringify(categories));
 
             var results = {};
             categories.forEach(function(category) {

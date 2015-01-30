@@ -58,10 +58,10 @@ var syncEvents = function(syncParams) {
 
 
 var createEventData = function(lEvent, callback) {
-    if (lEvent.location && lEvent.location.code) {
+    if (lEvent.location && lEvent.location.id) {
 
         data.Location.findOne({
-            "code": lEvent.location.code
+            "id": lEvent.location.id
         }).select('_id').exec(function(err, location) {
             if (err) throw err;
 
