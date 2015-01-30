@@ -41,18 +41,22 @@ angular.module('myAppControllers')
             // gets all the unique categories that can be selected by gathering them from the filtered events.
             var populateEventsCategories = function() {
                 $scope.eventsCategories.content = {};
-                $scope.filteredEvents.forEach(function(lEvent) {
-                    if (angular.isArray(lEvent.categories)) {
-                        lEvent.categories.forEach(function(category) {
-                            $scope.eventsCategories.add(category);
-                        });
-                    }
-                });
+                if (angular.isArray($scope.filteredEvents)) {
+                    $scope.filteredEvents.forEach(function(lEvent) {
+                        if (angular.isArray(lEvent.categories)) {
+                            lEvent.categories.forEach(function(category) {
+                                $scope.eventsCategories.add(category);
+                            });
+                        }
+                    });
+                }
             };
             var populateEventsLocations = function() {
-                $scope.filteredEvents.forEach(function(lEvent) {
-                    MapsService.addLocation(lEvent.location);
-                });
+                if (angular.isArray($scope.filteredEvents)) {
+                    $scope.filteredEvents.forEach(function(lEvent) {
+                        MapsService.addLocation(lEvent.location);
+                    });
+                }
             }
 
             MapsService.init();

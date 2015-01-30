@@ -7,9 +7,13 @@ angular.module('myAppServices')
 
 function MapsService() {
     var map;
-    var addedLocations = {};
+    var addedLocations;
+    
     var service = {
         init: function() {
+            map ={};
+            addedLocations = {};
+
             var mapOptions = {
                 center: {
                     lat: 45.560,
