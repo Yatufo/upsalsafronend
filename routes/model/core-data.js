@@ -36,14 +36,29 @@ var CategorySchema = new Schema({
         index: true
     },
     name: String,
+    parent: {
+        type: String,
+        ref: 'Category'
+    },
     categories: [{
         type: String,
         ref: 'Category'
     }]
 });
 
+
+CategorySchema.virtual('id').get(function() { return this._id; });
+CategorySchema.set('toObject', { virtuals: true }) // console.log() statements would 
+                                                // print the virtual fields.
+
+
+CategorySchema.set('toJSON', { virtuals: true });  //virtual fields are visible when 
+                                                //the mongodb 
+ 
+
+
 var LocationSchema = new Schema({
-    code: {
+    id: {
         type: String,
         index: true
     },

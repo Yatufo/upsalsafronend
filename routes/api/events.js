@@ -13,7 +13,6 @@ exports.findAll = function(req, res) {
     data.Event.find()
         .where("end.dateTime").gt(timeMin)
         .populate('location')
-        .populate('categories')
         .limit(maxResults)
         .exec(function(err, events) {
             res.send(events);
@@ -25,7 +24,6 @@ exports.findById = function(req, res) {
 
     data.Event.findById(req.params.id)
         .populate('location')
-        .populate('categories')
         .exec(function(err, singleEvent) {
             res.send(singleEvent);
         });
