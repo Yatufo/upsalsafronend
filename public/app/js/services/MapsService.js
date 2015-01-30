@@ -25,7 +25,7 @@ function MapsService() {
         },
         addLocation: function(location) {
             if (location && !addedLocations[location.id]) {
-                console.log("Demonio" + location.id);
+
                 addedLocations[location.id] = true;
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),

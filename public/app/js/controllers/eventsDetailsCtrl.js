@@ -12,12 +12,13 @@ angular.module('myAppControllers')
             $http.get(CONFIG.EVENTS_ENDPOINT + '/' + $routeParams.eventId).
             success(function(data, status, headers, config) {
                 $scope.event = data;
+
+                MapsService.init();
+                MapsService.addLocation($scope.event.location);
             }).
             error(function(data, status, headers, config) {
                 console.log("Something went wrong");
             });
-
-            MapsService.init();
 
 
         }
