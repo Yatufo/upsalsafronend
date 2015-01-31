@@ -15,6 +15,8 @@ exports.convert = function(gEvent, callback) {
     };
     lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime) / 360000) / 10;
     lEvent.recurrence = gEvent.recurrence;
+
+    
     lEvent.timeZone = gEvent.timeZone;
     lEvent.sync = {
         uid: gEvent.id,

@@ -33,7 +33,8 @@ var configuration = {
         EVENTS_MAXRESULTS: 200,
         EVENTS_SINGLE: false,
         MONGO_CONNECTION: "mongodb://localhost/upsalsa",
-        UPDATE_MIN_SUBSTRACTION: 6*30*24*60*60*1000
+        UPDATE_MIN_SUBSTRACTION: 6 * 30 * 24 * 60 * 60 * 1000,
+        MAX_REPETITIVE_EVENT: 2
 
     },
     prod: {
@@ -59,7 +60,9 @@ var configuration = {
         EVENTS_SINGLE: true,
         prerenderToken: "jJ9tuSryPgzvzFEytcA2",
         MONGO_CONNECTION: "mongodb://admin:Merimesi1!@ds031641.mongolab.com:31641/heroku_app31647259",
-        UPDATE_MIN_SUBSTRACTION: 30*24*60*60*1000
+        UPDATE_MIN_SUBSTRACTION: 30 * 24 * 60 * 60 * 1000,
+        MAX_REPETITIVE_EVENT: 100
+
     }
 
 

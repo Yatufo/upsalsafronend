@@ -1,3 +1,4 @@
+var RRule = require('rrule').RRule;
 var calendar = require('../sync/google-calendar-api.js');
 var data = require('../model/core-data.js');
 var ctx = require('../util/conf.js').context();
@@ -31,14 +32,16 @@ var syncEvents = function(syncParams) {
     calendar.findAll(syncParams, function(localEventList, cal) {
 
         localEventList.forEach(function(lEvent) {
-
-            createEventData(lEvent, function(eventData) {
-                eventData.save(function(err) {
-                    if (err) {
-                        console.log('there was an error trying to save the eventData', err);
-                        return;
-                    }
-                });
+            addLocationData(lEvent, function() {
+                if (lEvent.recurrence) {
+                    getRecurrentEvents(lEvent, function(rEvents) {
+                        rEvents.forEach(function(rEvent) {
+                            saveEvent(rEvent);
+                        });
+                    })
+                } else {
+                    saveEvent(lEvent);
+                }
             });
         });
 
@@ -56,8 +59,16 @@ var syncEvents = function(syncParams) {
     });
 }
 
+var saveEvent = function(lEvent) {
+    new data.Event(lEvent).save(function(err) {
+        if (err) {
+            console.error('there was an error trying to save the eventData', err);
+        }
+    });
+}
 
-var createEventData = function(lEvent, callback) {
+
+var addLocationData = function(lEvent, callback) {
     if (lEvent.location && lEvent.location.id) {
 
         data.Location.findOne({
@@ -66,12 +77,43 @@ var createEventData = function(lEvent, callback) {
             if (err) throw err;
 
             lEvent.location = location._id;
-            callback(new data.Event(lEvent));
+            callback();
         })
     } else {
         lEvent.location = null;
-        callback(new data.Event(lEvent));
         console.error("The event does not have a proper location " + lEvent.id);
+        callback();
     }
-
 }
+
+var getRecurrentEvents = function(lEvent, callback) {
+    var recurrentEvents = [];
+    lEvent.recurrence.forEach(function(lRule) {
+        if (lRule.indexOf("RRULE:") > -1) {
+            lRule = lRule.replace("RRULE:", '');
+            var options = RRule.parseString(lRule);
+            options.dtstart = new Date(lEvent.start.dateTime);
+
+            var duration = lEvent.end.dateTime - lEvent.start.dateTime;
+            var startDates = new RRule(options).all(function(date, i) {
+                return i < ctx.MAX_REPETITIVE_EVENT
+            });
+
+            startDates.forEach(function(startDate, index) {
+                var newEvent = cloneEvent(lEvent);
+                newEvent.start.dateTime = startDate;
+                newEvent.end.dateTime = Date.parse(startDate) + duration;
+                newEvent.recurrence = null;
+                newEvent.location = lEvent.location;
+
+                recurrentEvents.push(newEvent);
+                console.log(JSON.stringify(newEvent));
+            });
+        }
+    });
+    callback(recurrentEvents);
+}
+
+var cloneEvent = function(lEvent) {
+    return JSON.parse(JSON.stringify(lEvent));
+};
