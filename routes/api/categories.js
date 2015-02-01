@@ -15,7 +15,7 @@ exports.findAll = function(req, res) {
 
             var results = {};
             categories.forEach(function(category) {
-                results[category.id] = category.categories;
+                results[category.id] = category;
             });
 
             res.send(results);

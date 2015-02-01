@@ -7,7 +7,7 @@
 { "_id" : "advanced", "parent" : "level", "name" : "Advanced", "categories" : [], "__v" : 0 }
 { "_id" : "intermediate", "parent" : "level", "name" : "Intermediate", "categories" : [], "__v" : 0 }
 { "_id" : "beginner", "parent" : "level", "name" : "Beginner", "categories" : [], "__v" : 0 }
-{ "_id" : "class", "parent" : "eventtype", "name" : "Class", "categories" : [ "season", "dropin", "workshop" ], "__v" : 0 }
+{ "_id" : "class", "parent" : "eventtype", "name" : "Class", "categories" : [ "seasonstart", "season", "dropin", "workshop" ], "__v" : 0 }
 { "_id" : "concert", "parent" : "eventtype", "name" : "Concert", "categories" : [], "__v" : 0 }
 { "_id" : "party", "parent" : "eventtype", "name" : "Party", "categories" : [], "__v" : 0 }
 { "_id" : "schoolparty", "parent" : "eventtype", "name" : "School Party", "categories" : [], "__v" : 0 }

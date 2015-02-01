@@ -3,9 +3,9 @@
         <i class="fa fa-th-list"></i> Filters
     </div>
 
-    <ul class="list-group" ng-repeat="root in rootCategories">
-        <li ng-if="root.visible" class="btn-group btn-group-justified" role="group">
-            <a ng-class="{selected:child.selected, disabled: child.disabled}" ng-click="changeSelectCategory(root._id, child._id)" class="btn btn-default" role="button" ng-repeat="child in categories[root._id]">{{child.name}}</a>
+    <ul class="list-group" ng-repeat="parent in root.categories track by parent.id">
+        <li ng-if="parent.visible" class="btn-group btn-group-justified" role="group">
+            <a ng-class="{selected:child.selected, disabled: child.disabled}" ng-click="changeSelectCategory(parent.id, child.id)" class="btn btn-default" role="button" ng-repeat="child in categories[parent.id].categories track by child.id">{{child.name}}</a>
         </li>
     </ul>
 
