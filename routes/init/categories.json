@@ -1,4 +1,4 @@
-{ "_id" : "root", "parent" : "level", "categories" : [ "happenson", "eventtype", "musictype", "level", "pricerange" ], "__v" : 0 }
+{ "_id" : "root", "parent" : "level", "categories" : [ "happenson", "eventtype", "musictype", "level", "pricerange"], "__v" : 0 }
 { "_id" : "happenson", "parent" : "root", "name" : "Happens On", "categories" : [ "today", "tomorrow", "week", "weekend" ], "__v" : 0 }
 { "_id" : "eventtype", "parent" : "root", "name" : "Type of event", "categories" : [ "class", "party", "schoolparty", "concert" ], "__v" : 0 }
 { "_id" : "pricerange", "parent" : "root", "name" : "Price Range", "categories" : [ "free", "paid" ], "__v" : 0 }
@@ -14,6 +14,7 @@
 { "_id" : "cuban", "parent" : "salsa", "name" : "Cuban", "categories" : [], "__v" : 0 }
 { "_id" : "newyork", "parent" : "salsa", "name" : "New York", "categories" : [], "__v" : 0 }
 { "_id" : "season", "parent" : "class", "name" : "Season Class", "categories" : [], "__v" : 0 }
+{ "_id" : "seasonstart", "parent" : "class", "name" : "Season Start", "categories" : [], "__v" : 0 }
 { "_id" : "dropin", "parent" : "class", "name" : "Drop In", "categories" : [], "__v" : 0 }
 { "_id" : "workshop", "parent" : "class", "name" : "Workshop", "categories" : [], "__v" : 0 }
 { "_id" : "paid", "parent" : "pricerange", "name" : "Paid", "categories" : [], "__v" : 0 }

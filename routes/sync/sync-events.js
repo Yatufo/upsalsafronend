@@ -89,6 +89,7 @@ var addLocationData = function(lEvent, callback) {
 var getRecurrentEvents = function(lEvent, callback) {
     var recurrentEvents = [];
     lEvent.recurrence.forEach(function(lRule) {
+
         if (lRule.indexOf("RRULE:") > -1) {
             lRule = lRule.replace("RRULE:", '');
             var options = RRule.parseString(lRule);
@@ -99,15 +100,23 @@ var getRecurrentEvents = function(lEvent, callback) {
                 return i < ctx.MAX_REPETITIVE_EVENT
             });
 
+            var sequence = 1;
             startDates.forEach(function(startDate, index) {
                 var newEvent = cloneEvent(lEvent);
                 newEvent.start.dateTime = startDate;
                 newEvent.end.dateTime = Date.parse(startDate) + duration;
                 newEvent.recurrence = null;
-                newEvent.location = lEvent.location;
+                newEvent.sequence = sequence;
+
+                if (newEvent.sequence <= ctx.SYNC_SEASON_START_SEQ && 
+                    newEvent.categories.indexOf(ctx.SYNC_SEASON_CATEGORY) != -1) {
+                    newEvent.categories.push(ctx.SYNC_SEASON_START);
+                }
+
 
                 recurrentEvents.push(newEvent);
-                console.log(JSON.stringify(newEvent));
+
+                sequence++;
             });
         }
     });

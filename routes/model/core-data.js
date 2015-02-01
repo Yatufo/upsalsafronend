@@ -24,6 +24,7 @@ var EventSchema = new Schema({
         dateTime: Date
     },
     recurrence: [String],
+    sequence: Number,
     categories: [{
         type: String,
         ref: 'Category'
