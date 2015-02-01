@@ -32,22 +32,28 @@ angular.module('myAppControllers')
                 }
             };
 
-            $scope.changeSelectCategory = function(rootId, childId) {
-                $scope.selectedCategories[rootId] = ($scope.selectedCategories[rootId] !== childId ? childId : null);
-                $scope.changeRootCategory(rootId, childId);
+            $scope.changeSelectCategory = function(parentId, childId) {
+                $scope.selectedCategories[parentId] = ($scope.selectedCategories[parentId] !== childId ? childId : null);
+                $scope.changeRootCategory(parentId, childId);
 
                 diffusionService.changeCategories($scope.selectedCategories);
                 changeCategoriesStatus();
             };
 
-            $scope.changeRootCategory = function(rootId, childId) {
-                if ($scope.selectedCategories[rootId]) {
-                    $scope.root.categories.push($scope.categories[childId]);
+            $scope.changeRootCategory = function(parentId, childId) {
+                if (!childId) return;
+
+                var child = $scope.categories[childId];
+                var index = $scope.root.categories.indexOf(child);
+                var isSelected = $scope.selectedCategories[parentId] === childId;
+                var isRoot = index >= 0;
+
+                if (isSelected && !isRoot) {
+                    $scope.root.categories.push(child);
                 } else {
-                    var index = $scope.root.categories.indexOf($scope.categories[childId]);
-                    if (index != -1) {
-                        $scope.root.categories.splice(index, 1);
-                    }
+                    $scope.root.categories.splice(index, 1);
+                    // Since it's not root anymore it can't have a selected child
+                    $scope.changeSelectCategory(childId, null);
                 }
             }
 
