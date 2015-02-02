@@ -33,14 +33,17 @@ angular.module('myAppControllers')
             };
 
             $scope.changeSelectCategory = function(parentId, childId) {
-                $scope.selectedCategories[parentId] = ($scope.selectedCategories[parentId] !== childId ? childId : null);
-                $scope.changeRootCategory(parentId, childId);
-
+                toogleCategory(parentId, childId)
                 diffusionService.changeCategories($scope.selectedCategories);
                 changeCategoriesStatus();
             };
 
-            $scope.changeRootCategory = function(parentId, childId) {
+            var toogleCategory = function(parentId, childId) {
+                $scope.selectedCategories[parentId] = ($scope.selectedCategories[parentId] !== childId ? childId : null);
+                toogleRootCategory(parentId, childId);
+            }
+
+            var toogleRootCategory = function(parentId, childId) {
                 if (!childId) return;
 
                 var child = $scope.categories[childId];
@@ -53,14 +56,9 @@ angular.module('myAppControllers')
                 } else {
                     $scope.root.categories.splice(index, 1);
                     // Since it's not root anymore it can't have a selected child
-                    $scope.changeSelectCategory(childId, null);
+                    toogleCategory(childId, null);
                 }
             }
-
-            $scope.isGroupVisible = function(category) {
-                return angular.isUndefined(category.parent) || $scope.selectedCategories[category.parent] === category.id;
-            };
-
 
             diffusionService.onChangeEvents($scope, function(message) {
                 $scope.eventsCategories = message.eventsCategories;
@@ -69,10 +67,11 @@ angular.module('myAppControllers')
 
             var changeCategoriesStatus = function() {
 
-                $scope.root.categories.forEach(function(root) {
+                $scope.root.categories.forEach(function(parent) {
 
                     var visibleCount = 0;
-                    $scope.categories[root.id].categories.forEach(function(category) {
+                    $scope.categories[parent.id].categories.forEach(function(category) {
+                        console.log(category.id);
                         updateCategoryStatus(category);
 
                         if (category.visible) {
@@ -80,7 +79,7 @@ angular.module('myAppControllers')
                         }
                     });
 
-                    root.visible = updateRootCategoryStatus(root, visibleCount);
+                    parent.visible = updateRootCategoryStatus(parent, visibleCount);
 
                 });
             }
@@ -108,7 +107,9 @@ angular.module('myAppControllers')
 
                 category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || category.selected);
                 category.disabled = !(isHappensOn || isContainedInEvents);
-            }
+
+
+           }
 
         }
 
