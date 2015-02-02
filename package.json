@@ -10,6 +10,7 @@
     "mongoose": "latest"
   },
   "devDependencies": {
+    "body-parser": "^1.11.0",
     "bson": "^0.2.17",
     "rrule": "^2.1.0"
   }
