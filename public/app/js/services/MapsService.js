@@ -8,18 +8,20 @@ angular.module('myAppServices')
 function MapsService() {
     var map;
     var addedLocations;
-    
+
     var service = {
-        init: function() {
-            map ={};
+        init: function(location, lZoom) {
+            map = {};
             addedLocations = {};
+
+
 
             var mapOptions = {
                 center: {
-                    lat: 45.560,
-                    lng: -73.712
+                    lat: (location ? location.coordinates.latitude : 45.560),
+                    lng: (location ? location.coordinates.longitude : -73.712)
                 },
-                zoom: 10
+                zoom: (lZoom ? lZoom : 10)
             };
             if (document.getElementById('map-canvas')) {
                 map = new google.maps.Map(document.getElementById('map-canvas'),
