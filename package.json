@@ -7,11 +7,11 @@
     "express": "latest",
     "googleapis": "latest",
     "prerender-node": "latest",
-    "mongoose": "latest"
+    "mongoose": "latest",
+    "body-parser": "^1.11.0",
+    "rrule": "^2.1.0"
   },
   "devDependencies": {
-    "body-parser": "^1.11.0",
-    "bson": "^0.2.17",
-    "rrule": "^2.1.0"
+    "bson": "^0.2.17"
   }
 }
