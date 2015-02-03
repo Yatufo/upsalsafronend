@@ -34,45 +34,32 @@ angular.module('myAppControllers')
                 $scope.filteredEvents = $filter('categories')($scope.filteredEvents, $scope.selectedCategories);
 
                 populateEventsCategories();
+                populateEventsLocations();
                 diffusionService.changeEvents($scope.eventsCategories.asArray());
             };
 
             // gets all the unique categories that can be selected by gathering them from the filtered events.
             var populateEventsCategories = function() {
                 $scope.eventsCategories.content = {};
-                for (var i = $scope.filteredEvents.length - 1; i >= 0; i--) {
-                    var categories = $scope.filteredEvents[i].categories;
-                    if (angular.isArray(categories)) {
-                        for (var j = categories.length - 1; j >= 0; j--) {
-                            $scope.eventsCategories.add(categories[j]);
+                if (angular.isArray($scope.filteredEvents)) {
+                    $scope.filteredEvents.forEach(function(lEvent) {
+                        if (angular.isArray(lEvent.categories)) {
+                            lEvent.categories.forEach(function(category) {
+                                $scope.eventsCategories.add(category);
+                            });
                         }
-                    }
-                };
+                    });
+                }
             };
-
+            var populateEventsLocations = function() {
+                if (angular.isArray($scope.filteredEvents)) {
+                    $scope.filteredEvents.forEach(function(lEvent) {
+                        MapsService.addLocation(lEvent.location);
+                    });
+                }
+            }
 
             MapsService.init();
-
-            function Set() {
-                this.content = {};
-            }
-            Set.prototype.content = function() {
-                return this.content;
-            }
-            Set.prototype.add = function(val) {
-                this.content[val] = true;
-            }
-            Set.prototype.remove = function(val) {
-                delete this.content[val];
-            }
-            Set.prototype.contains = function(val) {
-                return (val in this.content);
-            }
-            Set.prototype.asArray = function() {
-                var res = [];
-                for (var val in this.content) res.push(val);
-                return res;
-            }
         }
 
 

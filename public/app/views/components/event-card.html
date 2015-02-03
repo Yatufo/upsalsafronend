@@ -1,12 +1,12 @@
 <div class="panel panel-danger">
 
-    <div class="panel-heading"><a href="#/{{city}}/events/{{event.id}}">{{event.summary}}</a>
+    <div class="panel-heading"><a href="#/{{city}}/events/{{event.id}}">{{event.title}}</a>
     </div>
 
     <div class="panel-body">
         <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }}</p>
         <p> <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
-        <p><i ng-if="event.location" class="fa fa-map-marker fa-lg"></i> <a <a target="window" href="http://maps.google.com/?q={{event.location}}">{{event.location}}</a>
+        <p><i ng-if="event.location" class="fa fa-map-marker fa-lg"></i> <a <a target="window" href="http://maps.google.com/?q={{event.location.name}}">{{event.location.name}} - {{event.location.address}}</a>
         </p>
         <p>
             <ul class="list-inline">

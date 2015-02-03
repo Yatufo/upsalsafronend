@@ -10,18 +10,20 @@ angular.module('myAppControllers')
             $scope.isCollapsed = false;
             $scope.selectedCategories = {};
             $scope.categories = {};
-            $scope.rootCategories = [];
+            $scope.root = {
+                categories: []
+            };
             $scope.reloadCategories = false;
 
             $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
                 $scope.categories = data;
-                $scope.rootCategories = data['root'];
+                $scope.root = data['root'];
                 setDefaultValues();
             });
 
             var setDefaultValues = function() {
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
-                    $scope.selectedCategories[key] = CONFIG.DEFAULT_CATEGORIES[key];
+                    $scope.changeSelectCategory(key, CONFIG.DEFAULT_CATEGORIES[key]);
                 }
 
                 //the event type selected by the user
@@ -30,12 +32,30 @@ angular.module('myAppControllers')
                 }
             };
 
-            $scope.changeSelectCategory = function(rootId, childId) {
-                $scope.selectedCategories[rootId] = ($scope.selectedCategories[rootId] !== childId ? childId : null);
+            $scope.changeSelectCategory = function(parentId, childId) {
+                $scope.selectedCategories[parentId] = ($scope.selectedCategories[parentId] !== childId ? childId : null);
+                $scope.changeRootCategory(parentId, childId);
+
                 diffusionService.changeCategories($scope.selectedCategories);
                 changeCategoriesStatus();
             };
 
+            $scope.changeRootCategory = function(parentId, childId) {
+                if (!childId) return;
+
+                var child = $scope.categories[childId];
+                var index = $scope.root.categories.indexOf(child);
+                var isSelected = $scope.selectedCategories[parentId] === childId;
+                var isRoot = index >= 0;
+
+                if (isSelected && !isRoot) {
+                    $scope.root.categories.push(child);
+                } else {
+                    $scope.root.categories.splice(index, 1);
+                    // Since it's not root anymore it can't have a selected child
+                    $scope.changeSelectCategory(childId, null);
+                }
+            }
 
             $scope.isGroupVisible = function(category) {
                 return angular.isUndefined(category.parent) || $scope.selectedCategories[category.parent] === category.id;
@@ -49,10 +69,10 @@ angular.module('myAppControllers')
 
             var changeCategoriesStatus = function() {
 
-                $scope.rootCategories.forEach(function(root) {
+                $scope.root.categories.forEach(function(root) {
 
                     var visibleCount = 0;
-                    $scope.categories[root.id].forEach(function(category) {
+                    $scope.categories[root.id].categories.forEach(function(category) {
                         updateCategoryStatus(category);
 
                         if (category.visible) {

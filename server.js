@@ -2,9 +2,10 @@
 //
 //Main App   
 var express = require('express');
-var events = require('./routes/events.js');
+var events = require('./routes/api/events.js');
+var categories = require('./routes/api/categories.js');
 var ctx = require('./routes/util/conf.js').context('prod');
-var categories = require('./routes/categories.js');
+var sync = require('./routes/sync/sync-events.js');
 var app = express();
 
 
@@ -22,6 +23,7 @@ app.use(express.static(__dirname + '/public/app'));
 app.get('/api/events', events.findAll);
 app.get('/api/events/:id', events.findById);
 app.get('/api/categories', categories.findAll);
+app.get('/api/sync', sync.syncEvents);
 
 
 app.use(function(err, req, res, next) {
