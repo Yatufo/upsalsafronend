@@ -13,8 +13,8 @@
 { "_id" : "schoolparty", "parent" : "eventtype", "name" : "School Party", "categories" : [], "__v" : 0 }
 { "_id" : "cuban", "parent" : "salsa", "name" : "Cuban", "categories" : [], "__v" : 0 }
 { "_id" : "newyork", "parent" : "salsa", "name" : "New York", "categories" : [], "__v" : 0 }
-{ "_id" : "season", "parent" : "class", "name" : "Season Class", "categories" : [], "__v" : 0 }
-{ "_id" : "seasonstart", "parent" : "class", "name" : "Season Start", "categories" : [], "__v" : 0 }
+{ "_id" : "season", "parent" : "class", "name" : "Season", "categories" : [], "__v" : 0 }
+{ "_id" : "seasonstart", "parent" : "class", "name" : "Starter", "categories" : [], "__v" : 0 }
 { "_id" : "dropin", "parent" : "class", "name" : "Drop In", "categories" : [], "__v" : 0 }
 { "_id" : "workshop", "parent" : "class", "name" : "Workshop", "categories" : [], "__v" : 0 }
 { "_id" : "paid", "parent" : "pricerange", "name" : "Paid", "categories" : [], "__v" : 0 }
