@@ -32,6 +32,9 @@ var syncEvents = function(syncParams) {
     calendar.findAll(syncParams, function(localEventList, cal) {
 
         localEventList.forEach(function(lEvent) {
+
+            deleteExistingEvent(lEvent);
+
             addLocationData(lEvent, function() {
                 if (lEvent.recurrence) {
                     getRecurrentEvents(lEvent, function(rEvents) {
@@ -58,6 +61,18 @@ var syncEvents = function(syncParams) {
 
     });
 }
+
+
+var deleteExistingEvent = function(lEvent) {
+    if (lEvent.sync) {
+        data.Event.remove({
+            "sync.uid": lEvent.sync.uid
+        }, function(err) {
+            if (err) console.error('Error trying to delete outdated events uid: ' + lEvent.sync.uid, err);
+        });
+    }
+};
+
 
 var saveEvent = function(lEvent) {
     new data.Event(lEvent).save(function(err) {
@@ -108,7 +123,7 @@ var getRecurrentEvents = function(lEvent, callback) {
                 newEvent.recurrence = null;
                 newEvent.sequence = sequence;
 
-                if (newEvent.sequence <= ctx.SYNC_SEASON_START_SEQ && 
+                if (newEvent.sequence <= ctx.SYNC_SEASON_START_SEQ &&
                     newEvent.categories.indexOf(ctx.SYNC_SEASON_CATEGORY) != -1) {
                     newEvent.categories.push(ctx.SYNC_SEASON_START);
                 }
