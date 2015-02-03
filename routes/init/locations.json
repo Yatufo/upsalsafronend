@@ -1,0 +1,31 @@
+{
+    "id": "649",
+    "name": "Latingroove",
+    "address": "1112 Sainte-Catherine West Montreal, QC H3B 1 H4",
+    "url": "http://club649.com/",
+    "phone": "5149524808",
+    "coordinates": {
+        "latitude": 45.499718600,
+        "longitude": -73.573094500
+    }
+} {
+    "id": "comomango",
+    "name": "Comomango",
+    "address": "486 Sainte-Catherine Ouest, 3ème étage Studio#303",
+    "url": "http://www.comomango.ca/",
+    "phone": "5142146177",
+    "coordinates": {
+        "latitude": 45.504565000,
+        "longitude": -73.568211500
+    }
+} {
+    "id": "danceconmigo",
+    "name": "Dance conmigo",
+    "address": "9 Rue Sainte-Catherine Est #101, Montréal, Québec H2X 1K4 ",
+    "url": "http://www.danceconmigo.com/ ",
+    "phone": "5144393990",
+    "coordinates": {
+        "latitude": 45.510185900,
+        "longitude": -73.563713100
+    }
+}

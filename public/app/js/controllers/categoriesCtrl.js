@@ -71,7 +71,6 @@ angular.module('myAppControllers')
 
                     var visibleCount = 0;
                     $scope.categories[parent.id].categories.forEach(function(category) {
-                        console.log(category.id);
                         updateCategoryStatus(category);
 
                         if (category.visible) {
