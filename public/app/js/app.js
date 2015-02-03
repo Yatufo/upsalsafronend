@@ -39,3 +39,9 @@ myApp.config(['$routeProvider',
         });
     }
 ]);
+
+$(document).on('click','.navbar-collapse.collapse.in', function(e) {
+    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        $(this).collapse('hide');
+    }
+});
