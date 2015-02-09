@@ -89,7 +89,7 @@ angular.module('myAppControllers')
             var updateRootCategoryStatus = function(category, count) {
                 var isEventType = category.id === "eventtype";
                 var isChildToggled = angular.isString($scope.selectedCategories[category.id]);
-                var isVisibleChildren = count > 1;
+                var isVisibleChildren = count >= 1;
 
                 return (isChildToggled || isVisibleChildren) && !isEventType;
             }
