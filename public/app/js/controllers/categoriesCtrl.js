@@ -85,10 +85,11 @@ angular.module('myAppControllers')
 
 
             var updateRootCategoryStatus = function(category, count) {
+                var isEventType = category.id === "eventtype";
                 var isChildToggled = angular.isString($scope.selectedCategories[category.id]);
                 var isVisibleChildren = count > 1;
 
-                return isChildToggled || isVisibleChildren;
+                return (isChildToggled || isVisibleChildren) && !isEventType;
             }
 
 
@@ -96,7 +97,7 @@ angular.module('myAppControllers')
 
                 category.selected = $scope.selectedCategories[category.parent] === category.id;
 
-                var isHappensOn = category.parent === "happenson"
+                var isHappensOn = category.parent === "happenson";
                 var isContainedInEvents = $scope.eventsCategories.indexOf(category.id) != -1;
                 var isNoSiblingToggled = !angular.isString($scope.selectedCategories[category.parent]);
 

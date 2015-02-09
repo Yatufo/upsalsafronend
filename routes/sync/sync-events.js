@@ -7,10 +7,10 @@ var ctx = require('../util/conf.js').context();
 exports.syncEvents = function(req, res) {
 
     var syncParams = {
-        syncToken: ctx.EVENT_SYNC_TOKEN,
+        syncToken: (req.query.all ? null : ctx.EVENT_SYNC_TOKEN),
         pageToken: null
     };
-
+    
     //read sycn tock
     if (syncParams.syncToken) {
         console.log("Performing incremental sync");

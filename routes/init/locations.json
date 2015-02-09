@@ -1,31 +1,40 @@
-{
-    "id": "649",
-    "name": "Latingroove",
-    "address": "1112 Sainte-Catherine West Montreal, QC H3B 1 H4",
-    "url": "http://club649.com/",
-    "phone": "5149524808",
-    "coordinates": {
-        "latitude": 45.499718600,
-        "longitude": -73.573094500
-    }
-} {
-    "id": "comomango",
-    "name": "Comomango",
-    "address": "486 Sainte-Catherine Ouest, 3ème étage Studio#303",
-    "url": "http://www.comomango.ca/",
-    "phone": "5142146177",
-    "coordinates": {
-        "latitude": 45.504565000,
-        "longitude": -73.568211500
-    }
-} {
-    "id": "danceconmigo",
-    "name": "Dance conmigo",
-    "address": "9 Rue Sainte-Catherine Est #101, Montréal, Québec H2X 1K4 ",
-    "url": "http://www.danceconmigo.com/ ",
-    "phone": "5144393990",
-    "coordinates": {
-        "latitude": 45.510185900,
-        "longitude": -73.563713100
-    }
-}
+{   "id": "649",                "name": "Latingroove",    "address": "1112 Sainte-Catherine West Montreal, QC H3B 1 H4",    "url": "http://club649.com/",    "phone": "5149524808",    "coordinates": {     "latitude": 45.499718600,   "longitude": -73.573094500}}
+{   "id": "comomango",          "name": "Comomango",    "address": "486 Sainte-Catherine Ouest, 3ème étage Studio#303",    "url": "http://www.comomango.ca/",    "phone": "5142146177",    "coordinates": {       "latitude": 45.504565000,   "longitude": -73.568211500}}
+{   "id": "danceconmigo",       "name": "Dance conmigo",    "address": "9 Rue Sainte-Catherine Est #101, Montréal, Québec H2X 1K4 ",    "url": "http://www.danceconmigo.com/ ",    "phone": "5144393990",    "coordinates": {      "latitude": 45.510185900,   "longitude": -73.563713100}}
+{   "id": "titosalsabor",       "name": "Académie de danse Titosalsabor",    "address": "4416 St-Laurent, suite 305, Montréal (QC) H2W 1Z5",    "url": "http://titosalsabor.com ",    "phone": "5145768643",    "coordinates": {       "latitude": 45.519636,  "longitude": -73.585550}}
+{   "id": "strazzero",          "name": "Strazzero Latin Dance Academy",    "address": "5800 Metropolitain Est, Suite 115, Saint-Leonard, QC H1S 1A7 ",    "url": "https://www.facebook.com/salsamontreal/info?tab=overview ",    "phone": "5142532673",    "coordinates": {      "latitude": 45.586773,  "longitude": -73.584635}}
+{   "id": "fuegoenlospies",     "name": "Fuego en los pies",    "address": "1390 Boul. Rosemont, Montreal,QC’ H2G1S1 ",    "url": "http://www.fuegoenlospies.com/",    "phone": "438-886-4704",    "coordinates": {      "latitude": 45.537577,  "longitude": -73.592635}}
+{   "id": "movimiento",         "name": "Movimiento",    "address": "612 Ste-Croix,Saint-Laurent, H4L 3Y2 ",    "url": "http://www.movimiento.ca/ ",    "phone": "5145075735",    "coordinates": {       "latitude": 45.511745,  "longitude": -73.672974}}
+{   "id": "salsaetc",           "name": "Salsa Etc",    "address": "2194 Rachel Est, Suite 2, Montréal (Québec) H2H 1R2",    "url": "http://www.salsaetc.com ",    "phone": "5148441755",    "coordinates": {      "latitude": 45.533965,  "longitude": -73.566090}}
+{   "id": "salsarica",          "name": "Salsa Rica",    "address": "4200 Saint-Laurent, suite 300 Montréal QC, H3X 2T8",    "url": "http://salsarica.com ",    "phone": "5142494864",    "coordinates": {        "latitude": 45.491075,  "longitude": -73.650672}}
+{   "id": "salsaxtaze",         "name": "Salsa Xtaze",    "address": "5425, rue de Bordeaux,Loft 255,Montréal QC H2H 2P9 ",    "url": "http://www.salsaxtaze.ca/",    "phone": "5148913612",    "coordinates": {     "latitude": 45.539399,  "longitude": -73.582811}}
+{   "id": "santropez",              "name": "San Tropez",    "address": "1222 Rue Peel Montréal, QC H3B 5L4 ",    "url": "http://www.latindance.net ",    "phone": "5148718852",    "coordinates": {      "latitude": 45.499547,  "longitude": -73.572164}}
+{   "id": "latindance",             "name": "San Tropez",    "address": "54 Boulevard Brunswick, Pointe-Claire, QC, Canada ",    "url": "http://www.latindance.net ",    "phone": "5148718852",    "coordinates": {      "latitude": 45.481523,  "longitude": -73.798798}}
+{   "id": "studiodansemontreal",    "name": "Studio Danse Montreal",    "address": "7240, Clark,Montréal, QC, H2R 2Y3 ",    "url": "http://www.studiodansemontreal.com ",    "phone": "5142233918",    "coordinates": {     "latitude": 45.534386,  "longitude": -73.619824}}
+{   "id": "comomango",              "name": "Comomango",    "address": "486 Rue Sainte Catherine Ouest #303, Montréal, QC H3B 1A6",    "url": "http://www.comomango.ca/",    "phone": "514214-6177",    "coordinates": {      "longitude": 45.504565, "latitude": -73.568211}}
+{   "id": "bailaproductions",       "name": "Baila Productions",    "address": "13950 Boul.Gouin Ouest Pierrefonds, QC, H8Z 1Y1",    "url": "http://bailaproductions.com",    "phone": "5149651225",    "coordinates": {       "longitude": 45.496515, "latitude": -73.850329}}
+{   "id": "bailaproductions-laval", "name": "Baila Productions",    "address": "Centre Sportif Val-des-Arbres 1555 St-Martin Est Laval, QC, H7G 4R4",    "url": "http://bailaproductions.com",    "phone": "4506635278",    "coordinates": {     "longitude": 45.590748, "latitude": -73.696638}}
+{   "id": "bailaproductions-bell",    "name": "Baila Productions",    "address": "Chalet Peter-Williamson (Parc Aumais) 300 rue Cypihot Sainte - Anne - de - Bellevue, QC, H9X 4A7",    "url": "http://bailaproductions.com",    "phone": "4502381435",    "coordinates": {        "longitude": 45.438482,        "latitude": -73.928705    }}
+{   "id": "fuegolatino-laval",    "name": "Fuego Latino",    "address": "1000 Boulevard de l'Avenir, Laval, QC H7N 6J6",    "url": "http://ecoledesalsa.com",    "phone": "5148230460",    "coordinates": {        "longitude": 45.560225,        "latitude": -73.722030    }}
+{    "id": "fuegolatino-boisbriand",    "name": "Fuego Latino",    "address": "955 Boulevard de la Grande Allée, Boisbriand, QC J7G",    "url": "http://ecoledesalsa.com",    "phone": "4506678861",    "coordinates": {        "longitude": 45.612795,        "latitude": -73.839750    }}
+{    "id": "carolinepare",    "name": "Caroline Paré",    "address": "215 Jean-Talon Ouest,3e étage,Montréal (QC) H2R 2X6 ",    "url": "http://www.carolinepare.com/",    "phone": "5142730078",    "coordinates": {        "longitude": 45.532267,        "latitude": -73.620726    }}
+{    "id": "sylviaera",    "name": "Sylviaera Dance Company",    "address": " 4000 Saint-Ambroise street, Studio 281, 280 Montreal, Québec, H4C 2C7",    "url": "http://www.sylviaera.ca",    "phone": "5149055252",    "coordinates": {        "longitude": 45.475791,        "latitude": -73.580141    }}
+{    "id": "studiodanza",    "name": "Studio Danza",    "address": "4840 Bl. St-Jean (Nord), suite 201,Pierrefonds, QC, H9H 4B2",    "url": "http://www.studiodanza.ca",    "phone": "5146243222",    "coordinates": {        "longitude": 45.489336,        "latitude": -73.851301    }}
+{    "id": "ecolededanse",    "name": "École de danse Montréal-Nord",    "address": "3800 rue Monselet,Montréal-Nord,QC,H1H 2B6",    "url": "http://www.ecolededanse.ca//",    "phone": "5143279091",    "coordinates": {        "longitude": 45.587986,        "latitude": -73.640519    }}
+{    "id": "arthurmurraylaval",    "name": "Studio de danse Arthur Murray Laval",    "address": "1882 St-Martin Laval, Quebec,H7S 1M9",    "url": "http://arthurmurraylaval.com/",    "phone": "4509734050",    "coordinates": {        "longitude": 45.565970,        "latitude": -73.730784    }}
+{    "id": "hotlatinsalsa",    "name": "Ecole Ville Lasalle",    "address": "2036 rue Lapierre, Ville Lasalle, Qc H8N 2S2",    "url": "http://www.hotlatinsalsa.net/",    "phone": "514-500-6434",    "coordinates": {        "longitude": 45.436791,        "latitude": -73.614834    }}
+{    "id": "dansegbeaulieu",    "name": "Écolde de danse Gilles Beaulieu",    "address": "1390 Boulevard Rosemont Montréal, QC H2G 1R9",    "url": "http://www.dansegbeaulieu.com",    "phone": "5142404014",    "coordinates": {        "longitude": 45.537577,        "latitude": -73.592635    }}
+{    "id": "dansealejandro",    "name": "Alejandro Dance Company",    "address": "321 Boulevard Saint-Martin Ouest,Laval, QC, H7M 1Y7",    "url": "http://www.dansealejandro.com",    "phone": "5146681313",    "coordinates": {        "longitude": 45.579173,        "latitude": -73.710059    }}
+{    "id": "cardiovie",    "name": "École de danse Cardio Vie",    "address": "4192, Grande-Allée,Greenfield Park(Québec),J3Y 8N5",    "url": "http://www.cardiovie.ca/",    "phone": "5149624347",    "coordinates": {        "longitude": 45.481178,        "latitude": -73.452686    }}
+{    "id": "bahiastudio-long",    "name": "Bahia Studio",    "address": "1646 Chemin de Chambly, Longueuil, QC J4J 3X5",    "url": "http://www.bahiastudio.com",    "phone": "4506741919",    "coordinates": {        "longitude": 45.530146,        "latitude": -73.483938    }}
+{    "id": "bahiastudio-chat",    "name": "Bahia Studio",    "address": "350 Boulevard Pierre Boursier, Chateauguay, QC",    "url": "http://www.bahiastudio.com",    "phone": "4508441918",    "coordinates": {        "longitude": 45.347942,        "latitude": -73.701431    }}
+{    "id": "studiobizz",    "name": "Cours de salsa avec Christine Maltais",    "address": "551, Mont-Royal Avenue East, 3rd floor,Montréal, Québec, H2J 1W6",    "url": "http://studiobizz.com/en/classe-de-salsa-avec-christine-maltais/",    "phone": "5142870504",    "coordinates": {        "longitude": 45.525285,        "latitude": -73.582002    }}
+{    "id": "studiodanse361",    "name": "Studio de Danse 361",    "address": "8600, Parkway,Anjou, QC, H1J 1N1 ",    "url": "http://studiodanse361.com",    "phone": "5146663267",    "coordinates": {        "longitude": 45.613742,        "latitude": -73.564500    }}
+{    "id": "tocadanse",    "name": "Toca Danse",    "address": "100, Bd de Montarville,Boucherville,QC,J4B 5M4",    "url": "http://www.tocadanse.com",    "phone": "5144338342",    "coordinates": {        "longitude": 45.603973,        "latitude": -73.453255    }}
+{    "id": "lesodanse",    "name": "Le Sodanse",    "address": "221 Rue Brébeuf, Beloeil, QC J3G 5P3",    "url": "http://www.lesodanse.ca",    "phone": "4505360866",    "coordinates": {        "longitude": 45.564940,        "latitude": -73.207093    }}
+{    "id": "studio2720",    "name": "Studio 2720",    "address": "2720 Rue des Ormeaux, Montréal, QC H1L 4X7",    "url": "http://www.studio2720.ca",    "phone": "5143542210",    "coordinates": {        "longitude": 45.602196,        "latitude": -73.522550    }}
+{    "id": "tangolibre",    "name": "Tango Libre",    "address": "1650, rue Marie-Anne est, Montréal (Québec), H2J 2E1",    "url": "www.tangolibre.ca",    "phone": "514. 527.5197",    "coordinates": {        "longitude": 45.531164,        "latitude": -73.572781    }}
+{    "id": "airdetango",    "name": "Air de tango",    "address": "4324 St Laurent 2nd floor, Montreal, QC H2W 1Z3",    "url": "http://airdetango.com/",    "phone": "5142788781",    "coordinates": {        "longitude": 45.519077,        "latitude": -73.584084    }}
+{    "id": "kizomba",    "name": "Kizomba Canada",    "address": "9 Rue Sainte-Catherine Est #101, Montréal, Québec H2X 1K4 ",    "url": "http://www.kizomba.ca/ ",    "phone": "4387645600",    "coordinates": {        "latitude": 45.510185900,        "longitude": -73.563713100    }}
+{    "id": "kizombadancer",    "name": "Kizomba Dancer",    "address": "217 Boul. de la Concorde E, Laval, Qc H7G 2C9",    "url": "https://m.facebook.com/kizombaquebec",    "phone": "5149126342",    "coordinates": {        "longitude": 45.575281,        "latitude": -73.683252    }}
+{    "id": "kizolove",    "name": "Kizo-Love",    "address": "4324 boulevard Saint-Laurent suite 200    Montreal,    Quebec H2W 1 Z3 ",    "url": "https://m.facebook.com/kizolove(made it up)",    "phone": "TBD",    "coordinates": {        "longitude": 45.518910,        "latitude": -73.583934}}
