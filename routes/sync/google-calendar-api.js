@@ -10,7 +10,6 @@ exports.findAll= function(syncParams, callback) {
 
 
     var params = {
-        singleEvents: ctx.EVENTS_SINGLE,
         calendarId: ctx.CALENDAR_ID,
         fields: "description,nextPageToken,nextSyncToken,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
     };

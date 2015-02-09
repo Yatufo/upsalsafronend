@@ -9,19 +9,22 @@ angular.module('myAppControllers')
 
             $scope.isCollapsed = false;
             $scope.selectedCategories = {};
-            $scope.categories = {};
             $scope.root = {
                 categories: []
             };
             $scope.reloadCategories = false;
 
-            $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
-                $scope.categories = data;
-                $scope.root = data['root'];
-                setDefaultValues();
-            });
+
+            if (!$scope.categories) {
+                $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
+                    $scope.categories = data;
+                    $scope.root = data['root'];
+                    setDefaultValues();
+                });
+            }
 
             var setDefaultValues = function() {
+                $scope.selectedCategories = {};
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
                     $scope.changeSelectCategory(key, CONFIG.DEFAULT_CATEGORIES[key]);
                 }
@@ -35,7 +38,6 @@ angular.module('myAppControllers')
             $scope.changeSelectCategory = function(parentId, childId) {
                 toogleCategory(parentId, childId)
                 diffusionService.changeCategories($scope.selectedCategories);
-                changeCategoriesStatus();
             };
 
             var toogleCategory = function(parentId, childId) {
@@ -109,7 +111,7 @@ angular.module('myAppControllers')
                 category.disabled = !(isHappensOn || isContainedInEvents);
 
 
-           }
+            }
 
         }
 

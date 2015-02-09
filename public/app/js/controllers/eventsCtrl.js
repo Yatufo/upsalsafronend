@@ -19,23 +19,23 @@ angular.module('myAppControllers')
             $http.get(CONFIG.EVENTS_ENDPOINT).success(function(data) {
                 $scope.events = data;
                 $scope.filteredEvents = data;
-
-                $scope.filterEvents();
+                filterEvents();
             });
-
 
             diffusionService.onChangeCategories($scope, function(message) {
                 $scope.selectedCategories = message.selected;
-                $scope.filterEvents();
+                filterEvents();
             });
 
-            $scope.filterEvents = function() {
-                $scope.filteredEvents = $filter('happensOn')($scope.events, $scope.selectedCategories['happenson'], $scope.localTime);
-                $scope.filteredEvents = $filter('categories')($scope.filteredEvents, $scope.selectedCategories);
+            var filterEvents = function() {
+                if ($scope.events) {
+                    $scope.filteredEvents = $filter('happensOn')($scope.events, $scope.selectedCategories['happenson'], $scope.localTime);
+                    $scope.filteredEvents = $filter('categories')($scope.filteredEvents, $scope.selectedCategories);
 
-                populateEventsCategories();
-                populateEventsLocations();
-                diffusionService.changeEvents($scope.eventsCategories.asArray());
+                    populateEventsCategories();
+                    populateEventsLocations();
+                    diffusionService.changeEvents($scope.eventsCategories.asArray());
+                }
             };
 
             // gets all the unique categories that can be selected by gathering them from the filtered events.
@@ -58,7 +58,6 @@ angular.module('myAppControllers')
                     });
                 }
             }
-
             MapsService.init();
         }
 

@@ -124,7 +124,7 @@ var getRecurrentEvents = function(lEvent, callback) {
                 newEvent.sequence = sequence;
 
                 if (newEvent.sequence <= ctx.SYNC_SEASON_START_SEQ &&
-                    newEvent.categories.indexOf(ctx.SYNC_SEASON_CATEGORY) != -1) {
+                    newEvent.categories && newEvent.categories.indexOf(ctx.SYNC_SEASON_CATEGORY) != -1) {
                     newEvent.categories.push(ctx.SYNC_SEASON_START);
                 }
 
