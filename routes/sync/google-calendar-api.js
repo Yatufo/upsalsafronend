@@ -26,7 +26,7 @@ exports.findAll= function(syncParams, callback) {
             console.log(err);
         }
 
-        if (cal != null && cal.items != null) {
+        if (cal && cal.items) {
             cal.items.forEach(function(gEvent) {
                 converter.convert(gEvent, function(err, lEvent) {
                     localEventList.push(lEvent);
