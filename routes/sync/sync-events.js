@@ -96,7 +96,7 @@ var addLocationData = function(lEvent, callback) {
         })
     } else {
         lEvent.location = null;
-        console.error("The event does not have a proper location " + lEvent.id);
+        console.error("The event does not have a proper location ", lEvent);
         callback();
     }
 }
