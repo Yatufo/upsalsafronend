@@ -6,8 +6,8 @@ var bodyParser = require('body-parser')
 var events = require('./routes/api/events.js');
 var locations = require('./routes/api/locations.js');
 var categories = require('./routes/api/categories.js');
+var backoffice = require('./routes/api/backoffice.js');
 var ctx = require('./routes/util/conf.js').context('prod');
-var sync = require('./routes/sync/sync-events.js');
 var app = express();
 
 
@@ -28,11 +28,11 @@ app.get('/api/events', events.findAll);
 app.get('/api/events/:id', events.findById);
 app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
-app.get('/api/sync', sync.syncEvents);
+app.get('/api/sync', backoffice.syncEvents);
 
 
 app.use(function(err, req, res, next) {
-    console.log(error.stack);
+    console.log(err.stack);
     res.status(500).send('Something broke!');
 });
 

@@ -5,15 +5,15 @@ var converter = require('./google-converter.js');
 
 //
 // 
-exports.findAll= function(syncParams, callback) {
+exports.findAllEvents = function(syncParams, callback) {
     var localEventList = [];
 
 
     var params = {
-        calendarId: ctx.CALENDAR_ID,
         fields: "description,nextPageToken,nextSyncToken,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
     };
 
+    if (syncParams.calendarId) params.calendarId = syncParams.calendarId;
     if (syncParams.updateMin) params.updateMin = syncParams.updateMin;
     if (syncParams.syncToken) params.syncToken = syncParams.syncToken;
     if (syncParams.pageToken) params.pageToken = syncParams.pageToken;
@@ -23,7 +23,7 @@ exports.findAll= function(syncParams, callback) {
     google.calendar.events.list(params, function(err, cal) {
 
         if (err) {
-            console.log(err);
+            console.error("Could not get the events from google", err);
         }
 
         if (cal && cal.items) {
@@ -37,3 +37,17 @@ exports.findAll= function(syncParams, callback) {
         callback(localEventList, cal);
     });
 };
+
+exports.findAllCalendars = function(callback) {
+    var params = {
+        fields: "items(id,summary,accessRole)"
+    };
+
+    google.calendar.calendarList.list(params, function(err, gCalendars) {
+        if (err) {
+            console.error('Not able to query calendars from google', err);
+        }
+
+        callback(gCalendars);
+    })
+}

@@ -36,8 +36,8 @@ var configuration = {
         MAX_REPETITIVE_EVENT: 2,
         SYNC_SEASON_START_SEQ: 2,
         SYNC_SEASON_CATEGORY: 'season',
-        SYNC_SEASON_START: 'seasonstart'
-
+        SYNC_SEASON_START: 'seasonstart',
+        SYNC_CALENDAR_ACCESSROLE: 'owner'
     },
     prod: {
         googlesetup: {
@@ -65,7 +65,8 @@ var configuration = {
         MAX_REPETITIVE_EVENT: 50,
         SYNC_SEASON_START_SEQ: 2,
         SYNC_SEASON_CATEGORY: 'season',
-        SYNC_SEASON_START: 'seasonstart'
+        SYNC_SEASON_START: 'seasonstart',
+        SYNC_CALENDAR_ACCESSROLE: 'owner'
     }
 
 
