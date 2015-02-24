@@ -98,6 +98,13 @@ div .image-selector h3 {
     margin: 0px;
     padding: 0px
 }
+
+
+#map-canvas .fixed {
+  position:fixed !important;
+  top: 60px;
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {

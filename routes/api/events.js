@@ -15,7 +15,7 @@ exports.findAll = function(req, res) {
         .populate('location')
         .limit(maxResults)
         .where("end.dateTime").gt(timeMin)
-        .sort('start.dateTime')
+        .sort('-start.dateTime')
         .exec(function(err, events) {
             res.send(events);
         });
