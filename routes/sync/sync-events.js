@@ -45,7 +45,7 @@ var deleteExistingEvent = function(lEvent) {
         data.Event.remove({
             "sync.uid": lEvent.sync.uid
         }, function(err) {
-            if (err) console.error('Error trying to delete outdated events uid: ' + lEvent.sync.uid, err);
+            if (err) console.error('Error trying to delete outdated events uid: ', lEvent.sync.uid, err);
         });
     }
 };
@@ -54,7 +54,7 @@ var deleteExistingEvent = function(lEvent) {
 var saveEvent = function(lEvent) {
     new data.Event(lEvent).save(function(err) {
         if (err) {
-            console.error('there was an error trying to save the eventData', err);
+            console.error('there was an error trying to save the eventData', err, lEvent);
         }
     });
 }
@@ -66,9 +66,11 @@ var addLocationData = function(lEvent, callback) {
         data.Location.findOne({
             "id": lEvent.location.id
         }).select('_id').exec(function(err, location) {
-            if (err) throw err;
-
-            lEvent.location = location._id;
+            if (!err && location) {
+                lEvent.location = location._id;
+            } else {
+                lEvent.location = null;
+            }
             callback();
         })
     } else {
@@ -77,8 +79,3 @@ var addLocationData = function(lEvent, callback) {
         callback();
     }
 }
-
-
-var cloneEvent = function(lEvent) {
-    return JSON.parse(JSON.stringify(lEvent));
-};

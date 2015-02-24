@@ -34,7 +34,7 @@ exports.convert = function(gEvent, callback) {
         }
 
     } catch (err) {
-        console.log("Not able to process the event from google:", err, JSON.stringify(gEvent));
+        console.log("CONVERT - Not able to process the event from google: ", genericContent, err, JSON.stringify(gEvent));
     }
 
 
