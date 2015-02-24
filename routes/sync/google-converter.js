@@ -1,6 +1,4 @@
-//This how the tags about the event are contained in the decription
-var jsonRegex = /\{.*?\}/;
-
+//
 //Converts google calendar to the app structure
 exports.convert = function(gEvent, callback) {
 
@@ -28,14 +26,13 @@ exports.convert = function(gEvent, callback) {
         lEvent.id = gEvent.id;
 
         if (gEvent.description) {
-            jsonContent = gEvent.description.match(jsonRegex);
-            var genericContent = JSON.parse(jsonContent);
+            var genericContent = JSON.parse(gEvent.description);
             lEvent.categories = genericContent.categories;
             lEvent.location = {
                 id: genericContent.locationCode
             };
         }
-        
+
     } catch (err) {
         console.log("Not able to process the event from google:", err, JSON.stringify(gEvent));
     }
