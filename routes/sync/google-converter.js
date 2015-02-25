@@ -13,7 +13,7 @@ exports.convert = function(gEvent, callback) {
         lEvent.end = {
             dateTime: Date.parse(gEvent.end.dateTime)
         };
-        lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime) / 360000) / 10;
+        lEvent.duration = Math.round((lEvent.end.dateTime - lEvent.start.dateTime) / 360000) / 10; // in hours
         lEvent.recurrence = gEvent.recurrence;
 
 
