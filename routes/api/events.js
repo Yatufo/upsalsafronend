@@ -11,11 +11,10 @@ exports.findAll = function(req, res) {
     var localEventList = [];
 
     data.Event.find()
-        .where("end.dateTime").gt(timeMin)
+        .where("start.dateTime").gt(timeMin)
         .populate('location')
         .limit(maxResults)
-        .where("end.dateTime").gt(timeMin)
-        .sort('-start.dateTime')
+        .sort('start.dateTime')
         .exec(function(err, events) {
             res.send(events);
         });
