@@ -1,4 +1,6 @@
 var data = require('../model/core-data.js');
+var ctx = require('../util/conf.js').context();
+
 
 //
 // 
@@ -22,12 +24,25 @@ exports.create = function(req, res) {
 // 
 exports.findAll = function(req, res) {
 
-    var maxResults = ctx.EVENTS_MAXRESULTS;
+    var maxResults = ctx.LOCATIONS_MAXRESULTS;
 
     data.Location.find()
-        .select('name url phone coordinates.latitude coordinates.longitude')
+        .select('-_id id name url phone address coordinates.latitude coordinates.longitude')
         .limit(maxResults)
         .exec(function(err, locations) {
             res.send(locations);
+        });
+};
+
+
+
+exports.findById = function(req, res) {
+
+console.log('Calling this shit');
+    data.Location.findOne({"id" : req.params.id})
+        .select('-_id id name url phone address coordinates.latitude coordinates.longitude')
+        .exec(function(err, singleLocation) {
+            if (err) { console.error('location not found for that id: ', req.params.id, err );}
+            res.send(singleLocation);
         });
 };

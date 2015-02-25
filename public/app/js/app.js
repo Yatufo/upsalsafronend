@@ -30,25 +30,22 @@ myApp.config(['$routeProvider',
             templateUrl: 'views/events-details.html',
             controller: 'EventsDetailsCtrl'
         }).
+        when('/:city/locations', {
+            templateUrl: 'views/locations.html',
+            controller: 'LocationsController'
+        }).
+        when('/:city/locations/:locationId', {
+            templateUrl: 'views/locations-details.html',
+            controller: 'LocationDetailsController'
+        }).
         when('/:city', {
             templateUrl: 'views/home.html',
             controller: 'HomeCtrl'
         }).
         otherwise({
             redirectTo: '/montreal'
-        });
+        });        
     }
 ]);
 
 
-var $sidebar = $("#map-canvas"),
-    $window = $(window),
-    offset = $sidebar.offset(),
-    topPadding = 15;
-$window.scroll(function() {
-    if ($window.scrollTop() > offset.top) {
-        $sidebar.addClass('fixed');
-    } else {
-        $sidebar.removeClass('fixed');
-    }
-});

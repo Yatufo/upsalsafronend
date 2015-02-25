@@ -28,6 +28,8 @@ app.get('/api/events', events.findAll);
 app.get('/api/events/:id', events.findById);
 app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
+app.get('/api/locations', locations.findAll);
+app.get('/api/locations/:id', locations.findById);
 app.get('/api/sync', backoffice.syncEvents);
 
 

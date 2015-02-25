@@ -13,8 +13,11 @@ angular.module('myAppControllers')
             success(function(data, status, headers, config) {
                 $scope.event = data;
 
-                MapsService.init($scope.event.location, 14);
-                MapsService.addLocation($scope.event.location);
+                if ($scope.event) {
+                    MapsService.init($scope.event.location, 14);
+                    MapsService.addLocation($scope.event.location);
+                }
+                
             }).
             error(function(data, status, headers, config) {
                 console.log("Something went wrong");
