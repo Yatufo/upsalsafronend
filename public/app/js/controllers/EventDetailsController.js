@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('EventsDetailsCtrl', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
+    .controller('EventDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
         function($scope, $http, $routeParams, CONFIG, MapsService) {
 
 

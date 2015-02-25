@@ -24,11 +24,11 @@ myApp.config(['$routeProvider',
         $routeProvider.
         when('/:city/categories/:eventType/events/', {
             templateUrl: 'views/events.html',
-            controller: 'EventsCtrl'
+            controller: 'EventsController'
         }).
         when('/:city/events/:eventId', {
             templateUrl: 'views/events-details.html',
-            controller: 'EventsDetailsCtrl'
+            controller: 'EventDetailsController'
         }).
         when('/:city/locations', {
             templateUrl: 'views/locations.html',
@@ -40,7 +40,7 @@ myApp.config(['$routeProvider',
         }).
         when('/:city', {
             templateUrl: 'views/home.html',
-            controller: 'HomeCtrl'
+            controller: 'HomeController'
         }).
         otherwise({
             redirectTo: '/montreal'

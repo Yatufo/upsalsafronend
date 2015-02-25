@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 describe('MyApp controllers', function() {
 
-    describe('CategoriesCtrl', function() {
+    describe('CategoriesController', function() {
         var scope, mockHttp, config;
 
         beforeEach(module('myApp'));
@@ -14,7 +14,7 @@ describe('MyApp controllers', function() {
             respond(categoriesListMock);
             config = CONFIG;
             scope = $rootScope.$new();
-            $controller('CategoriesCtrl', {
+            $controller('CategoriesController', {
                 $scope: scope
             });
         }));

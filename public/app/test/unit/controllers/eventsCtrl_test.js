@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 describe('MyApp controllers', function() {
 
-    describe('EventsCtrl', function() {
+    describe('EventsController', function() {
         var scope, mockHttp, config;
 
         beforeEach(module('myApp'));
@@ -16,7 +16,7 @@ describe('MyApp controllers', function() {
             }]);
             config = CONFIG;
             scope = $rootScope.$new();
-            $controller('EventsCtrl', {
+            $controller('EventsController', {
                 $scope: scope
             });
         }));

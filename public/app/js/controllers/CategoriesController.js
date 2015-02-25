@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('CategoriesCtrl', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService',
+    .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService',
         function($scope, $http, $routeParams, CONFIG, diffusionService) {
 
 

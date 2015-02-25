@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myAppControllers')
-    .controller('EventsCtrl', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
+    .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 
             $scope.localTime = CONFIG.TODAY;
