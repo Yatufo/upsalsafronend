@@ -26,7 +26,7 @@ angular.module('myAppControllers')
             var setDefaultValues = function() {
                 $scope.selectedCategories = {};
                 for (var key in CONFIG.DEFAULT_CATEGORIES) {
-                    $scope.changeSelectCategory(key, CONFIG.DEFAULT_CATEGORIES[key]);
+                    toogleCategory(key, CONFIG.DEFAULT_CATEGORIES[key]);
                 }
 
                 //the event type selected by the user
@@ -102,10 +102,6 @@ angular.module('myAppControllers')
                 var isHappensOn = category.parent === "happenson";
                 var isContainedInEvents = $scope.eventsCategories.indexOf(category.id) != -1;
                 var isNoSiblingToggled = !angular.isString($scope.selectedCategories[category.parent]);
-
-                if (category.selected && !isHappensOn && !isContainedInEvents) {
-                    $scope.selectedCategories[category.parent] = null;
-                }
 
                 category.visible = (isHappensOn || isContainedInEvents) && (isNoSiblingToggled || category.selected);
                 category.disabled = !(isHappensOn || isContainedInEvents);
