@@ -1,4 +1,5 @@
 //Config for the app
+var async = require('async');
 var data = require('../model/core-data.js');
 var ctx = require('../util/conf.js').context();
 //
@@ -16,21 +17,63 @@ exports.search = function(req, res) {
     var maxResults = ctx.EVENTS_MAXRESULTS;
     var localEventList = [];
 
-    data.Event.find()
-        .where("start.dateTime").gt(timeMin)
-        .where("start.dateTime").lt(timeMax)
-        .all("categories", filterCategories) // TODO: For now it only supports querying with at least one category.
-        .populate('location')
-        .limit(maxResults)
-        .sort('start.dateTime')
-        .exec(function(err, events) {
 
-            var results = {
-                events: events
-            };
+    var conditions = {
+        "start.dateTime": {
+            $gt: timeMin,
+            $lt: timeMax
+        },
+        "categories": {
+            $all: filterCategories // TODO: For now it only supports querying with at least one category.
+        }
+    }
 
-            res.send(results);
+    var callPaginationData = function(callback) {
+        data.Event.aggregate([{
+                $match: conditions
+            }, {
+                $unwind: "$categories"
+            }, {
+                $group: {
+                    _id: null,
+                    eventsCategories: {
+                        $addToSet: "$categories"
+                    }
+                }
+            }],
+            function(err, results) {
+                callback(err, results);
+            })
+    }
+
+    var callEventsQuery = function(callback) {
+
+        data.Event.find()
+            .where(conditions)
+            .populate('location')
+            .limit(maxResults)
+            .sort('start.dateTime')
+            .exec(function(err, events) {
+                callback(err, events);
+            });
+    }
+
+    async.parallel([callPaginationData, callEventsQuery],
+        function(err, results) {
+            if (err) {
+                throw err;
+            }
+
+            var combined = results[0][0];
+            console.log(combined);
+            if (combined) {
+                combined.events = results[1];
+            }
+
+            res.send(combined);
         });
+
+
 };
 
 

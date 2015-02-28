@@ -92,19 +92,19 @@ div .image-selector h3 {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-
 #map-canvas {
     height: 400px;
+    width: 500px;
     margin: 0px;
     padding: 0px
 }
-
-
-#map-canvas .fixed {
-  position:fixed !important;
-  top: 60px;
+.sidebar-outer {
+    position: relative;
 }
-
+div .fixed {
+    margin-top: -300px;
+    position: fixed;
+}
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {
@@ -155,6 +155,9 @@ div .image-selector h3 {
         background: url(../img/bg.jpg) repeat-x;
         height: 280px;
         /* for IE 6 */
+    }
+    .content {
+        min-height: 700px;
     }
 }
 }
