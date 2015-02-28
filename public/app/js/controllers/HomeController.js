@@ -19,5 +19,13 @@ angular.module('myAppControllers')
                     });
                 }
             }
+
+
+            $('#navbarCollapse').click(function() {
+                if($('#navbarCollapse').hasClass('in')){
+                    $(".navbar-toggle").click();
+                }
+            });
+
         }
     ]);
