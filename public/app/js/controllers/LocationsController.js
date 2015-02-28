@@ -25,6 +25,10 @@ angular.module('myAppControllers')
                 console.log("Something went wrong with the locations");
             });
 
+            $scope.highlightLocation = function(location) {
+                MapsService.highlightLocation(location);
+            }
+
             window.scrollTo(0, 0);
         }
     ]);

@@ -105,6 +105,11 @@ div .fixed {
     margin-top: -300px;
     position: fixed;
 }
+
+div .fixed.locations {
+    margin-top: 0px;
+    position: fixed;
+}
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {

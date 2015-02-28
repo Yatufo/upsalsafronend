@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-7 content">
             <div ng-repeat="event in events | orderBy : event.start.dateTime ">
-                <eventcard data-event="event" data-city="city" ng-mouseenter="highlightLocation(event.location)"></eventcard>
+                <eventcard data-event="event" data-city="city" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
             </div>
         </div>
         <div class="hidden-xs col-md-5 sidebar-outer">

@@ -2,10 +2,17 @@
     <div class="row">
         <div class="col-xs-12 col-md-7">
             <div ng-repeat="location in locations">
-                <locationcard data-location="location" data-city="city"> </locationcard>
+                <locationcard data-location="location" data-city="city" data-ng-mouseenter="highlightLocation(location)" > </locationcard>
             </div>
         </div>
-        <div id="map-canvas" class="hidden-xs col-md-5">
+
+
+        <div class="hidden-xs col-md-5 sidebar-outer">
+            <div id="fixedColunm" class="locations">
+                <div id="map-canvas" class="hidden-xs col-md-5">
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
