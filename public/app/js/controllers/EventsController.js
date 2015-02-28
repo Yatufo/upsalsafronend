@@ -71,6 +71,7 @@ angular.module('myAppControllers')
                 }
             };
             var populateEventsLocations = function() {
+                MapsService.reset();
                 if (angular.isArray($scope.events)) {
                     $scope.events.forEach(function(lEvent) {
                         MapsService.addLocation(lEvent.location);

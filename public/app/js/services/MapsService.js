@@ -7,9 +7,19 @@ angular.module('myAppServices')
 
 function MapsService() {
     var map;
+    var markers = [];
     var addedLocations;
 
     var service = {
+        reset: function() {
+            if(markers){
+                markers.forEach(function(marker){
+                    marker.setMap(null);
+                });
+                markers = [];
+                addedLocations = [];
+            }
+        },
         init: function(location, lZoom) {
             map = {};
             addedLocations = {};
@@ -38,6 +48,7 @@ function MapsService() {
                     map: map,
                     title: location.name
                 });
+                markers.push(marker);
             }
         }
     };
