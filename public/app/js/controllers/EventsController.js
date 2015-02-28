@@ -24,10 +24,8 @@ angular.module('myAppControllers')
             var filterEvents = function() {
                 searchEvents(getSelecteCategoryValues(), null, function(results) {
                     $scope.events = results.events;
-                    if ($scope.events) {
-                        showEventsInMap($scope.events);
-                        diffusionService.changeEvents(results.eventsCategories);
-                    }
+                    showEventsInMap($scope.events);
+                    diffusionService.changeEvents(results.eventsCategories);
                 })
             };
 

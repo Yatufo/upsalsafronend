@@ -63,7 +63,7 @@ angular.module('myAppControllers')
             }
 
             diffusionService.onChangeEvents($scope, function(message) {
-                $scope.eventsCategories = message.eventsCategories;
+                $scope.eventsCategories = (message.eventsCategories ? message.eventsCategories: []);
                 changeCategoriesStatus();
             });
 
