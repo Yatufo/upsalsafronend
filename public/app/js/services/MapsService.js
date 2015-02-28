@@ -10,6 +10,9 @@ function MapsService() {
     var markers = [];
     var markerByLocation;
     var currentMarker;
+    var defaultIcon = "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png";
+    var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+
 
     var service = {
         reset: function() {
@@ -56,9 +59,11 @@ function MapsService() {
             var marker = markerByLocation[location.id];
             if (marker) {
                 if (currentMarker) {
-                    currentMarker.setAnimation(null);
+                    currentMarker.setIcon(defaultIcon);
+                    currentMarker.setZIndex(-1);
                 }
-                marker.setAnimation(google.maps.Animation.DROP);
+                marker.setIcon(highlightIcon);
+                marker.setZIndex(100);
                 currentMarker = marker;
             }
         }
