@@ -65,7 +65,6 @@ exports.search = function(req, res) {
             }
 
             var combined = results[0][0];
-            console.log(combined);
             if (combined) {
                 combined.events = results[1];
             }

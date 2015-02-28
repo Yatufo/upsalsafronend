@@ -58,7 +58,7 @@ function MapsService() {
                 if (currentMarker) {
                     currentMarker.setAnimation(null);
                 }
-                marker.setAnimation(google.maps.Animation.BOUNCE);
+                marker.setAnimation(google.maps.Animation.DROP);
                 currentMarker = marker;
             }
         }
