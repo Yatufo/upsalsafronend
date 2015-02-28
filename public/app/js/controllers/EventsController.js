@@ -7,7 +7,6 @@ angular.module('myAppControllers')
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 
             $scope.localTime = CONFIG.TODAY;
-            $scope.eventsCategories = new Set();
             $scope.selectedCategories = {};
             $scope.events = [];
 
@@ -25,11 +24,9 @@ angular.module('myAppControllers')
             var filterEvents = function() {
                 searchEvents(getSelecteCategoryValues(), null, function(results) {
                     $scope.events = results.events;
-                    
                     if ($scope.events) {
-                        populateEventsCategories();
-                        populateEventsLocations();
-                        diffusionService.changeEvents($scope.eventsCategories.asArray());
+                        showEventsInMap($scope.events);
+                        diffusionService.changeEvents(results.eventsCategories);
                     }
                 })
             };
@@ -57,23 +54,11 @@ angular.module('myAppControllers')
                 return categories;
             }
 
-            // gets all the unique categories that can be selected by gathering them from the filtered events.
-            var populateEventsCategories = function() {
-                $scope.eventsCategories.content = {};
-                if (angular.isArray($scope.events)) {
-                    $scope.events.forEach(function(lEvent) {
-                        if (angular.isArray(lEvent.categories)) {
-                            lEvent.categories.forEach(function(category) {
-                                $scope.eventsCategories.add(category);
-                            });
-                        }
-                    });
-                }
-            };
-            var populateEventsLocations = function() {
+
+            var showEventsInMap = function(events) {
                 MapsService.reset();
-                if (angular.isArray($scope.events)) {
-                    $scope.events.forEach(function(lEvent) {
+                if (angular.isArray(events)) {
+                    events.forEach(function(lEvent) {
                         MapsService.addLocation(lEvent.location);
                     });
                 }
