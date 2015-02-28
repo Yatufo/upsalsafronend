@@ -61,6 +61,12 @@ angular.module('myAppControllers')
                     });
                 }
             }
+
+            $scope.highlightLocation = function(location) {
+                MapsService.highlightLocation(location);
+            }
+
+
             MapsService.init();
         }
 

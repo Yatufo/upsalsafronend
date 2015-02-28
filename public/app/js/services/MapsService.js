@@ -8,21 +8,22 @@ angular.module('myAppServices')
 function MapsService() {
     var map;
     var markers = [];
-    var addedLocations;
+    var markerByLocation;
+    var currentMarker;
 
     var service = {
         reset: function() {
-            if(markers){
-                markers.forEach(function(marker){
+            if (markers) {
+                markers.forEach(function(marker) {
                     marker.setMap(null);
                 });
                 markers = [];
-                addedLocations = [];
+                markerByLocation = [];
             }
         },
         init: function(location, lZoom) {
             map = {};
-            addedLocations = {};
+            markerByLocation = {};
 
 
 
@@ -40,15 +41,25 @@ function MapsService() {
 
         },
         addLocation: function(location) {
-            if (location && !addedLocations[location.id]) {
+            if (location && !markerByLocation[location.id]) {
 
-                addedLocations[location.id] = true;
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
                     map: map,
                     title: location.name
                 });
+                markerByLocation[location.id] = marker;
                 markers.push(marker);
+            }
+        },
+        highlightLocation: function(location) {
+            var marker = markerByLocation[location.id];
+            if (marker) {
+                if (currentMarker) {
+                    currentMarker.setAnimation(null);
+                }
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                currentMarker = marker;
             }
         }
     };
