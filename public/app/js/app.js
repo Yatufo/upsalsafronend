@@ -15,9 +15,14 @@ angular.module('myAppFilters', ['myAppConfig']);
 angular.module('myAppServices', ['myAppConfig']);
 
 //Production configuration
-myApp.config(['$compileProvider', function($compileProvider) {
+myApp.config(['$compileProvider','$locationProvider', function($compileProvider, $locationProvider) {
     $compileProvider.debugInfoEnabled(false); //Performance
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('!');
 }]);
+
+
+
 
 myApp.config(['$routeProvider',
     function($routeProvider) {
@@ -44,8 +49,6 @@ myApp.config(['$routeProvider',
         }).
         otherwise({
             redirectTo: '/montreal'
-        });        
+        });
     }
 ]);
-
-
