@@ -30,10 +30,27 @@ angular.module('myAppControllers')
                 }
 
                 //the event type selected by the user
-                if ($routeParams.eventType) {
-                    $scope.changeSelectCategory("eventtype", $routeParams.eventType);
+                if ($routeParams.categories) {
+                    var codes = $routeParams.categories.split('/');
+                    codes.forEach(function(childId) {
+                        console.log(childId, getParentCategoryCode(childId));
+                        toogleCategory(getParentCategoryCode(childId), childId)
+                    });
                 }
+
+                diffusionService.changeCategories($scope.selectedCategories);
             };
+
+            var getParentCategoryCode = function(childId) {
+                if ($scope.categories) {
+                    var child = $scope.categories[childId];
+                    if (child) {
+                        return child.parent;
+                    }
+                }
+                return null;
+            }
+
 
             $scope.changeSelectCategory = function(parentId, childId) {
                 toogleCategory(parentId, childId)
@@ -63,7 +80,7 @@ angular.module('myAppControllers')
             }
 
             diffusionService.onChangeEvents($scope, function(message) {
-                $scope.eventsCategories = (message.eventsCategories ? message.eventsCategories: []);
+                $scope.eventsCategories = (message.eventsCategories ? message.eventsCategories : []);
                 changeCategoriesStatus();
             });
 

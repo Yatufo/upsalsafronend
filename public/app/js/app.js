@@ -15,7 +15,7 @@ angular.module('myAppFilters', ['myAppConfig']);
 angular.module('myAppServices', ['myAppConfig']);
 
 //Production configuration
-myApp.config(['$compileProvider','$locationProvider', function($compileProvider, $locationProvider) {
+myApp.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
     $compileProvider.debugInfoEnabled(false); //Performance
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
@@ -27,7 +27,7 @@ myApp.config(['$compileProvider','$locationProvider', function($compileProvider,
 myApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/:city/categories/:eventType/events/', {
+        when('/:city/categories/:categories*\/events/', {
             templateUrl: 'views/events.html',
             controller: 'EventsController'
         }).
