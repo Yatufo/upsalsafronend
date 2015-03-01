@@ -56,15 +56,17 @@ function MapsService() {
             }
         },
         highlightLocation: function(location) {
-            var marker = markerByLocation[location.id];
-            if (marker) {
-                if (currentMarker) {
-                    currentMarker.setIcon(defaultIcon);
-                    currentMarker.setZIndex(-1);
+            if (location) {
+                var marker = markerByLocation[location.id];
+                if (marker) {
+                    if (currentMarker) {
+                        currentMarker.setIcon(defaultIcon);
+                        currentMarker.setZIndex(-1);
+                    }
+                    marker.setIcon(highlightIcon);
+                    marker.setZIndex(100);
+                    currentMarker = marker;
                 }
-                marker.setIcon(highlightIcon);
-                marker.setZIndex(100);
-                currentMarker = marker;
             }
         }
     };
