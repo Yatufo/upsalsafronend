@@ -9,8 +9,6 @@ $(window).scroll(function() {
 });
 
 
-
-
 var scrolltotop = {
     setting: {
         startline: 100,

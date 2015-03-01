@@ -1,5 +1,5 @@
 // Configuration for the nodejs server app.
-module.exports.context = function(env) {
+exports.context = function() {
 
     if (process.env.DEPLOY_ENVIRONMENT) {
         configuration.currentEnvironment = process.env.DEPLOY_ENVIRONMENT
@@ -29,7 +29,7 @@ var configuration = {
         },
         CALENDAR_ID: "project.demonio@gmail.com",
         CATEGORIES_JSON: "./data/categories.json",
-//        SIMULATED_NOW: "2014-10-01T04:00:01.000Z",
+        //        SIMULATED_NOW: "2014-10-01T04:00:01.000Z",
         EVENTS_MAXRESULTS: 200,
         EVENT_SEARCH_TIMEMAX: 7 * 24 * 60 * 60 * 1000,
         LOCATIONS_MAXRESULTS: 200,
@@ -39,7 +39,9 @@ var configuration = {
         SYNC_SEASON_START_SEQ: 2,
         SYNC_SEASON_CATEGORY: 'season',
         SYNC_SEASON_START: 'seasonstart',
-        SYNC_CALENDAR_ACCESSROLE: 'owner'
+        SYNC_CALENDAR_ACCESSROLE: 'owner',
+        PUBLIC_DIR: '/public/app',
+        SITE_INDEX: '/index-local.html'
     },
     prod: {
         googlesetup: {
@@ -70,7 +72,9 @@ var configuration = {
         SYNC_SEASON_START_SEQ: 2,
         SYNC_SEASON_CATEGORY: 'season',
         SYNC_SEASON_START: 'seasonstart',
-        SYNC_CALENDAR_ACCESSROLE: 'owner'
+        SYNC_CALENDAR_ACCESSROLE: 'owner',
+        PUBLIC_DIR: '/public/app',
+        SITE_INDEX: '/index.html'
     }
 
 
