@@ -6,25 +6,19 @@ var ctx = require('../util/conf.js').context();
 // 
 exports.search = function(req, res) {
 
-    var filterCategories = null;
-    if (req.query.categories) {
-        filterCategories = req.query.categories.split(",");
-    }
-
-    var timeMin = (ctx.SIMULATED_NOW ? new Date(ctx.SIMULATED_NOW) : new Date());
-    var timeMax = new Date(timeMin.getTime() + ctx.EVENT_SEARCH_TIMEMAX);
-
+    var filters = getFiltersByCategories(req.query.categories);
     var maxResults = ctx.EVENTS_MAXRESULTS;
-    var localEventList = [];
 
 
     var conditions = {
         "start.dateTime": {
-            $gt: timeMin,
-            $lt: timeMax
+            $lt: filters.time.max
+        },
+        "end.dateTime": {
+            $gt: filters.time.min,
         },
         "categories": {
-            $all: filterCategories // TODO: For now it only supports querying with at least one category.
+            $all: filters.categories // TODO: For now it only supports querying with at least one category.
         }
     }
 
@@ -52,7 +46,7 @@ exports.search = function(req, res) {
             .where(conditions)
             .populate('location')
             .limit(maxResults)
-            .sort('start.dateTime')
+            .sort('-start.dateTime')
             .exec(function(err, events) {
                 callback(err, events);
             });
@@ -75,7 +69,73 @@ exports.search = function(req, res) {
 
 };
 
+var getFiltersByCategories = function(categories) {
 
+    var filters = {
+        categories: []
+    };
+
+    if (categories) {
+        filters.categories = categories.split(",");
+
+
+        var happensOnCategories = ['today', 'tomorrow', 'week', 'weekend'];
+        happensOnCategories.forEach(function(happensOn) {
+            var index = filters.categories.indexOf(happensOn);
+            if (index > -1) {
+                filters.categories.splice(index);
+                filters.time = getTimeFilter(happensOn);
+            }
+        });
+    }
+
+    if (!filters.time) {
+        filters.time = getTimeFilter();
+    }
+
+    return filters;
+}
+
+var getTimeFilter = (function(happensOn) {
+    var time = {};
+    time.min = (ctx.SIMULATED_NOW ? new Date(ctx.SIMULATED_NOW) : new Date());
+    time.max = new Date(time.min);
+    time.max.setHours(0);
+
+    switch (happensOn) {
+        case "today":
+            time.max.setDate(time.max.getDate() + 1);
+            break;
+        case "tomorrow":
+            time.min.setDate(time.min.getDate() + 1);
+            time.min.setHours(0);
+            time.max.setDate(time.max.getDate() + 2);
+            break;
+        case "weekend":
+            var dow = time.max.getDay()
+            var offsetMin = 0;
+            var offsetMax = 0;
+            // is week day
+            if (1 <= dow && dow <= 5) {
+                offsetMin = 5 - dow;
+                offsetMax = offsetMin + 3;
+            } else if (dow > 5) {
+                offsetMax = 2;
+            } else {
+                offsetMax = 1;
+            }
+
+            time.min.setDate(time.min.getDate() + offsetMin);
+            time.max.setDate(time.max.getDate() + offsetMax);
+
+            break;
+        default:
+            time.max.setDate(time.max.getDate() + 7);
+            break;
+    };
+
+    return time;
+});
 
 exports.findById = function(req, res) {
 

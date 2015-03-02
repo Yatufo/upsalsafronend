@@ -8,9 +8,15 @@ angular.module('myAppControllers')
             $rootScope.CONFIG = CONFIG;
 
             $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+
                 $scope.city = toTitleCase(current.params.city);
-                $scope.eventType = current.params.eventType;
+                $rootScope.seo = {
+                    title: "Up Salsa in " + $scope.city,
+                    metaDescription: "Find the best places and events to learn or dance in " + $scope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
+                }
+
             });
+
 
             var toTitleCase = function(str) {
                 if (str) {
@@ -22,7 +28,7 @@ angular.module('myAppControllers')
 
 
             $('#navbarCollapse').click(function() {
-                if($('#navbarCollapse').hasClass('in')){
+                if ($('#navbarCollapse').hasClass('in')) {
                     $(".navbar-toggle").click();
                 }
             });
