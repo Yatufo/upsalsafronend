@@ -29,7 +29,6 @@ var configuration = {
         },
         CALENDAR_ID: "project.demonio@gmail.com",
         CATEGORIES_JSON: "./data/categories.json",
-        SIMULATED_NOW: "2015-03-08T18:22:27.326Z",
         EVENTS_MAXRESULTS: 200,
         EVENT_SEARCH_TIMEMAX: 7 * 24 * 60 * 60 * 1000,
         LOCATIONS_MAXRESULTS: 200,

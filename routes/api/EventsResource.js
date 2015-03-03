@@ -22,6 +22,8 @@ exports.search = function(req, res) {
         }
     }
 
+
+
     var callPaginationData = function(callback) {
         data.Event.aggregate([{
                 $match: conditions
@@ -78,12 +80,11 @@ var getFiltersByCategories = function(categories) {
     if (categories) {
         filters.categories = categories.split(",");
 
-
         var happensOnCategories = ['today', 'tomorrow', 'week', 'weekend'];
         happensOnCategories.forEach(function(happensOn) {
             var index = filters.categories.indexOf(happensOn);
             if (index > -1) {
-                filters.categories.splice(index);
+                filters.categories.splice(index, 1);
                 filters.time = getTimeFilter(happensOn);
             }
         });
@@ -92,6 +93,7 @@ var getFiltersByCategories = function(categories) {
     if (!filters.time) {
         filters.time = getTimeFilter();
     }
+
 
     return filters;
 }
@@ -129,8 +131,11 @@ var getTimeFilter = (function(happensOn) {
             time.max.setDate(time.max.getDate() + offsetMax);
 
             break;
-        default:
+        case "week":
             time.max.setDate(time.max.getDate() + 7);
+            break;
+        default:
+            time.max.setDate(time.max.getDate() + 30);
             break;
     };
 

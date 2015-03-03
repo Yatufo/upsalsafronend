@@ -31,11 +31,9 @@ angular.module('myAppControllers')
 
                 //the event type selected by the user
                 if ($routeParams.categories) {
-                    console.log($routeParams.categories);
                     //I don't know why this star is being passed, so I remove it.
                     var codes = $routeParams.categories.replace('*', '').split('/');
                     codes.forEach(function(childId) {
-                        console.log(childId, getParentCategoryCode(childId));
                         toogleCategory(getParentCategoryCode(childId), childId)
                     });
                 }
@@ -65,7 +63,6 @@ angular.module('myAppControllers')
                 if (parentId == 'eventtype') {
                     $scope.selectedEventtype = $scope.categories[$scope.selectedCategories[parentId]];
                 }
-                console.log($scope.selectedEventtype);
             }
 
             var toogleRootCategory = function(parentId, childId) {
