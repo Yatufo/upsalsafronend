@@ -25,18 +25,36 @@ exports.convert = function(gEvent, callback) {
         lEvent.title = gEvent.summary;
         lEvent.id = gEvent.id;
 
-        if (gEvent.description) {
-            var genericContent = JSON.parse(gEvent.description);
-            lEvent.categories = genericContent.categories;
-            lEvent.location = {
-                id: genericContent.locationCode
-            };
-        }
+        var genericContent = parseDescription(gEvent);
+        lEvent.categories = genericContent.categories;
+        lEvent.location = {
+            id: genericContent.locationCode
+        };
 
     } catch (err) {
-        console.log("CONVERT - Not able to process the event from google: ", genericContent, err, JSON.stringify(gEvent));
+        console.log("CONVERT - Not able to process the event from google: ", err, "Summary: ", gEvent.summary);
     }
 
 
     callback(undefined, lEvent);
+}
+
+
+var parseDescription = function(gEvent) {
+    var result = {};
+    try {
+        var description = gEvent.description.trim();
+        if (description.indexOf('{') < 0) {
+            var lines = description.split('\n');
+            lines.forEach(function(element) {
+                var fields = element.split(':');
+                result[fields[0]] = fields[1].split(',');
+            });
+        } else {
+            result = JSON.parse(description);
+        }
+    } catch (err) {
+        console.log("CONVERT - Not able to process the description from event: ", description, err, gEvent.summary);
+    }
+    return result;
 }

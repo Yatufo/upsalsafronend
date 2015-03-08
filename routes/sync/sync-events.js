@@ -75,7 +75,7 @@ var addLocationData = function(lEvent, callback) {
         })
     } else {
         lEvent.location = null;
-        console.error("The event does not have a proper location ", lEvent);
+        console.error("LOCATION: No location found for: ", lEvent.title, "Start: ", lEvent.start);
         callback();
     }
 }
