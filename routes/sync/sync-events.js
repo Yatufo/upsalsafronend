@@ -75,7 +75,7 @@ var addLocationData = function(lEvent, callback) {
         })
     } else {
         lEvent.location = null;
-        console.error("LOCATION: No location found for: ", lEvent.title, "Start: ", lEvent.start);
+        console.error("LOCATION: No location found for: ", lEvent.title, "Start: ", (lEvent.start ? new Date(lEvent.start.dateTime) : ''));
         callback();
     }
 }

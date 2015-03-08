@@ -10,7 +10,7 @@ exports.findAllEvents = function(syncParams, callback) {
 
 
     var params = {
-        fields: "description,nextPageToken,nextSyncToken,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
+        fields: "summary,description,nextPageToken,nextSyncToken,items(created,description,end,id,location,recurrence,recurringEventId,originalStartTime,sequence,start,summary),summary,timeZone,updated"
     };
 
     if (syncParams.calendarId) params.calendarId = syncParams.calendarId;
@@ -28,6 +28,11 @@ exports.findAllEvents = function(syncParams, callback) {
 
         if (cal && cal.items) {
             cal.items.forEach(function(gEvent) {
+                //trick to get the location from the summary of the calendar, assuming that is the id of the location.
+                if (!gEvent.location){ 
+                    gEvent.location = cal.summary;
+                }
+
                 converter.convert(gEvent, function(err, lEvent) {
                     localEventList.push(lEvent);
                 });

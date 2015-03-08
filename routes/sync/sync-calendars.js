@@ -10,11 +10,11 @@ exports.synchronize = function(syncAll) {
         if (gCalendars && gCalendars.items) {
             gCalendars.items.forEach(function(gCal) {
                 if (ctx.SYNC_CALENDAR_ACCESSROLE === gCal.accessRole) {
-                    console.log("Starting sync for: ", gCal.name);
+                    console.log("Starting sync for: ", gCal.summary);
                     synchronizeByCalendar(gCal.id, syncAll);
 
                 } else {
-                    console.log('Ignoring calendar: ', gCal.name);
+                    console.log('Ignoring calendar: ', gCal.summary);
                 }
             });
         }
