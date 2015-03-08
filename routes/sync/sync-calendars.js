@@ -36,14 +36,12 @@ var synchronizeByCalendar = function(calendarId, syncAll) {
 
     //read sycn tock
     if (!syncParams.syncToken) {
-        console.log("Performing full sync for the latest events");
         syncParams.updateMin = new Date(new Date().getTime() - ctx.UPDATE_MIN_SUBSTRACTION);
     }
 
 
     eventsSynch.synchronize(syncParams, function(nextSyncToken) {
         ctx.EVENT_SYNC_TOKEN[calendarId] = nextSyncToken;
-        console.log("Sync data for future updates: ", ctx.EVENT_SYNC_TOKEN);
         //save the sync token and try later.
     });
 }

@@ -11,20 +11,25 @@ exports.synchronize = function(syncParams, callback) {
     calendar.findAllEvents(syncParams, function(localEventList, cal) {
 
         localEventList.forEach(function(lEvent) {
+            //Avoiding to sync something that has no categories.
+            if (lEvent.categories) {
 
-            deleteExistingEvent(lEvent);
+                deleteExistingEvent(lEvent);
 
-            addLocationData(lEvent, function() {
-                if (lEvent.recurrence) {
-                    recurrence.createRecurrentEvents(lEvent, function(rEvents) {
-                        rEvents.forEach(function(rEvent) {
-                            saveEvent(rEvent);
-                        });
-                    })
-                } else {
-                    saveEvent(lEvent);
-                }
-            });
+                addLocationData(lEvent, function() {
+                    if (lEvent.recurrence) {
+                        recurrence.createRecurrentEvents(lEvent, function(rEvents) {
+                            rEvents.forEach(function(rEvent) {
+                                saveEvent(rEvent);
+                            });
+                        })
+                    } else {
+                        saveEvent(lEvent);
+
+                    }
+                });
+                
+            } 
         });
 
         if (cal.nextPageToken) {

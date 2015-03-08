@@ -58,7 +58,7 @@ var parseDescription = function(gEvent) {
             result.locationCode = gEvent.location;
         }
     } catch (err) {
-        console.log("CONVERT - Not able to process the description from event: ", description, err, gEvent.summary);
+        console.log("CONVERT - Not able to process the description from event: ", description, err, gEvent);
     }
     return result;
 }
