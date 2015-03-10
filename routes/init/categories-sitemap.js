@@ -15,7 +15,7 @@ var res = {
             a.forEach(function(element1) {
                 multiplication[index] = [];
                 addAllElements(multiplication[index], element1);
-                index ++;
+                index++;
 
                 b.forEach(function(element2) {
                     multiplication[index] = [element2.id];
@@ -47,7 +47,9 @@ var res = {
         });
 
         previousResult.forEach(function(list, index) {
-            console.log(list.join('/'));
+            if (list.length >= 4) {
+                console.log(list.join('/'));
+            }
         });
     })
 }

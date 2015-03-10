@@ -24,10 +24,10 @@ var configuration = {
         },
         googletokens: {
             token_type: "Bearer",
-            refresh_token: "1/F1cIzWX9ajNlUYMSMVMQ7RkmRkC3p5ejWtf7zZ6Gznw",
-            expiry_date: 1415075847934
+            refresh_token: "1/i9d-bkIj72CybGpMGwA25qTs2GZc7Gs7CdnyzB9Ud-Y",
+            expiry_date: 1413232433845
         },
-        CALENDAR_ID: "upsalsa@gmail.com",
+        CALENDAR_ID: "project.demonio@gmail.com",
         EVENTS_MAXRESULTS: 200,
         EVENT_SEARCH_TIMEMAX: 7 * 24 * 60 * 60 * 1000,
         LOCATIONS_MAXRESULTS: 200,

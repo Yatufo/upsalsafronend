@@ -13,7 +13,6 @@
 { "_id" : "schoolparty", "parent" : "eventtype", "name" : "School Party", "categories" : [], "__v" : 0 }
 { "_id" : "cuban", "parent" : "salsa", "name" : "Cuban", "categories" : [], "__v" : 0 }
 { "_id" : "newyork", "parent" : "salsa", "name" : "New York", "categories" : [], "__v" : 0 }
-{ "_id" : "losangeles", "parent" : "salsa", "name" : "Los Angeles", "categories" : [], "__v" : 0 }
 { "_id" : "season", "parent" : "class", "name" : "Season", "categories" : [], "__v" : 0 }
 { "_id" : "seasonstart", "parent" : "class", "name" : "Starter", "categories" : [], "__v" : 0 }
 { "_id" : "dropin", "parent" : "class", "name" : "Drop In", "categories" : [], "__v" : 0 }
@@ -23,7 +22,7 @@
 { "_id" : "kizomba", "parent" : "musictype", "name" : "Kizomba", "categories" : [], "__v" : 0 }
 { "_id" : "bachata", "parent" : "musictype", "name" : "Bachata", "categories" : [], "__v" : 0 }
 { "_id" : "chacha", "parent" : "musictype", "name" : "Cha Cha", "categories" : [], "__v" : 0 }
-{ "_id" : "salsa", "parent" : "musictype", "name" : "Salsa", "categories" : [ "cuban", "newyork", "losangeles" ], "__v" : 0 }
+{ "_id" : "salsa", "parent" : "musictype", "name" : "Salsa", "categories" : [ "cuban", "newyork" ], "__v" : 0 }
 { "_id" : "today", "parent" : "happenson", "name" : "Today", "categories" : [], "__v" : 0 }
 { "_id" : "tomorrow", "parent" : "happenson", "name" : "Tomorrow", "categories" : [], "__v" : 0 }
 { "_id" : "week", "parent" : "happenson", "name" : "Week", "categories" : [], "__v" : 0 }
