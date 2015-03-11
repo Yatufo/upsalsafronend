@@ -12,7 +12,11 @@
         <div class="col-xs-12 col-md-7 col-md-pull-5" ng-include="'views/components/categories-selector.html'"></div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-md-7 well well-sm">Showing {{events.length}} results</div>
+       
+        <div class="col-xs-12 col-md-7 well well-sm">
+            <p ng-if="!loading">Showing {{events.length}} results</p>
+            <p ng-if="loading"><i class="fa fa-spinner fa-spin fa-2x"></i>Loading</p>
+        </div>
         <div class="hidden-xs col-md-5"></div>
     </div>
 

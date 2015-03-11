@@ -9,6 +9,7 @@ angular.module('myAppControllers')
             $scope.localTime = CONFIG.TODAY;
             $scope.selectedCategories = {};
             $scope.events = [];
+            $scope.loading = true;
 
             //TODO: replace this with a proper configuration depending on the environment.
             if ($routeParams.testDate) {
@@ -18,6 +19,7 @@ angular.module('myAppControllers')
 
             diffusionService.onChangeCategories($scope, function(message) {
                 $scope.selectedCategories = message.selected;
+                $scope.loading = true;
                 filterEvents();
             });
 
@@ -38,6 +40,7 @@ angular.module('myAppControllers')
 
                 $http.get(CONFIG.EVENTS_ENDPOINT, config).success(function(data) {
                     callback(data);
+                    $scope.loading = false;
                 });
 
             }

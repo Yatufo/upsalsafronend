@@ -1,8 +1,11 @@
 <div class="panel panel-danger">
-    <div class="panel-heading"><a ng-href="/{{city}}/locations/{{location.id}}">{{location.name}}</a>
+    <div class="panel-heading"><a ng-init="locationUrl = '/' + city + '/locations/' + location.id " ng-href="{{locationUrl}}">{{location.name}}</a>
+        <sharesocial style="float:right" class="text-right" data-message="'Check this out'" data-url="locationUrl | fullUrl">
+        </sharesocial>
+
     </div>
     <div class="panel-body">
-        <p><i class="fa fa-phone fa-lg"> </i>  <a ng-href="tel:{{location.phone}}">{{location.phone}}</a> </p>
+        <p><i class="fa fa-phone fa-lg"> </i> <a ng-href="tel:{{location.phone}}">{{location.phone}}</a> </p>
         <p><i class="fa fa-globe fa-lg"></i> <a target="window" ng-href="{{location.url}}">{{location.url}}</a>
         </p>
         <p><i class="fa fa-map-marker fa-lg"></i> <a ng-href="/{{city}}/locations/{{location.id}}">{{location.address}}</a>

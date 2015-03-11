@@ -19,9 +19,9 @@ myApp.config(['$compileProvider', '$locationProvider', function($compileProvider
     $compileProvider.debugInfoEnabled(false); //Performance
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|whatsapp):/);
+
 }]);
-
-
 
 
 myApp.config(['$routeProvider',
