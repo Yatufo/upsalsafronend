@@ -1,14 +1,17 @@
 <ul class="list-inline">
-    <!-- <li><a ng-href="http://www.facebook.com/sharer.php?t={{message}}&amp;u={{url}}" target="window"><i class="fa fa-facebook fa-2x"></i></a>
-</li>
- -->
     <li>
-        <a ng-href="https://twitter.com/intent/tweet?text={{message}}&amp;url={{url}}" target="window">
+        <a data-ng-href="{{facebookUrl}}" target="_blank" ng-click="share(facebookUrl, $event);">
+            <i class="fa fa-facebook fa-2x"></i>
+        </a>
+    </li>
+
+    <li>
+        <a data-ng-href="{{twitterUrl}}" ng-click="share(twitterUrl, $event);" target="_blank">
             <i class="fa fa-twitter fa-2x"></i>
         </a>
     </li>
     <li>
-        <a ng-href="whatsapp://send?text={{message}} {{url}}">
+        <a data-ng-href="{{whatsappUrl}}">
             <i class="fa fa-whatsapp fa-2x"></i>
         </a>
     </li>
