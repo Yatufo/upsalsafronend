@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <a ng-init="eventUrl = '/' + city + '/events/' + event.id " ng-href="{{eventUrl}}">{{event.title}}</a>
         <a class="text-right" ng-if="event.sequence">#{{event.sequence}}</a>
-        <sharesocial style="float:right" class="text-right" data-message="'Check this out'" data-url="eventUrl | fullUrl"> 
+        <sharesocial data-message="'Check this out'" data-url="eventUrl | fullUrl"> 
         </sharesocial>
     </div>
 

@@ -110,6 +110,12 @@ div .fixed.locations {
     margin-top: 0px;
     position: fixed;
 }
+
+sharesocial {
+    float: right;
+}
+
+
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {

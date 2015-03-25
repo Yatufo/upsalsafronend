@@ -12,7 +12,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG) {
 
         $scope.city = toTitleCase(current.params.city);
         $rootScope.seo = {
-            title: "Up Salsa in " + $scope.city,
+            title: "Up Salsa in " + $scope.city + " : Best places to dance Salsa, Bachata, Kizomba, etc.",
             metaDescription: "Find the best places and events to learn or dance in " + $scope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
         }
 
