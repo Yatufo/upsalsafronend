@@ -10,16 +10,19 @@ var backoffice = require('./routes/api/BackofficeResource.js');
 var ctx = require('./routes/util/conf.js').context();
 var app = express();
 
-
+// gzip/deflate outgoing responses
+var compression = require('compression')
 
 if (ctx.prerenderToken) {
     console.log("Prerender On");
     app.use(require('prerender-node').set('prerenderToken', ctx.prerenderToken));
 }
 
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 5000));
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(compression());
+
 app.use(express.static(__dirname + ctx.PUBLIC_DIR));
 
 app.get('/api/events', events.search);
