@@ -4,13 +4,14 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "latest",
+    "express": "^4.12.3",
     "googleapis": "latest",
     "prerender-node": "latest",
     "mongoose": "latest",
     "body-parser": "^1.11.0",
     "rrule": "^2.1.0",
     "compression": "^1.4.3",
+    "serve-static": "^1.9.2",
     "async": "^0.9.0"
   },
   "devDependencies": {

@@ -23,7 +23,8 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 app.use(compression());
 
-app.use(express.static(__dirname + ctx.PUBLIC_DIR));
+app.use(express.static(__dirname + ctx.PUBLIC_DIR, { maxAge: 24 * 60 * 60 * 1000 }));
+app.use('/assets', express.static(__dirname + ctx.PUBLIC_DIR + '/assets', { maxAge: 365 * 24 * 60 * 60 * 1000 }));
 
 app.get('/api/events', events.search);
 app.get('/api/events/:id', events.findById);
