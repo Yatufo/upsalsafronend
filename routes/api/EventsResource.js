@@ -22,8 +22,6 @@ exports.search = function(req, res) {
         }
     }
 
-
-
     var callPaginationData = function(callback) {
         data.Event.aggregate([{
                 $match: conditions
