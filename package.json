@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "async": "^0.9.0",
-    "bson": "^0.2.17",
+    "bson": "^0.2.17"
   }
 }
