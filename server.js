@@ -23,8 +23,13 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 app.use(compression());
 
-app.use(express.static(__dirname + ctx.PUBLIC_DIR, { maxAge: ctx.MAX_AGE_GENERAL }));
-app.use('/assets', express.static(__dirname + ctx.PUBLIC_DIR + '/assets', { maxAge: ctx.MAX_AGE_ASSETS }));
+
+app.use(express.static(__dirname + ctx.PUBLIC_DIR, {
+    maxAge: ctx.MAX_AGE_GENERAL
+}));
+app.use('/assets', express.static(__dirname + ctx.PUBLIC_DIR + '/assets', {
+    maxAge: ctx.MAX_AGE_ASSETS
+}));
 
 app.get('/api/events', events.search);
 app.get('/api/events/:id', events.findById);
@@ -35,9 +40,11 @@ app.get('/api/locations/:id', locations.findById);
 app.get('/api/sync', backoffice.syncEvents);
 
 // This will ensure that all routing is handed over to AngularJS 
-app.get('*', function(req, res){ 
-  	res.sendFile(__dirname + ctx.PUBLIC_DIR + ctx.SITE_INDEX); 
+app.get('*', function(req, res) {
+    res.sendFile(__dirname + ctx.PUBLIC_DIR + ctx.SITE_INDEX);
 });
+
+
 
 app.use(function(err, req, res, next) {
     console.log(err.stack);
