@@ -8,9 +8,10 @@
   "dependencies": {
     "angular": "1.3.x",
     "angular-route": "1.3.x",
-    "angular-loader": "1.3.x",
-    "angular-mocks": "~1.3.x",
     "bootstrap": "latest",
     "font-awesome": "latest"
+  },
+  "devDependencies": {
+    "livereload-js": "~2.2.1"
   }
 }

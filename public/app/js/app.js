@@ -26,6 +26,12 @@ myApp.config(['$compileProvider', '$locationProvider', function($compileProvider
 
 myApp.config(['$routeProvider',
     function($routeProvider) {
+        var routeResolver = {
+            city: function() {
+                return "montreal";
+            }
+        }
+
         $routeProvider.
         when('/:city/categories/:categories*\/events/', {
             templateUrl: 'views/events.html',
@@ -45,11 +51,10 @@ myApp.config(['$routeProvider',
         }).
         when('/:city', {
             templateUrl: 'views/home.html',
-            controller: 'HomeController'
-        }).
-        otherwise({
-            redirectTo: '/montreal'
+            controller: 'HomeController',
+            resolve: routeResolver
+        }).otherwise({
+            redirectTo: '/montreal/locations'
         });
     }
 ]);
-
