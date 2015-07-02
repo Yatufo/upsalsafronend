@@ -2,7 +2,7 @@
 
 start() {
     nodemon server.js &
-    grunt watch &
+    (cd public; grunt watch) &
     mongod --dbpath=data/db
 }
 
