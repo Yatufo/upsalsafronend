@@ -1,6 +1,6 @@
 'use strict';
 
-var config_module = angular.module('myAppConfig', [])
+var config_module = angular.module('eventifyConfig', [])
     .constant('CONFIG', {
         'EVENTS_ENDPOINT': '/api/events',
         'CATEGORIES_ENDPOINT': '/api/categories',

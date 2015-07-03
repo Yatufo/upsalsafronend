@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService',
         function($scope, $http, $routeParams, CONFIG, diffusionService) {
 

@@ -2,20 +2,20 @@
 
 /* App Module */
 
-var myApp = angular.module('myApp', [
+var eventify = angular.module('eventify', [
     'ngRoute',
-    'myAppControllers',
-    'myAppFilters',
-    'myAppConfig',
-    'myAppServices'
+    'eventifyControllers',
+    'eventifyFilters',
+    'eventifyConfig',
+    'eventifyServices'
 ]);
 
-angular.module('myAppControllers', ['myAppConfig', 'myAppServices']);
-angular.module('myAppFilters', ['myAppConfig']);
-angular.module('myAppServices', ['myAppConfig']);
+angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
+angular.module('eventifyFilters', ['eventifyConfig']);
+angular.module('eventifyServices', ['eventifyConfig']);
 
 //Production configuration
-myApp.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
+eventify.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
     $compileProvider.debugInfoEnabled(false); //Performance
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
@@ -24,7 +24,7 @@ myApp.config(['$compileProvider', '$locationProvider', function($compileProvider
 }]);
 
 
-myApp.config(['$routeProvider',
+eventify.config(['$routeProvider',
     function($routeProvider) {
         var routeResolver = {
             city: function() {

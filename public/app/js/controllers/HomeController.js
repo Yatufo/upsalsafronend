@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', HomeController]);
 
 function HomeController($scope, $rootScope, analyticsService, CONFIG) {

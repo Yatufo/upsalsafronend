@@ -2,7 +2,7 @@
 
 /* Service */
 
-angular.module('myAppServices')
+angular.module('eventifyServices')
     .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
 
 function AnalyticsService($rootScope, $window, $location) {

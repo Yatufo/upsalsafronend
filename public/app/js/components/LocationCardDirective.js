@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('myApp').directive('locationcard', function() {
+angular.module('eventify').directive('locationcard', function() {
     return {
         restrict: 'E',
         scope: {

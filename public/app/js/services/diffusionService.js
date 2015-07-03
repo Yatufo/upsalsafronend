@@ -2,7 +2,7 @@
 
 /* Service */
 
-angular.module('myAppServices')
+angular.module('eventifyServices')
     .factory('diffusionService', ['$rootScope',
         function($rootScope) {
 

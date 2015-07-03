@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('myApp').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
+angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
     return {
         restrict: 'E',
         scope: {

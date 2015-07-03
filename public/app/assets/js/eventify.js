@@ -2,20 +2,20 @@
 
 /* App Module */
 
-var myApp = angular.module('myApp', [
+var eventify = angular.module('eventify', [
     'ngRoute',
-    'myAppControllers',
-    'myAppFilters',
-    'myAppConfig',
-    'myAppServices'
+    'eventifyControllers',
+    'eventifyFilters',
+    'eventifyConfig',
+    'eventifyServices'
 ]);
 
-angular.module('myAppControllers', ['myAppConfig', 'myAppServices']);
-angular.module('myAppFilters', ['myAppConfig']);
-angular.module('myAppServices', ['myAppConfig']);
+angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
+angular.module('eventifyFilters', ['eventifyConfig']);
+angular.module('eventifyServices', ['eventifyConfig']);
 
 //Production configuration
-myApp.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
+eventify.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
     $compileProvider.debugInfoEnabled(false); //Performance
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
@@ -24,7 +24,7 @@ myApp.config(['$compileProvider', '$locationProvider', function($compileProvider
 }]);
 
 
-myApp.config(['$routeProvider',
+eventify.config(['$routeProvider',
     function($routeProvider) {
         var routeResolver = {
             city: function() {
@@ -60,7 +60,81 @@ myApp.config(['$routeProvider',
 ]);
 ;'use strict';
 
-var config_module = angular.module('myAppConfig', [])
+/* App Module */
+
+angular.module('eventify').directive('eventcard', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            event: '=',
+            city: '='
+        },
+        templateUrl: 'views/components/event-card.html'
+    };
+});
+;'use strict';
+
+/* App Module */
+
+angular.module('eventify').directive('locationcard', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            location: '=',
+            city: '='
+        },
+        templateUrl: 'views/components/location-card.html'
+    };
+});
+;'use strict';
+
+/* App Module */
+
+angular.module('eventify').directive('rating', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            location: '=',
+        },
+        templateUrl: 'views/components/rating.html'
+    };
+});
+;'use strict';
+
+/* App Module */
+
+angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
+    return {
+        restrict: 'E',
+        scope: {
+            message: '=',
+            url: '='
+        },
+        controller: ['$scope', function($scope) {
+            $scope.facebookUrl = "https://www.facebook.com/sharer/sharer.php?&u=" + encodeURIComponent($scope.url);
+            $scope.twitterUrl = "https://twitter.com/intent/tweet?text=" + $scope.message + "&url=" + encodeURIComponent($scope.url);
+            $scope.whatsappUrl = "whatsapp://send?text=" + $scope.message + " " + $scope.url;
+
+            $scope.share = function(shareUrl, e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $window.open(shareUrl, 'sharesocial', 'height=450, width=550, top=' +
+                    ($window.innerHeight / 2 - 275) + ', left=' + ($window.innerWidth / 2 - 225) +
+                    ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+
+                analyticsService.track({
+                    category: 'social',
+                    action: 'share',
+                    url: $scope.url
+                });
+            }
+        }],
+        templateUrl: 'views/components/share-social.html'
+    };
+}]);
+;'use strict';
+
+var config_module = angular.module('eventifyConfig', [])
     .constant('CONFIG', {
         'EVENTS_ENDPOINT': '/api/events',
         'CATEGORIES_ENDPOINT': '/api/categories',
@@ -77,7 +151,7 @@ var config_module = angular.module('myAppConfig', [])
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService',
         function($scope, $http, $routeParams, CONFIG, diffusionService) {
 
@@ -212,7 +286,7 @@ angular.module('myAppControllers')
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('EventDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
         function($scope, $http, $routeParams, CONFIG, MapsService) {
 
@@ -240,7 +314,7 @@ angular.module('myAppControllers')
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 
@@ -317,7 +391,7 @@ angular.module('myAppControllers')
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', HomeController]);
 
 function HomeController($scope, $rootScope, analyticsService, CONFIG) {
@@ -355,7 +429,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG) {
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('LocationDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
         function($scope, $http, $routeParams, CONFIG, MapsService) {
 
@@ -382,7 +456,7 @@ angular.module('myAppControllers')
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('LocationsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
         function($scope, $http, $routeParams, CONFIG, MapsService) {
 
@@ -414,70 +488,9 @@ angular.module('myAppControllers')
     ]);
 ;'use strict';
 
-/* App Module */
-
-angular.module('myApp').directive('eventcard', function() {
-    return {
-        restrict: 'E',
-        scope: {
-            event: '=',
-            city: '='
-        },
-        templateUrl: 'views/components/event-card.html'
-    };
-});
-;'use strict';
-
-/* App Module */
-
-angular.module('myApp').directive('locationcard', function() {
-    return {
-        restrict: 'E',
-        scope: {
-            location: '=',
-            city: '='
-        },
-        templateUrl: 'views/components/location-card.html'
-    };
-});
-;'use strict';
-
-/* App Module */
-
-angular.module('myApp').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
-    return {
-        restrict: 'E',
-        scope: {
-            message: '=',
-            url: '='
-        },
-        controller: ['$scope', function($scope) {
-            $scope.facebookUrl = "https://www.facebook.com/sharer/sharer.php?&u=" + encodeURIComponent($scope.url);
-            $scope.twitterUrl = "https://twitter.com/intent/tweet?text=" + $scope.message + "&url=" + encodeURIComponent($scope.url);
-            $scope.whatsappUrl = "whatsapp://send?text=" + $scope.message + " " + $scope.url;
-
-            $scope.share = function(shareUrl, e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $window.open(shareUrl, 'sharesocial', 'height=450, width=550, top=' +
-                    ($window.innerHeight / 2 - 275) + ', left=' + ($window.innerWidth / 2 - 225) +
-                    ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
-
-                analyticsService.track({
-                    category: 'social',
-                    action: 'share',
-                    url: $scope.url
-                });
-            }
-        }],
-        templateUrl: 'views/components/share-social.html'
-    };
-}]);
-;'use strict';
-
 /* Filters */
 
-angular.module('myAppFilters')
+angular.module('eventifyFilters')
     .filter('fullUrl', ['$location', function($location) {
         return function(partialPath) {
             return $location.absUrl().replace($location.path(), partialPath);
@@ -487,7 +500,7 @@ angular.module('myAppFilters')
 
 /* Service */
 
-angular.module('myAppServices')
+angular.module('eventifyServices')
     .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
 
 function AnalyticsService($rootScope, $window, $location) {
@@ -511,7 +524,7 @@ function AnalyticsService($rootScope, $window, $location) {
 
 /* Service */
 
-angular.module('myAppServices')
+angular.module('eventifyServices')
     .factory('MapsService', MapsService);
 
 function MapsService() {
@@ -606,7 +619,7 @@ Set.prototype.asArray = function() {
 
 /* Service */
 
-angular.module('myAppServices')
+angular.module('eventifyServices')
     .factory('diffusionService', ['$rootScope',
         function($rootScope) {
 

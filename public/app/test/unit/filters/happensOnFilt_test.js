@@ -1,12 +1,12 @@
 'use strict';
 
 /* jasmine specs for filters go here */
-describe('MyApp Filters', function() {
+describe('eventify Filters', function() {
 
     describe('HappensOn Filter', function() {
         var dayMilis, filter;
 
-        beforeEach(module('myApp'));
+        beforeEach(module('eventify'));
 
         beforeEach(inject(function($filter, CONFIG) {
             filter = $filter('happensOn');

@@ -1,12 +1,12 @@
 'use strict';
 
 /* jasmine specs for controllers go here */
-describe('MyApp controllers', function() {
+describe('eventify controllers', function() {
 
     describe('CategoriesController', function() {
         var scope, mockHttp, config;
 
-        beforeEach(module('myApp'));
+        beforeEach(module('eventify'));
 
         beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, CONFIG) {
             mockHttp = _$httpBackend_;

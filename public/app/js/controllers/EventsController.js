@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myAppControllers')
+angular.module('eventifyControllers')
     .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 

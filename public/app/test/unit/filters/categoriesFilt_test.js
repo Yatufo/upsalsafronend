@@ -1,12 +1,12 @@
 'use strict';
 
 /* jasmine specs for filters go here */
-describe('MyApp Filters', function() {
+describe('eventify Filters', function() {
 
     describe('categories Filter', function() {
         var filter;
 
-        beforeEach(module('myApp'));
+        beforeEach(module('eventify'));
 
         beforeEach(inject(function($filter, CONFIG) {
             filter = $filter('categories');
