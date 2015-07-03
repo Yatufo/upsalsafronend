@@ -91,59 +91,63 @@ angular.module('eventify').directive('locationcard', function() {
 /* App Module */
 
 angular.module('eventify').directive('rating', function() {
-    return {
-        restrict: 'E',
-        scope: {
-            location: '=',
-        },
-        templateUrl: 'views/components/rating.html'
-    };
+  return {
+    restrict: 'E',
+    scope: {
+      ratings: '='
+    },
+    controller: ['$scope', function($scope) {
+      $scope.rate = function(ratings) {
+        console.log('do the raiting' + ratings)
+      }
+    }],
+    templateUrl: 'views/components/rating.html'
+  };
 });
 ;'use strict';
 
 /* App Module */
 
 angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
-    return {
-        restrict: 'E',
-        scope: {
-            message: '=',
-            url: '='
-        },
-        controller: ['$scope', function($scope) {
-            $scope.facebookUrl = "https://www.facebook.com/sharer/sharer.php?&u=" + encodeURIComponent($scope.url);
-            $scope.twitterUrl = "https://twitter.com/intent/tweet?text=" + $scope.message + "&url=" + encodeURIComponent($scope.url);
-            $scope.whatsappUrl = "whatsapp://send?text=" + $scope.message + " " + $scope.url;
+  return {
+    restrict: 'E',
+    scope: {
+      message: '=',
+      url: '='
+    },
+    controller: ['$scope', function($scope) {
+      $scope.facebookUrl = "https://www.facebook.com/sharer/sharer.php?&u=" + encodeURIComponent($scope.url);
+      $scope.twitterUrl = "https://twitter.com/intent/tweet?text=" + $scope.message + "&url=" + encodeURIComponent($scope.url);
+      $scope.whatsappUrl = "whatsapp://send?text=" + $scope.message + " " + $scope.url;
 
-            $scope.share = function(shareUrl, e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $window.open(shareUrl, 'sharesocial', 'height=450, width=550, top=' +
-                    ($window.innerHeight / 2 - 275) + ', left=' + ($window.innerWidth / 2 - 225) +
-                    ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+      $scope.share = function(shareUrl) {
+        $window.open(shareUrl, 'sharesocial', 'height=450, width=550, top=' +
+          ($window.innerHeight / 2 - 275) + ', left=' + ($window.innerWidth / 2 - 225) +
+          ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
 
-                analyticsService.track({
-                    category: 'social',
-                    action: 'share',
-                    url: $scope.url
-                });
-            }
-        }],
-        templateUrl: 'views/components/share-social.html'
-    };
+        analyticsService.track({
+          category: 'social',
+          action: 'share',
+          url: $scope.url
+        });
+      }
+    }],
+    templateUrl: 'views/components/share-social.html'
+  };
 }]);
 ;'use strict';
 
 var config_module = angular.module('eventifyConfig', [])
     .constant('CONFIG', {
-        'EVENTS_ENDPOINT': '/api/events',
-        'CATEGORIES_ENDPOINT': '/api/categories',
-        'LOCATIONS_ENDPOINT': '/api/locations',
-        'TODAY': new Date(),
-        'ONE_DAY_MILIS': 86400000,
-        'WEEKEND_DAYS': [5, 6, 0],
-        'WEEK_DAYS': [1, 2, 3, 4, 5, 6, 0],
-        'DEFAULT_CATEGORIES': {
+        CATEGORIES_REVIEWS_ORDER: ['class', 'party'],
+        EVENTS_ENDPOINT: '/api/events',
+        CATEGORIES_ENDPOINT: '/api/categories',
+        LOCATIONS_ENDPOINT: '/api/locations',
+        TODAY: new Date(),
+        ONE_DAY_MILIS: 86400000,
+        WEEKEND_DAYS: [5, 6, 0],
+        WEEK_DAYS: [1, 2, 3, 4, 5, 6, 0],
+        DEFAULT_CATEGORIES: {
             "musictype": "salsa"
         }
     });
@@ -392,10 +396,16 @@ angular.module('eventifyControllers')
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', HomeController]);
+    .controller('HomeController', ['$scope', '$rootScope', '$http', 'AnalyticsService', 'CONFIG', HomeController]);
 
-function HomeController($scope, $rootScope, analyticsService, CONFIG) {
+function HomeController($scope, $rootScope, $http, analyticsService, CONFIG) {
     $rootScope.CONFIG = CONFIG;
+
+    if (!$rootScope.categories) {
+      $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
+        $rootScope.categories = data;
+      });
+    }
 
     $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 
@@ -430,28 +440,41 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG) {
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('LocationDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-        function($scope, $http, $routeParams, CONFIG, MapsService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
+    function($rootScope, $scope, $http, $routeParams, CONFIG, MapsService) {
 
+      // would get the next category the user would rate
+      $scope.getUnratedCategory = function(location) {
+        return $rootScope.categories['class'];
+      }
 
-            $scope.location = {};
+      $scope.location = {};
 
-            $http.get(CONFIG.LOCATIONS_ENDPOINT + '/' + $routeParams.locationId).
-            success(function(data, status, headers, config) {
-                $scope.location = data;
+      $http.get(CONFIG.LOCATIONS_ENDPOINT + '/' + $routeParams.locationId).
+      success(function(data, status, headers, config) {
+        $scope.location = data;
 
-                if ($scope.location) {
-                    MapsService.init($scope.location, 14);
-                    MapsService.addLocation($scope.location);
-                }
-            }).
-            error(function(data, status, headers, config) {
-                console.log("Something went wrong");
-            });
+        if ($scope.location) {
+          MapsService.init($scope.location, 14);
+          MapsService.addLocation($scope.location);
 
-            window.scrollTo(0, 0);
+          var rating = {
+            category: $scope.getUnratedCategory($scope.location)
+          }
+
+          if (! $scope.location.ratings)
+            $scope.location.ratings = [];
+
+          $scope.location.ratings.push(rating);
         }
-    ]);
+
+      })
+
+
+
+      window.scrollTo(0, 0);
+    }
+  ]);
 ;'use strict';
 
 /* Controllers */

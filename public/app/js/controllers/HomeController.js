@@ -3,10 +3,16 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', HomeController]);
+    .controller('HomeController', ['$scope', '$rootScope', '$http', 'AnalyticsService', 'CONFIG', HomeController]);
 
-function HomeController($scope, $rootScope, analyticsService, CONFIG) {
+function HomeController($scope, $rootScope, $http, analyticsService, CONFIG) {
     $rootScope.CONFIG = CONFIG;
+
+    if (!$rootScope.categories) {
+      $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
+        $rootScope.categories = data;
+      });
+    }
 
     $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 

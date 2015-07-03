@@ -1,12 +1,15 @@
 <ul class="list-inline">
     <li>
-        <a ng-click="vote('up');">
+        {{ratings[0]}}:
+    <li>
+    <li>
+        <a ng-click="rate('up')">
             <i class="fa fa-thumbs-o-up fa-2x"></i>
         </a>
     </li>
 
     <li>
-      <a ng-click="vote('up');">
+      <a ng-click="rate('down')">
           <i class="fa fa-thumbs-o-down fa-2x"></i>
       </a>
     </li>
