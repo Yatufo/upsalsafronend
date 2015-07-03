@@ -6,12 +6,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "latest",
-    "angular-route": "latest",
+    "angular": "1.4.x",
+    "angular-route": "1.4.x",
     "bootstrap": "latest",
     "font-awesome": "latest"
-  },
-  "devDependencies": {
-    "livereload-js": "~2.2.1"
   }
 }
