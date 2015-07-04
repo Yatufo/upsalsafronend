@@ -97,9 +97,33 @@ angular.module('eventify').directive('rating', function() {
       ratings: '='
     },
     controller: ['$scope', function($scope) {
-      $scope.rate = function(ratings) {
-        console.log('do the raiting' + ratings)
+
+      $scope.reset = function() {
+        $scope.current = undefined;
+        $scope.ratings.forEach(function(rating) {
+          if (!rating.voted ) {
+            $scope.current = rating;
+          }
+        });
+      };
+
+      $scope.rate = function(rating, value) {
+        rating.voted = value;
+        rating.isUp = (rating.voted === 'up');
+
+        if (rating[value]){
+          rating[value] ++;
+        } else {
+          rating[value] = 1;
+        }
+
+        //TODO:call the service.
+        console.log('calling teh service to save the user rate: ' + rating.category.name + 'value' + value);
+        $scope.reset();
       }
+
+      $scope.reset();
+
     }],
     templateUrl: 'views/components/rating.html'
   };
@@ -444,8 +468,8 @@ angular.module('eventifyControllers')
     function($rootScope, $scope, $http, $routeParams, CONFIG, MapsService) {
 
       // would get the next category the user would rate
-      $scope.getUnratedCategory = function(location) {
-        return $rootScope.categories['class'];
+      $scope.getUnratedCategories = function(location) {
+        return [$rootScope.categories['class'], $rootScope.categories['party']];
       }
 
       $scope.location = {};
@@ -458,14 +482,16 @@ angular.module('eventifyControllers')
           MapsService.init($scope.location, 14);
           MapsService.addLocation($scope.location);
 
-          var rating = {
-            category: $scope.getUnratedCategory($scope.location)
-          }
-
-          if (! $scope.location.ratings)
+          if (!$scope.location.ratings)
             $scope.location.ratings = [];
 
-          $scope.location.ratings.push(rating);
+          $scope.getUnratedCategories().forEach(function(category) {
+            $scope.location.ratings.push({
+              category: category,
+              location: location
+            });
+          })
+
         }
 
       })

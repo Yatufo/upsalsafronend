@@ -7,8 +7,8 @@ angular.module('eventifyControllers')
     function($rootScope, $scope, $http, $routeParams, CONFIG, MapsService) {
 
       // would get the next category the user would rate
-      $scope.getUnratedCategory = function(location) {
-        return $rootScope.categories['class'];
+      $scope.getUnratedCategories = function(location) {
+        return [$rootScope.categories['class'], $rootScope.categories['party']];
       }
 
       $scope.location = {};
@@ -21,14 +21,16 @@ angular.module('eventifyControllers')
           MapsService.init($scope.location, 14);
           MapsService.addLocation($scope.location);
 
-          var rating = {
-            category: $scope.getUnratedCategory($scope.location)
-          }
-
-          if (! $scope.location.ratings)
+          if (!$scope.location.ratings)
             $scope.location.ratings = [];
 
-          $scope.location.ratings.push(rating);
+          $scope.getUnratedCategories().forEach(function(category) {
+            $scope.location.ratings.push({
+              category: category,
+              location: location
+            });
+          })
+
         }
 
       })
