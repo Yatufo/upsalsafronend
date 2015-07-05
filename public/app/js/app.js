@@ -4,15 +4,18 @@
 
 var eventify = angular.module('eventify', [
     'ngRoute',
+    'ngResource',
     'eventifyControllers',
     'eventifyFilters',
     'eventifyConfig',
-    'eventifyServices'
+    'eventifyServices',
+    'eventifyResources'
 ]);
 
 angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
 angular.module('eventifyFilters', ['eventifyConfig']);
 angular.module('eventifyServices', ['eventifyConfig']);
+angular.module('eventifyResources', ['ngResource']);
 
 //Production configuration
 eventify.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {

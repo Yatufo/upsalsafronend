@@ -1,9 +1,10 @@
 //
 //
-//Main App   
+//Main App
 var express = require('express');
 var bodyParser = require('body-parser')
 var events = require('./routes/api/EventsResource.js');
+var ratings = require('./routes/api/RatingsResource.js');
 var locations = require('./routes/api/LocationsResource.js');
 var categories = require('./routes/api/CategoriesResource.js');
 var backoffice = require('./routes/api/BackofficeResource.js');
@@ -37,9 +38,11 @@ app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
+app.post('/api/ratings', ratings.create);
+app.put('/api/ratings/:id', ratings.update);
 app.get('/api/sync', backoffice.syncEvents);
 
-// This will ensure that all routing is handed over to AngularJS 
+// This will ensure that all routing is handed over to AngularJS
 app.get('*', function(req, res) {
     res.sendFile(__dirname + ctx.PUBLIC_DIR + ctx.SITE_INDEX);
 });

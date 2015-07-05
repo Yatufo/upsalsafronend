@@ -8,6 +8,7 @@
   "dependencies": {
     "angular": "1.4.x",
     "angular-route": "1.4.x",
+    "angular-resource": "1.4.x",
     "bootstrap": "latest",
     "font-awesome": "latest"
   }

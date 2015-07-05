@@ -1,34 +1,36 @@
-<div class="list-inline">
-  <ul class="list-inline" data-ng-if="rating.voted" data-ng-repeat="rating in ratings">
-    <li>
-      {{rating.category.name}}
-    <li>
-    <li>
-      <a ng-click="rate(rating, 'up')">
-        <i class="fa fa-2x" ng-class="( rating.isUp ? 'fa-thumbs-up':'fa-thumbs-o-up')">{{rating['up']}}</i>
-      </a>
-    </li>
-    <li>
-      <a ng-click="rate(rating, 'down')">
-        <i class="fa fa-2x" ng-class="(!rating.isUp ? 'fa-thumbs-down':'fa-thumbs-o-down')">{{rating['down']}}</i>
-      </a>
-    </li>
-  </ul>
+<ul class="list-inline" data-ng-if="rating.voted" data-ng-repeat="rating in ratings">
+  <li>
+    {{rating.categories.name}}
+  <li>
+  <li>
+    <a data-ng-click="rate(rating, 'up')" data-ng-disabled="rating.voted">
+      <i class="fa fa-2x" data-ng-class="( rating.isUp ? 'fa-thumbs-up':'fa-thumbs-o-up')">
+          {{rating['up']}}
+      </i>
+    </a>
+  </li>
+  <li>
+    <a ng-click="rate(rating, 'down')">
+      <i class="fa fa-2x" data-ng-class="(!rating.isUp ? 'fa-thumbs-down':'fa-thumbs-o-down')">
+          {{rating['down']}}
+      </i>
+    </a>
+  </li>
+</ul>
 
-  <ul class="list-inline" data-ng-if="current">
-    <li>
-      {{current.category.name}}
-    <li>
-    <li>
-      <a ng-click="rate(current, 'up')">
-        <i class="fa fa-thumbs-o-up fa-2x"></i>
-      </a>
-    </li>
+<ul class="list-inline" data-ng-if="current">
+  <li>
+    {{current.category.name}}
+  <li>
+  <li>
+    <a data-ng-click="rate(current, 'up')">
+      <i class="fa fa-thumbs-o-up fa-2x"></i>
+    </a>
+  </li>
 
-    <li>
-      <a ng-click="rate(current, 'down')">
-        <i class="fa fa-thumbs-o-down fa-2x"></i>
-      </a>
-    </li>
-  </ul>
-</div>
+  <li>
+    <a data-ng-click="rate(current, 'down')">
+      <i class="fa fa-thumbs-o-down fa-2x"></i>
+    </a>
+  </li>
+</ul>

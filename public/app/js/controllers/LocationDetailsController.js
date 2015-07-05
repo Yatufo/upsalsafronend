@@ -27,7 +27,7 @@ angular.module('eventifyControllers')
           $scope.getUnratedCategories().forEach(function(category) {
             $scope.location.ratings.push({
               category: category,
-              location: location
+              location: $scope.location
             });
           })
 
