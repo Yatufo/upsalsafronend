@@ -76,7 +76,8 @@ var LocationSchema = new Schema({
   coordinates: {
     longitude: Number,
     latitude: Number
-  }
+  },
+  ratings: []
 });
 
 var RatingSchema = new Schema({
@@ -104,7 +105,6 @@ exports.Rating = mongoose.model('Rating', RatingSchema);
 exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
 exports.Location = mongoose.model('Location', LocationSchema);
-
 
 exports.connect = function() {
   mongoose.connect(ctx.MONGO_CONNECTION);

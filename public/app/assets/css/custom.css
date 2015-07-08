@@ -1,174 +1,173 @@
 /*Import Google Font*/
 
 body {
-    padding-top: 50px;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 50px;
 }
 #logo-header {
-    max-height: 50px;
-    margin-top: -15px;
+  max-height: 50px;
+  margin-top: -15px;
 }
 .navbar .brand {
-    max-height: 60px;
-    overflow: visible;
-    padding-top: 0;
-    padding-bottom: 0;
+  max-height: 60px;
+  overflow: visible;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .mainimage > div {
-    margin-left: 4%;
-    position: absolute;
-    top: 130px;
+  margin-left: 4%;
+  position: absolute;
+  top: 130px;
 }
 .mainimage > div > h2 > i {
-    font-size: 36px;
-    font-style: normal;
-    padding: 0px 5px;
-    font-family: 'Open Sans', sans-serif;
-    color: #000 !important;
-    line-height: 50px;
-    z-index: 10;
-    padding: 0;
-    font-weight: 400 !important;
-    left: 0;
-    background: url(../img/bg-white-text.png) repeat;
+  font-size: 36px;
+  font-style: normal;
+  padding: 0px 5px;
+  font-family: 'Open Sans', sans-serif;
+  color: #000 !important;
+  line-height: 50px;
+  z-index: 10;
+  padding: 0;
+  font-weight: 400 !important;
+  left: 0;
+  background: url(../img/bg-white-text.png) repeat;
 }
 .mainimage > div > p > i {
-    background: url(../img/bg-text.png) repeat;
-    font-style: normal;
-    font-family: "Open Sans", sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 25px;
-    color: #FFF;
+  background: url(../img/bg-text.png) repeat;
+  font-style: normal;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #FFF;
 }
 h2 span {
-    color: white;
-    font: bold 24px/45px Helvetica, Sans-Serif;
-    letter-spacing: -1px;
-    background: rgb(0, 0, 0);
-    /* fallback color */
-    
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
+  color: white;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0);
+  /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
 }
 div .image-selector h3 {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 .footer p {
-    color: #EEE;
-    margin-top: 14px;
+  color: #EEE;
+  margin-top: 14px;
 }
 .btn.btn-default.selected {
-    color: #A94442;
-    background-color: #F2DEDE !important;
+  color: #A94442;
+  background-color: #F2DEDE !important;
 }
+
 /*Back To Top
 ------------------------------------*/
 
 #topcontrol {
-    color: #E74C3C;
-    z-index: 99;
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    background: #222;
-    position: relative;
-    right: 14px !important;
-    bottom: 11px !important;
-    border-radius: 3px !important;
+  color: #E74C3C;
+  z-index: 99;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  background: #222;
+  position: relative;
+  right: 14px !important;
+  bottom: 11px !important;
+  border-radius: 3px !important;
 }
 #topcontrol:after {
-    top: 10px;
-    left: 20px;
-    content: "\f106";
-    position: absolute;
-    text-align: center;
-    font-family: FontAwesome;
+  top: 10px;
+  left: 20px;
+  content: "\f106";
+  position: absolute;
+  text-align: center;
+  font-family: FontAwesome;
 }
 #topcontrol:hover {
-    color: #fff;
-    background: #E74C3C;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  color: #fff;
+  background: #E74C3C;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 #map-canvas {
-    height: 400px;
-    width: 500px;
-    margin: 0px;
-    padding: 0px
+  height: 400px;
+  width: 500px;
+  margin: 0px;
+  padding: 0px
 }
 .sidebar-outer {
-    position: relative;
+  position: relative;
 }
 div .fixed {
-    margin-top: -300px;
-    position: fixed;
+  margin-top: -300px;
+  position: fixed;
 }
-
 div .fixed.locations {
-    margin-top: 0px;
-    position: fixed;
+  margin-top: 0px;
+  position: fixed;
 }
-
 sharesocial {
-    float: right;
+  float: right;
 }
-
 
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (max-device-width: 480px) {
-    /* Styles */
-    
-    .mainimage > div {
-        margin-left: 4%;
-        position: absolute;
-        top: 100px;
-    }
-    .mainimage {
-        position: relative;
-        width: 100%;
-        background: url(../img/bg-mobile.jpg) repeat-x;
-        height: 240px;
-    }
-    .mainimage > div > h2 > i {
-        padding: 0px 0px;
-        font-size: 20px;
-        line-height: 0.5;
-    }
-    .mainimage > div > p > i {
-        font-size: 10px;
-    }
-    div .image-selector h3 {
-        font-size: 14px;
-    }
-    .well {
-        margin-bottom: 5px
-    }
-    .category-circle {
-        height: 100px !important;
-    }
+  /* Styles */
+  .mainimage > div {
+    margin-left: 4%;
+    position: absolute;
+    top: 100px;
+  }
+  .mainimage {
+    position: relative;
+    width: 100%;
+    background: url(../img/bg-mobile.jpg) repeat-x;
+    height: 240px;
+  }
+  .mainimage > div > h2 > i {
+    padding: 0px 0px;
+    font-size: 20px;
+    line-height: 0.5;
+  }
+  .mainimage > div > p > i {
+    font-size: 10px;
+  }
+  div .image-selector h3 {
+    font-size: 14px;
+  }
+  .well {
+    margin-bottom: 5px
+  }
+  .category-circle {
+    height: 100px !important;
+  }
 }
+
 /* To center the images */
 
 .img-responsive {
-    margin: 0 auto;
+  margin: 0 auto;
 }
+
 /* Desktop ----------- */
 
 @media only screen and (min-device-width: 481px) {
-    /* Styles */
-    
-    .mainimage {
-        position: relative;
-        width: 100%;
-        background: url(../img/bg.jpg) repeat-x;
-        height: 280px;
-        /* for IE 6 */
-    }
-    .content {
-        min-height: 700px;
-    }
+  /* Styles */
+  .mainimage {
+    position: relative;
+    width: 100%;
+    background: url(../img/bg.jpg) repeat-x;
+    height: 280px;
+    /* for IE 6 */
+  }
+  .content {
+    min-height: 700px;
+  }
 }
+
 }

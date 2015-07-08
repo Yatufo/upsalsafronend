@@ -3,7 +3,7 @@ var async = require('async');
 var data = require('../model/core-data.js');
 var ctx = require('../util/conf.js').context();
 //
-// 
+//
 exports.search = function(req, res) {
 
     var filters = getFiltersByCategories(req.query.categories);
@@ -35,9 +35,7 @@ exports.search = function(req, res) {
                     }
                 }
             }],
-            function(err, results) {
-                callback(err, results);
-            })
+            callback)
     }
 
     var callEventsQuery = function(callback) {
@@ -47,9 +45,7 @@ exports.search = function(req, res) {
             .populate('location')
             .limit(maxResults)
             .sort('-start.dateTime')
-            .exec(function(err, events) {
-                callback(err, events);
-            });
+            .exec(callback);
     }
 
     async.parallel([callPaginationData, callEventsQuery],
