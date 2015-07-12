@@ -10,48 +10,62 @@ angular.module('eventify').directive('rating', function() {
     },
     controller: ['$scope', 'Rating', function($scope, Rating) {
 
-      $scope.resetCurrent = function() {
-        $scope.current = undefined;
-        $scope.ratings.slice().reverse().forEach(function(rating) {
-          if (!rating.voted) {
-            $scope.current = rating;
-          }
-        });
-      };
 
-      $scope.rate = function(rating, vote) {
-        if (rating.voted && rating.voted === vote)
-          return false;
-
-        //Decrease the value of the voted rating
-        if (rating[rating.voted]) {
-          rating[rating.voted] = rating[rating.voted] > 1 ? rating[rating.voted] - 1 : undefined ;
+      var updateVoteSummaryLocally = function(rating, newVote) {
+        rating.votes = rating.votes || [];
+        var oldVote = rating.vote;
+        //Decrease the value of the userVote rating
+        if (oldVote && rating.votes[oldVote]) {
+          rating.votes[oldVote] = rating.votes[oldVote] - 1 || undefined;
         }
-        rating[vote] = rating[vote] ? rating[vote] + 1 : 1
+        rating.votes[newVote] = rating.votes[newVote] + 1 || 1;
+      }
 
-
-        rating.voted = vote;
-        rating.isUp = (rating.voted === 'up');
-
+      var saveOrUpdateRating = function(rating) {
         var resource = new Rating({
           id: rating.id,
           location: rating.location.id,
           category: rating.category.id,
-          vote: vote
+          vote: rating.vote
         });
 
         if (!resource.id) {
           resource.$save(function(saved, putResponseHeaders) {
             rating.id = saved.id;
           });
-          $scope.resetCurrent();
-
         } else {
           Rating.update(resource);
         }
       }
 
-      $scope.resetCurrent();
+      $scope.resetUnvotedRating = function() {
+        $scope.current = undefined;
+        if ($scope.ratings) {
+          $scope.ratings.slice().reverse().forEach(function(rating) {
+            if (!rating.votes) {
+              $scope.current = rating;
+            }
+          });
+        }
+      };
+
+      $scope.rate = function(rating, userVote) {
+        //if there are no changes in the vote
+        if (rating.vote && rating.vote === userVote)
+          return false;
+
+        updateVoteSummaryLocally(rating, userVote);
+
+        rating.vote = userVote;
+        rating.isUp = (rating.vote === 'up');
+        rating.isDown = (rating.vote === 'down');
+
+        saveOrUpdateRating(rating);
+
+        $scope.resetUnvotedRating();
+      }
+
+      $scope.resetUnvotedRating();
 
     }],
     templateUrl: 'views/components/rating.html'

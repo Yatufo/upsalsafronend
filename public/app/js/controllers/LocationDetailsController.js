@@ -3,34 +3,43 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-    function($rootScope, $scope, $http, $routeParams, CONFIG, MapsService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', 'Location', '$routeParams', 'CONFIG', 'MapsService',
+    function($rootScope, $scope, Location, $routeParams, CONFIG, MapsService) {
 
       // would get the next category the user would rate
-      $scope.getUnratedCategories = function(location) {
+      $scope.getRateableCategories = function(location) {
         return [$rootScope.categories['class'], $rootScope.categories['party']];
       }
 
       $scope.location = {};
 
-      $http.get(CONFIG.LOCATIONS_ENDPOINT + '/' + $routeParams.locationId).
-      success(function(data, status, headers, config) {
-        $scope.location = data;
+      Location.get({
+        locationId: $routeParams.locationId
+      }, function(location) {
 
-        if ($scope.location) {
-          MapsService.init($scope.location, 14);
-          MapsService.addLocation($scope.location);
+        if (location) {
+          MapsService.init(location, 14);
+          MapsService.addLocation(location);
 
-          if (!$scope.location.ratings)
-            $scope.location.ratings = [];
+          location.ratings = location.ratings || [];
+          var ratedCategories = [];
 
-          $scope.getUnratedCategories().forEach(function(category) {
-            $scope.location.ratings.push({
-              category: category,
-              location: $scope.location
-            });
-          })
+          location.ratings.forEach(function(rating) {
+            rating.category = $rootScope.categories[rating.category];
+            rating.location = location;
+            ratedCategories.push(rating.category);
+          });
 
+          $scope.getRateableCategories().forEach(function(category) {
+            if (!_.contains(ratedCategories, category)) {
+              location.ratings.push({
+                category: category,
+                location: location
+              });
+            }
+          });
+
+          $scope.location = location;
         }
 
       })

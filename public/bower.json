@@ -11,5 +11,8 @@
     "angular-resource": "1.4.x",
     "bootstrap": "latest",
     "font-awesome": "latest"
+  },
+  "resolutions": {
+    "angular": "1.4.x"
   }
 }

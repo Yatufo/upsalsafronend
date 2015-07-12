@@ -1,5 +1,5 @@
 <ul class="list-inline">
-  <li class="list-group-item"  data-ng-if="rating.voted" data-ng-repeat="rating in ratings">
+  <li class="list-group-item"  data-ng-if="rating.votes" data-ng-repeat="rating in ratings">
 
     <ul class="list-inline">
       <li>
@@ -8,14 +8,14 @@
       <li>
         <a data-ng-click="rate(rating, 'up')" data-ng-disabled="rating.voted">
           <i class="fa fa-2x" data-ng-class="( rating.isUp ? 'fa-thumbs-up': 'fa-thumbs-o-up')">
-            {{rating['up']}}
+            {{rating.votes['up']}}
           </i>
         </a>
       </li>
       <li>
         <a ng-click="rate(rating, 'down')">
-          <i class="fa fa-2x" data-ng-class="(!rating.isUp ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
-            {{rating['down']}}
+          <i class="fa fa-2x" data-ng-class="( rating.isDown ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
+            {{rating.votes['down']}}
           </i>
         </a>
       </li>

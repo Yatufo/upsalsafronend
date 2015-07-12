@@ -101,48 +101,62 @@ angular.module('eventify').directive('rating', function() {
     },
     controller: ['$scope', 'Rating', function($scope, Rating) {
 
-      $scope.resetCurrent = function() {
-        $scope.current = undefined;
-        $scope.ratings.slice().reverse().forEach(function(rating) {
-          if (!rating.voted) {
-            $scope.current = rating;
-          }
-        });
-      };
 
-      $scope.rate = function(rating, vote) {
-        if (rating.voted && rating.voted === vote)
-          return false;
-
-        //Decrease the value of the voted rating
-        if (rating[rating.voted]) {
-          rating[rating.voted] = rating[rating.voted] > 1 ? rating[rating.voted] - 1 : undefined ;
+      var updateVoteSummaryLocally = function(rating, newVote) {
+        rating.votes = rating.votes || [];
+        var oldVote = rating.vote;
+        //Decrease the value of the userVote rating
+        if (oldVote && rating.votes[oldVote]) {
+          rating.votes[oldVote] = rating.votes[oldVote] - 1 || undefined;
         }
-        rating[vote] = rating[vote] ? rating[vote] + 1 : 1
+        rating.votes[newVote] = rating.votes[newVote] + 1 || 1;
+      }
 
-
-        rating.voted = vote;
-        rating.isUp = (rating.voted === 'up');
-
+      var saveOrUpdateRating = function(rating) {
         var resource = new Rating({
           id: rating.id,
           location: rating.location.id,
           category: rating.category.id,
-          vote: vote
+          vote: rating.vote
         });
 
         if (!resource.id) {
           resource.$save(function(saved, putResponseHeaders) {
             rating.id = saved.id;
           });
-          $scope.resetCurrent();
-
         } else {
           Rating.update(resource);
         }
       }
 
-      $scope.resetCurrent();
+      $scope.resetUnvotedRating = function() {
+        $scope.current = undefined;
+        if ($scope.ratings) {
+          $scope.ratings.slice().reverse().forEach(function(rating) {
+            if (!rating.votes) {
+              $scope.current = rating;
+            }
+          });
+        }
+      };
+
+      $scope.rate = function(rating, userVote) {
+        //if there are no changes in the vote
+        if (rating.vote && rating.vote === userVote)
+          return false;
+
+        updateVoteSummaryLocally(rating, userVote);
+
+        rating.vote = userVote;
+        rating.isUp = (rating.vote === 'up');
+        rating.isDown = (rating.vote === 'down');
+
+        saveOrUpdateRating(rating);
+
+        $scope.resetUnvotedRating();
+      }
+
+      $scope.resetUnvotedRating();
 
     }],
     templateUrl: 'views/components/rating.html'
@@ -484,34 +498,43 @@ function HomeController($scope, $rootScope, $http, analyticsService, CONFIG) {
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-    function($rootScope, $scope, $http, $routeParams, CONFIG, MapsService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', 'Location', '$routeParams', 'CONFIG', 'MapsService',
+    function($rootScope, $scope, Location, $routeParams, CONFIG, MapsService) {
 
       // would get the next category the user would rate
-      $scope.getUnratedCategories = function(location) {
+      $scope.getRateableCategories = function(location) {
         return [$rootScope.categories['class'], $rootScope.categories['party']];
       }
 
       $scope.location = {};
 
-      $http.get(CONFIG.LOCATIONS_ENDPOINT + '/' + $routeParams.locationId).
-      success(function(data, status, headers, config) {
-        $scope.location = data;
+      Location.get({
+        locationId: $routeParams.locationId
+      }, function(location) {
 
-        if ($scope.location) {
-          MapsService.init($scope.location, 14);
-          MapsService.addLocation($scope.location);
+        if (location) {
+          MapsService.init(location, 14);
+          MapsService.addLocation(location);
 
-          if (!$scope.location.ratings)
-            $scope.location.ratings = [];
+          location.ratings = location.ratings || [];
+          var ratedCategories = [];
 
-          $scope.getUnratedCategories().forEach(function(category) {
-            $scope.location.ratings.push({
-              category: category,
-              location: $scope.location
-            });
-          })
+          location.ratings.forEach(function(rating) {
+            rating.category = $rootScope.categories[rating.category];
+            rating.location = location;
+            ratedCategories.push(rating.category);
+          });
 
+          $scope.getRateableCategories().forEach(function(category) {
+            if (!_.contains(ratedCategories, category)) {
+              location.ratings.push({
+                category: category,
+                location: location
+              });
+            }
+          });
+
+          $scope.location = location;
         }
 
       })
@@ -677,7 +700,20 @@ angular.module('eventifyFilters')
             return $location.absUrl().replace($location.path(), partialPath);
         };
     }]);
-;;'use strict';
+;'use strict';
+
+/* Service */
+
+angular.module('eventifyResources').factory('Location', ['$resource', function($resource) {
+  return $resource('/api/locations/:locationId', {
+    'locationId': '@id'
+  }, {
+    'update': {
+      method: 'PUT'
+    }
+  });
+}]);
+;'use strict';
 
 /* Service */
 

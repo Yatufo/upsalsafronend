@@ -1,7 +1,6 @@
 var async = require('async');
 var data = require('../model/core-data.js');
 var ctx = require('../util/conf.js').context();
-var Promise = require('promise');
 
 
 var callback = function(err) {
@@ -26,27 +25,30 @@ var collectRatings = function(locationId, callback) {
     })
     .exec(function(e, results){
         if (e) throw e;
-        var summaries = {}
+        var ratings = {}
         results.forEach(function(result){
-          var summary = summaries[result._id.category] || { category : result._id.category, votes : {}};
+          var summary = ratings[result._id.category] || { category : result._id.category, votes : {}};
           summary.votes[result._id.vote] = result.count;
-          summaries[result._id.category] = summary;
+          ratings[result._id.category] = summary;
         });
-        var mapped = Object.keys(summaries).map(function (key) { return summaries[key]})
-        callback(undefined, mapped);
+
+        callback(undefined, Object.keys(ratings).map(function (key) { return ratings[key]}));
       });
 };
 
-var updateLocationRatings = function(counts, callback) {
-  data.Location.findOneAndUpdate({
-    id: counts.location
-  }, {
-    $set: {
-      ratings: counts.ratings
-    }
-  }, {}, callback);
-};
+updateLocationRatings = function(location){
 
+  collectRatings(location, function(e, ratings) {
+    data.Location.findOneAndUpdate({
+      id: location
+    }, {
+      $set: {
+        ratings: ratings
+      }
+    }).exec();
+  });
+
+}
 //
 //
 exports.create = function(req, res) {
@@ -61,19 +63,9 @@ exports.create = function(req, res) {
     res.location('/api/locations/' + ratingData.id)
     res.status(201).send({
       id: ratingData.id
-    }); //ngResource does not support location header
-
-
-    collectRatings(ratingData.location, function(e, counts) {
-      if (e) throw e;
-
-      updateLocationRatings({
-        location: req.body.location,
-        ratings: counts[0].ratings
-      }, function(e) {
-        if (e) throw e;
-      })
     });
+
+    updateLocationRatings(ratingData.location);
   });
 };
 
@@ -87,10 +79,12 @@ exports.update = function(req, res) {
     $set: {
       vote: req.body.vote
     }
-  }, null, function(err) {
+  }, null, function(err, ratingData) {
     if (err) {
       res.status(500).send(err);
     }
     res.status(204).send();
+
+    updateLocationRatings(ratingData.location);
   });
 };
