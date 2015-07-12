@@ -23,7 +23,7 @@ exports.findAll = function(req, res) {
   var maxResults = ctx.LOCATIONS_MAXRESULTS;
 
   data.Location.find()
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings')
     .limit(maxResults)
     .exec(function(err, locations) {
       res.send(locations);
@@ -37,7 +37,7 @@ exports.findById = function(req, res) {
   data.Location.findOne({
       "id": req.params.id
     })
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings')
     .exec(function(err, singleLocation) {
       if (err) {
         console.error('location not found for that id: ', req.params.id, err);
