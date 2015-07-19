@@ -9,13 +9,13 @@
     "compression": "^1.4.3",
     "express": "^4.12.3",
     "googleapis": "latest",
-    "mongoose": "latest",
+    "mongoose": "^4.0.7",
     "prerender-node": "latest",
     "promise": "^7.0.3",
-    "rrule": "^2.1.0"
+    "rrule": "^2.1.0",
+    "bson": "^0.2.17"
   },
   "devDependencies": {
-    "async": "^0.9.0",
-    "bson": "^0.2.17"
+    "csv-parse": "^0.1.3"
   }
 }

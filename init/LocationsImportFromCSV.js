@@ -1,4 +1,4 @@
-var data = require('../model/core-data.js');
+var data = require('../routes/model/core-data.js');
 var fs = require('fs');
 var parse = require('csv-parse');
 var parser = parse({
@@ -23,5 +23,6 @@ var parser = parse({
     var locationData = new data.Location(location);
     locationData.save();
   });
+  data.disconnect();
 });
 fs.createReadStream(__dirname + '/locations.csv').pipe(parser);

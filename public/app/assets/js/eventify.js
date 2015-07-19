@@ -198,8 +198,6 @@ var config_module = angular.module('eventifyConfig', [])
     .constant('CONFIG', {
         CATEGORIES_REVIEWS_ORDER: ['class', 'party'],
         EVENTS_ENDPOINT: '/api/events',
-        CATEGORIES_ENDPOINT: '/api/categories',
-        LOCATIONS_ENDPOINT: '/api/locations',
         TODAY: new Date(),
         ONE_DAY_MILIS: 86400000,
         WEEKEND_DAYS: [5, 6, 0],
@@ -376,7 +374,7 @@ angular.module('eventifyControllers')
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'diffusionService', 'MapsService',
+    .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'DiffusionService', 'MapsService',
         function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
 
             $scope.localTime = CONFIG.TODAY;
