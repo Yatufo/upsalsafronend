@@ -6,11 +6,13 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.4.x",
-    "angular-route": "1.4.x",
-    "angular-resource": "1.4.x",
-    "bootstrap": "latest",
-    "font-awesome": "latest"
+    "angular": "^1.4.x",
+    "angular-route": "^1.4.x",
+    "angular-resource": "^1.4.x",
+    "bootstrap": "^3.3.5",
+    "font-awesome": "^4.3.0",
+    "userapp-angular": "^2.0.4",
+    "underscore": "^1.8.3"
   },
   "resolutions": {
     "angular": "1.4.x"

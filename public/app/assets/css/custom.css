@@ -62,6 +62,18 @@ div .image-selector h3 {
   background-color: #F2DEDE !important;
 }
 
+
+.btn-facebook {
+    color: #FFF;
+    background-color: #3B5998;
+}
+
+#auth-modal .modal-dialog {
+    /* new custom width */
+    width: 300px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+}
+
 /*Back To Top
 ------------------------------------*/
 

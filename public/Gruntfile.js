@@ -8,7 +8,7 @@ module.exports = function(grunt) {
                 files: 'Gruntfile.js'
             },
             html: {
-                tasks: ['concat','wiredep','uglify'],
+                tasks: ['concat','uglify'],
                 files: ['app/js/**/*.js', 'app/**/*.html', 'app/assets/css/*.css'],
                 options: {
                     livereload: true

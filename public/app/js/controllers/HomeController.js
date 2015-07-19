@@ -28,7 +28,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
         }
 
     });
-
+    
     analyticsService.init();
 
     var toTitleCase = function(str) {

@@ -8,6 +8,8 @@ var ratings = require('./routes/api/RatingsRoute.js');
 var locations = require('./routes/api/LocationsRoute.js');
 var categories = require('./routes/api/CategoriesRoute.js');
 var backoffice = require('./routes/api/BackofficeRoute.js');
+var passport = require('./routes/api/AuthRoute.js').passport;
+
 var ctx = require('./routes/util/conf.js').context();
 var app = express();
 
@@ -28,7 +30,7 @@ app.use(compression());
 var indexPath = __dirname + ctx.PUBLIC_DIR + ctx.SITE_INDEX;
 app.use(express.static(__dirname + ctx.PUBLIC_DIR, {
   maxAge: ctx.MAX_AGE_GENERAL,
-  index : indexPath
+  index: indexPath
 }));
 
 
@@ -42,7 +44,7 @@ app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
-app.post('/api/ratings', ratings.create);
+app.post('/api/ratings', passport.authenticate('userapp'), ratings.create);
 app.put('/api/ratings/:id', ratings.update);
 app.get('/api/sync', backoffice.syncEvents);
 
@@ -58,6 +60,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
   next;
 });
+
 
 
 app.listen(app.get('port'), function() {

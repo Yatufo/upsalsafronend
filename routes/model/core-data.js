@@ -100,11 +100,19 @@ RatingSchema.set('toJSON', {
   virtuals: true
 });
 
+var UserSchema = new Schema({
+  ratings: [{
+    type:  Schema.Types.ObjectId,
+    ref: 'Rating'
+  }],
+});
+
 
 exports.Rating = mongoose.model('Rating', RatingSchema);
 exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
 exports.Location = mongoose.model('Location', LocationSchema);
+exports.User = mongoose.model('User', UserSchema);
 
 exports.connect = function() {
   mongoose.connect(ctx.MONGO_CONNECTION);
