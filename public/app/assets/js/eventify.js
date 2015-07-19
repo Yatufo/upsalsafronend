@@ -451,16 +451,21 @@ angular.module('eventifyControllers')
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('HomeController', ['$scope', '$rootScope', '$http', 'AnalyticsService', 'CONFIG', HomeController]);
+    .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', 'CategoriesResource', HomeController]);
 
-function HomeController($scope, $rootScope, $http, analyticsService, CONFIG) {
+function HomeController($scope, $rootScope, analyticsService, CONFIG, CategoriesResource) {
     $rootScope.CONFIG = CONFIG;
 
     if (!$rootScope.categories) {
-      $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
-        $rootScope.categories = data;
+      CategoriesResource.query({}, function(categories) {
+        var results = {};
+        categories.forEach(function(category) {
+            results[category.id] = category;
+        });
+
+        $rootScope.categories = results;
       });
-    }
+    };
 
     $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 
@@ -666,6 +671,19 @@ angular.module('eventifyFilters')
             return $location.absUrl().replace($location.path(), partialPath);
         };
     }]);
+;'use strict';
+
+/* Service */
+
+angular.module('eventifyResources').factory('CategoriesResource', ['$resource', function($resource) {
+  return $resource('/api/categories/:categoryId', {
+    'categoryId': '@id'
+  }, {
+    'update': {
+      method: 'PUT'
+    }
+  });
+}]);
 ;'use strict';
 
 /* Service */

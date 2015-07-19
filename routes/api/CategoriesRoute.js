@@ -1,7 +1,7 @@
 var data = require('../model/core-data.js');
 
 //
-// 
+//
 exports.findAll = function(req, res) {
 
     data.Category.find()
@@ -13,12 +13,7 @@ exports.findAll = function(req, res) {
         .exec(function(err, categories) {
             if (err) console.log(err);
 
-            var results = {};
-            categories.forEach(function(category) {
-                results[category.id] = category;
-            });
-
-            res.send(results);
+            res.send(categories);
         });
 
 };
