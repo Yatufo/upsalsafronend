@@ -10,7 +10,6 @@ angular.module('eventify').directive('rating', function() {
     },
     controller: ['$scope', 'Rating', function($scope, Rating) {
 
-
       var updateVoteSummaryLocally = function(rating, newVote) {
         rating.votes = rating.votes || [];
         var oldVote = rating.vote;

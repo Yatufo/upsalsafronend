@@ -101,7 +101,6 @@ angular.module('eventify').directive('rating', function() {
     },
     controller: ['$scope', 'Rating', function($scope, Rating) {
 
-
       var updateVoteSummaryLocally = function(rating, newVote) {
         rating.votes = rating.votes || [];
         var oldVote = rating.vote;
@@ -498,13 +497,9 @@ function HomeController($scope, $rootScope, $http, analyticsService, CONFIG) {
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('LocationDetailsController', ['$rootScope', '$scope', 'Location', '$routeParams', 'CONFIG', 'MapsService',
-    function($rootScope, $scope, Location, $routeParams, CONFIG, MapsService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService',
+    function($rootScope, $scope, $routeParams, Location, maps, ratingService) {
 
-      // would get the next category the user would rate
-      $scope.getRateableCategories = function(location) {
-        return [$rootScope.categories['class'], $rootScope.categories['party']];
-      }
 
       $scope.location = {};
 
@@ -512,34 +507,13 @@ angular.module('eventifyControllers')
         locationId: $routeParams.locationId
       }, function(location) {
 
-        if (location) {
-          MapsService.init(location, 14);
-          MapsService.addLocation(location);
+        maps.init(location, 14);
+        maps.addLocation(location);
 
-          location.ratings = location.ratings || [];
-          var ratedCategories = [];
+        location.ratings = ratingService.generateRatings(location);
+        $scope.location = location;
 
-          location.ratings.forEach(function(rating) {
-            rating.category = $rootScope.categories[rating.category];
-            rating.location = location;
-            ratedCategories.push(rating.category);
-          });
-
-          $scope.getRateableCategories().forEach(function(category) {
-            if (!_.contains(ratedCategories, category)) {
-              location.ratings.push({
-                category: category,
-                location: location
-              });
-            }
-          });
-
-          $scope.location = location;
-        }
-
-      })
-
-
+      });
 
       window.scrollTo(0, 0);
     }
@@ -549,26 +523,20 @@ angular.module('eventifyControllers')
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('LocationsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-        function($scope, $http, $routeParams, CONFIG, MapsService) {
+    .controller('LocationsController', ['$scope', 'Location', 'MapsService', 'RatingService',
+        function($scope, Location, MapsService, ratingService) {
 
 
             $scope.locations = [];
 
-            $http.get(CONFIG.LOCATIONS_ENDPOINT).
-            success(function(data, status, headers, config) {
-                $scope.locations = data;
+            Location.query({}, function(locations) {
+                $scope.locations = locations;
 
-
-                if ($scope.locations) {
-                    MapsService.init();
-                    $scope.locations.forEach(function(location) {
-                        MapsService.addLocation(location);
-                    });
-                }
-            }).
-            error(function(data, status, headers, config) {
-                console.log("Something went wrong with the locations");
+                MapsService.init();
+                $scope.locations.forEach(function(location) {
+                    MapsService.addLocation(location);
+                    location.ratings = ratingService.generateRatings(location);
+                });
             });
 
             $scope.highlightLocation = function(location) {
@@ -755,6 +723,50 @@ function AnalyticsService($rootScope, $window, $location) {
 /* Service */
 
 angular.module('eventifyServices')
+    .factory('diffusionService', ['$rootScope',
+        function($rootScope) {
+
+            var CHANGE_CATEGORIES = "changeCategories";
+            var CHANGE_EVENTS = "changeEvents";
+
+
+            var changeCategories = function(selectedCategories) {
+                $rootScope.$broadcast(CHANGE_CATEGORIES, {
+                    selected: selectedCategories
+                });
+            };
+
+            var onChangeCategories = function($scope, handler) {
+                $scope.$on(CHANGE_CATEGORIES, function(event, message) {
+                    handler(message);
+                });
+            };
+            
+            var changeEvents = function(eventsCategories) {
+                $rootScope.$broadcast(CHANGE_EVENTS, {
+                    eventsCategories: eventsCategories
+                });
+            };
+
+            var onChangeEvents = function($scope, handler) {
+                $scope.$on(CHANGE_EVENTS, function(event, message) {
+                    handler(message);
+                });
+            };
+
+            return {
+                changeCategories: changeCategories,
+                onChangeCategories: onChangeCategories,
+                changeEvents: changeEvents,
+                onChangeEvents: onChangeEvents
+            }
+
+        }
+    ]);;'use strict';
+
+/* Service */
+
+angular.module('eventifyServices')
     .factory('MapsService', MapsService);
 
 function MapsService() {
@@ -825,6 +837,54 @@ function MapsService() {
 
     return service;
 };
+;'use strict';
+
+/* Service */
+
+angular.module('eventifyServices')
+  .factory('RatingService', ['$rootScope', RatingService]);
+
+function RatingService($rootScope) {
+
+  // would get the next category the user would rate
+  var getRateableCategories = function(location) {
+    return [$rootScope.categories['class'], $rootScope.categories['party']];
+  }
+
+
+  var service = {
+    generateRatings: function(location) {
+      var generated = [];
+      var ratedCategories = [];
+
+      location.ratings.forEach(function(rating) {
+        var gRating = {
+          category: $rootScope.categories[rating.category],
+          votes: rating.votes,
+          location: location
+        };
+
+        ratedCategories.push(gRating.category);
+        generated.push(gRating);
+      });
+
+      getRateableCategories().forEach(function(category) {
+        if (! _.contains(ratedCategories, category)) {
+          generated.push({
+            category: category,
+            location: location
+          });
+        }
+      });
+
+      return generated;
+
+    }
+  };
+
+  return service;
+
+};
 ;window.Set = function() {
     this.content = {};
 }
@@ -845,48 +905,3 @@ Set.prototype.asArray = function() {
     for (var val in this.content) res.push(val);
     return res;
 }
-;'use strict';
-
-/* Service */
-
-angular.module('eventifyServices')
-    .factory('diffusionService', ['$rootScope',
-        function($rootScope) {
-
-            var CHANGE_CATEGORIES = "changeCategories";
-            var CHANGE_EVENTS = "changeEvents";
-
-
-            var changeCategories = function(selectedCategories) {
-                $rootScope.$broadcast(CHANGE_CATEGORIES, {
-                    selected: selectedCategories
-                });
-            };
-
-            var onChangeCategories = function($scope, handler) {
-                $scope.$on(CHANGE_CATEGORIES, function(event, message) {
-                    handler(message);
-                });
-            };
-            
-            var changeEvents = function(eventsCategories) {
-                $rootScope.$broadcast(CHANGE_EVENTS, {
-                    eventsCategories: eventsCategories
-                });
-            };
-
-            var onChangeEvents = function($scope, handler) {
-                $scope.$on(CHANGE_EVENTS, function(event, message) {
-                    handler(message);
-                });
-            };
-
-            return {
-                changeCategories: changeCategories,
-                onChangeCategories: onChangeCategories,
-                changeEvents: changeEvents,
-                onChangeEvents: onChangeEvents
-            }
-
-        }
-    ]);

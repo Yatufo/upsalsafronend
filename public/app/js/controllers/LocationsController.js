@@ -3,26 +3,20 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('LocationsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-        function($scope, $http, $routeParams, CONFIG, MapsService) {
+    .controller('LocationsController', ['$scope', 'Location', 'MapsService', 'RatingService',
+        function($scope, Location, MapsService, ratingService) {
 
 
             $scope.locations = [];
 
-            $http.get(CONFIG.LOCATIONS_ENDPOINT).
-            success(function(data, status, headers, config) {
-                $scope.locations = data;
+            Location.query({}, function(locations) {
+                $scope.locations = locations;
 
-
-                if ($scope.locations) {
-                    MapsService.init();
-                    $scope.locations.forEach(function(location) {
-                        MapsService.addLocation(location);
-                    });
-                }
-            }).
-            error(function(data, status, headers, config) {
-                console.log("Something went wrong with the locations");
+                MapsService.init();
+                $scope.locations.forEach(function(location) {
+                    MapsService.addLocation(location);
+                    location.ratings = ratingService.generateRatings(location);
+                });
             });
 
             $scope.highlightLocation = function(location) {
