@@ -9,8 +9,10 @@ function RatingService($rootScope) {
 
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
-    return [$rootScope.categories['class'], $rootScope.categories['party']];
-  }
+    return ['class','party','salsa','bachata','kizomba'].map(function(id){
+      return $rootScope.categories[id];
+    });
+  };
 
 
   var service = {

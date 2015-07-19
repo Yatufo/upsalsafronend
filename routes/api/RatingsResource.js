@@ -58,7 +58,6 @@ exports.create = function(req, res) {
 
   ratingData.save(function(e) {
     if (e) throw e;
-    console.log("rating saved")
 
     res.location('/api/locations/' + ratingData.id)
     res.status(201).send({
@@ -80,9 +79,8 @@ exports.update = function(req, res) {
       vote: req.body.vote
     }
   }, null, function(err, ratingData) {
-    if (err) {
-      res.status(500).send(err);
-    }
+    if (e) throw e;
+
     res.status(204).send();
 
     updateLocationRatings(ratingData.location);
