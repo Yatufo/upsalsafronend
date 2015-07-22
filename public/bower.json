@@ -9,10 +9,13 @@
     "angular": "^1.4.x",
     "angular-route": "^1.4.x",
     "angular-resource": "^1.4.x",
+    "angular-cookies": "^1.4.x",
+    "angular-storage": "^0.5.x",
+    "angular-jwt": "^0.0.x",
     "bootstrap": "^3.3.5",
     "font-awesome": "^4.3.0",
-    "userapp-angular": "^2.0.4",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "auth0-angular": "~4.0.5"
   },
   "resolutions": {
     "angular": "1.4.x"

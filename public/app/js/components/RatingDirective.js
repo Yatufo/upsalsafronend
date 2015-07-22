@@ -8,7 +8,7 @@ angular.module('eventify').directive('rating', function() {
     scope: {
       ratings: '='
     },
-    controller: ['$scope', 'Rating', 'AuthService', function($scope, Rating, auth) {
+    controller: ['$scope', 'Rating', function($scope, Rating) {
 
       var updateVoteSummaryLocally = function(rating, newVote) {
         rating.votes = rating.votes || [];
@@ -49,9 +49,7 @@ angular.module('eventify').directive('rating', function() {
       };
 
       $scope.rate = function(rating, userVote) {
-        if (!auth.valid())
-          return false;
-
+        
         //if there are no changes in the vote
         if (rating.vote && rating.vote === userVote)
           return false;

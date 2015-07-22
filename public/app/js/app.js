@@ -5,24 +5,33 @@
 var eventify = angular.module('eventify', [
   'ngRoute',
   'ngResource',
+  'auth0',
+  'angular-storage',
+  'angular-jwt',
   'eventifyControllers',
   'eventifyFilters',
   'eventifyConfig',
   'eventifyServices',
-  'eventifyResources',
-  'UserApp'
+  'eventifyResources'
 ]);
+
+
+eventify.config(function (authProvider) {
+  authProvider.init({
+    domain: 'marq.auth0.com',
+    clientID: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
+  });
+})
+.run(function(auth) {
+  auth.hookEvents();
+});
+
 
 angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
 angular.module('eventifyFilters', ['eventifyConfig']);
 angular.module('eventifyServices', ['eventifyConfig']);
 angular.module('eventifyResources', ['ngResource']);
 
-eventify.run(function(user) {
-  user.init({
-    appId: '5599f2a6557ed'
-  });
-});
 
 //Production configuration
 eventify.config(['$compileProvider', '$locationProvider', function($compileProvider, $locationProvider) {
