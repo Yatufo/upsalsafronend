@@ -9,6 +9,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
     $rootScope.CONFIG = CONFIG;
 
     if (!$rootScope.categories) {
+      $rootScope.categories = [];
       CategoriesResource.query({}, function(categories) {
         var results = {};
         categories.forEach(function(category) {
@@ -28,7 +29,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
         }
 
     });
-    
+
     analyticsService.init();
 
     var toTitleCase = function(str) {

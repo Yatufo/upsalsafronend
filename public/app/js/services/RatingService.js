@@ -2,14 +2,11 @@
 
 /* Service */
 
-angular.module('eventifyServices')
-  .factory('RatingService', ['$rootScope', RatingService]);
-
-function RatingService($rootScope) {
+var RatingService = function($rootScope) {
 
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
-    return ['class','party','salsa','bachata','kizomba'].map(function(id){
+    return ['class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
       return $rootScope.categories[id];
     });
   };
@@ -32,7 +29,7 @@ function RatingService($rootScope) {
       });
 
       getRateableCategories().forEach(function(category) {
-        if (! _.contains(ratedCategories, category)) {
+        if (!_.contains(ratedCategories, category)) {
           generated.push({
             category: category,
             location: location
@@ -48,3 +45,5 @@ function RatingService($rootScope) {
   return service;
 
 };
+angular.module('eventifyServices')
+  .factory('RatingService', ['$rootScope', RatingService]);

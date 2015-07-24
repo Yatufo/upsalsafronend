@@ -1,11 +1,7 @@
 'use strict';
 
 /* Service */
-
-angular.module('eventifyServices')
-    .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
-
-function AnalyticsService($rootScope, $window, $location) {
+var AnalyticsService = function ($rootScope, $window, $location) {
 
     var service = {
         init: function() {
@@ -22,3 +18,6 @@ function AnalyticsService($rootScope, $window, $location) {
 
     return service;
 };
+
+angular.module('eventifyServices')
+    .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);

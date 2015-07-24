@@ -16,15 +16,14 @@ var eventify = angular.module('eventify', [
 ]);
 
 
-eventify.config(function (authProvider) {
+eventify.config(["authProvider", function (authProvider) {
   authProvider.init({
     domain: 'marq.auth0.com',
     clientID: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
   });
-})
-.run(function(auth) {
+}]).run(["auth", function(auth) {
   auth.hookEvents();
-});
+}]);
 
 
 angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
@@ -120,7 +119,7 @@ angular.module('eventify').directive('rating', function() {
       };
 
       $scope.rate = function(rating, userVote) {
-        
+
         //if there are no changes in the vote
         if (rating.vote && rating.vote === userVote)
           return false;
@@ -274,13 +273,10 @@ var TokenConfig = function (authProvider, $routeProvider, $httpProvider, jwtInte
 
 eventify.config(["authProvider", "$routeProvider", "$httpProvider", "jwtInterceptorProvider", TokenConfig]);
 
-
-eventify.run(function($rootScope, auth, store, jwtHelper, $location) {
+var TokenValidation = function($rootScope, auth, store, jwtHelper, $location) {
   // This events gets triggered on refresh or URL change
   $rootScope.$on('$locationChangeStart', function() {
     var token = store.get('token');
-    console.log(token);
-
     if (token) {
       if (!jwtHelper.isTokenExpired(token)) {
         if (!auth.isAuthenticated) {
@@ -292,7 +288,9 @@ eventify.run(function($rootScope, auth, store, jwtHelper, $location) {
       }
     }
   });
-});
+}
+
+eventify.run(["$rootScope","auth","store","jwtHelper","$location", TokenValidation]);
 ;'use strict';
 
 /* Controllers */
@@ -446,7 +444,7 @@ angular.module('eventifyControllers')
                     MapsService.init($scope.event.location, 14);
                     MapsService.addLocation($scope.event.location);
                 }
-                
+
             }).
             error(function(data, status, headers, config) {
                 console.log("Something went wrong");
@@ -543,6 +541,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
     $rootScope.CONFIG = CONFIG;
 
     if (!$rootScope.categories) {
+      $rootScope.categories = [];
       CategoriesResource.query({}, function(categories) {
         var results = {};
         categories.forEach(function(category) {
@@ -562,7 +561,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
         }
 
     });
-    
+
     analyticsService.init();
 
     var toTitleCase = function(str) {
@@ -816,11 +815,7 @@ angular.module('eventifyResources').factory('Rating', ['$resource', function($re
 ;'use strict';
 
 /* Service */
-
-angular.module('eventifyServices')
-    .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
-
-function AnalyticsService($rootScope, $window, $location) {
+var AnalyticsService = function ($rootScope, $window, $location) {
 
     var service = {
         init: function() {
@@ -837,137 +832,140 @@ function AnalyticsService($rootScope, $window, $location) {
 
     return service;
 };
+
+angular.module('eventifyServices')
+    .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
 ;'use strict';
 
 /* Service */
+var diffusionService = function($rootScope) {
 
-angular.module('eventifyServices')
-    .factory('diffusionService', ['$rootScope',
-        function($rootScope) {
-
-            var CHANGE_CATEGORIES = "changeCategories";
-            var CHANGE_EVENTS = "changeEvents";
+  var CHANGE_CATEGORIES = "changeCategories";
+  var CHANGE_EVENTS = "changeEvents";
 
 
-            var changeCategories = function(selectedCategories) {
-                $rootScope.$broadcast(CHANGE_CATEGORIES, {
-                    selected: selectedCategories
-                });
-            };
+  var changeCategories = function(selectedCategories) {
+    $rootScope.$broadcast(CHANGE_CATEGORIES, {
+      selected: selectedCategories
+    });
+  };
 
-            var onChangeCategories = function($scope, handler) {
-                $scope.$on(CHANGE_CATEGORIES, function(event, message) {
-                    handler(message);
-                });
-            };
-            
-            var changeEvents = function(eventsCategories) {
-                $rootScope.$broadcast(CHANGE_EVENTS, {
-                    eventsCategories: eventsCategories
-                });
-            };
+  var onChangeCategories = function($scope, handler) {
+    $scope.$on(CHANGE_CATEGORIES, function(event, message) {
+      handler(message);
+    });
+  };
 
-            var onChangeEvents = function($scope, handler) {
-                $scope.$on(CHANGE_EVENTS, function(event, message) {
-                    handler(message);
-                });
-            };
+  var changeEvents = function(eventsCategories) {
+    $rootScope.$broadcast(CHANGE_EVENTS, {
+      eventsCategories: eventsCategories
+    });
+  };
 
-            return {
-                changeCategories: changeCategories,
-                onChangeCategories: onChangeCategories,
-                changeEvents: changeEvents,
-                onChangeEvents: onChangeEvents
-            }
+  var onChangeEvents = function($scope, handler) {
+    $scope.$on(CHANGE_EVENTS, function(event, message) {
+      handler(message);
+    });
+  };
 
-        }
-    ]);;'use strict';
+  return {
+    changeCategories: changeCategories,
+    onChangeCategories: onChangeCategories,
+    changeEvents: changeEvents,
+    onChangeEvents: onChangeEvents
+  }
 
-/* Service */
-
-angular.module('eventifyServices')
-    .factory('MapsService', MapsService);
-
-function MapsService() {
-    var map;
-    var markers = [];
-    var markerByLocation;
-    var currentMarker;
-    var defaultIcon = "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png";
-    var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
-
-
-    var service = {
-        reset: function() {
-            if (markers) {
-                markers.forEach(function(marker) {
-                    marker.setMap(null);
-                });
-                markers = [];
-                markerByLocation = [];
-            }
-        },
-        init: function(location, lZoom) {
-            map = {};
-            markerByLocation = {};
-
-
-
-            var mapOptions = {
-                center: {
-                    lat: (location ? location.coordinates.latitude : 45.560),
-                    lng: (location ? location.coordinates.longitude : -73.712)
-                },
-                zoom: (lZoom ? lZoom : 10)
-            };
-            if (document.getElementById('map-canvas')) {
-                map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
-            }
-
-        },
-        addLocation: function(location) {
-            if (location && !markerByLocation[location.id]) {
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
-                    map: map,
-                    title: location.name
-                });
-                markerByLocation[location.id] = marker;
-                markers.push(marker);
-            }
-        },
-        highlightLocation: function(location) {
-            if (location) {
-                var marker = markerByLocation[location.id];
-                if (marker) {
-                    if (currentMarker) {
-                        currentMarker.setIcon(defaultIcon);
-                        currentMarker.setZIndex(-1);
-                    }
-                    marker.setIcon(highlightIcon);
-                    marker.setZIndex(100);
-                    currentMarker = marker;
-                }
-            }
-        }
-    };
-
-    return service;
 };
+
+angular.module('eventifyServices')
+  .factory('diffusionService', ['$rootScope', diffusionService]);
 ;'use strict';
 
 /* Service */
 
-angular.module('eventifyServices')
-  .factory('RatingService', ['$rootScope', RatingService]);
 
-function RatingService($rootScope) {
+
+var MapsService = function() {
+  var map;
+  var markers = [];
+  var markerByLocation;
+  var currentMarker;
+  var defaultIcon = "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png";
+  var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+
+
+  var service = {
+    reset: function() {
+      if (markers) {
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+        markers = [];
+        markerByLocation = [];
+      }
+    },
+    init: function(location, lZoom) {
+      map = {};
+      markerByLocation = {};
+
+
+
+      var mapOptions = {
+        center: {
+          lat: (location ? location.coordinates.latitude : 45.560),
+          lng: (location ? location.coordinates.longitude : -73.712)
+        },
+        zoom: (lZoom ? lZoom : 10)
+      };
+      if (document.getElementById('map-canvas')) {
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+      }
+
+    },
+    addLocation: function(location) {
+      if (location && !markerByLocation[location.id]) {
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
+          map: map,
+          title: location.name
+        });
+        markerByLocation[location.id] = marker;
+        markers.push(marker);
+      }
+    },
+    highlightLocation: function(location) {
+      if (location) {
+        var marker = markerByLocation[location.id];
+        if (marker) {
+          if (currentMarker) {
+            currentMarker.setIcon(defaultIcon);
+            currentMarker.setZIndex(-1);
+          }
+          marker.setIcon(highlightIcon);
+          marker.setZIndex(100);
+          currentMarker = marker;
+        }
+      }
+    }
+  };
+
+  return service;
+};
+
+
+angular.module('eventifyServices')
+  .factory('MapsService', MapsService);
+;'use strict';
+
+/* Service */
+
+var RatingService = function($rootScope) {
 
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
-    return ['class','party','salsa','bachata','kizomba'].map(function(id){
+    return ['class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
       return $rootScope.categories[id];
     });
   };
@@ -990,7 +988,7 @@ function RatingService($rootScope) {
       });
 
       getRateableCategories().forEach(function(category) {
-        if (! _.contains(ratedCategories, category)) {
+        if (!_.contains(ratedCategories, category)) {
           generated.push({
             category: category,
             location: location
@@ -1006,23 +1004,5 @@ function RatingService($rootScope) {
   return service;
 
 };
-;window.Set = function() {
-    this.content = {};
-}
-Set.prototype.content = function() {
-    return this.content;
-}
-Set.prototype.add = function(val) {
-    this.content[val] = true;
-}
-Set.prototype.remove = function(val) {
-    delete this.content[val];
-}
-Set.prototype.contains = function(val) {
-    return (val in this.content);
-}
-Set.prototype.asArray = function() {
-    var res = [];
-    for (var val in this.content) res.push(val);
-    return res;
-}
+angular.module('eventifyServices')
+  .factory('RatingService', ['$rootScope', RatingService]);

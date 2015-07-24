@@ -8,7 +8,12 @@ var ratings = require('./routes/api/RatingsRoute.js');
 var locations = require('./routes/api/LocationsRoute.js');
 var categories = require('./routes/api/CategoriesRoute.js');
 var backoffice = require('./routes/api/BackofficeRoute.js');
-var passport = require('./routes/api/AuthRoute.js').passport;
+var jwt = require('express-jwt');
+
+var auth = jwt({
+  secret: new Buffer('_X2hz4xWqOb5zOeoCP6G0MsZnfRyvhBGuuF2P4KTZwaeOVvVR21H_hJCNRalKBgS', 'base64'),
+  audience: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
+});
 
 var ctx = require('./routes/util/conf.js').context();
 var app = express();
@@ -44,8 +49,8 @@ app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
-app.post('/api/ratings', passport.authenticate('userapp'), ratings.create);
-app.put('/api/ratings/:id', ratings.update);
+app.post('/api/ratings', auth, ratings.create);
+app.put('/api/ratings/:id', auth, ratings.update);
 app.get('/api/sync', backoffice.syncEvents);
 
 
@@ -56,8 +61,14 @@ app.get('/*', function(req, res) {
 
 
 app.use(function(err, req, res, next) {
-  console.log(err.stack);
-  res.status(500).send('Something broke!');
+
+  if (err.name === 'UnauthorizedError') {
+    res.send(401, 'Invalid Token');
+  } else {
+    console.error(err);
+    res.status(500).send('Something broke!');
+  }
+
   next;
 });
 

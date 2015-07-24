@@ -16,15 +16,14 @@ var eventify = angular.module('eventify', [
 ]);
 
 
-eventify.config(function (authProvider) {
+eventify.config(["authProvider", function (authProvider) {
   authProvider.init({
     domain: 'marq.auth0.com',
     clientID: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
   });
-})
-.run(function(auth) {
+}]).run(["auth", function(auth) {
   auth.hookEvents();
-});
+}]);
 
 
 angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);

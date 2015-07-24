@@ -17,8 +17,7 @@ var TokenConfig = function (authProvider, $routeProvider, $httpProvider, jwtInte
 
 eventify.config(["authProvider", "$routeProvider", "$httpProvider", "jwtInterceptorProvider", TokenConfig]);
 
-
-eventify.run(function($rootScope, auth, store, jwtHelper, $location) {
+var TokenValidation = function($rootScope, auth, store, jwtHelper, $location) {
   // This events gets triggered on refresh or URL change
   $rootScope.$on('$locationChangeStart', function() {
     var token = store.get('token');
@@ -35,4 +34,6 @@ eventify.run(function($rootScope, auth, store, jwtHelper, $location) {
       }
     }
   });
-});
+}
+
+eventify.run(["$rootScope","auth","store","jwtHelper","$location", TokenValidation]);

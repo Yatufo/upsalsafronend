@@ -9,6 +9,7 @@
     "bson": "^0.2.17",
     "compression": "^1.4.3",
     "express": "^4.12.3",
+    "express-jwt": "^3.0.1",
     "googleapis": "latest",
     "mongoose": "^4.0.7",
     "passport": "^0.2.2",
