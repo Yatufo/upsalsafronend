@@ -21,9 +21,13 @@ module.exports = function(grunt) {
         beautify: true,
         mangle: true
       },
-      build: {
+      app: {
         src: ['app/js/**/*.js', '!app/js/*.min.js'],
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
+      },
+      deps: {
+        src: ['app/bower_components/**/*min.js', '!**/angular.min.js', '!**/bootstrap.min.js', '!**/jquery.min.js'],
+        dest: 'app/assets/js/dependencies.min.js',
       }
     },
     wiredep: {
@@ -35,13 +39,13 @@ module.exports = function(grunt) {
       options: {
         separator: ';',
       },
-      main: {
+      app: {
         src: ['app/js/**/*.js'],
         dest: 'app/assets/js/<%= pkg.name %>.js',
       },
       deps: {
         src: ['app/bower_components/**/*min.js', '!**/angular.min.js', '!**/bootstrap.min.js', '!**/jquery.min.js'],
-        dest: 'app/assets/js/dependencies.min.js',
+        dest: 'app/assets/js/dependencies.js',
       }
     }
   });
