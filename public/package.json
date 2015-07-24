@@ -7,9 +7,10 @@
   "scripts": {
     "postinstall": "bower install && grunt uglify"
   },
-  "dependencies" :{
+  "dependencies": {
     "bower": "latest",
     "grunt": "latest",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-uglify": "latest"
   },
   "devDependencies": {
