@@ -39,7 +39,6 @@ exports.findOrCreate = function(req, done) {
   findUser
     .then(done)
     .catch(function() {
-      console.log("demonio");
       createUser().then(done)
     });
 
