@@ -1,5 +1,6 @@
 'use strict';
 
+//TODO: use module.config
 var config_module = angular.module('eventifyConfig', [])
     .constant('CONFIG', {
         CATEGORIES_REVIEWS_ORDER: ['class', 'party'],

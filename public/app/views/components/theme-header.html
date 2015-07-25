@@ -17,7 +17,7 @@
           <a ng-href="/{{city}}/locations">Places</a>
         </li>
         <li>
-          <a href="#" ng-show="user.authenticated" ua-logout>Log Out</a>
+          <a href="#" ng-show="auth.isAuthenticated" ng-click="logout()">Log Out</a>
         </li>
       </ul>
     </div>

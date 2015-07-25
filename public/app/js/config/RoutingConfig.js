@@ -36,7 +36,7 @@ eventify.config(['$routeProvider',
       public: true
     }).
     otherwise({
-      redirectTo: '/montreal/locations'
+      redirectTo: '/montreal'
     });
   }
 ]);

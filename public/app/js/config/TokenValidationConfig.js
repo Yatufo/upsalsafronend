@@ -1,3 +1,6 @@
+'use strict';
+
+var eventify = angular.module('eventify');
 
 eventify.config(["authProvider", "$routeProvider", "$httpProvider", "jwtInterceptorProvider", TokenConfig]);
 
@@ -5,8 +8,7 @@ var TokenValidation = function($rootScope, auth, store, jwtHelper, $location) {
   // This events gets triggered on refresh or URL change
   $rootScope.$on('$locationChangeStart', function() {
     var token = store.get('token');
-    console.log(token);
-
+    $rootScope.auth = auth;
     if (token) {
       if (!jwtHelper.isTokenExpired(token)) {
         if (!auth.isAuthenticated) {
