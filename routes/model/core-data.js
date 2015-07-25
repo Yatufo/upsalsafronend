@@ -90,7 +90,10 @@ var RatingSchema = new Schema({
     ref: 'Category'
   },
   vote: String,
-  user: String
+  user: {
+    type:  Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 RatingSchema.virtual('id').get(function() {
@@ -101,6 +104,9 @@ RatingSchema.set('toJSON', {
 });
 
 var UserSchema = new Schema({
+  sync: {
+    auth0 : String
+  },
   ratings: [{
     type:  Schema.Types.ObjectId,
     ref: 'Rating'
