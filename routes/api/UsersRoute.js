@@ -11,7 +11,6 @@ exports.findCurrent = function(req, res) {
 //
 //
 exports.findOrCreate = function(req, populate, done) {
-  console.log("finding");
   var userId = req.user.sub;
   var findUser = new Promise(function(resolve, reject) {
     data.User.findOne({
@@ -20,7 +19,6 @@ exports.findOrCreate = function(req, populate, done) {
       .populate(populate)
       .exec(function(e, foundUser) {
         if (foundUser) {
-          console.log("found user");
           resolve(foundUser)
         } else {
           reject()
@@ -37,9 +35,7 @@ exports.findOrCreate = function(req, populate, done) {
         }
       });
 
-      newUser.save(function(e) {
-        console.log("created user");
-
+      newUser.save(function(e) { 
         if (e) reject(e);
         else resolve(newUser);
       });

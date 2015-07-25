@@ -20,7 +20,7 @@ angular.module('eventify').directive('rating', function() {
         rating.votes[newVote] = rating.votes[newVote] + 1 || 1;
       }
 
-      var saveOrUpdateRating = function(rating) {
+      var saveOrUpdateRating = function(rating, done) {
         var resource = new Rating({
           id: rating.id,
           location: rating.location.id,
@@ -31,9 +31,12 @@ angular.module('eventify').directive('rating', function() {
         if (!resource.id) {
           resource.$save(function(saved, putResponseHeaders) {
             rating.id = saved.id;
+            done();
           });
         } else {
-          Rating.update(resource);
+          Rating.update(resource, function(){
+            done();
+          });
         }
       }
 
@@ -49,20 +52,21 @@ angular.module('eventify').directive('rating', function() {
       };
 
       $scope.rate = function(rating, userVote) {
-        
+
         //if there are no changes in the vote
         if (rating.vote && rating.vote === userVote)
           return false;
 
-        updateVoteSummaryLocally(rating, userVote);
+        saveOrUpdateRating(rating, function() {
+          updateVoteSummaryLocally(rating, userVote);
 
-        rating.vote = userVote;
-        rating.isUp = (rating.vote === 'up');
-        rating.isDown = (rating.vote === 'down');
+          rating.vote = userVote;
+          rating.isUp = (rating.vote === 'up');
+          rating.isDown = (rating.vote === 'down');
 
-        saveOrUpdateRating(rating);
+          $scope.resetUnvotedRating();
+        });
 
-        $scope.resetUnvotedRating();
       }
 
       $scope.resetUnvotedRating();
