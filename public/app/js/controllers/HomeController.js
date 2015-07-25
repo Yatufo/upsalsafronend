@@ -20,16 +20,6 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
     });
   };
 
-  $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-
-    $scope.city = toTitleCase(current.params.city);
-    $rootScope.seo = {
-      title: "Up Salsa in " + $scope.city + " : Best places to dance Salsa, Bachata, Kizomba, etc.",
-      metaDescription: "Find the best places and events to learn or dance in " + $scope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
-    }
-
-  });
-
   $scope.logout = function() {
     $rootScope.auth.signout();
     store.remove('profile');
@@ -39,13 +29,6 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
 
   analyticsService.init();
 
-  var toTitleCase = function(str) {
-    if (str) {
-      return str.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-    }
-  }
 
 
   $('#navbarCollapse').click(function() {

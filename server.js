@@ -7,6 +7,7 @@ var events = require('./routes/api/EventsRoute.js');
 var ratings = require('./routes/api/RatingsRoute.js');
 var locations = require('./routes/api/LocationsRoute.js');
 var categories = require('./routes/api/CategoriesRoute.js');
+var users = require('./routes/api/UsersRoute.js');
 var backoffice = require('./routes/api/BackofficeRoute.js');
 var jwt = require('express-jwt');
 
@@ -50,6 +51,7 @@ app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
 app.post('/api/ratings', auth, ratings.create);
+app.get('/api/users/me', auth, users.findCurrent);
 app.put('/api/ratings/:id', auth, ratings.update);
 app.get('/api/sync', backoffice.syncEvents);
 

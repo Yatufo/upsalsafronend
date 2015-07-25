@@ -1,36 +1,47 @@
 var async = require('async');
 var data = require('../model/core-data.js');
 
+
+exports.findCurrent = function(req, res) {
+  exports.findOrCreate(req, 'ratings', function(user) {
+    if (user) res.send(user);
+    else throw new Error("not able to retrive or create the user");
+  });
+};
 //
 //
-exports.findOrCreate = function(req, done) {
+exports.findOrCreate = function(req, populate, done) {
+  console.log("finding");
   var userId = req.user.sub;
   var findUser = new Promise(function(resolve, reject) {
     data.User.findOne({
-      'sync.auth0': userId
-    }, null, function(e, person) {
-      if (e){
-        console.warn("Could not query user", e);;
-      }
-      if (person) {
-        resolve(person)
-      } else {
-        reject(e);
-      }
-    });
+        'sync.auth0': userId
+      })
+      .populate(populate)
+      .exec(function(e, foundUser) {
+        if (foundUser) {
+          console.log("found user");
+          resolve(foundUser)
+        } else {
+          reject()
+        }
+        if (e) console.warn("Could not query user", e);
+      });
   })
 
   var createUser = function() {
     return new Promise(function(resolve, reject) {
-      var userData = new data.User({
+      var newUser = new data.User({
         sync: {
           auth0: userId
         }
       });
 
-      userData.save(function(e) {
-        if (e) throw e;
-        resolve(userData);
+      newUser.save(function(e) {
+        console.log("created user");
+
+        if (e) reject(e);
+        else resolve(newUser);
       });
     });
   }

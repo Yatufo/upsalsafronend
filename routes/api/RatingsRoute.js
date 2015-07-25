@@ -7,7 +7,7 @@ var ratingCollector = require('../collectors/RatingCollector.js');
 exports.create = function(req, res) {
 
   var resolveUser = new Promise(function(resolve, reject) {
-    usersRoute.findOrCreate(req, function(user) {
+    usersRoute.findOrCreate(req, "", function(user) {
       if (user) resolve(user);
       else reject();
     });
