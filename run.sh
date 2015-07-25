@@ -1,16 +1,30 @@
 #!/bin/bash
 
 initialize() {
-  rm -rf data/db &
-  mkdir -p data/db &
+  rm -rf data/db &&
+  mkdir -p data/db &&
   mongod --dbpath=data/db &
-  ./init/init.sh &
+  ./init/init.sh &&
+  pkill -f "mongod --dbpath=data/db"
 }
+COL_BLUE="\x1b[34;01m"
+COL_RESET="\x1b[39;49;00m"
 
 start() {
-    nodemon server.js &
-    (cd public; grunt watch) &
-    mongod --dbpath=data/db
+   if [$DEPLOY_ENVIRONMENT == "prod"]
+   then
+     echo "######################################################################"
+     echo -e $COL_BLUE"Starting the server in PRODUCTION mode"$COL_RESET""
+     echo "######################################################################"
+     node server.js
+   else
+     echo "######################################################################"
+     echo -e $COL_BLUE"Starting the server in DEVELOPMENT mode"$COL_RESET""
+     echo "######################################################################"
+     nodemon server.js &
+     cd public && grunt concat &&  grunt watch &
+     mongod --dbpath=data/db
+   fi
 }
 
 stop() {

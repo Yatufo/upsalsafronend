@@ -1,4 +1,5 @@
 var data = require('../routes/model/core-data.js');
+var Promise = require('promise');
 var fs = require('fs');
 var parse = require('csv-parse');
 var parser = parse({
@@ -8,7 +9,7 @@ var parser = parse({
   ltrim: true
 }, function(err, locationTable) {
 
-  locationTable.forEach(function(locationRow, index) {
+  savePromises = locationTable.map(function(locationRow) {
     var location = {
       "id": locationRow[0],
       "name": locationRow[1],
@@ -21,8 +22,19 @@ var parser = parse({
       }
     };
     var locationData = new data.Location(location);
-    locationData.save();
+    return new Promise(function(resolve, reject) {
+      locationData.save(function(e) {
+        if (e) reject(e);
+        else resolve(location.id);
+      })
+    });
   });
-  data.disconnect();
+
+  Promise.all(savePromises).then(function(values) {
+    console.log("Saved location ids", values);
+    data.disconnect();
+    process.exit(1);
+  });
+
 });
 fs.createReadStream(__dirname + '/locations.csv').pipe(parser);

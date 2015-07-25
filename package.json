@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts" : {
-    "start" : "node server.js",
+    "start" : "./run.sh",
     "postinstall" : "cd ./public && npm install"
   },
   "dependencies": {
