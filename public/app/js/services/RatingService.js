@@ -2,7 +2,7 @@
 
 /* Service */
 
-var RatingService = function($rootScope) {
+var RatingService = function($rootScope, $q, Rating) {
 
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
@@ -54,6 +54,26 @@ var RatingService = function($rootScope) {
 
       return generated;
 
+    },
+    saveOrUpdateRating: function(rating) {
+      return $q(function(resolve, reject) {
+
+        var resource = new Rating({
+          id: rating.id,
+          location: rating.location.id,
+          category: rating.category.id,
+          vote: rating.vote
+        });
+
+        if (!resource.id) {
+          resource.$save(function (saved) {
+            rating.id = saved.id;
+            resolve(rating);
+          }, reject);
+        } else {
+          Rating.update(resource, resolve, reject);
+        }
+      });
     }
   };
 
@@ -61,4 +81,4 @@ var RatingService = function($rootScope) {
 
 };
 angular.module('eventifyServices')
-  .factory('RatingService', ['$rootScope', RatingService]);
+  .factory('RatingService', ['$rootScope', '$q', 'RatingResource', RatingService]);

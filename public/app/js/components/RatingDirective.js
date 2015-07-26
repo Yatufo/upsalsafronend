@@ -8,7 +8,7 @@ angular.module('eventify').directive('rating', function() {
     scope: {
       ratings: '='
     },
-    controller: ['$scope', 'Rating', function($scope, Rating) {
+    controller: ['$scope', 'RatingService', function($scope, service) {
 
       var updateVoteSummaryLocally = function(rating, newVote) {
         rating.votes = rating.votes || [];
@@ -18,26 +18,6 @@ angular.module('eventify').directive('rating', function() {
           rating.votes[oldVote] = rating.votes[oldVote] - 1 || undefined;
         }
         rating.votes[newVote] = rating.votes[newVote] + 1 || 1;
-      }
-
-      var saveOrUpdateRating = function(rating, done) {
-        var resource = new Rating({
-          id: rating.id,
-          location: rating.location.id,
-          category: rating.category.id,
-          vote: rating.vote
-        });
-
-        if (!resource.id) {
-          resource.$save(function(saved, putResponseHeaders) {
-            rating.id = saved.id;
-            done();
-          });
-        } else {
-          Rating.update(resource, function(){
-            done();
-          });
-        }
       }
 
       $scope.resetUnvotedRating = function() {
@@ -57,16 +37,20 @@ angular.module('eventify').directive('rating', function() {
         if (rating.vote && rating.vote === userVote)
           return false;
 
-        saveOrUpdateRating(rating, function() {
-          updateVoteSummaryLocally(rating, userVote);
+        var unsavedVote = rating.vote;
+        rating.vote = userVote;
 
-          rating.vote = userVote;
+        service.saveOrUpdateRating(rating)
+        .then(function() {
+          updateVoteSummaryLocally(rating, userVote);
+          $scope.resetUnvotedRating();
+
+          //TODO: move this to the service.
           rating.isUp = (rating.vote === 'up');
           rating.isDown = (rating.vote === 'down');
-
-          $scope.resetUnvotedRating();
+        }).catch(function (e) {
+          rating.vote = unsavedVote;
         });
-
       }
 
       $scope.resetUnvotedRating();

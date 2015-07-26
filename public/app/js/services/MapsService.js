@@ -24,6 +24,7 @@ var MapsService = function() {
       }
     },
     init: function(location, lZoom) {
+      console.log("init map");
       map = {};
       markerByLocation = {};
 
