@@ -25,6 +25,7 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
     store.remove('profile');
     store.remove('token');
     $location.path('/');
+    $rootScope.$emit("authenticationChange", false);
   };
 
   analyticsService.init();

@@ -3,26 +3,35 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-    .controller('LocationsController', ['$scope', 'Location', 'MapsService', 'RatingService',
-        function($scope, Location, MapsService, ratingService) {
+  .controller('LocationsController', ['$scope', '$rootScope', 'Location', 'MapsService', 'RatingService',
+    function($scope, $rootScope, Location, MapsService, ratingService) {
 
 
-            $scope.locations = [];
-
-            Location.query({}, function(locations) {
-                $scope.locations = locations;
-
-                MapsService.init();
-                $scope.locations.forEach(function(location) {
-                    MapsService.addLocation(location);
-                    location.ratings = ratingService.generateRatings(location);
-                });
-            });
-
-            $scope.highlightLocation = function(location) {
-                MapsService.highlightLocation(location);
-            }
-
-            window.scrollTo(0, 0);
+      $rootScope.$watch("user.ratings", function(newValue, oldValue) {
+        if (newValue) {
+          resetGeneratedRatings();
         }
-    ]);
+      });
+
+      $scope.locations = [];
+      var resetGeneratedRatings = function() {
+        $scope.locations.forEach(function(location) {
+          MapsService.addLocation(location);
+          location.summaries = ratingService.generateRatings(location);
+        });
+      }
+
+      Location.query({}, function(locations) {
+        $scope.locations = locations;
+
+        MapsService.init();
+        resetGeneratedRatings();
+      });
+
+      $scope.highlightLocation = function(location) {
+        MapsService.highlightLocation(location);
+      }
+
+      window.scrollTo(0, 0);
+    }
+  ]);

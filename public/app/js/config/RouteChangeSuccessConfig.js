@@ -14,15 +14,17 @@ var routeChangeSuccess = function($rootScope, User) {
         metaDescription: "Find the best places and events to learn or dance in " + $rootScope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
       }
     }
-
-    if ($rootScope.auth.isAuthenticated) {
-      User.get({}, function(user) {
-        $rootScope.user = user;
-      })
-    }
-
   });
 
+  $rootScope.$on("authenticationChange", function(event, authenticated) {
+    if (authenticated) {
+      User.get({}, function(user) {
+        $rootScope.user = user;
+      });
+    } else {
+      $rootScope.user = {}
+    }
+  });
 }
 
 eventify.run(["$rootScope", "UsersResource", routeChangeSuccess]);
