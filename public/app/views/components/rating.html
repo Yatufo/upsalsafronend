@@ -7,14 +7,14 @@
       </li>
       <li>
         <a data-ng-click="rate(rating, 'up')" data-ng-disabled="rating.voted">
-          <i class="fa fa-2x" data-ng-class="( rating.isUp ? 'fa-thumbs-up': 'fa-thumbs-o-up')">
+          <i class="fa fa-2x" data-ng-class="( isRated(rating, 'up') ? 'fa-thumbs-up': 'fa-thumbs-o-up')">
             {{rating.votes['up']}}
           </i>
         </a>
       </li>
       <li>
         <a ng-click="rate(rating, 'down')">
-          <i class="fa fa-2x" data-ng-class="( rating.isDown ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
+          <i class="fa fa-2x" data-ng-class="(  isRated(rating, 'down') ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
             {{rating.votes['down']}}
           </i>
         </a>

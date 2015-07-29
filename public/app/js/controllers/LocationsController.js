@@ -25,6 +25,11 @@ angular.module('eventifyControllers')
         $scope.locations = locations;
 
         MapsService.init();
+
+        $scope.locations.forEach(function(location) {
+          MapsService.addLocation(location);
+        });
+
         resetGeneratedRatings();
       });
 

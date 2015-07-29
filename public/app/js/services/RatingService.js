@@ -4,6 +4,15 @@
 
 var RatingService = function($rootScope, $q, Rating) {
 
+  var SummaryBase = {
+    isUp: function() {
+      return (this.vote === 'up');
+    },
+    isDown: function() {
+      return (this.vote === 'down');
+    }
+  }
+
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
     return ['class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
@@ -20,8 +29,6 @@ var RatingService = function($rootScope, $q, Rating) {
         userRating.category === summary.category.id) {
         summary.id = userRating._id;
         summary.vote = userRating.vote;
-        summary.isUp = (summary.vote === 'up');
-        summary.isDown = (summary.vote === 'down');
       }
     })
   }
@@ -45,10 +52,12 @@ var RatingService = function($rootScope, $q, Rating) {
 
       getRateableCategories().forEach(function(category) {
         if (!_.contains(ratedCategories, category)) {
-          generated.push({
+          var emptySummary = {
             category: category,
-            location: location
-          });
+            location: location,
+            votes : null
+          }
+          generated.push(emptySummary);
         }
       });
 
@@ -66,7 +75,7 @@ var RatingService = function($rootScope, $q, Rating) {
         });
 
         if (!resource.id) {
-          resource.$save(function (saved) {
+          resource.$save(function(saved) {
             rating.id = saved.id;
             resolve(rating);
           }, reject);

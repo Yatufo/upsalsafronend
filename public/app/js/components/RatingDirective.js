@@ -3,26 +3,27 @@
 /* App Module */
 var RatingDirectiveController = function($scope, $rootScope, service) {
 
-  var updateVoteSummaryLocally = function(rating, newVote) {
+  var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
-    var oldVote = rating.vote;
+    var currentVote = rating.vote;
     //Decrease the value of the userVote rating
     if (oldVote && rating.votes[oldVote]) {
       rating.votes[oldVote] = rating.votes[oldVote] - 1 || undefined;
     }
-    rating.votes[newVote] = rating.votes[newVote] + 1 || 1;
+    rating.votes[currentVote] = rating.votes[currentVote] + 1 || 1;
   }
 
-  $scope.resetUnvotedRating = function() {
-    $scope.current = undefined;
-    if ($scope.ratings) {
-      $scope.ratings.slice().reverse().forEach(function(rating) {
-        if (!rating.votes) {
-          $scope.current = rating;
-        }
-      });
-    }
-  };
+  var resetCurrent = function () {
+    $scope.current = _.findWhere($scope.ratings, { "votes" : null})
+  }
+
+  $scope.isRated = function (rating, vote) {
+    return rating.vote === vote;
+  }
+
+  $scope.$watch("ratings", function() {
+    resetCurrent();
+  });
 
   $scope.rate = function(rating, userVote) {
 
@@ -35,18 +36,13 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 
     service.saveOrUpdateRating(rating)
     .then(function() {
-      updateVoteSummaryLocally(rating, userVote);
-      $scope.resetUnvotedRating();
-
-      //TODO: move this to the service.
-      rating.isUp = (rating.vote === 'up');
-      rating.isDown = (rating.vote === 'down');
+      updateVoteSummaryLocally(rating, unsavedVote);
+      resetCurrent();
     }).catch(function (e) {
       rating.vote = unsavedVote;
     });
   }
 
-  $scope.resetUnvotedRating();
 
 }
 
