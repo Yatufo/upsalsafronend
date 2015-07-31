@@ -24,7 +24,6 @@ var MapsService = function() {
       }
     },
     init: function(location, lZoom) {
-      console.log("init map");
       map = {};
       markerByLocation = {};
 
@@ -37,14 +36,16 @@ var MapsService = function() {
         },
         zoom: (lZoom ? lZoom : 10)
       };
-      if (document.getElementById('map-canvas')) {
+
+      var mapCanvas = $('#map-canvas');
+      if (mapCanvas && mapCanvas.is(":visible")) {
         map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
       }
 
     },
     addLocation: function(location) {
-      if (location && !markerByLocation[location.id]) {
+      if (location && !markerByLocation[location.id] && ! _.isEmpty(map)) {
 
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
@@ -53,6 +54,7 @@ var MapsService = function() {
         });
         markerByLocation[location.id] = marker;
         markers.push(marker);
+
       }
     },
     highlightLocation: function(location) {

@@ -30,7 +30,6 @@ var updateUserRatings = function(rating) {
   });
 
   var updateUser = function(userRatings){
-    console.log("user", rating.user);
     data.User.findById(rating.user, function(e, user) {
       if (e) throw e;
       user.ratings = userRatings;
