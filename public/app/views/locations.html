@@ -1,18 +1,18 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-7">
-            <div ng-repeat="location in locations">
-                <locationcard data-location="location" data-city="city" data-ng-mouseenter="highlightLocation(location)" > </locationcard>
-            </div>
-        </div>
-
-
-        <div class="hidden-xs col-md-5 sidebar-outer">
-            <div id="fixedColunm" class="locations">
-                <div id="map-canvas" class="hidden-xs col-md-5">
-                </div>
-            </div>
-        </div>
-
+  <div class="row">
+    <div class="col-xs-12 col-md-7" ng-if="isListView">
+      <div ng-repeat="location in locations">
+        <locationcard data-city="city" data-location="location" data-ng-mouseenter="highlightLocation(location)"></locationcard>
+      </div>
     </div>
+
+    <div class="col-xs-12 col-md-5 sidebar-outer google-maps" ng-hide="!isMapView">
+      <iframe id="maps-iframe" frameborder="0" style="border:0"></iframe>
+    </div>
+
+  </div>
 </div>
+<div id="toogle-map" ng-click="toogleView()" ng-if="canToggleView">
+  <i class="fa fa-2x" ng-class="isMapView ? 'fa-list' : 'fa-map-o' "></i>
+</div>
+<div class="hidden-xs" id="mapVisible">

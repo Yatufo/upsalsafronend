@@ -11,6 +11,7 @@ var MapsService = function() {
   var currentMarker;
   var defaultIcon = "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png";
   var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+  var mapElement;
 
 
   var service = {
@@ -23,12 +24,22 @@ var MapsService = function() {
         markerByLocation = [];
       }
     },
+    isMapVisible: function() {
+      return $("#mapVisible") && $("#mapVisible").is(":visible"); //TODO change for another thing
+    },
+    getMapCanvas: function() {
+      if (!mapElement) {
+        var mapsFrame = $("#maps-iframe")[0].contentDocument;
+        var mapElement = $('<div/>');
+            mapElement[0].setAttribute('style',"width: 100%; height: 100%");
+        mapsFrame.body.appendChild(mapElement[0]);
+        console.log('append', $('#maps-iframe'));
+      }
+      return mapElement[0];
+    },
     init: function(location, lZoom) {
       map = {};
       markerByLocation = {};
-
-
-
       var mapOptions = {
         center: {
           lat: (location ? location.coordinates.latitude : 45.560),
@@ -37,15 +48,10 @@ var MapsService = function() {
         zoom: (lZoom ? lZoom : 10)
       };
 
-      var mapCanvas = $('#map-canvas');
-      if (mapCanvas && mapCanvas.is(":visible")) {
-        map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
-      }
-
+      map = new google.maps.Map(this.getMapCanvas(), mapOptions);
     },
     addLocation: function(location) {
-      if (location && !markerByLocation[location.id] && ! _.isEmpty(map)) {
+      if (location && !markerByLocation[location.id] && !_.isEmpty(map)) {
 
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
@@ -58,7 +64,7 @@ var MapsService = function() {
       }
     },
     highlightLocation: function(location) {
-      if (location) {
+      if (!_.isEmpty(map) && location) {
         var marker = markerByLocation[location.id];
         if (marker) {
           if (currentMarker) {

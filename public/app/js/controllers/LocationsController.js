@@ -4,8 +4,22 @@
 
 angular.module('eventifyControllers')
   .controller('LocationsController', ['$scope', '$rootScope', 'Location', 'MapsService', 'RatingService',
-    function($scope, $rootScope, Location, MapsService, ratingService) {
+    function($scope, $rootScope, Location, maps, ratingService) {
 
+      $scope.isMapView = maps.isMapVisible();
+      $scope.isListView = true;
+      $scope.canToggleView = !$scope.isMapView;
+      $scope.isMapLoaded = false;
+
+      function reloadMap(forceReload) {
+        if ($scope.isMapView && (forceReload || !$scope.isMapLoaded)) {
+          maps.init();
+          $scope.locations.forEach(function(location) {
+            maps.addLocation(location);
+          });
+          $scope.isMapLoaded = true;
+        }
+      };
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
@@ -16,25 +30,24 @@ angular.module('eventifyControllers')
       $scope.locations = [];
       var resetGeneratedRatings = function() {
         $scope.locations.forEach(function(location) {
-          MapsService.addLocation(location);
           location.summaries = ratingService.generateRatings(location);
         });
       }
 
       Location.query({}, function(locations) {
         $scope.locations = locations;
-
-        MapsService.init();
-
-        $scope.locations.forEach(function(location) {
-          MapsService.addLocation(location);
-        });
-
         resetGeneratedRatings();
+        reloadMap();
       });
 
+      $scope.toogleView = function() {
+        $scope.isMapView = ! $scope.isMapView;
+        $scope.isListView = ! $scope.isListView;
+        reloadMap();
+      }
+
       $scope.highlightLocation = function(location) {
-        MapsService.highlightLocation(location);
+        maps.highlightLocation(location);
       }
 
       window.scrollTo(0, 0);

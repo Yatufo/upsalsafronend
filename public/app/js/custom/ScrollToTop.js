@@ -2,9 +2,9 @@
 
 $(window).scroll(function() {
     if ($(this).scrollTop() > 135) {
-        $('#fixedColunm').addClass('fixed');
+        $('.fixedColunm').addClass('fixed');
     } else {
-        $('#fixedColunm').removeClass('fixed');
+        $('.fixedColunm').removeClass('fixed');
     }
 });
 

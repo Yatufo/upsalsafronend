@@ -61,23 +61,54 @@ div .image-selector h3 {
   color: #A94442;
   background-color: #F2DEDE !important;
 }
-
-
 .btn-facebook {
-    color: #FFF;
-    background-color: #3B5998;
+  color: #FFF;
+  background-color: #3B5998;
 }
-
 #auth-modal .modal-dialog {
-    /* new custom width */
-    width: 300px;
-    /* must be half of the width, minus scrollbar on the left (30px) */
+  /* new custom width */
+  width: 300px;
+  /* must be half of the width, minus scrollbar on the left (30px) */
+}
+#toogle-map {
+  color: #E74C3C;
+  background: #222;
+  z-index: 99;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  left: 14px !important;
+  bottom: 11px !important;
+  border-radius: 3px !important;
+}
+#toogle-map > i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+}
+#toogle-map:after {
+  top: 10px;
+  left: 20px;
+  position: absolute;
+  text-align: center;
+  font-family: FontAwesome;
+}
+#toogle-map:hover {
+  color: #fff;
+  background: #E74C3C;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /*Back To Top
 ------------------------------------*/
 
 #topcontrol {
+  text-align: center;
   color: #E74C3C;
   z-index: 99;
   width: 50px;
@@ -105,19 +136,30 @@ div .image-selector h3 {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-#map-canvas {
-  height: 400px;
-  width: 500px;
-  margin: 0px;
-  padding: 0px
+
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
 }
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .sidebar-outer {
   position: relative;
 }
+
 div .fixed {
   margin-top: -300px;
   position: fixed;
 }
+
 div .fixed.locations {
   margin-top: 0px;
   position: fixed;
