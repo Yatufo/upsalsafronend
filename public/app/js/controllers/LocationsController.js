@@ -37,14 +37,20 @@ angular.module('eventifyControllers')
 
       Location.query({}, function(locations) {
         $scope.locations = locations;
+
+        $scope.locations.forEach(function(location) {
+          location.url = window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
+          console.log(location.url);
+        });
+
         resetGeneratedRatings();
         reloadMap();
         $scope.loading = false;
       });
 
       $scope.toogleView = function() {
-        $scope.isMapView = ! $scope.isMapView;
-        $scope.isListView = ! $scope.isListView;
+        $scope.isMapView = !$scope.isMapView;
+        $scope.isListView = !$scope.isListView;
         reloadMap();
       }
 

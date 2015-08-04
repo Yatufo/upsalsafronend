@@ -13,6 +13,9 @@ var MapsService = function() {
   var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
   var mapElement;
 
+  var infowindowContent = function(location) {
+    return "<a target='_parent' href='" + location.url + "'> " + location.name+ "</a>";
+  };
 
   var service = {
     reset: function() {
@@ -25,13 +28,13 @@ var MapsService = function() {
       }
     },
     isMapVisible: function() {
-      return $(window).width() > 480; //TODO change for another thing
+      return $(window).width() > 800; //TODO change for another thing
     },
     getMapCanvas: function() {
       if (!mapElement) {
         var mapsFrame = $("#maps-iframe")[0].contentDocument;
         var mapElement = $('<div/>');
-            mapElement[0].setAttribute('style',"width: 100%; height: 100%");
+        mapElement[0].setAttribute('style', "width: 100%; height: 100%");
         mapsFrame.body.appendChild(mapElement[0]);
       }
       return mapElement[0];
@@ -52,11 +55,21 @@ var MapsService = function() {
     addLocation: function(location) {
       if (location && !markerByLocation[location.id] && !_.isEmpty(map)) {
 
+        var infowindow = new google.maps.InfoWindow({
+          content: infowindowContent(location)
+        });
+
+
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
           map: map,
           title: location.name
         });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+
         markerByLocation[location.id] = marker;
         markers.push(marker);
 
