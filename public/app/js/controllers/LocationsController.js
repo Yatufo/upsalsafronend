@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('LocationsController', ['$scope', '$rootScope', 'Location', 'MapsService', 'RatingService',
-    function($scope, $rootScope, Location, maps, ratingService) {
+  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService',
+    function($scope, $rootScope, $window, Location, maps, ratingService) {
 
       $scope.isMapView = maps.isMapVisible();
       $scope.isListView = true;

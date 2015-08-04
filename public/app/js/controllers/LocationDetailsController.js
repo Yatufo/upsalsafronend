@@ -8,6 +8,14 @@ angular.module('eventifyControllers')
 
 
       $scope.location = {};
+      $rootScope.$watch("user.ratings", function(newValue, oldValue) {
+        if (newValue) {
+          resetGeneratedRatings();
+        }
+      });
+      var resetGeneratedRatings = function() {
+          $scope.location.summaries = ratingService.generateRatings($scope.location);
+      }
 
       Location.get({
         locationId: $routeParams.locationId
@@ -16,9 +24,8 @@ angular.module('eventifyControllers')
         maps.init(location, 14);
         maps.addLocation(location);
 
-        location.ratings = ratingService.generateRatings(location);
         $scope.location = location;
-
+        resetGeneratedRatings();
       });
 
       window.scrollTo(0, 0);

@@ -1,14 +1,5 @@
 'use strict';
 
-$(window).scroll(function() {
-    if ($(this).scrollTop() > 135) {
-        $('.fixedColunm').addClass('fixed');
-    } else {
-        $('.fixedColunm').removeClass('fixed');
-    }
-});
-
-
 var scrolltotop = {
     setting: {
         startline: 100,

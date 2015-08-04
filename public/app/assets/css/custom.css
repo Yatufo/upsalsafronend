@@ -139,10 +139,10 @@ div .image-selector h3 {
 
 .google-maps {
   position: relative;
-  padding-bottom: 75%; // This is the aspect ratio
-  height: 0;
+  height: 400px;
   overflow: hidden;
 }
+
 .google-maps iframe {
   position: absolute;
   top: 0;
@@ -160,10 +160,6 @@ div .fixed {
   position: fixed;
 }
 
-div .fixed.locations {
-  margin-top: 0px;
-  position: fixed;
-}
 sharesocial {
   float: right;
 }

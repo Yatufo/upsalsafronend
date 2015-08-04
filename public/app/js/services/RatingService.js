@@ -37,6 +37,9 @@ var RatingService = function($rootScope, $q, Rating) {
     generateRatings: function(location) {
       var generated = [];
       var ratedCategories = [];
+      if (! location || !location.ratings)
+        return;
+
 
       location.ratings.forEach(function(rating) {
         var summary = {

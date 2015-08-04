@@ -25,7 +25,7 @@ var MapsService = function() {
       }
     },
     isMapVisible: function() {
-      return $("#mapVisible") && $("#mapVisible").is(":visible"); //TODO change for another thing
+      return $(window).width() > 480; //TODO change for another thing
     },
     getMapCanvas: function() {
       if (!mapElement) {
@@ -33,7 +33,6 @@ var MapsService = function() {
         var mapElement = $('<div/>');
             mapElement[0].setAttribute('style',"width: 100%; height: 100%");
         mapsFrame.body.appendChild(mapElement[0]);
-        console.log('append', $('#maps-iframe'));
       }
       return mapElement[0];
     },
