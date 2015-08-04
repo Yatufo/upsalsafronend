@@ -6,6 +6,7 @@ angular.module('eventifyControllers')
   .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService',
     function($scope, $rootScope, $window, Location, maps, ratingService) {
 
+      $scope.loading = true;
       $scope.isMapView = maps.isMapVisible();
       $scope.isListView = true;
       $scope.canToggleView = !$scope.isMapView;
@@ -38,6 +39,7 @@ angular.module('eventifyControllers')
         $scope.locations = locations;
         resetGeneratedRatings();
         reloadMap();
+        $scope.loading = false;
       });
 
       $scope.toogleView = function() {
