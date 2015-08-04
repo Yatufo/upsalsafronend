@@ -77,7 +77,8 @@ var LocationSchema = new Schema({
     longitude: Number,
     latitude: Number
   },
-  ratings: []
+  ratings: [],
+  score: Number
 });
 
 var RatingSchema = new Schema({

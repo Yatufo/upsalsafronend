@@ -6,34 +6,37 @@ var data = require('../model/core-data.js');
 
 var updateLocationRatings = function(rating) {
 
-    crunchRatingData({
-      location: rating.location
-    }, function(e, ratings) {
-      data.Location.findOneAndUpdate({
-        id: rating.location
-      }, {
-        $set: {
-          ratings: ratings
-        }
-      }).exec();
-    });
+  crunchRatingData({
+    location: rating.location
+  }, function(e, ratings) {
+    data.Location.findOneAndUpdate({
+      id: rating.location
+    }, {
+      $set: {
+        ratings: ratings,
+        score: calculateRatingScore(ratings)
+      }
+    }).exec();
+  });
 
-  }
+}
 
 var updateUserRatings = function(rating) {
 
   var findAllUserRatings = new Promise(function(resolve, reject) {
-    data.Rating.find({user : rating.user}).exec(function(e, userRatings){
-      if(e) reject (e);
+    data.Rating.find({
+      user: rating.user
+    }).exec(function(e, userRatings) {
+      if (e) reject(e);
       else resolve(userRatings);
     })
   });
 
-  var updateUser = function(userRatings){
+  var updateUser = function(userRatings) {
     data.User.findById(rating.user, function(e, user) {
       if (e) throw e;
       user.ratings = userRatings;
-      user.save(function(e){
+      user.save(function(e) {
         if (e) throw e;
       })
     });
@@ -43,7 +46,16 @@ var updateUserRatings = function(rating) {
 
 }
 
-
+function calculateRatingScore(ratings) {
+  var avg = down = up = 0;
+  console.log(ratings);
+  ratings.forEach(function(rating) {
+    down += rating.votes['down'] || 0;
+    up += rating.votes['up'] || 0;
+  });
+  var avg = up / (up + down);
+  return Math.round(avg * 100) / 100;
+}
 
 var crunchRatingData = function(match, done) {
   data.Rating.aggregate()
@@ -69,15 +81,15 @@ var crunchRatingData = function(match, done) {
         ratings[result._id.category] = summary;
       });
 
-      done(undefined, Object.keys(ratings).map(function(key) {
-        return ratings[key]
+      done(undefined, Object.keys(ratings).map(function(categoryId) {
+        return ratings[categoryId]
       }));
     });
 };
 
 
 
-exports.collect =  function(rating, done) {
+exports.collect = function(rating, done) {
   updateLocationRatings(rating);
   updateUserRatings(rating);
 }
