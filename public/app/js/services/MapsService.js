@@ -14,7 +14,7 @@ var MapsService = function() {
   var mapElement;
 
   var infowindowContent = function(location) {
-    return "<a target='_parent' href='" + location.url + "'> " + location.name+ "</a>";
+    return "<a target='_parent' href='" + (location.detailsUrl || location.url) + "'> " + location.name+ "</a>";
   };
 
   var service = {

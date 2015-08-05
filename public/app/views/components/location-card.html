@@ -1,7 +1,7 @@
 <div class="panel panel-danger">
   <div class="panel-heading">
-      <a ng-href="{{location.url}}" ">{{location.name}}</a>
-      <sharesocial data-message="'Check this out'" data-url="locationUrl | fullUrl"></sharesocial>
+      <a ng-href="{{location.detailsUrl}}" ">{{location.name}}</a>
+      <sharesocial data-message="'Check this out'" data-url="location.detailsUrl"></sharesocial>
   </div>
   <div class="panel-body">
     <p>
@@ -14,7 +14,7 @@
     </p>
     <p>
       <i class="fa fa-map-marker fa-lg"></i>
-      <a ng-href="/{{city}}/locations/{{location.id}}">{{location.address}}</a>
+      <a ng-href="{{location.detailsUrl}}">{{location.address}}</a>
     </p>
     <rating data-ratings="location.summaries"></rating>
   </div>
