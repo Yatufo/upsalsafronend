@@ -38,7 +38,8 @@ exports.findById = function(req, res) {
   data.Location.findOne({
       "id": req.params.id
     })
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings comments')
+    .populate('comments')
     .exec(function(err, singleLocation) {
       if (err) {
         console.error('location not found for that id: ', req.params.id, err);

@@ -1,0 +1,13 @@
+<div>
+  <div ng-if="current.isEditable" ng-class="current.isEditing ? 'input-group' : '' ">
+    <textarea class="form-control" ng-keydown="onKeyDown(current, $event)" ng-model="current.comment" placeholder="What do you think about this place?" rows="{{current.textRows}}" style="resize:none"></textarea>
+    <span class="input-group-addon btn btn-primary" ng-click="save(current)" ng-if="current.isEditing">Post</span>
+  </div>
+  <div ng-repeat="comment in comments">
+    <div ng-class="comment.isEditing ? 'input-group' : '' ">
+      <textarea class="form-control" ng-keydown="onKeyDown(comment, $event)" ng-model="comment.comment" readonly="{{!comment.isEditable}}" rows="{{comment.textRows}}" style="resize:none"></textarea>
+      <span class="input-group-addon btn btn-primary" ng-click="save(comment)" ng-if="comment.isEditing">Post</span>
+    </div>
+    <small>{{comment.formattedDate}}</small>
+  <div>
+</div>

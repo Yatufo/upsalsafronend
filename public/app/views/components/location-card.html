@@ -16,6 +16,11 @@
       <i class="fa fa-map-marker fa-lg"></i>
       <a ng-href="{{location.detailsUrl}}">{{location.address}}</a>
     </p>
-    <rating data-ratings="location.summaries"></rating>
+    <div>
+      <rating data-ratings="location.summaries"></rating>
+    </div>
+    <div>
+      <comments data-location="location"></comments>
+    </div>
   </div>
 </div>

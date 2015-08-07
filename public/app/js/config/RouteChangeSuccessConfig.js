@@ -2,7 +2,7 @@
 
 var eventify = angular.module('eventify');
 
-var routeChangeSuccess = function($rootScope, User) {
+var routeChangeSuccess = function($rootScope, userService) {
 
 
   $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
@@ -18,13 +18,15 @@ var routeChangeSuccess = function($rootScope, User) {
 
   $rootScope.$on("authenticationChange", function(event, authenticated) {
     if (authenticated) {
-      User.get({}, function(user) {
+
+      userService.findCurrentUser().then(function (user) {
         $rootScope.user = user;
       });
+
     } else {
       $rootScope.user = {}
     }
   });
 }
 
-eventify.run(["$rootScope", "UsersResource", routeChangeSuccess]);
+eventify.run(["$rootScope", "UserService", routeChangeSuccess]);

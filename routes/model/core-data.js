@@ -78,6 +78,11 @@ var LocationSchema = new Schema({
     latitude: Number
   },
   ratings: [],
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  totalComments: Number,
   score: Number
 });
 
@@ -92,7 +97,7 @@ var RatingSchema = new Schema({
   },
   vote: String,
   user: {
-    type:  Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   }
 });
@@ -104,18 +109,54 @@ RatingSchema.set('toJSON', {
   virtuals: true
 });
 
+
+var CommentSchema = new Schema({
+  location: {
+    type: String,
+    ref: 'Location'
+  },
+  comment: String,
+  created: Date,
+  lastUpdate: Date,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  userInfo : {
+    picture: String,
+    nickname: String,
+    link : String
+  }
+});
+
+CommentSchema.virtual('id').get(function() {
+  return this._id;
+});
+CommentSchema.set('toJSON', {
+  virtuals: true
+});
+
+
 var UserSchema = new Schema({
   sync: {
-    auth0 : String
+    auth0: String,
+    updated_at: Date,
+    created_at: Date
+  },
+  publicInfo: {
+    picture: String,
+    nickname: String,
+    link : String
   },
   ratings: [{
-    type:  Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Rating'
   }],
 });
 
 
 exports.Rating = mongoose.model('Rating', RatingSchema);
+exports.Comment = mongoose.model('Comment', CommentSchema);
 exports.Category = mongoose.model('Category', CategorySchema);
 exports.Event = mongoose.model('Event', EventSchema);
 exports.Location = mongoose.model('Location', LocationSchema);

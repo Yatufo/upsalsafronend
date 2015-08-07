@@ -19,7 +19,7 @@ exports.create = function(req, res) {
     ratingData.save(function(e) {
       if (e) throw e;
 
-      res.location('/api/locations/' + ratingData.id)
+      res.location('/api/ratings/' + ratingData.id)
       res.status(201).send({
         id: ratingData.id
       });

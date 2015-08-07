@@ -50,6 +50,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 angular.module('eventify').directive('rating', function() {
   return {
     restrict: 'E',
+    replace: true,
     scope: {
       ratings: '='
     },

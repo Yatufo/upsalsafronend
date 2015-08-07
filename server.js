@@ -5,6 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var events = require('./routes/api/EventsRoute.js');
 var ratings = require('./routes/api/RatingsRoute.js');
+var comments = require('./routes/api/CommentsRoute.js');
 var locations = require('./routes/api/LocationsRoute.js');
 var categories = require('./routes/api/CategoriesRoute.js');
 var users = require('./routes/api/UsersRoute.js');
@@ -51,8 +52,11 @@ app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
 app.post('/api/ratings', auth, ratings.create);
+app.post('/api/comments', auth, comments.create);
 app.get('/api/users/me', auth, users.findCurrent);
+app.post('/api/users/me', auth, users.findOrCreate);
 app.put('/api/ratings/:id', auth, ratings.update);
+app.put('/api/comments/:id', auth, comments.update);
 app.get('/api/sync', backoffice.syncEvents);
 
 
@@ -65,7 +69,7 @@ app.get('/*', function(req, res) {
 app.use(function(err, req, res, next) {
 
   if (err.name === 'UnauthorizedError') {
-    res.send(401, 'Invalid Token');
+    res.status(401).send('Invalid Token');
   } else {
     console.error(err);
     res.status(500).send('Something broke!');

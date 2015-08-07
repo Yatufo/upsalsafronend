@@ -4,15 +4,6 @@
 
 var RatingService = function($rootScope, $q, Rating) {
 
-  var SummaryBase = {
-    isUp: function() {
-      return (this.vote === 'up');
-    },
-    isDown: function() {
-      return (this.vote === 'down');
-    }
-  }
-
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
     return ['class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {

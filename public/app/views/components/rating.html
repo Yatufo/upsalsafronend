@@ -6,7 +6,7 @@
         {{rating.category.name}}
       </li>
       <li>
-        <a data-ng-click="rate(rating, 'up')" data-ng-disabled="rating.voted">
+        <a data-ng-click="rate(rating, 'up')">
           <i class="fa" data-ng-class="( isRated(rating, 'up') ? 'fa-thumbs-up': 'fa-thumbs-o-up')">
             {{rating.votes['up']}}
           </i>
