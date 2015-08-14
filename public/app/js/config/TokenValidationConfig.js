@@ -1,4 +1,4 @@
-'use strict';
+
 
 var eventify = angular.module('eventify');
 

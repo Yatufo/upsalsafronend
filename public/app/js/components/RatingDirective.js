@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* App Module */
 var RatingDirectiveController = function($scope, $rootScope, service) {

@@ -42,6 +42,8 @@ exports.update = function(req, res) {
     if (e) throw e;
 
     res.status(204).send();
-    commentCollector.collect(commentData);
+    commentCollector.collect(commentData, function (e) {
+      if (e) console.warn("Comment not added to the location", e);
+    });
   });
 };

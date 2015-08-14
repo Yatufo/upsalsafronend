@@ -113,14 +113,16 @@ RatingSchema.set('toJSON', {
 var CommentSchema = new Schema({
   location: {
     type: String,
-    ref: 'Location'
+    ref: 'Location',
+    required : true
   },
-  comment: String,
-  created: Date,
-  lastUpdate: Date,
+  comment: { type : String, required : true },
+  created: { type : Date, required : true },
+  lastUpdate: { type : Date, required : true },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required : true
   },
   userInfo : {
     picture: String,

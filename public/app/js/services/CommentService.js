@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Service */
 
@@ -6,16 +6,19 @@ var RatingService = function($rootScope, $q, Comment) {
 
   var service = {
 
-    isCommentAllowed : function (location) {
+    isCommentAllowed : function (commentable) {
+      if (_.isEmpty($rootScope.user))
+        return true;
+
       var userId = $rootScope.user._id;
-      return _.isEmpty(_.findWhere(location.comments, {user : userId}));
+      return _.isEmpty(_.findWhere(commentable.comments, {user : userId}));
     },
     saveOrUpdateComment: function(comment) {
       return $q(function(resolve, reject) {
 
         var resource = new Comment({
           id: comment.id,
-          location: comment.location.id,
+          location: comment.target.id,
           comment: comment.comment
         });
 

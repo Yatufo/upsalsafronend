@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Service */
 var AnalyticsService = function ($rootScope, $window, $location) {

@@ -42,18 +42,24 @@ module.exports = function(grunt) {
       app: {
         src: ['app/js/**/*.js'],
         dest: 'app/assets/js/<%= pkg.name %>.js',
-      }
-      ,deps: {
+      },
+      deps: {
         src: ['app/bower_components/**/angular-*.js',
-              'app/bower_components/**/build/*.js',
-              'app/bower_components/**/dist/*.js',
-               '!**/*.min.js'],
+          'app/bower_components/**/build/*.js',
+          'app/bower_components/**/dist/*.js',
+          '!**/*.min.js'
+        ],
         dest: 'app/assets/js/dependencies.js',
       }
+    },
+    jshint: {
+      beforeconcat: ['app/js/**/*.js'],
+      afterconcat: ['app/assets/js/<%= pkg.name %>.js']
     }
   });
 
   // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');

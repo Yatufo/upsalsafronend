@@ -1,28 +1,34 @@
-'use strict';
-
 /* App Module */
 var CommentDirectiveController = function($scope, $rootScope, service) {
 
-  $scope.comments = $scope.location.comments || [];
-  $scope.comments.forEach(function (comment) {
-    comment.formattedDate = moment(comment.lastUpdate).fromNow();
-    comment.isEditable = $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
-  });
+  var reset = function(commentable) {
+    if (_.isEmpty(commentable))
+      return;
 
-  function reset() {
     $scope.current = {
-      location : $scope.location,
-      isEditable: service.isCommentAllowed($scope.location),
+      target: commentable,
+      isEditable: true, //service.isCommentAllowed(commentable),
       textRows: 1,
       isEditing: false,
       comment: null
-    }
-  }
+    };
 
-  reset();
+    if (commentable.comments) {
+      commentable.comments.forEach(function(comment) {
+        comment.formattedDate = moment(comment.lastUpdate).fromNow();
+        comment.isEditable = $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
+      });
+    }
+  };
+
+  $scope.$watch("commentable", function(newValue, oldValue) {
+    reset(newValue);
+  });
+
   $scope.$watch("current.comment", function(newValue, oldValue) {
-    $scope.current.isEditing = !_.isEmpty(newValue);
-  })
+    if ($scope.current)
+      $scope.current.isEditing = !_.isEmpty(newValue);
+  });
 
   $scope.onKeyDown = function(comment, e) {
 
@@ -37,23 +43,23 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     }
 
     return true;
-  }
+  };
 
   $scope.save = function(comment) {
     comment.isEditing = false;
 
     service.saveOrUpdateComment(comment)
-    .then(function() {
-      $scope.comments.push(comment);
-      reset();
-    }).catch(function (e) {
-      console.warn('comment not saved', e);
-    });
+      .then(function() {
+        $scope.commentable.comments.push(comment);
+        reset();
+      }).catch(function(e) {
+        console.warn('comment not saved', e);
+      });
 
 
-  }
+  };
 
-}
+};
 
 
 angular.module('eventify').directive('comments', function() {
@@ -61,9 +67,9 @@ angular.module('eventify').directive('comments', function() {
     restrict: 'E',
     replace: true,
     scope: {
-      location: '='
+      commentable: '='
     },
-    controller: ['$scope', '$rootScope', 'CommentService',CommentDirectiveController],
+    controller: ['$scope', '$rootScope', 'CommentService', CommentDirectiveController],
     templateUrl: 'views/components/comments.html'
   };
 });

@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Controllers */
 
@@ -6,16 +6,16 @@ angular.module('eventifyControllers')
   .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService',
     function($rootScope, $scope, $routeParams, Location, maps, ratingService) {
 
+      var resetSummaries = function(){
+        if ($scope.location)
+          $scope.location.summaries = ratingService.generateRatings($scope.location);
+      };
 
-      $scope.location = {};
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
-          resetGeneratedRatings();
+          resetSummaries();
         }
       });
-      var resetGeneratedRatings = function() {
-          $scope.location.summaries = ratingService.generateRatings($scope.location);
-      }
 
       Location.get({
         locationId: $routeParams.locationId
@@ -25,7 +25,7 @@ angular.module('eventifyControllers')
         maps.addLocation(location);
 
         $scope.location = location;
-        resetGeneratedRatings();
+        resetSummaries();
       });
 
       window.scrollTo(0, 0);

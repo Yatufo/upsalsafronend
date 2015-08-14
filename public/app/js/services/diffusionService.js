@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Service */
 var diffusionService = function($rootScope) {

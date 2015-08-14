@@ -1,4 +1,4 @@
-'use strict';
+
 
 //TODO: use module.config
 var config_module = angular.module('eventifyConfig', [])

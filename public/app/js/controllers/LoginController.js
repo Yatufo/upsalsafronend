@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Controllers */
 var LoginController = function($scope, $http, auth, store, $location) {

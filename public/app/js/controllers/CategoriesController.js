@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* Controllers */
 var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusionService) {

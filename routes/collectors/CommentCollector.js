@@ -2,19 +2,18 @@ var data = require('../model/core-data.js');
 
 
 
-var updateLocationComments = function(comment) {
-
+var updateLocationComments = function(comment, done) {
   data.Location.findOneAndUpdate({
     id: comment.location
   }, {
     $addToSet: {
       comments: comment._id
     }
-  }).exec();
+  }).exec(done);
 
 }
 
 
 exports.collect = function(comment, done) {
-  updateLocationComments(comment);
+  updateLocationComments(comment, done);
 }
