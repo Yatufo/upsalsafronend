@@ -5,14 +5,15 @@
   </div>
   <div class="comment-group" ng-repeat="comment in commentable.comments">
     <a class="comment-cell" ng-href="{{comment.userInfo.link}}" target="_blank">
-      <img class="avatar" alt="" ng-src="{{comment.userInfo.picture}}"/>
+      <img alt="" class="avatar" ng-src="{{comment.userInfo.picture}}"/>
     </a>
-    <div class="comment-cell" ng-class="comment.isEditing ? 'input-group' : '' ">
-      <textarea class="form-control" ng-keydown="onKeyDown(comment, $event)" ng-model="comment.comment" readonly="{{!comment.isEditable}}" rows="{{comment.textRows}}" style="resize:none"></textarea>
-      <span class="input-group-addon btn btn-primary" ng-click="save(comment)" ng-if="comment.isEditing">Post</span>
-      <small>{{comment.formattedDate}}</small>
+    <div class="comment-cell">
+      <div ng-class="comment.isEditing ? 'input-group' : '' ">
+        <textarea class="form-control" ng-keydown="onKeyDown(comment, $event)" ng-model="comment.comment" ng-readonly="!comment.isEditing" rows="{{comment.textRows}}" style="resize:none"></textarea>
+        <span class="input-group-addon btn btn-primary" ng-click="save(comment)" ng-if="comment.isEditing">Save</span>
+      </div>
+      <small>{{comment.formattedDate}}</small> <a ng-click="edit(comment)">edit</a> 
     </div>
   </div>
-
 
 </div>

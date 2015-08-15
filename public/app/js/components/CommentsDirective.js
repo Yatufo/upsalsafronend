@@ -30,6 +30,11 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
       $scope.current.isEditing = !_.isEmpty(newValue);
   });
 
+  $scope.edit = function (comment) {
+    comment.originalComment = comment.comment;
+    comment.isEditing = true;
+  }
+
   $scope.onKeyDown = function(comment, e) {
 
     if (e.keyCode == 13) {
@@ -39,7 +44,8 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
         $scope.save(comment);
       }
     } else if (e.which == 27) {
-      reset();
+      comment.comment = comment.originalComment;
+      comment.isEditing = false;
     }
 
     return true;
@@ -53,6 +59,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
         $scope.commentable.comments.push(comment);
         reset();
       }).catch(function(e) {
+        comment.isEditing = true;
         console.warn('comment not saved', e);
       });
 
