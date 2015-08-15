@@ -28,22 +28,25 @@ exports.create = function(req, res) {
 };
 
 //
-//
+//allows a user to modify her own comments.
 exports.update = function(req, res) {
+  var userId = req.user.sub;
+  console.log(req.body);
 
-  data.Rating.findOneAndUpdate({
-    _id: req.body.id
-  }, {
-    $set: {
-      lastUpdate: new Date(),
-      comment: req.body.comment
-    }
-  }, null, function(e, commentData) {
-    if (e) throw e;
+  usersRoute.findById(userId)
+    .then(function(user) {
+      data.Comment.findOneAndUpdate({
+        _id: req.body.id,
+        user: user._id
+      }, {
+        $set: {
+          lastUpdate: new Date(),
+          comment: req.body.comment
+        }
+      }, function(e, commentData) {
+        if (e) throw e;
 
-    res.status(204).send();
-    commentCollector.collect(commentData, function (e) {
-      if (e) console.warn("Comment not added to the location", e);
+        res.status(204).send();
+      });
     });
-  });
 };

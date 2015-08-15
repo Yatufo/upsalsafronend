@@ -10,6 +10,6 @@ var TokenConfig = function (authProvider, $routeProvider, $httpProvider, jwtInte
   }];
 
   $httpProvider.interceptors.push('jwtInterceptor');
-}
+};
 
 eventify.config(["authProvider", "$routeProvider", "$httpProvider", "jwtInterceptorProvider", TokenConfig]);

@@ -24,7 +24,7 @@ angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsServic
           action: 'share',
           url: $scope.url
         });
-      }
+      };
     }],
     templateUrl: 'views/components/share-social.html'
   };

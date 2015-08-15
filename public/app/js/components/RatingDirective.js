@@ -11,15 +11,15 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
       rating.votes[oldVote] = rating.votes[oldVote] - 1 || undefined;
     }
     rating.votes[currentVote] = rating.votes[currentVote] + 1 || 1;
-  }
+  };
 
   var resetCurrent = function () {
-    $scope.current = _.findWhere($scope.ratings, { "votes" : null})
-  }
+    $scope.current = _.findWhere($scope.ratings, { "votes" : null});
+  };
 
   $scope.isRated = function (rating, vote) {
     return rating.vote === vote;
-  }
+  };
 
   $scope.$watch("ratings", function() {
     resetCurrent();
@@ -41,10 +41,10 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
     }).catch(function (e) {
       rating.vote = unsavedVote;
     });
-  }
+  };
 
 
-}
+};
 
 
 angular.module('eventify').directive('rating', function() {

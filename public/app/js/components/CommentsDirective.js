@@ -7,7 +7,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
 
     $scope.current = {
       target: commentable,
-      isEditable: true, //service.isCommentAllowed(commentable),
+      isEditable: service.isCommentAllowed(commentable),
       textRows: 1,
       isEditing: false,
       comment: null
@@ -15,6 +15,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
 
     if (commentable.comments) {
       commentable.comments.forEach(function(comment) {
+        comment.target = comment.location;
         comment.formattedDate = moment(comment.lastUpdate).fromNow();
         comment.isEditable = $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
       });
@@ -33,7 +34,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
   $scope.edit = function (comment) {
     comment.originalComment = comment.comment;
     comment.isEditing = true;
-  }
+  };
 
   $scope.onKeyDown = function(comment, e) {
 
@@ -56,7 +57,9 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
 
     service.saveOrUpdateComment(comment)
       .then(function() {
-        $scope.commentable.comments.push(comment);
+        if (! comment._id) {
+          $scope.commentable.comments.push(comment);
+        }
         reset();
       }).catch(function(e) {
         comment.isEditing = true;
