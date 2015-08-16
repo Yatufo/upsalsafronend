@@ -21,7 +21,9 @@ exports.create = function(req, res) {
         res.status(201).send({
           id: commentData.id
         });
-        commentCollector.collect(commentData);
+        commentCollector.collect(commentData, function (e) {
+          if (e) { console.warn("Could not collect the comment", e);}
+        });
       });
     });
 

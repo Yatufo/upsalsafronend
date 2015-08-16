@@ -13,6 +13,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
       comment: null
     };
 
+
     if (commentable.comments) {
       commentable.comments.forEach(function(comment) {
         comment.target = comment.location;
@@ -22,14 +23,16 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     }
   };
 
-  reset($scope.commentable);
+  $scope.$watch("commentable", function(newValue, oldValue) {
+    reset(newValue);
+  });
 
   $scope.$watch("current.comment", function(newValue, oldValue) {
     if ($scope.current)
       $scope.current.isEditing = !_.isEmpty(newValue);
   });
 
-  $scope.edit = function (comment) {
+  $scope.edit = function(comment) {
     comment.originalComment = comment.comment;
     comment.isEditing = true;
   };
@@ -55,9 +58,10 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
 
     service.saveOrUpdateComment(comment)
       .then(function() {
-        if (! comment._id) {
+        if (!comment._id) {
           $scope.commentable.comments.push(comment);
         }
+        $scope.expanded = true;
         reset($scope.commentable);
       }).catch(function(e) {
         comment.isEditing = true;
@@ -65,9 +69,9 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
       });
   };
 
-  $scope.toogleView = function () {
+  $scope.toogleView = function() {
     $scope.expanded = !$scope.expanded;
-  }
+  };
 
 };
 

@@ -1,5 +1,3 @@
-
-
 /* Controllers */
 
 angular.module('eventifyControllers')

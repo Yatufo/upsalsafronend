@@ -21,9 +21,9 @@ exports.create = function(req, res) {
 exports.findAll = function(req, res) {
 
   var maxResults = ctx.LOCATIONS_MAXRESULTS;
-
   data.Location.find()
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings score')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings score comments')
+    .populate('comments')
     .sort({ score: -1 })
     .limit(maxResults)
     .exec(function(err, locations) {

@@ -82,7 +82,6 @@ var LocationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Comment'
   }],
-  totalComments: Number,
   score: Number
 });
 

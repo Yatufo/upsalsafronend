@@ -1,10 +1,11 @@
 <div>
+
   <div ng-class="current.isEditing ? 'input-group' : '' " ng-if="current.isEditable">
     <textarea class="form-control" ng-keydown="onKeyDown(current, $event)" ng-model="current.comment" placeholder="What do you think about this place?" rows="{{current.textRows}}" style="resize:none"></textarea>
     <span class="input-group-addon btn btn-primary" ng-click="save(current)" ng-if="current.isEditing">Post</span>
   </div>
 
-  <a ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{5}} comments</small></a>
+  <a ng-if="commentable.comments.length" ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{commentable.comments.length}} comment(s)</small></a>
   <div ng-if="expanded" class="comment-group" ng-repeat="comment in commentable.comments">
     <a class="comment-cell" ng-href="{{comment.userInfo.link}}" target="_blank">
       <img alt="" class="avatar" ng-src="{{comment.userInfo.picture}}"/>
