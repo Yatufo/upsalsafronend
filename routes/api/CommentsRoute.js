@@ -18,9 +18,7 @@ exports.create = function(req, res) {
         if (e) throw e;
 
         res.location('/api/comments/' + commentData.id)
-        res.status(201).send({
-          id: commentData.id
-        });
+        res.status(201).send(commentData);
         commentCollector.collect(commentData, function (e) {
           if (e) { console.warn("Could not collect the comment", e);}
         });

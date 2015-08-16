@@ -24,8 +24,7 @@ var RatingService = function($rootScope, $q, Comment) {
 
         if (!resource.id) {
           resource.$save(function(saved) {
-            comment.id = saved.id;
-            resolve(comment);
+            resolve(saved);
           }, reject);
         } else {
           Comment.update(resource, resolve, reject);

@@ -57,9 +57,9 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     comment.isEditing = false;
 
     service.saveOrUpdateComment(comment)
-      .then(function() {
+      .then(function(saved) {
         if (!comment._id) {
-          $scope.commentable.comments.push(comment);
+          $scope.commentable.comments.push(saved);
         }
         $scope.expanded = true;
         reset($scope.commentable);
