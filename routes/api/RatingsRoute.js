@@ -6,43 +6,48 @@ var ratingCollector = require('../collectors/RatingCollector.js');
 
 exports.create = function(req, res) {
 
-  var resolveUser = new Promise(function(resolve, reject) {
-    usersRoute.findOrCreate(req, "", function(user) {
-      if (user) resolve(user);
-      else reject();
-    });
-  });
+  var userId = req.user.sub;
 
-  resolveUser.then(function(user) {
-    var ratingData = new data.Rating(req.body);
-    ratingData.user = user._id;
-    ratingData.save(function(e) {
-      if (e) throw e;
+  usersRoute
+    .findById(userId)
+    .then(function(user) {
+      var ratingData = new data.Rating(req.body);
+      ratingData.user = user._id;
+      ratingData.save(function(e) {
+        if (e) throw e;
 
-      res.location('/api/ratings/' + ratingData.id)
-      res.status(201).send({
-        id: ratingData.id
+        res.location('/api/ratings/' + ratingData.id)
+        res.status(201).send({
+          id: ratingData.id
+        });
+        ratingCollector.collect(ratingData);
       });
-      ratingCollector.collect(ratingData);
     });
-  });
 
 };
 
 //
 //
 exports.update = function(req, res) {
+  var userId = req.user.sub;
 
-  data.Rating.findOneAndUpdate({
-    _id: req.body.id
-  }, {
-    $set: {
-      vote: req.body.vote
-    }
-  }, null, function(e, ratingData) {
-    if (e) throw e;
+  usersRoute
+    .findById(userId)
+    .then(function(user) {
 
-    res.status(204).send();
-    ratingCollector.collect(ratingData);
-  });
+      data.Rating.findOneAndUpdate({
+        _id: req.body.id,
+        user: user._id // Find also by user, so rating can only be changed by the original user.
+      }, {
+        $set: {
+          vote: req.body.vote
+        }
+      }, null, function(e, ratingData) {
+        if (e) throw e;
+
+        res.status(204).send();
+        ratingCollector.collect(ratingData);
+      });
+
+    });
 };

@@ -7,7 +7,8 @@ var commentCollector = require('../collectors/CommentCollector.js');
 exports.create = function(req, res) {
   var userId = req.user.sub;
 
-  usersRoute.findById(userId)
+  usersRoute
+    .findById(userId)
     .then(function(user) {
       var commentData = new data.Comment(req.body);
       commentData.created = new Date();
@@ -31,9 +32,9 @@ exports.create = function(req, res) {
 //allows a user to modify her own comments.
 exports.update = function(req, res) {
   var userId = req.user.sub;
-  console.log(req.body);
 
-  usersRoute.findById(userId)
+  usersRoute
+    .findById(userId)
     .then(function(user) {
       data.Comment.findOneAndUpdate({
         _id: req.body.id,
