@@ -27,10 +27,13 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     reset(newValue);
   });
 
-  $scope.$watch("current.comment", function(newValue, oldValue) {
-    if ($scope.current)
-      $scope.current.isEditing = !_.isEmpty(newValue);
-  });
+  $scope.$watch("current.comment", _.debounce(function(newValue, oldValue) {
+    if ($scope.current) {
+      $scope.$apply(function() {
+        $scope.current.isEditing = !_.isEmpty(newValue);
+      })
+    }
+  }));
 
   $scope.edit = function(comment) {
     comment.originalComment = comment.comment;
