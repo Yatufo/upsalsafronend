@@ -25,6 +25,10 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
     resetCurrent();
   });
 
+  $scope.toogleView = function () {
+    $scope.showAll = !$scope.showAll;
+  }
+
   $scope.rate = function(rating, userVote) {
 
     //if there are no changes in the vote

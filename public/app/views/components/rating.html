@@ -1,5 +1,5 @@
 <ul class="list-inline">
-  <li class="list-group-item"  data-ng-if="rating.votes" data-ng-repeat="rating in ratings">
+  <li class="list-group-item" data-ng-if="showAll || rating.votes" data-ng-repeat="rating in ratings">
 
     <ul class="list-inline">
       <li>
@@ -14,7 +14,7 @@
       </li>
       <li>
         <a ng-click="rate(rating, 'down')">
-          <i class="fa" data-ng-class="(  isRated(rating, 'down') ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
+          <i class="fa" data-ng-class="( isRated(rating, 'down') ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
             {{rating.votes['down']}}
           </i>
         </a>
@@ -23,7 +23,7 @@
 
   </li>
 
-  <li data-ng-if="current" class="list-group-item">
+  <li class="list-group-item" data-ng-if="!showAll && current">
     <ul class="list-inline" data-ng-if="current">
       <li>
         {{current.category.name}}
@@ -41,5 +41,9 @@
       </li>
     </ul>
   </li>
-
+  <a ng-click="toogleView()">
+    <i class="fa" ng-class="showAll ? 'fa-minus' : 'fa-plus'">
+      {{showAll ? 'less' : 'more'}}
+    </i>
+  </a>
 </ul>
