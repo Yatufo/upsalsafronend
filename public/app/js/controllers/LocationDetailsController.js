@@ -23,6 +23,7 @@ angular.module('eventifyControllers')
 
         maps.init(location, 14);
         maps.addLocation(location);
+        location.showComments = true;
 
         $scope.location = location;
         resetSummaries();

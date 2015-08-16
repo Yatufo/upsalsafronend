@@ -22,9 +22,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     }
   };
 
-  $scope.$watch("commentable", function(newValue, oldValue) {
-    reset(newValue);
-  });
+  reset($scope.commentable);
 
   $scope.$watch("current.comment", function(newValue, oldValue) {
     if ($scope.current)
@@ -60,14 +58,16 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
         if (! comment._id) {
           $scope.commentable.comments.push(comment);
         }
-        reset();
+        reset($scope.commentable);
       }).catch(function(e) {
         comment.isEditing = true;
         console.warn('comment not saved', e);
       });
-
-
   };
+
+  $scope.toogleView = function () {
+    $scope.expanded = !$scope.expanded;
+  }
 
 };
 
@@ -77,7 +77,8 @@ angular.module('eventify').directive('comments', function() {
     restrict: 'E',
     replace: true,
     scope: {
-      commentable: '='
+      commentable: '=',
+      expanded: '='
     },
     controller: ['$scope', '$rootScope', 'CommentService', CommentDirectiveController],
     templateUrl: 'views/components/comments.html'

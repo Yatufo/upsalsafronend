@@ -40,6 +40,7 @@ angular.module('eventifyControllers')
 
         $scope.locations.forEach(function(location) {
           location.detailsUrl = window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
+          location.showComments = false;
         });
 
         resetGeneratedRatings();

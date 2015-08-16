@@ -4,7 +4,8 @@
     <span class="input-group-addon btn btn-primary" ng-click="save(current)" ng-if="current.isEditing">Post</span>
   </div>
 
-  <div class="comment-group" ng-repeat="comment in commentable.comments">
+  <a ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{5}} comments</small></a>
+  <div ng-if="expanded" class="comment-group" ng-repeat="comment in commentable.comments">
     <a class="comment-cell" ng-href="{{comment.userInfo.link}}" target="_blank">
       <img alt="" class="avatar" ng-src="{{comment.userInfo.picture}}"/>
     </a>
