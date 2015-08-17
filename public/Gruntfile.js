@@ -24,6 +24,20 @@ module.exports = function(grunt) {
       app: {
         src: ['app/js/**/*.js', '!app/js/*.min.js'],
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
+      },
+      deps: {
+        src: ['app/bower_components/**/angular-storage.min.js',
+          'app/bower_components/**/angular-cookies.min.js',
+          'app/bower_components/**/angular-jwt.min.js',
+          'app/bower_components/**/angular-resource.min.js',
+          'app/bower_components/**/angular-route.min.js',
+          'app/bower_components/**/auth0-angular.min.js',
+          'app/bower_components/**/auth0-lock.min.js',
+          'app/bower_components/**/auth0.min.js',
+          'app/bower_components/**/moment.min.js',
+          'app/bower_components/**/underscore-min.js'
+        ],
+        dest: 'app/assets/js/dependencies.min.js',
       }
     },
     wiredep: {
