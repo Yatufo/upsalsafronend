@@ -24,10 +24,6 @@ module.exports = function(grunt) {
       app: {
         src: ['app/js/**/*.js', '!app/js/*.min.js'],
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
-      },
-      deps: {
-        src: ['app/bower_components/**/*min.js', '!**/angular.min.js', '!**/bootstrap.min.js', '!**/jquery.min.js'],
-        dest: 'app/assets/js/dependencies.min.js',
       }
     },
     wiredep: {

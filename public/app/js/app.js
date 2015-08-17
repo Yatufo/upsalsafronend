@@ -12,8 +12,7 @@ var eventify = angular.module('eventify', [
   'eventifyFilters',
   'eventifyConfig',
   'eventifyServices',
-  'eventifyResources',
-  'xeditable'
+  'eventifyResources'
 ]);
 
 
