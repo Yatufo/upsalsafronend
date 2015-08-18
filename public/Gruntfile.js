@@ -35,9 +35,10 @@ module.exports = function(grunt) {
           'app/bower_components/**/auth0-lock.min.js',
           'app/bower_components/**/auth0.min.js',
           'app/bower_components/**/moment.min.js',
+          'app/bower_components/**/ng-infinite-scroll.min.js',
           'app/bower_components/**/underscore-min.js'
         ],
-        dest: 'app/assets/js/dependencies.min.js',
+        dest: 'app/assets/js/dependencies.js',
       }
     },
     wiredep: {

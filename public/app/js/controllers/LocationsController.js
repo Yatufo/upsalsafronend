@@ -9,11 +9,30 @@ angular.module('eventifyControllers')
       $scope.isListView = true;
       $scope.canToggleView = !$scope.isMapView;
       $scope.isMapLoaded = false;
+      $scope.currentPage = 0;
+      $scope.pageSize = 10;
+      $scope.locations = [];
+
+      $scope.loadMore = function() {
+        if (!$scope.allLocations || $scope.allLocations.length <= fromIndex) return;
+
+        var fromIndex = $scope.currentPage * $scope.pageSize;
+        var toIndex = fromIndex + $scope.pageSize - 1;
+
+        for (var i = fromIndex; i < toIndex; i++) {
+          if ($scope.allLocations[i]) {
+            $scope.locations.push($scope.allLocations[i]);
+          }
+        }
+
+        $scope.currentPage++;
+      }
+
 
       function reloadMap(forceReload) {
         if ($scope.isMapView && (forceReload || !$scope.isMapLoaded)) {
           maps.init();
-          $scope.locations.forEach(function(location) {
+          $scope.allLocations.forEach(function(location) {
             maps.addLocation(location);
           });
           $scope.isMapLoaded = true;
@@ -26,21 +45,21 @@ angular.module('eventifyControllers')
         }
       });
 
-      $scope.locations = [];
       var resetGeneratedRatings = function() {
-        $scope.locations.forEach(function(location) {
+        $scope.allLocations.forEach(function(location) {
           location.summaries = ratingService.generateRatings(location);
         });
       }
 
       Location.query({}, function(locations) {
-        $scope.locations = locations;
+        $scope.allLocations = locations;
 
-        $scope.locations.forEach(function(location) {
+        $scope.allLocations.forEach(function(location) {
           location.detailsUrl = window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
           location.showComments = false;
         });
 
+        $scope.loadMore();
         resetGeneratedRatings();
         reloadMap();
         $scope.loading = false;

@@ -18,6 +18,7 @@
     "angular-route": "~1.4.3",
     "underscore": "~1.8.3",
     "a0-angular-storage": "~0.0.12",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "ngInfiniteScroll": "~1.2.1"
   }
 }

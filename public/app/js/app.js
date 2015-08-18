@@ -12,6 +12,7 @@ var eventify = angular.module('eventify', [
   'eventifyFilters',
   'eventifyConfig',
   'eventifyServices',
+  'infinite-scroll',
   'eventifyResources'
 ]);
 
