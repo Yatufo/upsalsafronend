@@ -23,8 +23,6 @@ function createUser(user) {
   return new Promise(function(resolve, reject) {
     var newUser = new data.User(user);
     newUser.save(function(e) {
-      console.log("saved", newUser);
-
       if (e) reject(e);
       else resolve(newUser);
     });
