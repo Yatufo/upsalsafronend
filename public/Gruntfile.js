@@ -38,7 +38,7 @@ module.exports = function(grunt) {
           'app/bower_components/**/ng-infinite-scroll.min.js',
           'app/bower_components/**/underscore-min.js'
         ],
-        dest: 'app/assets/js/dependencies.js',
+        dest: 'app/assets/js/dependencies.min.js',
       }
     },
     wiredep: {
