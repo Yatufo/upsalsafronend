@@ -7,7 +7,9 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
 
     $scope.current = {
       target: commentable,
-      isEditable: service.isCommentAllowed(commentable),
+      isEditable: function () {
+        return service.isCommentAllowed(commentable); 
+      },
       textRows: 1,
       isEditing: false,
       comment: null
@@ -18,7 +20,9 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
       commentable.comments.forEach(function(comment) {
         comment.target = comment.location;
         comment.formattedDate = moment(comment.lastUpdate).fromNow();
-        comment.isEditable = $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
+        comment.isEditable = function() {
+          return $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
+        }
       });
     }
   };
