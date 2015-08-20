@@ -1,5 +1,3 @@
-
-
 var eventify = angular.module('eventify');
 
 var routeChangeSuccess = function($rootScope, userService) {
@@ -14,19 +12,23 @@ var routeChangeSuccess = function($rootScope, userService) {
         metaDescription: "Find the best places and events to learn or dance in " + $rootScope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
       };
     }
+
+    reloadUser(!_.isEmpty($rootScope.user));
   });
 
   $rootScope.$on("authenticationChange", function(event, authenticated) {
-    if (authenticated) {
+    reloadUser(authenticated);
+  });
 
-      userService.findCurrentUser().then(function (user) {
+  function reloadUser(shouldReset) {
+    if (shouldReset) {
+      userService.findCurrentUser().then(function(user) {
         $rootScope.user = user;
       });
-
     } else {
       $rootScope.user = {};
     }
-  });
+  }
 };
 
 eventify.run(["$rootScope", "UserService", routeChangeSuccess]);

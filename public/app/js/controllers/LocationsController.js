@@ -4,6 +4,7 @@ angular.module('eventifyControllers')
   .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService',
     function($scope, $rootScope, $window, Location, maps, ratingService) {
 
+      $scope.allLocations = [];
       $scope.loading = true;
       $scope.isMapView = maps.isMapVisible();
       $scope.isListView = true;
@@ -14,12 +15,13 @@ angular.module('eventifyControllers')
       $scope.locations = [];
 
       $scope.loadMore = function() {
-        if (!$scope.allLocations || $scope.allLocations.length <= fromIndex) return;
 
         var fromIndex = $scope.currentPage * $scope.pageSize;
         var toIndex = fromIndex + $scope.pageSize - 1;
 
-        for (var i = fromIndex; i < toIndex; i++) {
+        if (!$scope.allLocations || $scope.allLocations.length <= fromIndex) return;
+
+        for (var i = fromIndex; i <= toIndex; i++) {
           if ($scope.allLocations[i]) {
             $scope.locations.push($scope.allLocations[i]);
           }
@@ -41,11 +43,11 @@ angular.module('eventifyControllers')
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
-          resetGeneratedRatings();
+          resetSummaries();
         }
       });
 
-      var resetGeneratedRatings = function() {
+      var resetSummaries = function() {
         $scope.allLocations.forEach(function(location) {
           location.summaries = ratingService.generateRatings(location);
         });
@@ -60,7 +62,7 @@ angular.module('eventifyControllers')
         });
 
         $scope.loadMore();
-        resetGeneratedRatings();
+        resetSummaries();
         reloadMap();
         $scope.loading = false;
       });
