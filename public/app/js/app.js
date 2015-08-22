@@ -8,12 +8,13 @@ var eventify = angular.module('eventify', [
   'auth0',
   'angular-storage',
   'angular-jwt',
+  'infinite-scroll',
   'eventifyControllers',
   'eventifyFilters',
   'eventifyConfig',
   'eventifyServices',
-  'infinite-scroll',
-  'eventifyResources'
+  'eventifyResources',
+  'eventifyTemplates'
 ]);
 
 

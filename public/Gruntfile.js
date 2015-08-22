@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         files: 'Gruntfile.js'
       },
       html: {
-        tasks: ['concat:app'],
+        tasks: ['html2js', 'concat:app'],
         files: ['app/js/**/*.js', 'app/**/*.html', 'app/assets/css/*.css'],
         options: {
           livereload: true
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         mangle: true
       },
       app: {
-        src: ['app/js/**/*.js', '!app/js/*.min.js'],
+        src: ['app/js/**/*.js', 'app/assets/js/templates.js'],
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
       },
       deps: {
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         separator: ';',
       },
       app: {
-        src: ['app/js/**/*.js'],
+        src: ['app/js/**/*.js', 'app/assets/js/templates.js'],
         dest: 'app/assets/js/<%= pkg.name %>.js',
       },
       deps: {
@@ -66,6 +66,17 @@ module.exports = function(grunt) {
     jshint: {
       beforeconcat: ['app/js/**/*.js'],
       afterconcat: ['app/assets/js/<%= pkg.name %>.js']
+    },
+    html2js: {
+      options: {
+        base: "app",
+        module: "eventifyTemplates",
+        singleModule : true
+      },
+      main: {
+        src: ['app/views/**/*.html'],
+        dest: 'app/assets/js/templates.js'
+      }
     }
   });
 
@@ -74,9 +85,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-wiredep');
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
-
+  grunt.registerTask('compile', ['html2js', 'uglify'])
 };

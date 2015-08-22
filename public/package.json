@@ -5,13 +5,15 @@
   "description": "A cloud based events displayer app",
   "repository": "https://bitbucket.org/pdemonio/repo.git",
   "scripts": {
-    "postinstall": "bower install && grunt uglify"
+    "postinstall": "bower install && grunt compile"
   },
   "dependencies": {
     "bower": "latest",
     "grunt": "latest",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-uglify": "latest"
+    "grunt-contrib-uglify": "latest",
+    "grunt-html2js": "^0.3.4",
+    "html-minifier": "^0.7.2"
   },
   "devDependencies": {
     "grunt-bower-concat": "latest",
