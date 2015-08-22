@@ -1,17 +1,17 @@
 <ul class="list-inline">
     <li>
-        <a data-ng-href="{{facebookUrl}}" target="_blank" ng-click="share(facebookUrl, $event);">
+        <a ng-click="share('facebook', $event);">
             <i class="fa fa-facebook fa-2x"></i>
         </a>
     </li>
 
     <li>
-        <a data-ng-href="{{twitterUrl}}" ng-click="share(twitterUrl, $event);" target="_blank">
+        <a ng-click="share('twitter', $event);" target="_blank">
             <i class="fa fa-twitter fa-2x"></i>
         </a>
     </li>
     <li>
-        <a data-ng-href="{{whatsappUrl}}">
+        <a data-ng-href="{{urls.whatsapp}}">
             <i class="fa fa-whatsapp fa-2x"></i>
         </a>
     </li>
