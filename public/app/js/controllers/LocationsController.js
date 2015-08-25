@@ -57,7 +57,7 @@ angular.module('eventifyControllers')
         $scope.allLocations = locations;
 
         $scope.allLocations.forEach(function(location) {
-          location.detailsUrl = window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
+          location.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
           location.showComments = false;
         });
 
