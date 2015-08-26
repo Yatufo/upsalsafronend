@@ -11,6 +11,9 @@ eventify.config(['$routeProvider',
     }
 
     $routeProvider.
+    when('/privacy', {
+      templateUrl: 'views/privacy.html',
+    }).
     when('/:city/categories/:categories*\/events/', {
       templateUrl: 'views/events.html',
       controller: 'EventsController'
