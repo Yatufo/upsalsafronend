@@ -6,14 +6,14 @@
         {{rating.category.name}}
       </li>
       <li>
-        <a data-ng-click="rate(rating, 'up')">
+        <a href="#" data-ng-click="rate(rating, 'up')">
           <i class="fa" data-ng-class="( isRated(rating, 'up') ? 'fa-thumbs-up': 'fa-thumbs-o-up')">
             {{rating.votes['up']}}
           </i>
         </a>
       </li>
       <li>
-        <a ng-click="rate(rating, 'down')">
+        <a href="#" ng-click="rate(rating, 'down')">
           <i class="fa" data-ng-class="( isRated(rating, 'down') ? 'fa-thumbs-down': 'fa-thumbs-o-down')">
             {{rating.votes['down']}}
           </i>
@@ -29,13 +29,13 @@
         {{current.category.name}}
       </li>
       <li>
-        <a data-ng-click="rate(current, 'up')">
+        <a href="#" data-ng-click="rate(current, 'up')">
           <i class="fa fa-thumbs-o-up"></i>
         </a>
       </li>
 
       <li>
-        <a data-ng-click="rate(current, 'down')">
+        <a href="#" data-ng-click="rate(current, 'down')">
           <i class="fa fa-thumbs-o-down"></i>
         </a>
       </li>
