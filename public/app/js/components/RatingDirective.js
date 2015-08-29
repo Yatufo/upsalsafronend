@@ -3,6 +3,8 @@
 /* App Module */
 var RatingDirectiveController = function($scope, $rootScope, service) {
 
+  $scope.toogleUseful = true;
+
   var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
     var currentVote = rating.vote;
@@ -15,6 +17,13 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 
   var resetCurrent = function () {
     $scope.current = _.findWhere($scope.ratings, { "votes" : null});
+    var count = _.countBy($scope.ratings, function (rating) {
+      return !rating.votes ?  "unrated" : "rated";
+    });
+    $scope.toogleUseful = count.unrated >= 3;
+    if (!$scope.toogleUseful) {
+      $scope.showAll = true;
+    }
   };
 
   $scope.isRated = function (rating, vote) {
@@ -25,7 +34,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
     resetCurrent();
   });
 
-  $scope.toogleView = function () {
+  $scope.toogleMore = function () {
     $scope.showAll = !$scope.showAll;
   }
 
