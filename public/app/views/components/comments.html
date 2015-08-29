@@ -6,13 +6,16 @@
   </div>
 
   <a ng-if="commentable.comments.length" ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{commentable.comments.length}} comment(s)</small></a>
-  <div ng-if="expanded" class="comment-group" ng-repeat="comment in commentable.comments">
-    <a class="comment-cell" ng-href="{{comment.userInfo.link}}" target="_blank">
-      <img alt="" class="avatar" ng-src="{{comment.userInfo.picture}}"/>
-    </a>
-    <div class="comment-cell">
+  <div class="media" ng-if="expanded" ng-repeat="comment in commentable.comments">
+    <div class="media-left media-top">
+      <a ng-href="{{comment.userInfo.link}}" target="_blank">
+        <img alt="" class="avatar" ng-src="{{comment.userInfo.picture}}"/>
+      </a>
+    </div>
+    <div class="media-body">
       <div ng-class="comment.isEditing ? 'input-group' : '' ">
-        <textarea class="form-control" ng-keydown="onKeyDown(comment, $event)" ng-model="comment.comment" ng-readonly="!comment.isEditing" rows="{{comment.textRows}}" style="resize:none"></textarea>
+        <div class="" ng-if="!comment.isEditing" ng-bind-html="comment.formattedComment"></div>
+        <textarea class="form-control" ng-keydown="onKeyDown(comment, $event)" ng-model="comment.comment" ng-if="comment.isEditing" rows="{{comment.textRows}}" style="resize:none"></textarea>
         <span class="input-group-addon btn btn-primary" ng-click="save(comment)" ng-if="comment.isEditing">Save</span>
       </div>
       <small>{{comment.formattedDate}}</small>

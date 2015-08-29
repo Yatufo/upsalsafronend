@@ -1,5 +1,17 @@
 /* App Module */
-var CommentDirectiveController = function($scope, $rootScope, service) {
+var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
+
+  var MAX_TEXTBOX_ROWS = 7;
+  var MIN_TEXTBOX_ROWS = 2;
+
+  var getTextRows = function (text) {
+    if (! text) return 1;
+
+    var rows = text.split('\n').length + 1;
+    rows = (rows <= MAX_TEXTBOX_ROWS ? rows : MAX_TEXTBOX_ROWS)
+    rows = (rows >= MIN_TEXTBOX_ROWS ? rows : MIN_TEXTBOX_ROWS)
+    return rows;
+  }
 
   var reset = function(commentable) {
     if (_.isEmpty(commentable))
@@ -8,9 +20,11 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     $scope.current = {
       target: commentable,
       isEditable: function () {
-        return service.isCommentAllowed(commentable); 
+        return service.isCommentAllowed(commentable);
       },
-      textRows: 1,
+      textRows: function () {
+        return getTextRows(this.comment);
+      },
       isEditing: false,
       comment: null
     };
@@ -20,6 +34,7 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
       commentable.comments.forEach(function(comment) {
         comment.target = comment.location;
         comment.formattedDate = moment(comment.lastUpdate).fromNow();
+        comment.formattedComment = $sce.trustAsHtml(comment.comment.replace(/\n/g, "<br/>"));
         comment.isEditable = function() {
           return $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
         }
@@ -35,19 +50,20 @@ var CommentDirectiveController = function($scope, $rootScope, service) {
     if ($scope.current) {
       $scope.$apply(function() {
         $scope.current.isEditing = !_.isEmpty(newValue);
+        $scope.current.textRows = getTextRows($scope.current.comment);
       })
     }
   }));
 
   $scope.edit = function(comment) {
     comment.originalComment = comment.comment;
+    comment.textRows = getTextRows(comment.comment);
     comment.isEditing = true;
   };
 
   $scope.onKeyDown = function(comment, e) {
 
     if (e.keyCode == 13) {
-      comment.textRows++;
       if ((e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         $scope.save(comment);
@@ -91,7 +107,7 @@ angular.module('eventify').directive('comments', function() {
       commentable: '=',
       expanded: '='
     },
-    controller: ['$scope', '$rootScope', 'CommentService', CommentDirectiveController],
+    controller: ['$scope', '$rootScope', '$sce', 'CommentService', CommentDirectiveController],
     templateUrl: 'views/components/comments.html'
   };
 });
