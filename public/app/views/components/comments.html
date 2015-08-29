@@ -5,7 +5,7 @@
     <span class="input-group-addon btn btn-primary" ng-click="save(current)" ng-if="current.isEditing">Post</span>
   </div>
 
-  <a ng-if="commentable.comments.length" ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{commentable.comments.length}} comment(s)</small></a>
+  <a href="#" ng-if="commentable.comments.length" ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{commentable.comments.length}} comment(s)</small></a>
   <div class="media" ng-if="expanded" ng-repeat="comment in commentable.comments">
     <div class="media-left media-top">
       <a ng-href="{{comment.userInfo.link}}" target="_blank">
@@ -19,7 +19,7 @@
         <span class="input-group-addon btn btn-primary" ng-click="save(comment)" ng-if="comment.isEditing">Save</span>
       </div>
       <small>{{comment.formattedDate}}</small>
-      <a ng-click="edit(comment)" ng-if="comment.isEditable() && !comment.isEditing">edit</a>
+      <a href="#" ng-click="edit(comment)" ng-if="comment.isEditable() && !comment.isEditing">edit</a>
     </div>
   </div>
 
