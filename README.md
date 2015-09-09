@@ -1,3 +1,7 @@
+Install 
+	MondoDB -	https://www.mongodb.org/
+	Node 	-	https://nodejs.org/en/download/
+
 Download dependencies.
 
 ```npm install```
