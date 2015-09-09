@@ -1,8 +1,8 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService',
-    function($scope, $rootScope, $window, Location, maps, ratingService) {
+  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService',
+    function($scope, $rootScope, $window, Location, maps, ratingService, analytics) {
 
       $scope.allLocations = [];
       $scope.loading = true;
@@ -68,8 +68,17 @@ angular.module('eventifyControllers')
       });
 
       $scope.toogleView = function() {
+
+        analytics.track({
+          category: 'usage',
+          action: 'toogleMap',
+          url: $window.location
+        });
+
         $scope.isMapView = !$scope.isMapView;
         $scope.isListView = !$scope.isListView;
+
+
         reloadMap();
       }
 
