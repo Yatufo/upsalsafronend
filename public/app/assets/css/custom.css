@@ -72,36 +72,21 @@ div .image-selector h3 {
 }
 #toogle-map {
   color: #E74C3C;
+  font-size: 10px;
   background: #222;
   z-index: 99;
-  width: 50px;
+  width: 100px;
   height: 50px;
   position: fixed;
   left: 14px !important;
   bottom: 11px !important;
   border-radius: 3px !important;
 }
-#toogle-map > i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
-}
-#toogle-map:after {
-  top: 10px;
-  left: 20px;
-  position: absolute;
+#toogle-map > p {
+  position: relative;
+  top: 15px;
+  vertical-align:middle;
   text-align: center;
-  font-family: FontAwesome;
-}
-#toogle-map:hover {
-  color: #fff;
-  background: #E74C3C;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 
 /*Back To Top
@@ -213,7 +198,7 @@ div.comment-cell{
   width: 100%;
 }
 div.input-group{
-  width: 100%;  
+  width: 100%;
 }
 .comment-cell{
   padding-top: 0px;

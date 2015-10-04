@@ -13,6 +13,7 @@ angular.module('eventifyControllers')
       $scope.currentPage = 0;
       $scope.pageSize = 10;
       $scope.locations = [];
+      var SHOW_COMMENTS = false;
 
       $scope.loadMore = function() {
 
@@ -58,7 +59,7 @@ angular.module('eventifyControllers')
 
         $scope.allLocations.forEach(function(location) {
           location.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
-          location.showComments = true; // TODO: Change when there are too many comments
+          location.showComments = SHOW_COMMENTS; // TODO: Change when there are too many comments
         });
 
         $scope.loadMore();
