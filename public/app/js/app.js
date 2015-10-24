@@ -20,8 +20,8 @@ var eventify = angular.module('eventify', [
 
 eventify.config(["authProvider", function (authProvider) {
   authProvider.init({
-    domain: 'marq.auth0.com',
-    clientID: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
+    domain: 'upsalsa.auth0.com',
+    clientID: 'zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x'
   });
 }]).run(["auth", function(auth) {
   auth.hookEvents();

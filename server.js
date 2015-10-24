@@ -11,13 +11,13 @@ var categories = require('./routes/api/CategoriesRoute.js');
 var users = require('./routes/api/UsersRoute.js');
 var backoffice = require('./routes/api/BackofficeRoute.js');
 var jwt = require('express-jwt');
+var ctx = require('./routes/util/conf.js').context();
 
 var auth = jwt({
-  secret: new Buffer('_X2hz4xWqOb5zOeoCP6G0MsZnfRyvhBGuuF2P4KTZwaeOVvVR21H_hJCNRalKBgS', 'base64'),
-  audience: 'DRwECJSJ3um1XVaET9b88YRvvY0STWbE'
+  secret: new Buffer(ctx.auth0.secret, 'base64'),
+  audience: ctx.auth0.audience
 });
 
-var ctx = require('./routes/util/conf.js').context();
 var app = express();
 
 // gzip/deflate outgoing responses
