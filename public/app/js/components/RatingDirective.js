@@ -3,7 +3,11 @@
 /* App Module */
 var RatingDirectiveController = function($scope, $rootScope, service) {
 
-  $scope.toogleUseful = true;
+  var UNRATED_THRESHHOLD = 3;
+  $scope.displayRatings = [];
+  //Tell is the rating should show only one even if there are plenty already rated.
+  $scope.showAll  = false;
+  $scope.showOnlyOne  = !$scope.showAll;
 
   var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
@@ -15,14 +19,20 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
     rating.votes[currentVote] = rating.votes[currentVote] + 1 || 1;
   };
 
-  var resetCurrent = function () {
-    $scope.current = _.findWhere($scope.ratings, { "votes" : null});
-    var count = _.countBy($scope.ratings, function (rating) {
-      return !rating.votes ?  "unrated" : "rated";
-    });
-    $scope.toogleUseful = count.unrated >= 3;
-    if (!$scope.toogleUseful) {
-      $scope.showAll = true;
+  var resetDisplayRatings = function () {
+    $scope.displayRatings = [];
+    if (!$scope.showAll && $scope.showOnlyOne) {
+      $scope.displayRatings.push($scope.ratings[0]);
+    } else {
+      //get all the voted ones
+      $scope.displayRatings = _.filter($scope.ratings, function(r){ return ! _.isEmpty(r.votes) })
+
+      if ($scope.showAll || $scope.ratings.length - $scope.displayRatings.length <= UNRATED_THRESHHOLD) {
+        $scope.displayRatings = $scope.ratings;
+      } else {
+        var unrated = _.findWhere($scope.ratings, { "votes" : null});
+        $scope.displayRatings.push(unrated);
+      }
     }
   };
 
@@ -31,11 +41,12 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
   };
 
   $scope.$watch("ratings", function() {
-    resetCurrent();
+    resetDisplayRatings();
   });
 
   $scope.toogleMore = function () {
     $scope.showAll = !$scope.showAll;
+    resetDisplayRatings();
   }
 
   $scope.rate = function(rating, userVote) {
@@ -50,7 +61,8 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
     service.saveOrUpdateRating(rating)
     .then(function() {
       updateVoteSummaryLocally(rating, unsavedVote);
-      resetCurrent();
+      $scope.showAll = true;
+      resetDisplayRatings();
     }).catch(function (e) {
       rating.vote = unsavedVote;
     });
