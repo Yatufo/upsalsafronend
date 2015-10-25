@@ -11,7 +11,7 @@ var LoginController = function($scope, $http, auth, store, $location) {
     }, function() {
       // Error callback
     });
-  }
-}
+  };
+};
 angular.module('eventifyControllers')
   .controller('LoginController', ['$scope', '$http', 'auth', 'store', '$location', LoginController]);

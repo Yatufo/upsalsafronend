@@ -28,7 +28,7 @@ angular.module('eventifyControllers')
                     $scope.events = results.events;
                     showEventsInMap($scope.events);
                     diffusionService.changeEvents(results.eventsCategories);
-                })
+                });
             };
 
             var searchEvents = function(categories, location, callback) {
@@ -36,14 +36,14 @@ angular.module('eventifyControllers')
                     params: {
                         "categories": categories.join(",")
                     }
-                }
+                };
 
                 $http.get(CONFIG.EVENTS_ENDPOINT, config).success(function(data) {
                     callback(data);
                     $scope.loading = false;
                 });
 
-            }
+            };
 
             var getSelecteCategoryValues = function() {
                 var categories = [];
@@ -53,7 +53,7 @@ angular.module('eventifyControllers')
                     }
                 }
                 return categories;
-            }
+            };
 
 
             var showEventsInMap = function(events) {
@@ -63,11 +63,11 @@ angular.module('eventifyControllers')
                         MapsService.addLocation(lEvent.location);
                     });
                 }
-            }
+            };
 
             $scope.highlightLocation = function(location) {
                 MapsService.highlightLocation(location);
-            }
+            };
 
 
             MapsService.init();

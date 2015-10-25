@@ -15,7 +15,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
     if (!$scope.categories) {
         $http.get(CONFIG.CATEGORIES_ENDPOINT).success(function(data) {
             $scope.categories = data;
-            $scope.root = data['root'];
+            $scope.root = data.root;
             setDefaultValues();
         });
     }
@@ -31,7 +31,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
             //I don't know why this star is being passed, so I remove it.
             var codes = $routeParams.categories.replace('*', '').split('/');
             codes.forEach(function(childId) {
-                toogleCategory(getParentCategoryCode(childId), childId)
+                toogleCategory(getParentCategoryCode(childId), childId);
             });
         }
 
@@ -46,11 +46,11 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
             }
         }
         return null;
-    }
+    };
 
 
     $scope.changeSelectCategory = function(parentId, childId) {
-        toogleCategory(parentId, childId)
+        toogleCategory(parentId, childId);
         diffusionService.changeCategories($scope.selectedCategories);
     };
 
@@ -60,7 +60,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
         if (parentId == 'eventtype') {
             $scope.selectedEventtype = $scope.categories[$scope.selectedCategories[parentId]];
         }
-    }
+    };
 
     var toogleRootCategory = function(parentId, childId) {
         if (!childId) return;
@@ -77,7 +77,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
             // Since it's not root anymore it can't have a selected child
             toogleCategory(childId, null);
         }
-    }
+    };
 
     diffusionService.onChangeEvents($scope, function(message) {
         $scope.eventsCategories = (message.eventsCategories ? message.eventsCategories : []);
@@ -100,7 +100,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
             parent.visible = updateRootCategoryStatus(parent, visibleCount);
 
         });
-    }
+    };
 
 
     var updateRootCategoryStatus = function(category, count) {
@@ -109,7 +109,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
         var isVisibleChildren = count >= 1;
 
         return (isChildToggled || isVisibleChildren) && !isEventType;
-    }
+    };
 
 
     var updateCategoryStatus = function(category) {
@@ -124,7 +124,7 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
         category.disabled = !(isHappensOn || isContainedInEvents);
 
 
-    }
+    };
 
 }
 

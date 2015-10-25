@@ -9,7 +9,7 @@ angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsServic
     },
     controller: ['$scope', function($scope) {
 
-      $scope.url = $scope.url || $window.location
+      $scope.url = $scope.url || $window.location;
 
       $scope.urls = {
         'facebook': "https://www.facebook.com/sharer/sharer.php?&u=" + encodeURIComponent($scope.url),

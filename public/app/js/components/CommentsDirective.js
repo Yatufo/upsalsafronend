@@ -8,10 +8,10 @@ var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
     if (! text) return 1;
 
     var rows = text.split('\n').length + 1;
-    rows = (rows <= MAX_TEXTBOX_ROWS ? rows : MAX_TEXTBOX_ROWS)
-    rows = (rows >= MIN_TEXTBOX_ROWS ? rows : MIN_TEXTBOX_ROWS)
+    rows = (rows <= MAX_TEXTBOX_ROWS ? rows : MAX_TEXTBOX_ROWS);
+    rows = (rows >= MIN_TEXTBOX_ROWS ? rows : MIN_TEXTBOX_ROWS);
     return rows;
-  }
+  };
 
   var reset = function(commentable) {
     if (_.isEmpty(commentable))
@@ -37,7 +37,7 @@ var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
         comment.formattedComment = $sce.trustAsHtml(comment.comment.replace(/\n/g, "<br/>"));
         comment.isEditable = function() {
           return $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
-        }
+        };
       });
     }
   };
@@ -51,7 +51,7 @@ var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
       $scope.$apply(function() {
         $scope.current.isEditing = !_.isEmpty(newValue);
         $scope.current.textRows = getTextRows($scope.current.comment);
-      })
+      });
     }
   }));
 

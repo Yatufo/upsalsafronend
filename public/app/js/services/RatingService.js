@@ -21,8 +21,8 @@ var RatingService = function($rootScope, $q, Rating) {
         summary.id = userRating._id;
         summary.vote = userRating.vote;
       }
-    })
-  }
+    });
+  };
 
   var service = {
     generateRatings: function(location) {
@@ -50,7 +50,7 @@ var RatingService = function($rootScope, $q, Rating) {
             category: category,
             location: location,
             votes : null
-          }
+          };
           generated.push(emptySummary);
         }
       });

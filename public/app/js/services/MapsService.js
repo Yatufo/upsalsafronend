@@ -33,7 +33,7 @@ var MapsService = function() {
     getMapCanvas: function() {
       if (!mapElement) {
         var mapsFrame = $("#maps-iframe")[0].contentDocument;
-        var mapElement = $('<div/>');
+        mapElement = $('<div/>');
         mapElement[0].setAttribute('style', "width: 100%; height: 100%");
         mapsFrame.body.appendChild(mapElement[0]);
       }

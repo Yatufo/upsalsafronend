@@ -21,11 +21,13 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 
   var resetDisplayRatings = function () {
     $scope.displayRatings = [];
+    if (_.isEmpty(scope.ratings)) return;
+
     if (!$scope.showAll && $scope.showOnlyOne) {
       $scope.displayRatings.push($scope.ratings[0]);
     } else {
       //get all the voted ones
-      $scope.displayRatings = _.filter($scope.ratings, function(r){ return ! _.isEmpty(r.votes) })
+      $scope.displayRatings = _.filter($scope.ratings, function(r){ return ! _.isEmpty(r.votes); });
 
       if ($scope.showAll || $scope.ratings.length - $scope.displayRatings.length <= UNRATED_THRESHHOLD) {
         $scope.displayRatings = $scope.ratings;
@@ -47,7 +49,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
   $scope.toogleMore = function () {
     $scope.showAll = !$scope.showAll;
     resetDisplayRatings();
-  }
+  };
 
   $scope.rate = function(rating, userVote) {
 

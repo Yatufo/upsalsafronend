@@ -8,7 +8,7 @@ eventify.config(['$routeProvider',
       city: function() {
         return "montreal";
       }
-    }
+    };
 
     $routeProvider.
     when('/privacy', {

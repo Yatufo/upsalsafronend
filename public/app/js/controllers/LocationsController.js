@@ -29,7 +29,7 @@ angular.module('eventifyControllers')
         }
 
         $scope.currentPage++;
-      }
+      };
 
 
       function reloadMap(forceReload) {
@@ -40,7 +40,7 @@ angular.module('eventifyControllers')
           });
           $scope.isMapLoaded = true;
         }
-      };
+      }
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
@@ -52,7 +52,7 @@ angular.module('eventifyControllers')
         $scope.allLocations.forEach(function(location) {
           location.summaries = ratingService.generateRatings(location);
         });
-      }
+      };
 
       Location.query({}, function(locations) {
         $scope.allLocations = locations;
@@ -81,11 +81,11 @@ angular.module('eventifyControllers')
 
 
         reloadMap();
-      }
+      };
 
       $scope.highlightLocation = function(location) {
         maps.highlightLocation(location);
-      }
+      };
 
       window.scrollTo(0, 0);
     }

@@ -15,6 +15,6 @@ var TokenValidation = function($rootScope, auth, store, jwtHelper, $location) {
       }
     }
   });
-}
+};
 
 eventify.run(["$rootScope", "auth", "store", "jwtHelper", "$location", TokenValidation]);

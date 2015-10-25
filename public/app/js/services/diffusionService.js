@@ -36,7 +36,7 @@ var diffusionService = function($rootScope) {
     onChangeCategories: onChangeCategories,
     changeEvents: changeEvents,
     onChangeEvents: onChangeEvents
-  }
+  };
 
 };
 
