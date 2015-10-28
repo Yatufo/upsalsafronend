@@ -11,11 +11,15 @@ eventify.config(['$routeProvider',
     };
 
     $routeProvider.
+    when('/upload', {
+      templateUrl: 'views/upload.html',
+      controller: 'UploadImagesController'
+    }).
     when('/privacy', {
-      templateUrl: 'views/privacy.html',
+      templateUrl: 'views/privacy.html'
     }).
     when('/terms', {
-      templateUrl: 'views/terms.html',
+      templateUrl: 'views/terms.html'
     }).
     when('/:city/categories/:categories*\/events/', {
       templateUrl: 'views/events.html',

@@ -27,9 +27,15 @@
        refresh_token: "1/i9d-bkIj72CybGpMGwA25qTs2GZc7Gs7CdnyzB9Ud-Y",
        expiry_date: 1413232433845
      },
-     auth0 : {
-       secret : "YuTlfYWW1PXw_AQt1-EvAWvUrUpwheCjkbF6GbI_1Op5Ml5FYiVEtzLd--OeP38k",
-       audience : "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
+     auth0: {
+       secret: "YuTlfYWW1PXw_AQt1-EvAWvUrUpwheCjkbF6GbI_1Op5Ml5FYiVEtzLd--OeP38k",
+       audience: "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
+     },
+     s3: {
+       bucket: "salsa.local",
+       accessKeyId: "AKIAJ66NQ6MUCMHT3C5Q",
+       secretAccessKey: "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",
+       region : 'us-east-1'
      },
      SIMULATED_NOW: "2015-03-12T03:00:00-05:00",
      CALENDAR_ID: "project.demonio@gmail.com",
@@ -65,9 +71,15 @@
        refresh_token: "1/F1cIzWX9ajNlUYMSMVMQ7RkmRkC3p5ejWtf7zZ6Gznw",
        expiry_date: 1415075847934
      },
-     auth0 : {
-       secret : "YuTlfYWW1PXw_AQt1-EvAWvUrUpwheCjkbF6GbI_1Op5Ml5FYiVEtzLd--OeP38k",
-       audience : "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
+     auth0: {
+       secret: "YuTlfYWW1PXw_AQt1-EvAWvUrUpwheCjkbF6GbI_1Op5Ml5FYiVEtzLd--OeP38k",
+       audience: "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
+     },
+     s3: {
+       bucket: "upsalsa",
+       accessKeyId: "AKIAJ66NQ6MUCMHT3C5Q",
+       secretAccessKey: "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",
+       region : 'us-east-1'
      },
      CALENDAR_ID: "upsalsa@gmail.com",
      SIMULATED_NOW: false,

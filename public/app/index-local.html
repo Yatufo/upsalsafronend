@@ -18,6 +18,12 @@
   <!-- CSS Customization -->
   <link rel="stylesheet" href="assets/css/custom.css"></link>
   <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+      .my-drop-zone { border: dotted 3px lightgray; }
+      .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+      .another-file-over-class { border: dotted 3px green; }
+      html, body { height: 100%; }
+  </style>
 </head>
 
 <body>
@@ -47,6 +53,7 @@
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-file-upload/dist/angular-file-upload.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
   <script src="bower_components/moment/moment.js"></script>

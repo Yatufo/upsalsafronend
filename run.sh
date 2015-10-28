@@ -11,7 +11,7 @@ COL_BLUE="\x1b[34;01m"
 COL_RESET="\x1b[39;49;00m"
 
 start() {
-   if [ $DEPLOY_ENVIRONMENT == "prod" ]
+   if [ "$DEPLOY_ENVIRONMENT" = "prod" ]
    then
      echo "######################################################################"
      echo -e $COL_BLUE"Starting the server in PRODUCTION mode"$COL_RESET""
