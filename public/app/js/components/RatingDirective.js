@@ -21,7 +21,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 
   var resetDisplayRatings = function () {
     $scope.displayRatings = [];
-    if (_.isEmpty(scope.ratings)) return;
+    if (_.isEmpty($scope.ratings)) return;
 
     if (!$scope.showAll && $scope.showOnlyOne) {
       $scope.displayRatings.push($scope.ratings[0]);
