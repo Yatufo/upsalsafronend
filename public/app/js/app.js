@@ -9,7 +9,7 @@ var eventify = angular.module('eventify', [
   'angular-storage',
   'angular-jwt',
   'infinite-scroll',
-  'angularFileUpload',
+  'ngFileUpload',
   'eventifyControllers',
   'eventifyFilters',
   'eventifyConfig',

@@ -11,10 +11,6 @@ eventify.config(['$routeProvider',
     };
 
     $routeProvider.
-    when('/upload', {
-      templateUrl: 'views/upload.html',
-      controller: 'UploadImagesController'
-    }).
     when('/privacy', {
       templateUrl: 'views/privacy.html'
     }).

@@ -1,0 +1,15 @@
+<div>
+  <div ng-show="!image" ngf-drop ngf-select ng-model="image" class="drop-box"
+      ngf-drag-over-class="'dragover'" ngf-multiple="false"
+      accept="image/*"
+      ngf-pattern="'image/*'">Drop image here or click to upload
+  </div>
+
+  <div ng-show="image" class="preview">
+   <img ngf-thumbnail="!image.$error && image" class="thumb">
+  <div>
+
+  <div class="progress" ng-show="image.progress >= 0">
+    <div style="width:{{image.progress}}%"></div>
+  </div>
+</div>
