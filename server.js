@@ -61,7 +61,7 @@ app.put('/api/ratings/:id', auth, ratings.update);
 app.put('/api/comments/:id', auth, comments.update);
 app.get('/api/sync', backoffice.syncEvents);
 
-app.post('/api/images', auth, upload.multer.single("file"), upload.uploadImage);
+app.post('/api/images', auth, upload.multer.single("image"), upload.uploadImage);
 
 
 // This will ensure that all routing is handed over to AngularJS

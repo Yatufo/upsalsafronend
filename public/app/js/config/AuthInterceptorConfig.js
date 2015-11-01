@@ -2,25 +2,18 @@
 
 var eventify = angular.module('eventify');
 
-var AuthInterceptor = function($q, $location, auth, store, $rootScope) {
+var AuthInterceptor = function($q, $location, security) {
   return {
     responseError: function(response) {
       if (response && response.status === 401) {
-        auth.signin({}, function(profile, token) {
-          store.set('token', token);
-          store.set('profile', profile);
-          auth.authenticate(profile, token);
-          $rootScope.$emit("authenticationChange", true);
-        }, function(e) {
-          throw e;
-        });
+        security.signin()
       }
       return $q.reject(response);
     }
   };
 };
 
-eventify.factory('AuthInterceptor', ["$q", "$location", "auth", "store", '$rootScope', AuthInterceptor]);
+eventify.factory('AuthInterceptor', ["$q", "$location", "SecurityService", AuthInterceptor]);
 
 
 eventify.config(["$httpProvider", function($httpProvider) {

@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('eventifyControllers')
-  .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', 'CategoriesResource', 'store', '$location', HomeController]);
+  .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', 'CategoriesResource', 'SecurityService', HomeController]);
 
-function HomeController($scope, $rootScope, analyticsService, CONFIG, CategoriesResource, store, $location) {
+function HomeController($scope, $rootScope, analytics, CONFIG, CategoriesResource, security) {
   $rootScope.CONFIG = CONFIG;
 
   if (!$rootScope.categories) {
@@ -21,14 +21,14 @@ function HomeController($scope, $rootScope, analyticsService, CONFIG, Categories
   };
 
   $scope.logout = function() {
-    $rootScope.auth.signout();
-    store.remove('profile');
-    store.remove('token');
-    $location.path('/');
-    $rootScope.$emit("authenticationChange", false);
+    security.logout();
   };
 
-  analyticsService.init();
+  $scope.signin = function(success, error) {
+    security.login();
+  }
+
+  analytics.init();
 
 
 
