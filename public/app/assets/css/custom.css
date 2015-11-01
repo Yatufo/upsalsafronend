@@ -235,8 +235,8 @@ img.avatar {
 }
 
 .preview img, .preview audio, .preview video {
-    max-width: 300px;
-    max-height: 150px;
+    max-width: 320px;
+    max-height: 240px;
 }
 
 .button {
@@ -251,8 +251,8 @@ img.avatar {
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
-    width: 300px;
-    height: 65px;
+    width: 320px;
+    height: 100px;
     text-align: center;
     padding-top: 25px;
     margin: 10px;
@@ -263,7 +263,7 @@ img.avatar {
 
 .progress {
     height: 3px !important;
-    width: 300px;
+    width: 320px;
 }
 
 .progress div {
