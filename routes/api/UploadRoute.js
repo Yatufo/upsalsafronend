@@ -29,10 +29,7 @@ exports.uploadImage = function(req, res, next) {
     if (err) {
       throw err;
     }
-    
-    console.log(req.NEW_FILE_NAME);
 
-    res.status(200).send('Successfully uploaded!');
+    next(req.NEW_FILE_NAME);
   });
-
 };

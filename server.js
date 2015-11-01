@@ -12,7 +12,6 @@ var users = require('./routes/api/UsersRoute.js');
 var backoffice = require('./routes/api/BackofficeRoute.js');
 var jwt = require('express-jwt');
 var ctx = require('./routes/util/conf.js').context();
-var upload = require('./routes/api/UploadRoute.js');
 
 
 var auth = jwt({
@@ -53,6 +52,7 @@ app.get('/api/categories', categories.findAll);
 app.post('/api/locations', locations.create);
 app.get('/api/locations', locations.findAll);
 app.get('/api/locations/:id', locations.findById);
+app.post('/api/locations/:id/images', auth, locations.addImage);
 app.post('/api/ratings', auth, ratings.create);
 app.post('/api/comments', auth, comments.create);
 app.get('/api/users/me', auth, users.findCurrent);
@@ -60,7 +60,6 @@ app.post('/api/users/me', auth, users.findOrCreate);
 app.put('/api/ratings/:id', auth, ratings.update);
 app.put('/api/comments/:id', auth, comments.update);
 app.get('/api/sync', backoffice.syncEvents);
-app.post('/api/images', auth, upload.uploadImage);
 
 
 // This will ensure that all routing is handed over to AngularJS

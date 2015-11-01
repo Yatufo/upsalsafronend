@@ -77,6 +77,11 @@ var LocationSchema = new Schema({
     longitude: Number,
     latitude: Number
   },
+  images : [{
+    url : String,
+    owner :  String, //TODO: use the ObjectId of the user.
+    created : Date
+  }],
   ratings: [],
   comments: [{
     type: Schema.Types.ObjectId,

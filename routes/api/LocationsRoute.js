@@ -1,4 +1,5 @@
 var data = require('../model/core-data.js');
+var upload = require('./UploadRoute.js');
 var ctx = require('../util/conf.js').context();
 
 
@@ -49,4 +50,38 @@ exports.findById = function(req, res) {
       }
       res.send(singleLocation);
     });
+};
+
+
+
+exports.addImage = function(req, res) {
+  var userId = req.user.sub;
+  var locationId = req.params.id;
+
+
+  upload.uploadImage(req, res, function(imageUrl) {
+
+    var savedImage = {
+      url: imageUrl,
+      owner: userId,
+      created : new Date()
+    }
+
+console.log(savedImage);
+
+    data.Location.findOneAndUpdate({
+      id: locationId
+    }, {
+      $addToSet: {
+        images: savedImage
+      }
+    }, function(e, location) {
+      if (e) throw e;
+
+      res.status(200).send(location);
+    });
+
+  });
+
+
 };
