@@ -15,14 +15,12 @@ var UploadImageController = function($scope, upload) {
       data: {
         image: file
       }
-    }).then(function(resp) {
-      console.log('Success ' + resp.config.data.image.name + 'uploaded. Response: ' + resp.data);
+    }).then(function(location) {
+      // TODO: use the updated location;
     }, function(resp) {
       $scope.image = undefined;
-      console.log('Error status: ' + resp.status);
     }, function(evt) {
       $scope.image.progress = parseInt(100.0 * evt.loaded / evt.total);
-      console.log('progress: ' + $scope.image.progress + '% ' + evt.config.data.image.name);
     });
   };
 

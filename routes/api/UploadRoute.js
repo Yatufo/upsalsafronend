@@ -6,7 +6,7 @@ var path = require('path')
 
 
 var storageS3 = s3({
-  dirname: '/',
+  dirname: ctx.s3.folder,
   bucket: ctx.s3.bucket,
   secretAccessKey: ctx.s3.secretAccessKey,
   accessKeyId: ctx.s3.accessKeyId,

@@ -32,9 +32,10 @@
        audience: "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
      },
      s3: {
+       folder : "/images",
        bucket: "salsa.local",
-       accessKeyId: "AKIAJ66NQ6MUCMHT3C5Q",
-       secretAccessKey: "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",
+       accessKeyId: "AKIAIMKUJAVKMMFQDQYA",
+       secretAccessKey: "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",
        region : 'us-east-1'
      },
      SIMULATED_NOW: "2015-03-12T03:00:00-05:00",
@@ -74,11 +75,12 @@
      auth0: {
        secret: "YuTlfYWW1PXw_AQt1-EvAWvUrUpwheCjkbF6GbI_1Op5Ml5FYiVEtzLd--OeP38k",
        audience: "zNhY5wesWo8iVMsdRYbM6VVXzeMjts0x"
-     },
+     }, //TODO: Remove from the config and load using an ENV variable
      s3: {
+       folder : "/images",
        bucket: "upsalsa",
-       accessKeyId: "AKIAJ66NQ6MUCMHT3C5Q",
-       secretAccessKey: "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",
+       accessKeyId: "AKIAJWD6KJAV7SKU4XQQ",
+       secretAccessKey: "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",
        region : 'us-east-1'
      },
      CALENDAR_ID: "upsalsa@gmail.com",

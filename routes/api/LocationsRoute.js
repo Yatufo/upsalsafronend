@@ -67,8 +67,6 @@ exports.addImage = function(req, res) {
       created : new Date()
     }
 
-console.log(savedImage);
-
     data.Location.findOneAndUpdate({
       id: locationId
     }, {

@@ -58,6 +58,10 @@ angular.module('eventifyControllers')
         $scope.allLocations = locations;
 
         $scope.allLocations.forEach(function(location) {
+          if (! _.isEmpty(location.images)) {
+            location.imageUrl = "http://localhost:3001/w320-h150/images/" + location.images[0].url
+            console.log(location.imageUrl);
+          }
           location.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
           location.showComments = SHOW_COMMENTS; // TODO: Change when there are too many comments
         });
