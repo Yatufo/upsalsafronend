@@ -23,7 +23,7 @@ exports.findAll = function(req, res) {
 
   var maxResults = ctx.LOCATIONS_MAXRESULTS;
   data.Location.find()
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings score comments')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings images score comments')
     .populate('comments')
     .sort({
       score: -1,
@@ -61,12 +61,18 @@ exports.addImage = function(req, res) {
 
   upload.uploadImage(req, res, function(imageUrl) {
 
+    if (!(userId && locationId && imageUrl)) {
+      console.error("Invalid image parameters ", userId, locationId, imageUrl);
+      res.status(500).send({ "messages" : ["Could not save the image"]})
+      return
+    }
+
     var savedImage = {
       url: imageUrl,
       owner: userId,
       created : new Date()
     }
-
+    console.log(locationId);
     data.Location.findOneAndUpdate({
       id: locationId
     }, {
@@ -76,7 +82,7 @@ exports.addImage = function(req, res) {
     }, function(e, location) {
       if (e) throw e;
 
-      res.status(200).send(location);
+      res.status(201).send(location);
     });
 
   });

@@ -1,31 +1,53 @@
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <a ng-href="{{location.detailsUrl}}">{{location.name}}</a>
-    <sharesocial data-message="'Check this out'" data-url="location.detailsUrl"></sharesocial>
+<div class="card">
+  <div class="card-image">
+    <img ng-src="{{location.imageUrl}}"></img>
+    <span class="elipsis card-title">{{location.name}}</span>
   </div>
-  <div class="panel-body">
+  <div class="card-content">
+    <p ng-if="location.phone">
+      <i class="fa fa-phone fa-2x"></i>
+      <a class="btn btn-link" ng-href="tel:{{location.phone}}">{{location.phone}}</a>
+    </p>
+    <p ng-if="location.address">
+      <i class="fa fa-map-marker fa-2x"></i>
+      <a class="elipsis" ng-href="{{location.detailsUrl}}">{{location.address}}</a>
+    </p>
+  </div>
+  <div class="card-action clearfix">
+    <div class="pull-right">
 
-    <div class="profile">
-      <img src="location.imageUrl"></img>
-    </div>
-    <uploadimage data-locationId="location.id" ></uploadimage>
-    <p>
-      <i class="fa fa-phone fa-lg"></i>
-      <a ng-href="tel:{{location.phone}}">{{location.phone}}</a>
-    </p>
-    <p>
-      <i class="fa fa-globe fa-lg"></i>
-      <a ng-href="{{location.url}}" target="window">{{location.url}}</a>
-    </p>
-    <p>
-      <i class="fa fa-map-marker fa-lg"></i>
-      <a ng-href="{{location.detailsUrl}}">{{location.address}}</a>
-    </p>
-    <div>
-      <rating data-ratings="location.summaries"></rating>
-    </div>
-    <div>
-      <comments data-expanded="location.showComments" data-commentable="location"></comments>
+
+      <a class="btn btn-link black-text" href="">Link 1</a>
+      <a class="btn btn-link orange-text" href="">Link 2</a>
+      <a class="btn btn-link blue-text accent-2" href="">Link 3</a>
     </div>
   </div>
+
+<!--
+  <div class="card">
+
+      <img ng-src="{{location.imageUrl}}"></img>
+      <div class="card-title">
+        {{location.name}}
+      </div>
+
+      <a ng-href="{{location.detailsUrl}}">{{location.name}}</a>
+      <sharesocial data-message="'Check this out'" data-url="location.detailsUrl"></sharesocial>
+
+      <uploadimage data-location="location" ></uploadimage>
+      <p>
+        <i class="fa fa-phone fa-lg"></i>
+        <a ng-href="tel:{{location.phone}}">{{location.phone}}</a>
+      </p>
+      <p>
+        <i class="fa fa-globe fa-lg"></i>
+        <a ng-href="{{location.url}}" target="window">{{location.url}}</a>
+      </p>
+      <div>
+        <rating data-ratings="location.summaries"></rating>
+      </div>
+      <div>
+        <comments data-expanded="location.showComments" data-commentable="location"></comments>
+      </div>
+  </div> -->
 </div>
