@@ -5,7 +5,8 @@
     <span class="input-group-addon btn btn-primary" ng-click="save(current)" ng-if="current.isEditing">Post</span>
   </div>
 
-  <a href="#" ng-if="commentable.comments.length" ng-click="toogleView()"><small>{{expanded ? 'hide' :'show'}} {{commentable.comments.length}} comment(s)</small></a>
+
+
   <div class="media" ng-if="expanded" ng-repeat="comment in commentable.comments">
     <div class="media-left media-top">
       <a ng-href="{{comment.userInfo.link}}" target="_blank">

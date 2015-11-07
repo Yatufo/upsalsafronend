@@ -1,53 +1,30 @@
-<div class="card">
+<div class="card shadow">
   <div class="card-image">
     <img ng-src="{{location.imageUrl}}"></img>
     <span class="elipsis card-title">{{location.name}}</span>
   </div>
-  <div class="card-content">
-    <p ng-if="location.phone">
-      <i class="fa fa-phone fa-2x"></i>
-      <a class="btn btn-link" ng-href="tel:{{location.phone}}">{{location.phone}}</a>
-    </p>
-    <p ng-if="location.address">
-      <i class="fa fa-map-marker fa-2x"></i>
-      <a class="elipsis" ng-href="{{location.detailsUrl}}">{{location.address}}</a>
-    </p>
-  </div>
   <div class="card-action clearfix">
+    <div class="pull-left">
+      <a class="btn btn-link black-text" ng-href="tel:{{location.phone}}" ng-if="location.phone">
+        <i class="fa fa-phone fa-2x"></i>
+      </a>
+      <a class="btn btn-link black-text" ng-href="{{location.detailsUrl}}" ng-if="location.address">
+        <i class="fa fa-map-marker fa-2x"></i>
+      </a>
+      <a class="btn btn-link black-text" ng-href="{{location.url}}" target="window">
+        <i class="fa fa-globe fa-2x"></i>
+      </a>
+    </div>
     <div class="pull-right">
-
-
-      <a class="btn btn-link black-text" href="">Link 1</a>
-      <a class="btn btn-link orange-text" href="">Link 2</a>
-      <a class="btn btn-link blue-text accent-2" href="">Link 3</a>
+      <a class="btn btn-link black-text" ng-href="#">
+        <i class="fa fa-heart fa-2x"></i>
+      </a>
+      <a ng-if="location.comments.length > 0" class="btn btn-link black-text" ng-click="toogleComments()">
+        <i class="fa fa-comments fa-2x"> <span class="number">{{location.comments.length}}</span> </i>
+      </a>
     </div>
   </div>
 
-<!--
-  <div class="card">
+  <comments data-commentable="location" data-expanded="showComments"></comments>
 
-      <img ng-src="{{location.imageUrl}}"></img>
-      <div class="card-title">
-        {{location.name}}
-      </div>
-
-      <a ng-href="{{location.detailsUrl}}">{{location.name}}</a>
-      <sharesocial data-message="'Check this out'" data-url="location.detailsUrl"></sharesocial>
-
-      <uploadimage data-location="location" ></uploadimage>
-      <p>
-        <i class="fa fa-phone fa-lg"></i>
-        <a ng-href="tel:{{location.phone}}">{{location.phone}}</a>
-      </p>
-      <p>
-        <i class="fa fa-globe fa-lg"></i>
-        <a ng-href="{{location.url}}" target="window">{{location.url}}</a>
-      </p>
-      <div>
-        <rating data-ratings="location.summaries"></rating>
-      </div>
-      <div>
-        <comments data-expanded="location.showComments" data-commentable="location"></comments>
-      </div>
-  </div> -->
 </div>
