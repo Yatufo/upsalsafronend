@@ -1,16 +1,14 @@
 /* App Module */
 var SimpleRateDirectiveController = function($scope, service) {
-
+  var DEFAULT_VOTE = 'up'
 
   $scope.init = function() {
     $scope.rating = {};
 
     if ($scope.rateable) {
-
       $scope.rating = _.find($scope.rateable.summaries, function(summary) {
         return summary.category.id === $scope.category;
       });
-
     }
   }
 
@@ -27,16 +25,17 @@ var SimpleRateDirectiveController = function($scope, service) {
   };
 
   $scope.isRated = function(rating, vote) {
-    console.log("demonio",$scope.rateable);
+    vote = vote || DEFAULT_VOTE;
+    rating = rating || $scope.rating;
     return rating && rating.vote === vote;
   };
 
-  $scope.$watch("ratings", function() {
+  $scope.$watch("rateable", function(newValue) {
     $scope.init();
   });
 
   $scope.rate = function() {
-    var userVote = userVote || 'up';
+    var userVote = userVote || DEFAULT_VOTE;
     var rating = $scope.rating;
 
     //if there are no changes in the vote
