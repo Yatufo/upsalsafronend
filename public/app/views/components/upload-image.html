@@ -4,11 +4,10 @@
     ngf-pattern="'image/*'" ngf-select>
     <img ng-src="{{location.imageUrl}}"></img>
   </div>
-
-  <div class="preview">
-    <img class="thumb" ngf-thumbnail="image"></img>
-    <div class="progress" ng-class="{success:image.success, uploading:image.uploading, failed: image.failed}">
-      <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{image.progress}}%"></div>
+  <div ng-if="image" class="preview">
+    <img ngf-src="image">
+    <div class="progress" ng-class="{{status.current}}">
+      <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{status.progress}}%"></div>
     </div>
   </div>
 </div>

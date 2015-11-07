@@ -2,20 +2,24 @@
 var UploadImageController = function($scope, upload) {
   $scope.location = $scope.location || {};
   $scope.init = function () {
+    $scope.status = {};
+
     if (! _.isEmpty($scope.location.images)) {
-      $scope.location.imageUrl = "http://localhost:3001/w320-h150/images/" + $scope.location.images[0].url
+      $scope.location.imageUrl = "http://192.168.2.11:3001/w320-h150/images/" + $scope.location.images[0].url
     } else {
       $scope.location.imageUrl = "http://d2ivgofa0qqp48.cloudfront.net/w290-h168/images/locations/montreal.jpg"
     }
+
   };
 
   $scope.init();
 
 
-  $scope.$watch('image', function() {
-    if ($scope.image) {
-      $scope.image.uploading = true;
-      $scope.image.failed = $scope.image.success = false;
+  $scope.$watch('image', function(newValue, oldValue) {
+    console.log(newValue, oldValue);
+
+    if (newValue) {
+      $scope.status.current = "uploading"
       //$scope.upload($scope.image);
     }
   });
@@ -29,13 +33,11 @@ var UploadImageController = function($scope, upload) {
         image: file
       }
     }).then(function(location) {
-      $scope.image.success = true;
-      $scope.image.failed = $scope.image.uploading = false;
+      $scope.status.current = "success"
     }, function(resp) {
-      $scope.image.failed = true;
-      $scope.image.success = $scope.image.uploading = false;
+      $scope.status.current = "failed"
     }, function(evt) {
-      $scope.image.progress = parseInt(100.0 * evt.loaded / evt.total);
+      $scope.status.progress = parseInt(100.0 * evt.loaded / evt.total);
     });
   };
 

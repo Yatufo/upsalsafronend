@@ -1,4 +1,4 @@
-<div>
+<div style="padding:4px">
 
   <div ng-class="current.isEditing ? 'input-group' : '' " ng-if="current.isEditable()">
     <textarea class="form-control" ng-keydown="onKeyDown(current, $event)" ng-model="current.comment" placeholder="What do you think about this place?" rows="{{current.textRows}}" style="resize:none"></textarea>
