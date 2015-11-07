@@ -5,7 +5,7 @@
   </div>
   <div class="card-action clearfix">
     <div class="pull-left">
-      <a class="btn btn-link black-text" ng-href="tel:{{location.phone}}" ng-if="location.phone">
+      <a class="btn btn-link btn-icon" ng-href="tel:{{location.phone}}" ng-if="location.phone">
         <i class="fa fa-phone fa-2x"></i>
       </a>
       <a class="btn btn-link black-text" ng-href="{{location.detailsUrl}}" ng-if="location.address">
@@ -16,7 +16,7 @@
       </a>
     </div>
     <div class="pull-right">
-      <favorite data-rateable="location"></favorite>
+      <simplerate data-category="'favorite'" data-rateable="location"></simplerate>
       <a ng-if="location.comments.length > 0" class="btn btn-link black-text" ng-click="toogleComments()">
         <i class="fa fa-comments fa-2x"> <span class="number">{{location.comments.length}}</span> </i>
       </a>
