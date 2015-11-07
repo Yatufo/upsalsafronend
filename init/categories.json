@@ -1,5 +1,5 @@
-{ "_id" : "root", "parent" : "", "categories" : [ "happenson", "eventtype", "musictype", "pricerange"], "__v" : 0 }
-{ "_id" : "happenson", "parent" : "root", "name" : "Happens On", "categories" : [ "today", "tomorrow", "week", "weekend" ], "__v" : 0 }
+{ "_id" : "root", "parent" : "", "categories" : [ "happenson", "eventtype", "musictype", "pricerange", "favorite"], "__v" : 0 }
+{ "_id" : "favorite", "parent" : "root", "name" : "Favorite", "categories" : [], "__v" : 0 }
 { "_id" : "eventtype", "parent" : "root", "name" : "Type of event", "categories" : [ "class", "party", "schoolparty", "concert" ], "__v" : 0 }
 { "_id" : "pricerange", "parent" : "root", "name" : "Price Range", "categories" : [ "free", "paid" ], "__v" : 0 }
 { "_id" : "level", "parent" : "root", "name" : "Level", "categories" : [ "beginner", "intermediate", "advanced" ], "__v" : 0 }

@@ -6,7 +6,7 @@ var RatingService = function($rootScope, $q, Rating) {
 
   // would get the next category the user would rate
   var getRateableCategories = function(location) {
-    return ['class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
+    return ['favorite', 'class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
       return $rootScope.categories[id];
     });
   };
@@ -15,6 +15,7 @@ var RatingService = function($rootScope, $q, Rating) {
     var user = $rootScope.user;
     if (!user || !user.ratings) return;
 
+    //TODO: change to _.find
     user.ratings.forEach(function(userRating) {
       if (userRating.location === summary.location.id &&
         userRating.category === summary.category.id) {
@@ -25,7 +26,7 @@ var RatingService = function($rootScope, $q, Rating) {
   };
 
   var service = {
-    generateRatings: function(location) {
+    generateSummaries: function(location) {
       var generated = [];
       var ratedCategories = [];
       if (! location || !location.ratings)

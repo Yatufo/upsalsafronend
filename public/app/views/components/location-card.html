@@ -16,9 +16,7 @@
       </a>
     </div>
     <div class="pull-right">
-      <a class="btn btn-link black-text" ng-href="#">
-        <i class="fa fa-heart fa-2x"></i>
-      </a>
+      <favorite data-rateable="location"></favorite>
       <a ng-if="location.comments.length > 0" class="btn btn-link black-text" ng-click="toogleComments()">
         <i class="fa fa-comments fa-2x"> <span class="number">{{location.comments.length}}</span> </i>
       </a>

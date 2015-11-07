@@ -50,7 +50,7 @@ angular.module('eventifyControllers')
 
       var resetSummaries = function() {
         $scope.allLocations.forEach(function(location) {
-          location.summaries = ratingService.generateRatings(location);
+          location.summaries = ratingService.generateSummaries(location);
         });
       };
 
