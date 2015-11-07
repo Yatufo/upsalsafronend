@@ -2,7 +2,7 @@
 var UploadImageController = function($scope, upload) {
   $scope.location = $scope.location || {};
   $scope.init = function () {
-    $scope.status = {};
+    $scope.status = {current : "initial"};
 
     if (! _.isEmpty($scope.location.images)) {
       $scope.location.imageUrl = "http://192.168.2.11:3001/w320-h150/images/" + $scope.location.images[0].url
@@ -15,18 +15,15 @@ var UploadImageController = function($scope, upload) {
   $scope.init();
 
 
-  $scope.$watch('image', function(newValue, oldValue) {
-    console.log(newValue, oldValue);
-
-    if (newValue) {
-      $scope.status.current = "uploading"
-      //$scope.upload($scope.image);
-    }
-  });
-
+  $scope.showUpload = function () {
+    return _.contains( ["failed", "initial"], $scope.status.current );
+  };
 
   // upload on file select or drop
   $scope.upload = function(file) {
+    file = file || $scope.image;
+    $scope.status.current = "uploading"
+
     upload.upload({
       url: "api/locations/" + $scope.location.id + "/images",
       data: {

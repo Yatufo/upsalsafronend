@@ -1,13 +1,15 @@
 <div>
-  <div accept="image/*" class="drop-box" ng-model="image" ng-show="!image"
-    ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false"
-    ngf-pattern="'image/*'" ngf-select>
+  <div accept="image/*" class="drop-box" ng-model="image" ng-show="!image" ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'" ngf-select>
     <img ng-src="{{location.imageUrl}}"></img>
   </div>
-  <div ng-if="image" class="preview">
+  <div class="preview" ng-if="image">
     <img ngf-src="image">
-    <div class="progress" ng-class="{{status.current}}">
-      <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{status.progress}}%"></div>
-    </div>
+    <a ng-show="showUpload()" class="btn btn-icon blue" ng-click="upload()">
+      <i class="fa fa-cloud-upload fa-2x"></i>
+    </a>
+  </img>
+  <div class="progress" ng-class="status.current">
+    <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{status.progress}}%"></div>
   </div>
+</div>
 </div>
