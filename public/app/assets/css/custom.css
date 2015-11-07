@@ -269,27 +269,45 @@ img.avatar {
     width: 70px;
 }
 .drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 320px;
-    height: 100px;
     text-align: center;
-    padding-top: 25px;
-    margin: 10px;
 }
 .dragover {
-    border: 5px dashed blue;
+    border: 2px dashed blue;
 }
 
 .progress {
-    width: 320px;
+    width: 100%;
+    height: 2px !important;
 }
 
-.progress div {
-    background: orange;
+.progress.uploading div {
+    background: blue;
 }
 
+.progress.success div {
+    background: green;
+}
+.progress.failed div {
+    background: red;
+}
 
+.btn-icon {
+	border-radius:50%;
+	width:50px;
+	height:50px;
+	line-height:40px;
+    background-color:#fcfcfc;
+    color:black;
+}
+.btn-icon i {
+    position: relative;
+    top: 4px;
+}
+.btn-icon:active,.btn-icon:focus,.btn-icon:hover {
+	border-color:transparent;
+    background-color:#D1D1D1 !importart;
+    color:red;
+}
 
 i .number {
     padding: 2px;
@@ -303,11 +321,15 @@ i .number {
     position: relative;
     left : -10px;
     top: -8px;
-    background-color: #ff0000;
+    background-color: #F44336;
     color: #fff;
 }
 
 /** CARDS **/
+
+.red-text {
+  color: #F44336 !important;
+}
 
 .card {
 	position:relative;
@@ -316,66 +338,12 @@ i .number {
 	border-radius:2px;
 	margin-bottom:30px
 }
-.card.card-flip {
-	overflow:hidden
-}
-.card .card-profile {
-	position:relative;
-	z-index:1;
-	margin-top:-62px;
-	border-radius:50%;
-	padding:5px;
-	background-color:#FFF;
-	-webkit-box-shadow:0 -3px 3px rgba(0,0,0,.2);
-	box-shadow:0 -3px 3px rgba(0,0,0,.2)
-}
-.card .list-group,.card .pagination {
-	margin:0
-}
-.card .card-profile img[src*=svg] {
-	width:75px;
-	height:75px
-}
-.card .activator {
-	cursor:pointer
-}
-.card .list-group .list-group-item {
-	border:none;
-	border-top:1px solid #F0F0F0;
-	font-size:16px;
-	padding:10px 15px
-}
-.card .list-group .list-group-item img {
-	max-height:40px
-}
-.card .list-group .list-group-item .list-group-item-heading {
-	font-size:14px;
-	margin-bottom:0;
-	line-height:20px
-}
-.card .list-group .list-group-item .list-group-item-text {
-	font-size:12px;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	white-space:nowrap;
-	display:block
-}
-.card .list-group .list-group-item .list-actions {
-	float:right;
-	position:relative;
-	margin:-10px -15px
-}
-.card .list-group .list-group-item .btn {
-	font-size:18px;
-	line-height:36px
-}
-.card .list-group .list-group-item:first-child {
-	border:none
-}
+
+
 .card .btn-icon {
 	border-radius:50%;
-	width:40px;
-	height:40px;
+	width:50px;
+	height:50px;
 	line-height:40px
 }
 

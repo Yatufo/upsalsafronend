@@ -2,14 +2,13 @@
   <div accept="image/*" class="drop-box" ng-model="image" ng-show="!image"
     ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false"
     ngf-pattern="'image/*'" ngf-select>
-    Drop image here or click to upload
+    <img ng-src="{{location.imageUrl}}"></img>
   </div>
 
-  <div class="preview" ng-show="image">
-    <img class="thumb" ngf-thumbnail="!image.$error && image"></img>
-    <div class="progress">
+  <div class="preview">
+    <img class="thumb" ngf-thumbnail="image"></img>
+    <div class="progress" ng-class="{success:image.success, uploading:image.uploading, failed: image.failed}">
       <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{image.progress}}%"></div>
     </div>
-
   </div>
 </div>

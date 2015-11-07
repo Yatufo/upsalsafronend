@@ -1,5 +1,5 @@
 
-var LocationCarcController = function ($scope) {
+var LocationCardController = function ($scope) {
   $scope.showComments = false;
 
   $scope.toogleComments = function () {
@@ -17,7 +17,7 @@ angular.module('eventify').directive('locationcard', function() {
             location: '=',
             city: '='
         },
-        controller: ['$scope', LocationCarcController],
+        controller: ['$scope', LocationCardController],
         templateUrl: 'views/components/location-card.html'
     };
 });

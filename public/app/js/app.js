@@ -40,7 +40,7 @@ eventify.config(['$compileProvider', '$locationProvider', function($compileProvi
   $compileProvider.debugInfoEnabled(false); //Performance
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
-  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|whatsapp):/);
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|tel|whatsapp):/);
 
 }]);
 

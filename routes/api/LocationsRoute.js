@@ -42,7 +42,7 @@ exports.findById = function(req, res) {
   data.Location.findOne({
       "id": req.params.id
     })
-    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings comments')
+    .select('-_id id name url phone address coordinates.latitude coordinates.longitude ratings images score comments')
     .populate('comments')
     .exec(function(err, singleLocation) {
       if (err) {

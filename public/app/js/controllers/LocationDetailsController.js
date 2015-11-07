@@ -7,8 +7,9 @@ angular.module('eventifyControllers')
     function($rootScope, $scope, $routeParams, Location, maps, ratingService) {
 
       var resetSummaries = function(){
-        if ($scope.location)
+        if ($scope.location){
           $scope.location.summaries = ratingService.generateSummaries($scope.location);
+        }
       };
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
