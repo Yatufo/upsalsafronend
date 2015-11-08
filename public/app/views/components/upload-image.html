@@ -1,10 +1,18 @@
 <div>
-  <div accept="image/*" class="drop-box" ng-model="image" ng-show="!image" ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'" ngf-select>
+  <div class="main-image" ng-show="!image">
     <img ng-src="{{location.imageUrl}}"></img>
+    <div accept="image/*" class="drop-box" ng-model="image"
+    ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'"
+    ngf-select >
+      <a class="btn btn-icon" ng-if="isDefaultImage">
+        <i class="fa fa-pencil-square-o fa-2x"></i>
+      </a>
+    </div>
   </div>
+
   <div class="preview" ng-if="image">
     <img ngf-src="image">
-    <a ng-show="showUpload()" class="btn btn-icon blue" ng-click="upload()">
+    <a class="btn btn-icon blue" ng-click="upload()" ng-show="showUpload()">
       <i class="fa fa-cloud-upload fa-2x"></i>
     </a>
   </img>

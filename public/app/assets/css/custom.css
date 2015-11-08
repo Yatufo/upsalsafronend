@@ -286,6 +286,12 @@ img.avatar {
     background: red;
 }
 
+div.main-image a {
+    margin: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
 
 div.preview a {
     width: 100%;
