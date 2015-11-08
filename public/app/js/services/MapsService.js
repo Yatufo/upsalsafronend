@@ -1,5 +1,3 @@
-
-
 /* Service */
 
 
@@ -14,7 +12,7 @@ var MapsService = function() {
   var mapElement;
 
   var infowindowContent = function(location) {
-    return "<a target='_parent' href='" + (location.detailsUrl || location.url) + "'> " + location.name+ "</a>";
+    return "<a target='_parent' href='" + (location.detailsUrl || location.url) + "'> " + location.name + "</a>";
   };
 
   var service = {
@@ -31,12 +29,11 @@ var MapsService = function() {
       return $(window).width() > 800; //TODO change for another thing
     },
     getMapCanvas: function() {
-      if (!mapElement) {
-        var mapsFrame = $("#maps-iframe")[0].contentDocument;
-        mapElement = $('<div/>');
-        mapElement[0].setAttribute('style', "width: 100%; height: 100%");
-        mapsFrame.body.appendChild(mapElement[0]);
-      }
+      var mapsFrame = $("#maps-iframe")[0].contentDocument;
+      mapElement = $('<div/>');
+      mapElement[0].setAttribute('style', "width: 100%; height: 100%");
+      mapsFrame.body.appendChild(mapElement[0]);
+
       return mapElement[0];
     },
     init: function(location, lZoom) {
