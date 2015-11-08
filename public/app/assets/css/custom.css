@@ -254,11 +254,6 @@ img.avatar {
     clear: both;
 }
 
-.preview img, .preview audio, .preview video {
-    max-width: 320px;
-    max-height: 240px;
-}
-
 .button {
     -moz-appearance: button;
     /* Firefox */
@@ -337,6 +332,10 @@ i .number {
     color: #fff;
 }
 
+.card-list {
+  position: relative;
+  float: right;
+}
 /** CARDS **/
 
 .red-text {
@@ -350,7 +349,7 @@ i .number {
 	box-sizing:border-box;
 	border-radius:2px;
 	margin-bottom:30px;
-  max-width: 480px;
+  max-width: 640px;
 }
 
 
