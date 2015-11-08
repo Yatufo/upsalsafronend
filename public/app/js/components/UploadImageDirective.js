@@ -5,7 +5,7 @@ var UploadImageController = function($scope, upload) {
     $scope.status = {current : "initial"};
 
     if (! _.isEmpty($scope.location.images)) {
-      $scope.location.imageUrl = "http://192.168.2.11:3001/w320-h150/images/" + $scope.location.images[0].url
+      $scope.location.imageUrl = "http://192.168.2.11:3001/w320-h200-cscale/images/" + $scope.location.images[0].url
     } else {
       $scope.location.imageUrl = "http://d2ivgofa0qqp48.cloudfront.net/w290-h168/images/locations/montreal.jpg"
     }

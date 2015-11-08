@@ -293,6 +293,7 @@ img.avatar {
 
 
 div.preview a {
+    width: 100%;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -348,7 +349,8 @@ i .number {
 	background-color:#fff;
 	box-sizing:border-box;
 	border-radius:2px;
-	margin-bottom:30px
+	margin-bottom:30px;
+  max-width: 480px;
 }
 
 
@@ -369,7 +371,7 @@ i .number {
 	cursor:pointer
 }
 .card .card-image {
-	position:relative
+	position:relative;
 }
 .card .card-image img {
 	border-radius:2px 2px 0 0;
@@ -378,7 +380,7 @@ i .number {
 	right:0;
 	top:0;
 	bottom:0;
-	width:100%
+	width:100%;
 }
 .card .card-image .card-title {
 	position:absolute;
