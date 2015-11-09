@@ -21,6 +21,7 @@ angular.module('eventifyControllers')
       Location.get({
         locationId: $routeParams.locationId
       }, function(location) {
+        console.log(location);
 
         maps.init(location, 14);
         maps.addLocation(location);

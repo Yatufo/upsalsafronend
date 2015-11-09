@@ -1,23 +1,28 @@
 /* App Module */
-var UploadImageController = function($scope, upload) {
-  $scope.location = $scope.location || {};
-  $scope.init = function () {
-    $scope.status = {current : "initial"};
+var UploadImageController = function($scope, upload, CONFIG) {
 
-    if (! _.isEmpty($scope.location.images)) {
-      $scope.location.imageUrl = "http://192.168.2.11:3001/w320-h200-cscale/images/" + $scope.location.images[0].url
+  $scope.init = function() {
+    $scope.status = {
+      current: "initial"
+    };
+
+    if (!_.isEmpty($scope.location.images)) {
+      $scope.location.imageUrl = CONFIG.IMAGES_URL_ROOT + $scope.location.images[0].url
     } else {
-      $scope.location.imageUrl = "http://d2ivgofa0qqp48.cloudfront.net/w290-h168/images/locations/montreal.jpg"
+      $scope.location.imageUrl = CONFIG.IMAGES_URL_ROOT + CONFIG.LOCATIONS_DEFAULT_IMAGE;
       $scope.isDefaultImage = true;
     }
-
   };
 
-  $scope.init();
+  $scope.$watch("location", function(newValue) {
+    if (newValue) {
+      $scope.init();
+    }
+  });
 
 
-  $scope.showUpload = function () {
-    return _.contains( ["failed", "initial"], $scope.status.current );
+  $scope.showUpload = function() {
+    return _.contains(["failed", "initial"], $scope.status.current);
   };
 
   // upload on file select or drop
@@ -49,7 +54,7 @@ angular.module('eventify').directive('uploadimage', function() {
     scope: {
       location: "="
     },
-    controller: ['$scope', 'Upload', UploadImageController],
+    controller: ['$scope', 'Upload', 'CONFIG', UploadImageController],
     templateUrl: 'views/components/upload-image.html'
   };
 });
