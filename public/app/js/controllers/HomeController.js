@@ -24,8 +24,8 @@ function HomeController($scope, $rootScope, analytics, CONFIG, CategoriesResourc
     security.logout();
   };
 
-  $scope.signin = function(success, error) {
-    security.login();
+  $scope.signin = function() {
+    security.signin();
   }
 
   analytics.init();
