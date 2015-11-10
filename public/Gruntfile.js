@@ -31,6 +31,7 @@ module.exports = function(grunt) {
           'app/bower_components/**/angular-jwt.min.js',
           'app/bower_components/**/angular-resource.min.js',
           'app/bower_components/**/angular-route.min.js',
+          'app/bower_components/**/ng-file-upload-all.min.js',
           'app/bower_components/**/auth0-angular.min.js',
           'app/bower_components/**/auth0-lock.min.js',
           'app/bower_components/**/auth0.min.js',
