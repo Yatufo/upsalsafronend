@@ -1,15 +1,19 @@
 /* App Module */
 var UploadImageController = function($scope, upload, CONFIG) {
 
+
   $scope.init = function() {
     $scope.status = {
       current: "initial"
     };
 
+    //TODO: Remove window dependency.
+    var root = $(window).width() > CONFIG.HI_RES_WIDTH ? CONFIG.LO_RES_IMAGES : CONFIG.HI_RES_IMAGES;
+
     if (!_.isEmpty($scope.location.images)) {
-      $scope.location.imageUrl = CONFIG.IMAGES_URL_ROOT + $scope.location.images[0].url
+      $scope.location.imageUrl = root + $scope.location.images[0].url
     } else {
-      $scope.location.imageUrl = CONFIG.IMAGES_URL_ROOT + CONFIG.LOCATIONS_DEFAULT_IMAGE;
+      $scope.location.imageUrl = root + CONFIG.LOCATIONS_DEFAULT_IMAGE;
       $scope.isDefaultImage = true;
     }
   };
