@@ -13,10 +13,8 @@ var config_module = angular.module('eventifyConfig', [])
             "musictype": "salsa"
         },
         HI_RESOLUTION_WIDTH : 640,
-        LO_RES_IMAGES: 'http://localhost:3001/w320-h200-cscale/images/',
-        HI_RES_IMAGES: 'http://localhost:3001/w320-h200-cscale/images/',
         // TODO: use a path in the same domain.
-        //LO_RES_IMAGES: 'http://d2ivgofa0qqp48.cloudfront.net/w320-h200-cscale/images/',
-        //HI_RES_IMAGES: 'http://d2ivgofa0qqp48.cloudfront.net/w640-h400-cscale/images/',
+        LO_RES_IMAGES: 'http://d2ivgofa0qqp48.cloudfront.net/w320-h200-cscale/images/',
+        HI_RES_IMAGES: 'http://d2ivgofa0qqp48.cloudfront.net/w640-h400-cscale/images/',
         LOCATIONS_DEFAULT_IMAGE :'locations/montreal.jpg'
     });
