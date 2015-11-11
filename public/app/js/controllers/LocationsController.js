@@ -6,9 +6,10 @@ angular.module('eventifyControllers')
 
       $scope.allLocations = [];
       $scope.loading = true;
-      $scope.isMapView = maps.isMapVisible();
-      $scope.isListView = true;
-      $scope.canToggleView = !$scope.isMapView;
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
+      $scope.canToggleView = $scope.isMobile;
       $scope.isMapLoaded = false;
       $scope.currentPage = 0;
       $scope.pageSize = 10;
@@ -33,7 +34,7 @@ angular.module('eventifyControllers')
 
 
       function reloadMap(forceReload) {
-        if ($scope.isMapView && (forceReload || !$scope.isMapLoaded)) {
+        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
           maps.init();
           $scope.allLocations.forEach(function(location) {
             maps.addLocation(location);
@@ -76,8 +77,8 @@ angular.module('eventifyControllers')
           url: $window.location
         });
 
-        $scope.isMapView = !$scope.isMapView;
-        $scope.isListView = !$scope.isListView;
+        $scope.isMapVisible = !$scope.isMapVisible;
+        $scope.isListVisible = !$scope.isListVisible;
 
 
         reloadMap();

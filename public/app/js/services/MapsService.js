@@ -25,8 +25,8 @@ var MapsService = function() {
         markerByLocation = [];
       }
     },
-    isMapVisible: function() {
-      return $(window).width() > 800; //TODO change for another thing
+    isMobile: function() {
+      return $(window).width() < 800; //TODO change for another thing
     },
     getMapCanvas: function() {
       var mapsFrame = $("#maps-iframe")[0].contentDocument;
