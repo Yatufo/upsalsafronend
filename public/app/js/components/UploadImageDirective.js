@@ -29,6 +29,10 @@ var UploadImageController = function($scope, upload, CONFIG) {
     return _.contains(["failed", "initial"], $scope.status.current);
   };
 
+  $scope.cancel = function () {
+    $scope.image = undefined;
+  }
+
   // upload on file select or drop
   $scope.upload = function(file) {
     file = file || $scope.image;

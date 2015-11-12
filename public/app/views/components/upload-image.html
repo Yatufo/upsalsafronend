@@ -12,9 +12,14 @@
 
   <div class="preview" ng-if="image">
     <img ngf-src="image">
-    <a class="btn btn-icon blue" ng-click="upload()" ng-show="showUpload()">
-      <i class="fa fa-cloud-upload fa-2x"></i>
-    </a>
+    <div class="options">
+      <a class="btn btn-icon blue" ng-click="upload()" ng-show="showUpload()">
+        <i class="fa fa-cloud-upload fa-2x"></i>
+      </a>
+      <a class="btn btn-icon blue" ng-click="cancel()" ng-show="showUpload()">
+        <i class="fa fa-remove fa-2x"></i>
+      </a>
+    </div>
   </img>
   <div class="progress" ng-class="status.current">
     <div aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar" style="width:{{status.progress}}%"></div>
