@@ -48,13 +48,13 @@ var updateUserRatings = function(rating) {
 
 function calculateRatingScore(ratings) {
   var avg = down = up = 0;
-  console.log(ratings);
+
   ratings.forEach(function(rating) {
     down += rating.votes['down'] || 0;
     up += rating.votes['up'] || 0;
   });
   var avg = up / (up + down);
-  return Math.round(avg * 100) / 100;
+  return up * Math.round(avg * 100) / 100;
 }
 
 var crunchRatingData = function(match, done) {
