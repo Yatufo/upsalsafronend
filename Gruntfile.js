@@ -1,14 +1,51 @@
 module.exports = function(grunt) {
 
+  // Load grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
+  //
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
+
+  var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+  var mountFolder = function(connect, dir) {
+    return connect.static(require('path').resolve(dir));
+  };
+  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    // The actual grunt server settings
+    connect: {
+      options: {
+        port: 5000,
+        // change this to '0.0.0.0' to access the server from outside
+        hostname: '0.0.0.0'
+      },
+      proxies: [{
+        context: '/api',
+        host: 'salsa.local',
+        port: 5001
+      }],
+      livereload: {
+        options: {
+          middleware: function(connect) {
+            return [
+              proxySnippet,
+              livereloadSnippet,
+              mountFolder(connect, 'app')
+            ];
+          }
+        }
+      }
+    },
     watch: {
       gruntfile: {
         files: 'Gruntfile.js'
       },
       html: {
-        tasks: ['html2js', 'concat:app'],
+        tasks: ['build'],
         files: ['app/js/**/*.js', 'app/**/*.html', 'app/assets/css/*.css'],
         options: {
           livereload: true
@@ -103,17 +140,9 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-wiredep');
-  grunt.loadNpmTasks('grunt-aws-s3');
 
-  // Default task(s).
-  grunt.registerTask('default', ['uglify']);
-  grunt.registerTask('compile', ['html2js', 'uglify'])
-  grunt.registerTask('publish', ['compile', 'aws_s3:production'])
+  grunt.registerTask('default', ['connect:livereload', 'build', 'watch']);
+  grunt.registerTask('build', ['html2js', 'concat:app']);
+  grunt.registerTask('package', ['html2js', 'uglify']);
+  grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

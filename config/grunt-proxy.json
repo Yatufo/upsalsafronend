@@ -1,0 +1,12 @@
+{
+    proxy1 : {
+        options : {
+            port : 8050,
+            host : 'localhost',
+            target : {
+                host: 'localhost',
+                port: 8011
+            }
+        }
+    }
+  }

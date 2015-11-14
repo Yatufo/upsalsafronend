@@ -4,9 +4,7 @@
   "version": "0.0.1",
   "description": "A cloud based events displayer app",
   "repository": "https://bitbucket.org/pdemonio/repo.git",
-  "scripts": {
-    "postinstall": "bower install && grunt compile"
-  },
+  "scripts": {},
   "dependencies": {
     "bower": "latest",
     "grunt": "latest",
@@ -18,11 +16,16 @@
   "devDependencies": {
     "grunt-aws-s3": "^0.14.2",
     "grunt-bower-concat": "latest",
+    "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-concat": "latest",
+    "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-jshint": "latest",
+    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-nodeunit": "latest",
-    "grunt-contrib-watch": "latest",
+    "grunt-contrib-watch": "0.6.0",
     "grunt-s3": "^0.1.0",
-    "grunt-wiredep": "latest"
+    "grunt-wiredep": "latest",
+    "load-grunt-tasks": "^3.3.0",
+    "time-grunt": "^1.2.2"
   }
 }
