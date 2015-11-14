@@ -7,10 +7,12 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-  var mountFolder = function(connect, dir) {
-    return connect.static(require('path').resolve(dir));
-  };
   var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+  var serveStatic = require('serve-static');
+
+  var mountFolder = function(connect, dir) {
+    return serveStatic(require('path').resolve(dir));
+  };
 
 
   // Project configuration.
@@ -141,7 +143,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('default', ['connect:livereload', 'build', 'watch']);
+  grunt.registerTask('default', ['configureProxies:connect','connect:livereload', 'build', 'watch']);
   grunt.registerTask('build', ['html2js', 'concat:app']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
