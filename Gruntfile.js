@@ -72,11 +72,39 @@ module.exports = function(grunt) {
       options: {
         base: "app",
         module: "eventifyTemplates",
-        singleModule : true
+        singleModule: true
       },
       main: {
         src: ['app/views/**/*.html'],
         dest: 'app/assets/js/templates.js'
+      }
+    },
+    aws_s3: {
+      options: {
+        uploadConcurrency: 5, // 5 simultaneous uploads
+        downloadConcurrency: 5 // 5 simultaneous downloads
+      },
+      production: {
+        options: {
+          bucket: 'upsalsa.com',
+          params: {
+            ContentEncoding: 'gzip' // applies to all the files!
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: 'app/assets/',
+          src: ['**'],
+          dest: 'assets/',
+          params: {
+            CacheControl: '2000'
+          }
+        }, {
+          expand: true,
+          cwd: 'app/',
+          src: ['*.*'],
+          dest: '/'
+        }]
       }
     }
   });
@@ -88,8 +116,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-aws-s3');
 
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
   grunt.registerTask('compile', ['html2js', 'uglify'])
+  grunt.registerTask('publish', ['compile', 'aws_s3:production'])
 };

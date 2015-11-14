@@ -16,11 +16,13 @@
     "html-minifier": "^0.7.2"
   },
   "devDependencies": {
+    "grunt-aws-s3": "^0.14.2",
     "grunt-bower-concat": "latest",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-watch": "latest",
+    "grunt-s3": "^0.1.0",
     "grunt-wiredep": "latest"
   }
 }
