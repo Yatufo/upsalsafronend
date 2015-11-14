@@ -86,19 +86,13 @@ module.exports = function(grunt) {
       },
       production: {
         options: {
-          bucket: 'upsalsa.com',
-          params: {
-            ContentEncoding: 'gzip' // applies to all the files!
-          }
+          bucket: 'upsalsa.com'
         },
         files: [{
           expand: true,
           cwd: 'app/assets/',
           src: ['**'],
-          dest: 'assets/',
-          params: {
-            CacheControl: '2000'
-          }
+          dest: 'assets/'
         }, {
           expand: true,
           cwd: 'app/',

@@ -1,4 +1,5 @@
 *.log
 node_modules/**
 data/db/**
+app/assets/js
 *.DS_Store
