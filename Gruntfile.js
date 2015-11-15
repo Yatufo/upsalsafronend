@@ -9,10 +9,7 @@ module.exports = function(grunt) {
   var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
   var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
   var serveStatic = require('serve-static');
-
-  var mountFolder = function(connect, dir) {
-    return serveStatic(require('path').resolve(dir));
-  };
+  var path = require('path');
 
 
   // Project configuration.
@@ -36,7 +33,7 @@ module.exports = function(grunt) {
             return [
               proxySnippet,
               livereloadSnippet,
-              mountFolder(connect, 'app')
+              serveStatic(path.resolve("app"), {'index': ['index-local.html']})
             ];
           }
         }
@@ -143,7 +140,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('default', ['configureProxies:connect','connect:livereload', 'build', 'watch']);
+  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
   grunt.registerTask('build', ['html2js', 'concat:app']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
