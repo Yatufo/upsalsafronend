@@ -7,7 +7,7 @@ var SimpleRateDirectiveController = function($scope, service) {
 
     if ($scope.rateable) {
       $scope.rating = _.find($scope.rateable.summaries, function(summary) {
-        return summary.category.id === $scope.category;
+        return summary.category && summary.category.id === $scope.category;
       });
     }
   }
