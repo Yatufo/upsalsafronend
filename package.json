@@ -14,6 +14,7 @@
     "html-minifier": "^0.7.2"
   },
   "devDependencies": {
+    "connect-modrewrite": "^0.8.2",
     "grunt-aws-s3": "^0.14.2",
     "grunt-bower-concat": "latest",
     "grunt-connect-proxy": "latest",

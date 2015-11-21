@@ -9,6 +9,7 @@ module.exports = function(grunt) {
   var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
   var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
   var serveStatic = require('serve-static');
+  var modRewrite = require('connect-modrewrite');
   var path = require('path');
 
 
@@ -19,18 +20,21 @@ module.exports = function(grunt) {
     connect: {
       options: {
         port: 5000,
-        // change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0'
       },
       //TODO: use default dev servers so as not to depend to a local enviroment.
+      //TODO: Use nginx like in production.
       proxies: [{
         context: '/api',
         host: 'salsa.local',
         port: 3002
-      },{
+      }, {
         context: '/images',
         host: 'salsa.local',
-        port: 3001
+        port: 3001,
+        rewrite: {
+          '^/images': ''
+        }
       }],
       livereload: {
         options: {
@@ -38,7 +42,10 @@ module.exports = function(grunt) {
             return [
               proxySnippet,
               livereloadSnippet,
-              serveStatic(path.resolve("app"), {'index': ['index-local.html']})
+              modRewrite (['!^/assets.*$ /index.html [L]']),
+              serveStatic(path.resolve("app"), {
+                'index': ['index-local.html']
+              })
             ];
           }
         }
