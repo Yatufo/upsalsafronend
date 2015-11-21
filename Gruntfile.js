@@ -22,10 +22,15 @@ module.exports = function(grunt) {
         // change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0'
       },
+      //TODO: use default dev servers so as not to depend to a local enviroment.
       proxies: [{
         context: '/api',
         host: 'salsa.local',
-        port: 5001
+        port: 3002
+      },{
+        context: '/images',
+        host: 'salsa.local',
+        port: 3001
       }],
       livereload: {
         options: {
