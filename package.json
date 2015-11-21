@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "A cloud based events displayer app",
-  "repository": "https://bitbucket.org/pdemonio/repo.git",
+  "repository": "https://bitbucket.org/upsalsa/frontend",
   "scripts": {},
   "dependencies": {
     "bower": "latest",

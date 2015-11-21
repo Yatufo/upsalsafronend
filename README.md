@@ -26,7 +26,7 @@ docker run -d --name image-server \
 -e AWS_SECRET_ACCESS_KEY=8Ah0rOGX+zYqUEiwrZK3vXQHyIIYOcSFERXxcN6o \
 -e AWS_REGION=us-east-1 \
 -e S3_BUCKET=salsa.local \
-brendanyounger/image-resizer 
+brendanyounger/image-resizer
 ```
 
 #### Run the app
@@ -48,3 +48,17 @@ The authentication requires a proper domain to work, so update your hosts file (
 ```
 
 Go to (http://salsa.local:5000/)
+
+
+#### Deploy to production.
+
+To upload the generated static files to S3:
+
+```
+export AWS_ACCESS_KEY_ID=myaccesskey
+export AWS_SECRET_ACCESS_KEY=mysecretkey
+```
+
+```
+grunt publish
+```

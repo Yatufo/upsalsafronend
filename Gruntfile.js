@@ -42,7 +42,8 @@ module.exports = function(grunt) {
             return [
               proxySnippet,
               livereloadSnippet,
-              modRewrite (['!^/assets.*$ /index.html [L]']),
+              //all angular routes go to index file
+              modRewrite (['!^/.*\\..*$ /index-local.html [L]']),
               serveStatic(path.resolve("app"), {
                 'index': ['index-local.html']
               })
