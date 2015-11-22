@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       proxies: [{
         context: '/api',
         host: 'salsa.local',
-        port: 3002
+        port: 3003
       }, {
         context: '/images',
         host: 'salsa.local',

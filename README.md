@@ -11,9 +11,16 @@ docker login
 ```
 
 ```
+export AWS_ACCESS_KEY_ID=AKIAIMKUJAVKMMFQDQYA
+export AWS_SECRET_ACCESS_KEY=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
+```
+
+```
 docker run -d --name upsalsa-api \
--e "DEPLOY_ENVIRONMENT=prod" \
+-e "DEPLOY_ENVIRONMENT=dev" \
 -e "MONGO_CONNECTION=mongodb://api:api@ds053794.mongolab.com:53794/upsalsa-dev" \
+-e AWS_ACCESS_KEY_ID=$AWS_SECRET_ACCESS_KEY \
+-e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
 -p 3002:5000 upsalsa/upsalsa-api
 ```
 
@@ -22,12 +29,13 @@ docker run -d --name upsalsa-api \
 ```
 docker run -d --name image-server \
 -p 3001:3001 \
--e AWS_ACCESS_KEY_ID=AKIAJ66NQ6MUCMHT3C5Q \
--e AWS_SECRET_ACCESS_KEY=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 \
+-e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+-e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
 -e AWS_REGION=us-east-1 \
 -e S3_BUCKET=salsa.local \
 brendanyounger/image-resizer
 ```
+
 
 #### Run the app
 
