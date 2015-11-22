@@ -88,6 +88,13 @@ angular.module('eventifyControllers')
         maps.highlightLocation(location);
       };
 
+       
+      $scope.address = {};
+      $scope.address.formattedAddress = "";
+      $scope.addressCompleted = function(data) {
+        $scope.address = data;
+      }
+
       window.scrollTo(0, 0);
     }
   ]);

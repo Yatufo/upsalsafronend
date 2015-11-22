@@ -24,6 +24,21 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-xs-12 col-md-10">
+    <form role="form" id="addressFormId" name="addressForm">
+      <div class="form-group">
+        <label for="addressId">Address</label>
+        <input type="input" class="form-control" name="address" id="addressId" autocomplete completed="addressCompleted(data)" 
+        placeholder="Address" ng-model="address.formattedAddress">
+      </div>
+    </form>
+  </div>
+
+</div>
+</div>
+
+
 
 
 <div id="toogle-map" ng-click="toogleView()" ng-if="canToggleView">
