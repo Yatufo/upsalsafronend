@@ -22,7 +22,7 @@ export AWS_SECRET_ACCESS_KEY=NM7FztTQ5Rpyg3tacylvQC0j76AInZQksnNx74JI
 docker run -d --name upsalsa-api \
 -e "DEPLOY_ENVIRONMENT=dev" \
 -e "MONGO_CONNECTION=mongodb://api:api@ds053794.mongolab.com:53794/upsalsa-dev" \
--e AWS_ACCESS_KEY_ID=$AWS_SECRET_ACCESS_KEY \
+-e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
 -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
 -p 3002:3002 upsalsa/upsalsa-api
 ```
