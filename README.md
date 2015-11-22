@@ -24,7 +24,7 @@ docker run -d --name upsalsa-api \
 -e "MONGO_CONNECTION=mongodb://api:api@ds053794.mongolab.com:53794/upsalsa-dev" \
 -e AWS_ACCESS_KEY_ID=$AWS_SECRET_ACCESS_KEY \
 -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
--p 3002:5000 upsalsa/upsalsa-api
+-p 3002:3002 upsalsa/upsalsa-api
 ```
 
 [OPTIONAL]To be able to retrieve the uploaded images and show them in the app it's necessary to run the image server
