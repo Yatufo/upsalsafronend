@@ -23,6 +23,7 @@
     "grunt-contrib-concat": "latest",
     "grunt-contrib-connect": "latest",
     "grunt-contrib-jshint": "latest",
+    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-fixmyjs": "^0.3.0",

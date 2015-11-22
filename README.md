@@ -2,6 +2,9 @@
 * [Node](https://nodejs.org/en/download/)
 * [Docker](https://www.docker.com/)
 
+From the root folder:
+
+```npm install```
 
 #### Run backend with Docker
 To be able to download the docker image for the backend it's necessary to login:
