@@ -113,10 +113,6 @@ module.exports = function(grunt) {
         dest: 'app/assets/js/dependencies.js',
       }
     },
-    jshint: {
-      beforeconcat: ['app/js/**/*.js'],
-      afterconcat: ['app/assets/js/<%= pkg.name %>.js']
-    },
     html2js: {
       options: {
         base: "app",
@@ -149,9 +145,34 @@ module.exports = function(grunt) {
           dest: '/'
         }]
       }
+    },
+    jshint: {
+      options: {jshintrc: '.jshintrc'},
+      beforeconcat: ['app/js/**/*.js'],
+      afterconcat: ['app/assets/js/<%= pkg.name %>.js']
+    },
+    fixmyjs: {
+      options: {
+        curly: true,
+        quotmark: 'single',
+        plusplus: true,
+        asi: false
+      },
+      all: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app/js/',
+            src: ['**/*.js'],
+            dest: 'app/js/',
+            ext: '.js'
+          }
+        ]
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-fixmyjs');
 
   grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
   grunt.registerTask('build', ['html2js', 'concat:app']);
