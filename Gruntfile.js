@@ -169,13 +169,16 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    concurrent: {
+      build: ['html2js', 'concat:app']
     }
   });
 
   grunt.loadNpmTasks('grunt-fixmyjs');
 
   grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
-  grunt.registerTask('build', ['html2js', 'concat:app']);
+  grunt.registerTask('build', ['concurrent:build']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

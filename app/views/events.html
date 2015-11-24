@@ -26,12 +26,17 @@
                 <eventcard data-event="event" data-city="city" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
             </div>
         </div>
-        <div class="hidden-xs col-md-5">
-            <div class="fixedColunm">
-                <div id="map-canvas" class="hidden-xs col-md-5">
-                </div>
-            </div>
-        </div>
     </div>
+
+    <div ng-class="{'right-pane' : !isMobile, fullscreen : isMobile}">
+      <div class="row">
+        <div class="col-xs-12 col-md-10">
+          <div class="google-maps" ng-show="isMapVisible">
+            <iframe frameborder="0" id="maps-iframe" style="border:0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 </div>
