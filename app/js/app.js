@@ -10,6 +10,7 @@ var eventify = angular.module('eventify', [
   'angular-jwt',
   'infinite-scroll',
   'ngFileUpload',
+  'ui.bootstrap.datetimepicker',
   'eventifyControllers',
   'eventifyFilters',
   'eventifyConfig',
