@@ -1,6 +1,6 @@
 /* Controllers */
 
-angular.module('eventifyControllers')
+eventify
   .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService',
     function($scope, $rootScope, $window, Location, maps, ratingService, analytics) {
 

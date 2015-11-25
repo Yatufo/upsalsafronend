@@ -29,5 +29,5 @@ var SecurityService = function (auth, store, $rootScope, $location) {
     return service;
 };
 
-angular.module('eventifyServices')
+eventify
     .factory('SecurityService', ["auth", "store", '$rootScope', '$location', SecurityService]);

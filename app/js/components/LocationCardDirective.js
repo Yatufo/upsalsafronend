@@ -9,7 +9,7 @@ var LocationCardController = function ($scope) {
 
 /* App Module */
 
-angular.module('eventify').directive('locationcard', function() {
+eventify.directive('locationcard', function() {
     return {
         restrict: 'E',
         replace : true,

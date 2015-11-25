@@ -1,8 +1,7 @@
 
 
 //TODO: use module.config
-var config_module = angular.module('eventifyConfig', [])
-    .constant('CONFIG', {
+eventify.constant('CONFIG', {
         CATEGORIES_REVIEWS_ORDER: ['class', 'party'],
         EVENTS_ENDPOINT: '/api/events',
         TODAY: new Date(),

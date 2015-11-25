@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('eventifyControllers')
+eventify
     .controller('EventDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
         function($scope, $http, $routeParams, CONFIG, MapsService) {
 

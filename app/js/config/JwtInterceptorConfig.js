@@ -1,6 +1,6 @@
 
 
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 var TokenConfig = function (authProvider, $routeProvider, $httpProvider, jwtInterceptorProvider) {
   // We're annotating this function so that the `store` is injected correctly when this file is minified

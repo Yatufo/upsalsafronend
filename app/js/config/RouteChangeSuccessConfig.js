@@ -1,4 +1,4 @@
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 var routeChangeSuccess = function($rootScope, userService) {
 

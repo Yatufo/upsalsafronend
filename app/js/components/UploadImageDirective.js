@@ -55,7 +55,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
 };
 
 
-angular.module('eventify').directive('uploadimage', function() {
+eventify.directive('uploadimage', function() {
   return {
     restrict: 'E',
     replace: true,

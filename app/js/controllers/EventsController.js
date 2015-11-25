@@ -1,6 +1,6 @@
 /* Controllers */
 
-angular.module('eventifyControllers')
+eventify
   .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'MapsService',
     function($scope, $http, $filter, $routeParams, CONFIG, maps) {
 

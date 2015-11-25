@@ -1,43 +1,69 @@
 <div class="card shadow">
   <div class="card-image">
     <uploadimage data-location="event"></uploadimage>
-    <span class="elipsis card-title"><a ng-href="{{event.detailsUrl}}">{{event.name}}</a></span>
+    <span class="elipsis card-title">
+      <a ng-href="{{event.detailsUrl}}">{{event.name}}</a>
+    </span>
   </div>
   <div class="card-content clearfix">
-    <div class="dropdown">
-        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
-           href="#">
+    <form>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" ng-model="event.title" placeholder="Title" type="title">
+      </div>
+
+      <div class="form-group">
+        <label for="title">Url</label>
+        <input class="form-control" id="title" ng-model="event.url" placeholder="http://www.myevent.com" type="title">
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start:
+        </label>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-                <input type="text" class="form-control" data-ng-model="event.interval.start">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <input class="form-control" data-ng-model="event.interval.start" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
             </div>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <datetimepicker data-ng-model="event.interval.start"
-                            data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
-        </ul>
-    </div>
+          </a>
+          <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.interval.start"></datetimepicker>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Until:
+        </label>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
+            <div class="input-group">
+              <input class="form-control" data-ng-model="event.interval.end" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+            </div>
+          </a>
+          <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.interval.end"></datetimepicker>
+          </ul>
+        </div>
+      </div>
+      <label>Duration: {{getDuration()}} hour(s)</label>
+    </form>
+
   </div>
   <div class="card-action clearfix">
-    <div class="pull-left">
-      <a class="btn btn-icon" ng-href="{{'tel://' + event.phone}}" ng-if="event.phone">
-        <i class="fa fa-phone fa-2x"></i>
-      </a>
-      <a class="btn btn-icon" ng-href="{{event.detailsUrl}}" ng-if="event.address">
-        <i class="fa fa-map-marker fa-2x"></i>
-      </a>
-      <a class="btn btn-icon" ng-href="{{event.url}}" target="window">
-        <i class="fa fa-globe fa-2x"></i>
-      </a>
-    </div>
     <div class="pull-right">
-      <simplerate class="btn-icon" data-category="'favorite'" data-rateable="event"></simplerate>
-      <a ng-if="event.comments.length > 0" class="btn btn-icon" ng-click="toogleComments()">
-        <i class="fa fa-comments fa-2x"> <span class="number">{{event.comments.length}}</span> </i>
+      <a class="btn btn-icon" ng-click="save()">
+        <i class="fa fa-save fa-2x"></i>
+      </a>
+      <a class="btn btn-icon" ng-click="cancel()">
+        <i class="fa fa-remove fa-2x"></i>
       </a>
     </div>
   </div>
-
-  <comments data-commentable="event" data-expanded="showComments"></comments>
-
 </div>

@@ -1,6 +1,6 @@
 
 
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 var TokenValidation = function($rootScope, auth, store, jwtHelper, $location) {
   $rootScope.auth = auth;

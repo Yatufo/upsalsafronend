@@ -1,6 +1,6 @@
 
 
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 eventify.config(['$routeProvider',
   function($routeProvider) {

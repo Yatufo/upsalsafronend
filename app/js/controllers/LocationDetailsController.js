@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('eventifyControllers')
+eventify
   .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService',
     function($rootScope, $scope, $routeParams, Location, maps, ratingService) {
 

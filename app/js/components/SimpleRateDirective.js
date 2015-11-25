@@ -59,7 +59,7 @@ var SimpleRateDirectiveController = function($scope, service) {
 };
 
 
-angular.module('eventify').directive('simplerate', function() {
+eventify.directive('simplerate', function() {
   return {
     restrict: 'E',
     replace: true,

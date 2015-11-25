@@ -99,7 +99,7 @@ var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
 };
 
 
-angular.module('eventify').directive('comments', function() {
+eventify.directive('comments', function() {
   return {
     restrict: 'E',
     replace: true,

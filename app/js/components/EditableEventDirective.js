@@ -1,6 +1,9 @@
-var EditableEventCardController = function($scope, CONFIG) {
+var EditableEventCardController = function($scope, Event, CONFIG) {
 
-
+    $scope.pickerOptions = {
+      minView: 'minutes',
+      dropdownSelector: '#startDateSelector'
+    }
 
     $scope.event = {
       "_id": "54fc8442aacad0030040ca8b",
@@ -37,18 +40,25 @@ var EditableEventCardController = function($scope, CONFIG) {
         "dateTime": "2014-06-15T01:00:00.000Z"
       }
     };
+    var start = moment().startOf('hour').add(1, 'hours');
 
     $scope.event = {
       imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
       interval: {
-        start: moment(),
-        end: moment()
+        start: start.toDate(),
+        end: new moment(start).add(1, 'hours').toDate()
       }
     }
+
+    $scope.getDuration = function() {
+      var interval = $scope.event.interval;
+      return moment(interval.end).diff(interval.start, 'hours');
+    }
+
   }
   /* App Module */
 
-angular.module('eventify').directive('editableeventcard', function() {
+eventify.directive('editableeventcard', function() {
   return {
     restrict: 'E',
     replace: true,
@@ -56,7 +66,7 @@ angular.module('eventify').directive('editableeventcard', function() {
       event: '=',
       city: '='
     },
-    controller: ['$scope', 'CONFIG', EditableEventCardController],
+    controller: ['$scope', 'EventsResource','CONFIG', EditableEventCardController],
     templateUrl: 'views/components/editable-event-card.html'
   };
 });

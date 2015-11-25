@@ -125,5 +125,5 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG) {
 
 
 
-angular.module('eventifyControllers')
+eventify
     .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', CategoriesController]);
