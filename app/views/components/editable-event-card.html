@@ -6,8 +6,7 @@
     </span>
   </div>
   <div class="card-content clearfix">
-    <form>
-
+    <form name="eventForm">
       <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control" id="title" ng-model="event.title" placeholder="Title" type="title">
@@ -15,7 +14,7 @@
 
       <div class="form-group">
         <label for="title">Url</label>
-        <input class="form-control" id="title" ng-model="event.url" placeholder="http://www.myevent.com" type="title">
+        <input class="form-control" id="title" ng-model="event.url" placeholder="http://www.myevent.com" type="url">
       </div>
 
       <div class="form-group">
@@ -24,14 +23,14 @@
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="event.interval.start" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input class="form-control" data-ng-model="event.start.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
             </div>
           </a>
           <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.interval.start"></datetimepicker>
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.start.dateTime"></datetimepicker>
           </ul>
         </div>
       </div>
@@ -41,14 +40,14 @@
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="event.interval.end" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input class="form-control" data-ng-model="event.end.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
             </div>
           </a>
           <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.interval.end"></datetimepicker>
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.end.dateTime"></datetimepicker>
           </ul>
         </div>
       </div>
