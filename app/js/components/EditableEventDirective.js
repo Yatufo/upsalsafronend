@@ -17,7 +17,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
         location : toLocation($scope.location),
         categories: [],
         images : [],
-        detailsUrl: CONFIG.EVENT_DEFAULT_IMAGE,
+        imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
         start: {
           dateTime: start.toDate()
         },

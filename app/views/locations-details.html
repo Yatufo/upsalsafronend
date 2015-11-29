@@ -9,6 +9,11 @@
               <div class="">
                 <editableeventcard ng-if="creatingEvent" data-location="location" data-on-save="onEvent(event)" data-on-cancel="onEvent()" ></editableeventcard>
               </div>
+
+              <div ng-repeat="event in events | orderBy : event.start.dateTime ">
+                  <eventcard data-event="event" data-city="city" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
+              </div>
+
           </div>
         </div>
 

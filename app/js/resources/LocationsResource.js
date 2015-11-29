@@ -1,5 +1,3 @@
-
-
 /* Service */
 
 eventify.factory('Location', ['$resource', function($resource) {
@@ -8,6 +6,11 @@ eventify.factory('Location', ['$resource', function($resource) {
   }, {
     'update': {
       method: 'PUT'
+    },
+    'getEvents' : {
+      method: "GET",
+      isArray: true,
+      url: '/api/locations/:locationId/events'
     }
   });
 }]);

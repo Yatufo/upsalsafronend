@@ -3,8 +3,8 @@
 /* Controllers */
 
 eventify
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService',
-    function($rootScope, $scope, $routeParams, Location, maps, ratingService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$window', '$routeParams', 'Location', 'MapsService', 'RatingService',
+    function($rootScope, $scope, $window, $routeParams, Location, maps, ratingService) {
 
       var resetSummaries = function(){
         if ($scope.location){
@@ -18,7 +18,7 @@ eventify
 
       $scope.onEvent = function(event) {
         $scope.creatingEvent = false;
-        console.log("notified", event);
+        $scope.events.push(event);
       }
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
@@ -27,10 +27,10 @@ eventify
         }
       });
 
+
       Location.get({
         locationId: $routeParams.locationId
       }, function(location) {
-        console.log(location);
 
         maps.init(location, 14);
         maps.addLocation(location);
@@ -39,6 +39,15 @@ eventify
         $scope.location = location;
         resetSummaries();
       });
+
+      Location.getEvents({
+        locationId: $routeParams.locationId
+      }, function(events) {
+        $scope.events = events || [];
+        $scope.events.forEach(function (event) {
+          event.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/events/' + event.id;
+        })
+      })
 
       window.scrollTo(0, 0);
     }
