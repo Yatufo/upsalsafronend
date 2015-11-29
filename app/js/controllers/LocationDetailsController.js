@@ -1,13 +1,15 @@
-
-
 /* Controllers */
 
 eventify
   .controller('LocationDetailsController', ['$rootScope', '$scope', '$window', '$routeParams', 'Location', 'MapsService', 'RatingService',
     function($rootScope, $scope, $window, $routeParams, Location, maps, ratingService) {
 
-      var resetSummaries = function(){
-        if ($scope.location){
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
+
+      var resetSummaries = function() {
+        if ($scope.location) {
           $scope.location.summaries = ratingService.generateSummaries($scope.location);
         }
       };
@@ -18,7 +20,9 @@ eventify
 
       $scope.onEvent = function(event) {
         $scope.creatingEvent = false;
-        $scope.events.push(event);
+        if (event) {
+          $scope.events.push(event);
+        }
       }
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
@@ -44,7 +48,7 @@ eventify
         locationId: $routeParams.locationId
       }, function(events) {
         $scope.events = events || [];
-        $scope.events.forEach(function (event) {
+        $scope.events.forEach(function(event) {
           event.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/events/' + event.id;
         })
       })
