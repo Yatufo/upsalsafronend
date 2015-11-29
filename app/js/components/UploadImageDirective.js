@@ -3,7 +3,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
 
 
   $scope.init = function() {
-    $scope.location.images = $scope.location.images || [];
+    $scope.item.images = $scope.item.images || [];
 
     $scope.status = {
       current: "initial"
@@ -12,15 +12,15 @@ var UploadImageController = function($scope, upload, CONFIG) {
     //TODO: Remove window dependency.
     var root = $(window).width() > CONFIG.HI_RES_WIDTH ? CONFIG.LO_RES_IMAGES : CONFIG.HI_RES_IMAGES;
 
-    if (!_.isEmpty($scope.location.images)) {
-      $scope.location.imageUrl = root + $scope.location.images[0].url
+    if (!_.isEmpty($scope.item.images)) {
+      $scope.item.imageUrl = root + $scope.item.images[0].url
     } else {
-      $scope.location.imageUrl = root + CONFIG.LOCATIONS_DEFAULT_IMAGE;
+      $scope.item.imageUrl = root + CONFIG.LOCATIONS_DEFAULT_IMAGE;
       $scope.isDefaultImage = true;
     }
   };
 
-  $scope.$watch("location", function(newValue) {
+  $scope.$watch("item", function(newValue) {
     if (newValue) {
       $scope.init();
     }
@@ -40,18 +40,24 @@ var UploadImageController = function($scope, upload, CONFIG) {
     file = file || $scope.image;
     $scope.status.current = "uploading"
 
+    var endpoint = CONFIG.DEFAULT_IMAGE_ENDPOINT;
+    if ($scope.type && $scope.item.id) {
+       //Asumes the endpoint like this: for location type = /api/locations/:id/images
+       endpoint = '/api/' + $scope.type + 's/' + $scope.item.id + '/images'
+    }
+
     upload.upload({
-      url: "api/images",
+      url: endpoint,
       data: {
         image: file
       }
     }).then(function(response) {
       if (response.status === 201) {
         var image = response.data;
-        $scope.location.images.push(image);
+        $scope.item.images.push(image);
         $scope.status.current = "success"
       } else {
-        console.error($scope.location);
+        console.error($scope.item);
       }
     }, function(resp) {
       $scope.status.current = "failed"
@@ -68,7 +74,8 @@ eventify.directive('uploadimage', function() {
     restrict: 'E',
     replace : true,
     scope: {
-      location: "="
+      item: "=",
+      type: "="
     },
     controller: ['$scope', 'Upload', 'CONFIG', UploadImageController],
     templateUrl: 'views/components/upload-image.html'
