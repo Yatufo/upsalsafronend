@@ -1,7 +1,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-md-5 col-md-offset-1">
-            <locationcard data-location="location" data-city="city"> </locationcard>
+          <locationcard data-location="location" data-city="city"> </locationcard>
+          <div>
+              Upcoming Events
+              <button type="submit" class="btn btn-default" ng-click="createEvent()">Add Event</button>
+
+              <div class="">
+                <editableeventcard ng-if="creatingEvent" data-location="location" data-on-save="onEvent(event)" data-on-cancel="onEvent()" ></editableeventcard>
+              </div>
+          </div>
         </div>
 
         <div class="col-xs-12 col-md-5 google-maps">

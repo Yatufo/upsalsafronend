@@ -12,6 +12,15 @@ eventify
         }
       };
 
+      $scope.createEvent = function() {
+        $scope.creatingEvent = true;
+      }
+
+      $scope.onEvent = function(event) {
+        $scope.creatingEvent = false;
+        console.log("notified", event);
+      }
+
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
           resetSummaries();

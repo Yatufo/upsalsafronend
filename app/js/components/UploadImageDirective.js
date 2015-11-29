@@ -49,7 +49,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
       if (response.status === 201) {
         var image = response.data;
         $scope.location.images.push(image);
-        console.log($scope.location);
+        $scope.status.current = "success"
       } else {
         console.error($scope.location);
       }

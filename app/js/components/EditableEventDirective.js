@@ -5,13 +5,16 @@ var EditableEventCardController = function($scope, service, CONFIG) {
       dropdownSelector: '#startDateSelector'
     }
 
+    function toLocation(location) {
+      return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
+    }
 
     function init(argument) {
       var start = moment().startOf('hour').add(1, 'hours');
       var end = new moment(start).add(1, 'hours');
 
       $scope.event = {
-        location : $scope.location,
+        location : toLocation($scope.location),
         categories: [],
         images : [],
         detailsUrl: CONFIG.EVENT_DEFAULT_IMAGE,
@@ -25,12 +28,14 @@ var EditableEventCardController = function($scope, service, CONFIG) {
     };
 
     $scope.save =  function() {
-      console.log($scope.event);
-      service.saveOrUpdate($scope.event).then(console.log("Redirect or do something"));
+      service.saveOrUpdate($scope.event)
+        .then(function(saved) {
+          $scope.onSave({event : saved});
+        });
     }
 
     $scope.cancel = function () {
-      init();
+      $scope.onCancel();
     }
     $scope.getDuration = function() {
       return moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours');
@@ -46,7 +51,8 @@ eventify.directive('editableeventcard', function() {
     replace: true,
     scope: {
       location: '=',
-      city: '='
+      onCancel: '&',
+      onSave: '&',
     },
     controller: ['$scope', 'EventService', 'CONFIG', EditableEventCardController],
     templateUrl: 'views/components/editable-event-card.html'
