@@ -26,11 +26,11 @@ module.exports = function(grunt) {
       //TODO: Use nginx like in production.
       proxies: [{
         context: '/api',
-        host: 'salsa.local',
-        port: 3002
+        host: 'localhost',
+        port: process.env.PORT || 3002
       }, {
         context: '/images',
-        host: 'salsa.local',
+        host: 'localhost',
         port: 3001,
         rewrite: {
           '^/images': ''

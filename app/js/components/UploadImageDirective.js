@@ -3,6 +3,8 @@ var UploadImageController = function($scope, upload, CONFIG) {
 
 
   $scope.init = function() {
+    $scope.location.images = $scope.location.images || [];
+
     $scope.status = {
       current: "initial"
     };
@@ -39,12 +41,18 @@ var UploadImageController = function($scope, upload, CONFIG) {
     $scope.status.current = "uploading"
 
     upload.upload({
-      url: "api/locations/" + $scope.location.id + "/images",
+      url: "api/images",
       data: {
         image: file
       }
-    }).then(function(location) {
-      $scope.status.current = "success"
+    }).then(function(response) {
+      if (response.status === 201) {
+        var image = response.data;
+        $scope.location.images.push(image);
+        console.log($scope.location);
+      } else {
+        console.error($scope.location);
+      }
     }, function(resp) {
       $scope.status.current = "failed"
     }, function(evt) {
@@ -58,7 +66,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
 eventify.directive('uploadimage', function() {
   return {
     restrict: 'E',
-    replace: true,
+    replace : true,
     scope: {
       location: "="
     },

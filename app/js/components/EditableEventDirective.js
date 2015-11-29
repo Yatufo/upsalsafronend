@@ -13,6 +13,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
       $scope.event = {
         location : $scope.location,
         categories: [],
+        images : [],
         detailsUrl: CONFIG.EVENT_DEFAULT_IMAGE,
         start: {
           dateTime: start.toDate()
@@ -24,6 +25,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
     };
 
     $scope.save =  function() {
+      console.log($scope.event);
       service.saveOrUpdate($scope.event).then(console.log("Redirect or do something"));
     }
 
