@@ -15,7 +15,8 @@ eventify.directive('locationcard', function() {
         replace : true,
         scope: {
             location: '=',
-            city: '='
+            city: '=',
+            options: '='
         },
         controller: ['$scope', LocationCardController],
         templateUrl: 'views/components/location-card.html'

@@ -6,7 +6,7 @@
     <div class="col-xs-12 col-md-5 col-md-offset-1">
       <div infinite-scroll-distance="3" infinite-scroll="loadMore()">
         <div ng-repeat="location in locations">
-          <locationcard data-city="city" data-location="location" data-ng-mouseenter="highlightLocation(location)"></locationcard>
+          <locationcard data-city="city" data-options="{details:true}" data-location="location" data-ng-mouseenter="highlightLocation(location)"></locationcard>
         </div>
       </div>
     </div>
