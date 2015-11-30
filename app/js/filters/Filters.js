@@ -11,6 +11,6 @@ eventify
 eventify
   .filter('calendar', [function() {
     return function(dateTime) {
-      return moment().calendar(dateTime);
+      return moment(dateTime).calendar();
     };
   }]);

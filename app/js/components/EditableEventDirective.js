@@ -15,7 +15,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
 
       $scope.event = {
         location : toLocation($scope.location),
-        categories: [],
+        categories: ['party'], //TODO Get the categories as hashtags from the desciption
         images : [],
         imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
         start: {

@@ -1,81 +1,69 @@
 /* Controllers */
 
 eventify
-  .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'MapsService',
-    function($scope, $http, $filter, $routeParams, CONFIG, maps) {
+  .controller('EventsController', ['$scope', '$rootScope', '$window', '$filter', '$routeParams', 'CONFIG', 'EventsResource', 'MapsService',
+    function($scope, $rootScope, $window, $filter, $routeParams, CONFIG, Event, maps) {
 
       var SPLIT_PARAM = "-";
       $scope.localTime = CONFIG.TODAY;
       $scope.selectedCategories = [];
       $scope.events = [];
+      $scope.locations = [];
       $scope.loading = true;
 
       if ($routeParams.categories) {
-        $scope.selectedCategories = $routeParams.categories.split(SPLIT_PARAM);
+        $scope.categories = $routeParams.categories.split(SPLIT_PARAM);
       }
 
-      searchEvents();
 
-      function searchEvents() {
-        var config = {
-          params: {
-            "categories": $scope.selectedCategories.join(",")
-          }
-        };
+      $scope.search = function() {
 
-        $http.get(CONFIG.EVENTS_ENDPOINT, config).success(function(data) {
-          $scope.events = [{
-            "_id": "54fc8442aacad0030040ca8b",
-            "title": "Club /practice nights / Soirée de pratique 9pm-3am",
-            "location": {
-              "_id": {
-                "$oid": "55c15d88a42c1f83f204e006"
-              },
-              "id": "salsaxtaze",
-              "name": "Salsa Xtaze",
-              "address": "5425, rue de Bordeaux,Loft 255,Montréal QC H2H 2P9 ",
-              "url": "http://www.salsaxtaze.ca/",
-              "phone": "5148913612",
-              "ratings": [],
-              "coordinates": {
-                "latitude": 45.539399,
-                "longitude": -73.582811
-              },
-              "__v": 0
-            },
-            "sequence": 1,
-            "categories": [
-              "kizomba",
-              "bachata",
-              "salsa",
-              "chacha",
-              "party",
-              "intermediate"
-            ],
-            "end": {
-              "dateTime": "2014-06-15T07:00:00.000Z"
-            },
-            "start": {
-              "dateTime": "2014-06-15T01:00:00.000Z"
-            }
-          }];
+        Event.query({categories: $scope.categories.join(",")}, function(events) {
+          $scope.events = events;
 
-          showEventsInMap($scope.events);
+          $scope.events.forEach(function(event) {
+            event.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/events/' + event.id;
+          });
+
+          $scope.locations = $scope.events.map(function(event) {
+            return event.location;
+          })
+
+          reloadMap($scope.locations);
           $scope.loading = false;
         });
-
       };
 
+      //TODO: Reuse this code which is also in the locations
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
+      $scope.canToggleView = $scope.isMobile;
+      $scope.isMapLoaded = false;
 
-
-
-      var showEventsInMap = function(events) {
-        maps.reset();
-        if (_.isArray(events)) {
-          events.forEach(function(lEvent) {
-            maps.addLocation(lEvent.location);
+      function reloadMap(locations, forceReload) {
+        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
+          maps.init();
+          locations.forEach(function(location) {
+            maps.addLocation(location);
           });
+          $scope.isMapLoaded = true;
         }
+      }
+
+      $scope.toogleView = function() {
+
+        analytics.track({
+          category: 'usage',
+          action: 'toogleMap',
+          url: $window.location
+        });
+
+        $scope.isMapVisible = !$scope.isMapVisible;
+        $scope.isListVisible = !$scope.isListVisible;
+
+
+        reloadMap($scope.locations);
       };
 
       $scope.highlightLocation = function(location) {
@@ -83,7 +71,7 @@ eventify
       };
 
 
-      maps.init();
+      $scope.search();
     }
 
 

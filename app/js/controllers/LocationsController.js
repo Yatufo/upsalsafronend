@@ -6,14 +6,12 @@ eventify
 
       $scope.allLocations = [];
       $scope.loading = true;
-      $scope.isMobile = maps.isMobile();
-      $scope.isListVisible = true;
-      $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
-      $scope.canToggleView = $scope.isMobile;
-      $scope.isMapLoaded = false;
       $scope.currentPage = 0;
       $scope.pageSize = 10;
       $scope.locations = [];
+
+
+
       var SHOW_COMMENTS = false;
 
       $scope.loadMore = function() {
@@ -31,17 +29,6 @@ eventify
 
         $scope.currentPage++;
       };
-
-
-      function reloadMap(forceReload) {
-        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
-          maps.init();
-          $scope.allLocations.forEach(function(location) {
-            maps.addLocation(location);
-          });
-          $scope.isMapLoaded = true;
-        }
-      }
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
@@ -65,9 +52,29 @@ eventify
 
         $scope.loadMore();
         resetSummaries();
-        reloadMap();
+        reloadMap($scope.allLocations);
         $scope.loading = false;
       });
+
+      //TODO: Reuse this code which is also in the locations
+      function reloadMap(locations, forceReload) {
+        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
+          maps.init();
+          locations.forEach(function(location) {
+            maps.addLocation(location);
+          });
+          $scope.isMapLoaded = true;
+        }
+      }
+
+
+
+      //TODO: Reuse this code which is also in the locations
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
+      $scope.canToggleView = $scope.isMobile;
+      $scope.isMapLoaded = false;
 
       $scope.toogleView = function() {
 
@@ -81,7 +88,7 @@ eventify
         $scope.isListVisible = !$scope.isListVisible;
 
 
-        reloadMap();
+        reloadMap($scope.allLocations);
       };
 
       $scope.highlightLocation = function(location) {
