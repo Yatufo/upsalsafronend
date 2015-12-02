@@ -63,6 +63,66 @@ module.exports = function(grunt) {
         }
       }
     },
+    wiredep: {
+      target: {
+        src: 'app/index-local.html' // point to your HTML file.
+      },
+    },
+    injector: {
+      options: {
+        relative: true,
+        addRootSlash: false
+      },
+      local_dependencies: {
+        files: {
+          'app/index-local.html': ['app/js/**/*.js', 'app/assets/**/*.css'],
+        }
+      }
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      beforebuild: ['app/js/**/*.js'],
+    },
+    fixmyjs: {
+      options: {
+        curly: true,
+        quotmark: 'single',
+        plusplus: true,
+        asi: false
+      },
+      all: {
+        files: [{
+          expand: true,
+          cwd: 'app/js/',
+          src: ['**/*.js'],
+          dest: 'app/js/',
+          ext: '.js'
+        }]
+      }
+    },
+    html2js: {
+      options: {
+        base: "app",
+        module: "eventify",
+        existingModule: true,
+        htmlmin: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        }
+      },
+      main: {
+        src: ['app/views/**/*.html'],
+        dest: 'app/assets/js/templates.js'
+      }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
@@ -90,33 +150,6 @@ module.exports = function(grunt) {
         dest: 'app/assets/js/dependencies.min.js',
       }
     },
-    wiredep: {
-      target: {
-        src: 'app/index-local.html' // point to your HTML file.
-      },
-    },
-    injector: {
-      options: {
-        relative: true,
-        addRootSlash: false
-      },
-      local_dependencies: {
-        files: {
-          'app/index-local.html': ['app/js/**/*.js', 'app/assets/js/templates.js', 'app/assets/**/*.css'],
-        }
-      }
-    },
-    html2js: {
-      options: {
-        base: "app",
-        module: "eventifyTemplates",
-        singleModule: true
-      },
-      main: {
-        src: ['app/views/**/*.html'],
-        dest: 'app/assets/js/templates.js'
-      }
-    },
     aws_s3: {
       options: {
         uploadConcurrency: 5, // 5 simultaneous uploads
@@ -139,31 +172,8 @@ module.exports = function(grunt) {
         }]
       }
     },
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      beforebuild: ['app/js/**/*.js'],
-    },
-    fixmyjs: {
-      options: {
-        curly: true,
-        quotmark: 'single',
-        plusplus: true,
-        asi: false
-      },
-      all: {
-        files: [{
-          expand: true,
-          cwd: 'app/js/',
-          src: ['**/*.js'],
-          dest: 'app/js/',
-          ext: '.js'
-        }]
-      }
-    },
     concurrent: {
-      build: ['html2js', 'injector', 'wiredep']
+      build: ['injector', 'wiredep']
     }
   });
 

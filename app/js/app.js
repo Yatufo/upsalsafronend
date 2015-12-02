@@ -3,7 +3,6 @@
 /* App Module */
 
 var eventify = angular.module('eventify', [
-  'eventifyTemplates',
   'ngRoute',
   'ngResource',
   'auth0',
