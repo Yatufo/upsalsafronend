@@ -67,9 +67,6 @@ eventify
         }
       }
 
-
-
-      //TODO: Reuse this code which is also in the locations
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
@@ -94,6 +91,8 @@ eventify
       $scope.highlightLocation = function(location) {
         maps.highlightLocation(location);
       };
+
+      //TODO: Reuse
 
       window.scrollTo(0, 0);
     }

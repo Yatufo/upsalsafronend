@@ -17,5 +17,6 @@ eventify.constant('CONFIG', {
         HI_RES_IMAGES: 'images/w640-h400-cscale/images/',
         LOCATIONS_DEFAULT_IMAGE :'locations/montreal.jpg',
         EVENT_DEFAULT_IMAGE :'locations/montreal.jpg',
-        DEFAULT_IMAGE_ENDPOINT : "api/images"
+        DEFAULT_IMAGE_ENDPOINT : "api/images",
+        ARRAY_PARAM_SEPARATOR : ","
     });

@@ -1,12 +1,13 @@
 /* Controllers */
 
 eventify
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$window', '$routeParams', 'Location', 'MapsService', 'RatingService',
-    function($rootScope, $scope, $window, $routeParams, Location, maps, ratingService) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$window', '$routeParams', 'Location', 'MapsService', 'RatingService', 'CONFIG',
+    function($rootScope, $scope, $window, $routeParams, Location, maps, ratingService, conf) {
 
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
+      $scope.categories = ['party', 'week'];
 
       var resetSummaries = function() {
         if ($scope.location) {
@@ -45,7 +46,8 @@ eventify
       });
 
       Location.getEvents({
-        locationId: $routeParams.locationId
+        locationId: $routeParams.locationId,
+        categories: $scope.categories.join(conf.ARRAY_PARAM_SEPARATOR)
       }, function(events) {
         $scope.events = events || [];
         $scope.events.forEach(function(event) {

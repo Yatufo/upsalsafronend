@@ -2,10 +2,10 @@
 
 eventify
   .controller('EventsController', ['$scope', '$rootScope', '$window', '$filter', '$routeParams', 'CONFIG', 'EventsResource', 'MapsService',
-    function($scope, $rootScope, $window, $filter, $routeParams, CONFIG, Event, maps) {
+    function($scope, $rootScope, $window, $filter, $routeParams, conf, Event, maps) {
 
       var SPLIT_PARAM = "-";
-      $scope.localTime = CONFIG.TODAY;
+      $scope.localTime = conf.TODAY;
       $scope.selectedCategories = [];
       $scope.events = [];
       $scope.locations = [];
@@ -18,7 +18,7 @@ eventify
 
       $scope.search = function() {
 
-        Event.query({categories: $scope.categories.join(",")}, function(events) {
+        Event.query({categories: $scope.categories.join(conf.ARRAY_PARAM_SEPARATOR)}, function(events) {
           $scope.events = events;
 
           $scope.events.forEach(function(event) {

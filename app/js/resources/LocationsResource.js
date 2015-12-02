@@ -10,7 +10,7 @@ eventify.factory('Location', ['$resource', function($resource) {
     'getEvents' : {
       method: "GET",
       isArray: true,
-      url: '/api/locations/:locationId/events'
+      url: '/api/locations/:locationId/events?categories=:categories'
     }
   });
 }]);

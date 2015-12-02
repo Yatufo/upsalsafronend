@@ -57,7 +57,6 @@ module.exports = function(grunt) {
         files: 'Gruntfile.js'
       },
       html: {
-        tasks: ['build'],
         files: ['app/js/**/*.js', 'app/**/*.html', 'app/assets/css/*.css'],
         options: {
           livereload: true
@@ -164,14 +163,14 @@ module.exports = function(grunt) {
       }
     },
     concurrent: {
-      build: ['html2js', 'injector']
+      build: ['html2js', 'injector', 'wiredep']
     }
   });
 
   grunt.loadNpmTasks('grunt-fixmyjs');
   grunt.loadNpmTasks('grunt-injector');
 
-  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'wiredep', 'build', 'watch']);
+  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
   grunt.registerTask('build', ['concurrent:build']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
