@@ -107,6 +107,7 @@ module.exports = function(grunt) {
         base: "app",
         module: "eventify",
         existingModule: true,
+        singleModule: true,
         htmlmin: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
