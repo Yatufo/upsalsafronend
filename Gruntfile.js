@@ -43,7 +43,7 @@ module.exports = function(grunt) {
               proxySnippet,
               livereloadSnippet,
               //all angular routes go to index file
-              modRewrite (['!^/.*\\..*$ /index-local.html [L]']),
+              modRewrite(['!^/.*\\..*$ /index-local.html [L]']),
               serveStatic(path.resolve("app"), {
                 'index': ['index-local.html']
               })
@@ -94,23 +94,17 @@ module.exports = function(grunt) {
     wiredep: {
       target: {
         src: 'app/index-local.html' // point to your HTML file.
-      }
+      },
     },
-    concat: {
+    injector: {
       options: {
-        separator: ';',
+        relative: true,
+        addRootSlash: false
       },
-      app: {
-        src: ['app/js/**/*.js', 'app/assets/js/templates.js'],
-        dest: 'app/assets/js/<%= pkg.name %>.js',
-      },
-      deps: {
-        src: ['app/bower_components/**/angular-*.js',
-          'app/bower_components/**/build/*.js',
-          'app/bower_components/**/dist/*.js',
-          '!**/*.min.js'
-        ],
-        dest: 'app/assets/js/dependencies.js',
+      local_dependencies: {
+        files: {
+          'app/index-local.html': ['app/js/**/*.js', 'app/assets/js/templates.js', 'app/assets/**/*.css'],
+        }
       }
     },
     html2js: {
@@ -147,9 +141,10 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      options: {jshintrc: '.jshintrc'},
-      beforeconcat: ['app/js/**/*.js'],
-      afterconcat: ['app/assets/js/<%= pkg.name %>.js']
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      beforebuild: ['app/js/**/*.js'],
     },
     fixmyjs: {
       options: {
@@ -159,25 +154,24 @@ module.exports = function(grunt) {
         asi: false
       },
       all: {
-        files: [
-          {
-            expand: true,
-            cwd: 'app/js/',
-            src: ['**/*.js'],
-            dest: 'app/js/',
-            ext: '.js'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: 'app/js/',
+          src: ['**/*.js'],
+          dest: 'app/js/',
+          ext: '.js'
+        }]
       }
     },
     concurrent: {
-      build: ['html2js', 'concat:app']
+      build: ['html2js', 'injector']
     }
   });
 
   grunt.loadNpmTasks('grunt-fixmyjs');
+  grunt.loadNpmTasks('grunt-injector');
 
-  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
+  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'wiredep', 'build', 'watch']);
   grunt.registerTask('build', ['concurrent:build']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);

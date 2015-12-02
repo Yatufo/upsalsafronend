@@ -1,6 +1,6 @@
 *.log
 node_modules/**
-app/components/**
+app/dependencies/**
 data/db/**
 app/assets/js
 *.DS_Store
