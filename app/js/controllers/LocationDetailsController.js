@@ -15,7 +15,7 @@ eventify
         }
       };
 
-      $scope.$on('event', function(event) {
+      $scope.$on('event', function(e, event) {
         if (event) {
           $scope.events.push(event);
         }

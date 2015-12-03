@@ -30,11 +30,18 @@ var EditableEventCardController = function($scope, service, CONFIG) {
       }
     })
 
+    $scope.canSave = function () {
+      return ($scope.event.end && $scope.event.end.dateTime > $scope.event.start.dateTime) &&
+      ! _.isEmpty($scope.event.url)
+    }
+
     $scope.save =  function() {
-      service.saveOrUpdate($scope.event)
-        .then(function(saved) {
-          $scope.$emit('event', saved);
-        });
+      if ($scope.canSave()){
+        service.saveOrUpdate($scope.event)
+          .then(function(saved) {
+            $scope.$emit('event', saved);
+          });
+      }
     }
 
     $scope.cancel = function () {
