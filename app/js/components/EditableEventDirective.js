@@ -32,7 +32,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
 
     $scope.canSave = function () {
       return ($scope.event.end && $scope.event.end.dateTime > $scope.event.start.dateTime) &&
-      ! _.isEmpty($scope.event.url)
+      ! _.isEmpty($scope.event.location.url)
     }
 
     $scope.save =  function() {

@@ -11,7 +11,7 @@
     </div>
     <div class="pull-right">
       <!-- <sharesocial data-message="'Check this out'" data-url="event.detailsUrl | fullUrl"></sharesocial> -->
-      <a class="btn btn-icon" ng-if="event.url" ng-href="{{event.url}}" target="window">
+      <a class="btn btn-icon" ng-if="event.location.url" ng-href="{{event.location.url}}" target="window">
         <i class="fa fa-globe fa-2x"></i>
       </a>
       <a class="btn btn-icon" ng-href="{{event.detailsUrl}}">

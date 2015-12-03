@@ -16,6 +16,7 @@ eventify
       };
 
       $scope.$on('event', function(e, event) {
+        console.log(event);
         if (event) {
           $scope.events.push(event);
         }
