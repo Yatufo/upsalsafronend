@@ -11,7 +11,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
 
     function init(argument) {
       var start = moment().startOf('hour').add(1, 'hours');
-      var end = new moment(start).add(1, 'hours');
+
 
       $scope.event = {
         location : toLocation($scope.location),
@@ -20,12 +20,15 @@ var EditableEventCardController = function($scope, service, CONFIG) {
         imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
         start: {
           dateTime: start.toDate()
-        },
-        end: {
-          dateTime: end.toDate()
         }
       };
     };
+
+    $scope.$watch("event.start.dateTime", function (newVal) {
+      if (newVal){
+        $scope.event.end = { dateTime : new moment(newVal).add(1, 'hours').toDate()};
+      }
+    })
 
     $scope.save =  function() {
       service.saveOrUpdate($scope.event)

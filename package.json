@@ -28,6 +28,7 @@
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-fixmyjs": "^0.3.0",
+    "grunt-notify": "^0.4.3",
     "grunt-s3": "^0.1.0",
     "grunt-wiredep": "latest",
     "load-grunt-tasks": "^3.3.0",

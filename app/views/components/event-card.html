@@ -5,8 +5,9 @@
   </div>
   <div class="card-action clearfix">
     <div class="pull-left">
-      <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | calendar }}</p>
-      <p> <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
+      <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | calendar }}
+      <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hour(s)</p>
+      <p><i class="fa fa-map-marker fa-lg"></i><a ng-href="{{event.detailsUrl}}">{{event.location.address}}</a></p>
     </div>
     <div class="pull-right">
       <!-- <sharesocial data-message="'Check this out'" data-url="event.detailsUrl | fullUrl"></sharesocial> -->

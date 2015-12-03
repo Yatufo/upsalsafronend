@@ -1,16 +1,14 @@
 <div class="left-pane" ng-show="isListVisible">
   <div class="row">
-    <div class="col-xs-12 col-md-5 col-md-offset-1 well well-sm">
-      <p ng-if="!loading">Showing
-        {{events.length}}
-        results</p>
-      <p ng-if="loading">
-        <i class="fa fa-spinner fa-spin fa-2x"></i>Loading</p>
-    </div>
-    <div class="hidden-xs col-md-5"></div>
-  </div>
-  <div class="row">
     <div class="col-xs-12 col-md-5 col-md-offset-1">
+      <div class="">
+        <h1>
+          Events
+        </h1>
+        <p ng-if="loading">
+          <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </p>
+      </div>
       <div ng-repeat="event in events | orderBy : event.start.dateTime ">
         <eventcard data-city="city" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
       </div>
