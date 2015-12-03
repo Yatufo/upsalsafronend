@@ -5,6 +5,17 @@ var LocationCardController = function ($scope) {
   $scope.toogleComments = function () {
     $scope.showComments = !$scope.showComments;
   }
+
+  $scope.createEvent = function() {
+    $scope.creatingEvent = true;
+  }
+
+  $scope.$on('event', function(event) {
+    $scope.creatingEvent = false;
+  });
+
+
+
 }
 
 /* App Module */
@@ -12,10 +23,8 @@ var LocationCardController = function ($scope) {
 eventify.directive('locationcard', function() {
     return {
         restrict: 'E',
-        replace : true,
         scope: {
             location: '=',
-            city: '=',
             options: '='
         },
         controller: ['$scope', LocationCardController],

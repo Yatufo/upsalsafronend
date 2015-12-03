@@ -4,7 +4,7 @@
       <h1>
         {{location.name}}
       </h1>
-      <locationcard data-city="city" data-location="location"></locationcard>
+      <locationcard data-options="{event:true}" data-location="location"></locationcard>
     </div>
     <div class="col-md-6">
     </div>
@@ -26,10 +26,6 @@
       <h1>
         Upcoming Events
       </h1>
-      <button class="btn btn-default" ng-click="createEvent()" type="submit">Add Event</button>
-    </div>
-    <div class="">
-      <editableeventcard data-location="location" data-on-cancel="onEvent()" data-on-save="onEvent(event)" ng-if="creatingEvent"></editableeventcard>
     </div>
     <div ng-repeat="event in events | orderBy : event.start.dateTime ">
       <eventcard data-city="city" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>

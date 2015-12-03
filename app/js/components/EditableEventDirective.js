@@ -30,13 +30,14 @@ var EditableEventCardController = function($scope, service, CONFIG) {
     $scope.save =  function() {
       service.saveOrUpdate($scope.event)
         .then(function(saved) {
-          $scope.onSave({event : saved});
+          $scope.$emit('event', saved);
         });
     }
 
     $scope.cancel = function () {
-      $scope.onCancel();
+      $scope.$emit('event');
     }
+
     $scope.getDuration = function() {
       return moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours');
     }
@@ -48,7 +49,6 @@ var EditableEventCardController = function($scope, service, CONFIG) {
 eventify.directive('editableeventcard', function() {
   return {
     restrict: 'E',
-    replace: true,
     scope: {
       location: '=',
       onCancel: '&',

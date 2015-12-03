@@ -15,16 +15,11 @@ eventify
         }
       };
 
-      $scope.createEvent = function() {
-        $scope.creatingEvent = true;
-      }
-
-      $scope.onEvent = function(event) {
-        $scope.creatingEvent = false;
+      $scope.$on('event', function(event) {
         if (event) {
           $scope.events.push(event);
         }
-      }
+      });
 
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
