@@ -135,18 +135,20 @@ module.exports = function(grunt) {
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
       },
       deps: {
-        src: ['app/bower_components/**/angular-storage.min.js',
-          'app/bower_components/**/angular-cookies.min.js',
-          'app/bower_components/**/angular-jwt.min.js',
-          'app/bower_components/**/angular-resource.min.js',
-          'app/bower_components/**/angular-route.min.js',
-          'app/bower_components/**/ng-file-upload-all.min.js',
-          'app/bower_components/**/auth0-angular.min.js',
-          'app/bower_components/**/auth0-lock.min.js',
-          'app/bower_components/**/auth0.min.js',
-          'app/bower_components/**/moment.min.js',
-          'app/bower_components/**/ng-infinite-scroll.min.js',
-          'app/bower_components/**/underscore-min.js'
+        src: [
+          'app/dependencies/**/angular-storage.min.js',
+          'app/dependencies/**/angular-cookies.min.js',
+          'app/dependencies/**/angular-jwt.min.js',
+          'app/dependencies/**/angular-resource.min.js',
+          'app/dependencies/**/angular-route.min.js',
+          'app/dependencies/**/ng-file-upload-all.min.js',
+          'app/dependencies/**/auth0-angular.min.js',
+          'app/dependencies/**/auth0-lock.min.js',
+          'app/dependencies/**/auth0.min.js',
+          'app/dependencies/**/moment.min.js',
+          'app/dependencies/**/ng-infinite-scroll.min.js',
+          'app/dependencies/**/underscore-min.js',
+          'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
       }

@@ -1,8 +1,8 @@
 /* Controllers */
 
 eventify
-  .controller('EventsController', ['$scope', '$rootScope', '$window', '$filter', '$routeParams', 'CONFIG', 'EventsResource', 'MapsService',
-    function($scope, $rootScope, $window, $filter, $routeParams, conf, Event, maps) {
+  .controller('EventsController', ['$scope', '$window', '$filter', '$routeParams', 'CONFIG', 'EventsResource', 'MapsService', 'UtilService',
+    function($scope, $window, $filter, $routeParams, conf, Event, maps, util) {
 
       var SPLIT_PARAM = "-";
       $scope.localTime = conf.TODAY;
@@ -22,7 +22,7 @@ eventify
           $scope.events = events;
 
           $scope.events.forEach(function(event) {
-            event.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/events/' + event.id;
+            event.detailsUrl = util.getDetailsUrl(event, "event");
           });
 
           $scope.locations = $scope.events.map(function(event) {

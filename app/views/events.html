@@ -10,7 +10,7 @@
         </p>
       </div>
       <div ng-repeat="event in events | orderBy : event.start.dateTime ">
-        <eventcard data-city="city" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
+        <eventcard data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
       </div>
     </div>
     <div class="col-md-6"></div>

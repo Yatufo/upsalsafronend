@@ -7,7 +7,6 @@ eventify.directive('eventcard', function() {
         restrict: 'E',
         scope: {
             event: '=',
-            city: '=',
             options: '='
         },
         templateUrl: 'views/components/event-card.html'

@@ -1,4 +1,4 @@
-var EditableEventCardController = function($scope, service, CONFIG) {
+var EditableEventCardController = function($scope, service, CONFIG, util) {
 
     $scope.pickerOptions = {
       minView: 'minutes',
@@ -39,6 +39,7 @@ var EditableEventCardController = function($scope, service, CONFIG) {
       if ($scope.canSave()){
         service.saveOrUpdate($scope.event)
           .then(function(saved) {
+            saved.detailsUrl = util.getDetailsUrl(saved, "event");
             $scope.$emit('event', saved);
           });
       }
@@ -64,7 +65,7 @@ eventify.directive('editableeventcard', function() {
       onCancel: '&',
       onSave: '&',
     },
-    controller: ['$scope', 'EventService', 'CONFIG', EditableEventCardController],
+    controller: ['$scope', 'EventService', 'CONFIG', 'UtilService', EditableEventCardController],
     templateUrl: 'views/components/editable-event-card.html'
   };
 });

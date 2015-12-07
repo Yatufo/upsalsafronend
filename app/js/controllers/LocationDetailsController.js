@@ -1,8 +1,8 @@
 /* Controllers */
 
 eventify
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$window', '$routeParams', 'Location', 'MapsService', 'RatingService', 'CONFIG',
-    function($rootScope, $scope, $window, $routeParams, Location, maps, ratingService, conf) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService', 'CONFIG', 'UtilService',
+    function($rootScope, $scope, $routeParams, Location, maps, ratingService, conf, util) {
 
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
@@ -45,7 +45,7 @@ eventify
       }, function(events) {
         $scope.events = events || [];
         $scope.events.forEach(function(event) {
-          event.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/events/' + event.id;
+          event.detailsUrl = util.getDetailsUrl(event, "event");
         })
       })
 

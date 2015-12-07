@@ -1,8 +1,8 @@
 /* Controllers */
 
 eventify
-  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService',
-    function($scope, $rootScope, $window, Location, maps, ratingService, analytics) {
+  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService', 'UtilService',
+    function($scope, $rootScope, $window, Location, maps, ratingService, analytics, util) {
 
       $scope.allLocations = [];
       $scope.loading = true;
@@ -46,7 +46,7 @@ eventify
         $scope.allLocations = locations;
 
         $scope.allLocations.forEach(function(location) {
-          location.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
+          location.detailsUrl = util.getDetailsUrl(location, "location");
           location.showComments = SHOW_COMMENTS; // TODO: Change when there are too many comments
         });
 
