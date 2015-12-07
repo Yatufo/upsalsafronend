@@ -49,8 +49,8 @@ var SimpleRateDirectiveController = function($scope, service) {
     service.saveOrUpdateRating(rating)
       .then(function() {
         updateVoteSummaryLocally(rating, unsavedVote);
-        $scope.init();
       }).catch(function(e) {
+        console.error(e);
         rating.vote = unsavedVote;
       });
   };
@@ -59,7 +59,7 @@ var SimpleRateDirectiveController = function($scope, service) {
 };
 
 
-angular.module('eventify').directive('simplerate', function() {
+eventify.directive('simplerate', function() {
   return {
     restrict: 'E',
     replace: true,

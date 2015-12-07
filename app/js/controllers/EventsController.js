@@ -1,77 +1,78 @@
-
-
 /* Controllers */
 
-angular.module('eventifyControllers')
-    .controller('EventsController', ['$scope', '$http', '$filter', '$routeParams', 'CONFIG', 'DiffusionService', 'MapsService',
-        function($scope, $http, $filter, $routeParams, CONFIG, diffusionService, MapsService) {
+eventify
+  .controller('EventsController', ['$scope', '$window', '$filter', '$routeParams', 'CONFIG', 'EventsResource', 'MapsService', 'UtilService',
+    function($scope, $window, $filter, $routeParams, conf, Event, maps, util) {
 
-            $scope.localTime = CONFIG.TODAY;
-            $scope.selectedCategories = {};
-            $scope.events = [];
-            $scope.loading = true;
+      var SPLIT_PARAM = "-";
+      $scope.localTime = conf.TODAY;
+      $scope.selectedCategories = [];
+      $scope.events = [];
+      $scope.locations = [];
+      $scope.loading = true;
 
-            //TODO: replace this with a proper configuration depending on the environment.
-            if ($routeParams.testDate) {
-                $scope.localTime = new Date($routeParams.testDate);
-            }
-
-
-            diffusionService.onChangeCategories($scope, function(message) {
-                $scope.selectedCategories = message.selected;
-                $scope.loading = true;
-                filterEvents();
-            });
-
-            var filterEvents = function() {
-                searchEvents(getSelecteCategoryValues(), null, function(results) {
-                    $scope.events = results.events;
-                    showEventsInMap($scope.events);
-                    diffusionService.changeEvents(results.eventsCategories);
-                });
-            };
-
-            var searchEvents = function(categories, location, callback) {
-                var config = {
-                    params: {
-                        "categories": categories.join(",")
-                    }
-                };
-
-                $http.get(CONFIG.EVENTS_ENDPOINT, config).success(function(data) {
-                    callback(data);
-                    $scope.loading = false;
-                });
-
-            };
-
-            var getSelecteCategoryValues = function() {
-                var categories = [];
-                for (var key in $scope.selectedCategories) {
-                    if ($scope.selectedCategories[key]) {
-                        categories.push($scope.selectedCategories[key]);
-                    }
-                }
-                return categories;
-            };
+      if ($routeParams.categories) {
+        $scope.categories = $routeParams.categories.split(SPLIT_PARAM);
+      }
 
 
-            var showEventsInMap = function(events) {
-                MapsService.reset();
-                if (angular.isArray(events)) {
-                    events.forEach(function(lEvent) {
-                        MapsService.addLocation(lEvent.location);
-                    });
-                }
-            };
+      $scope.search = function() {
 
-            $scope.highlightLocation = function(location) {
-                MapsService.highlightLocation(location);
-            };
+        Event.query({categories: $scope.categories.join(conf.ARRAY_PARAM_SEPARATOR)}, function(events) {
+          $scope.events = events;
 
+          $scope.events.forEach(function(event) {
+            event.detailsUrl = util.getDetailsUrl(event, "event");
+          });
 
-            MapsService.init();
+          $scope.locations = $scope.events.map(function(event) {
+            return event.location;
+          })
+
+          reloadMap($scope.locations);
+          $scope.loading = false;
+        });
+      };
+
+      //TODO: Reuse this code which is also in the locations
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
+      $scope.canToggleView = $scope.isMobile;
+      $scope.isMapLoaded = false;
+
+      function reloadMap(locations, forceReload) {
+        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
+          maps.init();
+          locations.forEach(function(location) {
+            maps.addLocation(location);
+          });
+          $scope.isMapLoaded = true;
         }
+      }
+
+      $scope.toogleView = function() {
+
+        analytics.track({
+          category: 'usage',
+          action: 'toogleMap',
+          url: $window.location
+        });
+
+        $scope.isMapVisible = !$scope.isMapVisible;
+        $scope.isListVisible = !$scope.isListVisible;
 
 
-    ]);
+        reloadMap($scope.locations);
+      };
+
+      $scope.highlightLocation = function(location) {
+        maps.highlightLocation(location);
+      };
+
+
+      $scope.search();
+    }
+
+
+  ]);

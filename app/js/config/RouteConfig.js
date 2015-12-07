@@ -1,6 +1,6 @@
 
 
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 eventify.config(['$routeProvider',
   function($routeProvider) {
@@ -17,7 +17,10 @@ eventify.config(['$routeProvider',
     when('/terms', {
       templateUrl: 'views/terms.html'
     }).
-    when('/:city/categories/:categories*\/events/', {
+    when('/test', {
+      templateUrl: 'views/test.html'
+    }).
+    when('/:city/categories/:categories/events/', {
       templateUrl: 'views/events.html',
       controller: 'EventsController'
     }).

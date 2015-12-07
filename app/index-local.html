@@ -12,11 +12,18 @@
   <title>[DEVELOPMENT] Up Salsa in Montreal : Best places to dance Salsa, Bachata, Kizomba, etc.</title>
   <meta name="description" ng-bind="seo.metaDescription" content="Find the best places and events to learn or dance in  Montreal, your favorite latin music like salsa, bachata, chacha, kizomba, etc."></meta>
 
+  <!-- injector:css -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <!-- endinjector -->
+  <!-- bower:css -->
+  <link rel='stylesheet' href='dependencies/bootstrap/dist/css/bootstrap.css' />
+  <link rel='stylesheet' href='dependencies/font-awesome/css/font-awesome.css' />
+  <link rel='stylesheet' href='dependencies/angular-bootstrap-datetimepicker/src/css/datetimepicker.css' />
+  <!-- endbower -->
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/img/favicon.ico"></link>
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="assets/css/custom.css"></link>
   <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <style>
       .my-drop-zone { border: dotted 3px lightgray; }
@@ -33,34 +40,73 @@
   <div ng-include="'views/components/modal-auth.html'"></div>
 
 
-  <!-- bower:css -->
-  <!-- endbower -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+
 
   <script>
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js"></' + 'script>')
   </script>
 
   <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/auth0-lock/build/auth0-lock.js"></script>
-  <script src="bower_components/auth0.js/build/auth0.js"></script>
-  <script src="bower_components/auth0-angular/build/auth0-angular.js"></script>
-  <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/ng-file-upload/ng-file-upload-all.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script>
-  <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+  <script src="dependencies/jquery/dist/jquery.js"></script>
+  <script src="dependencies/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="dependencies/angular/angular.js"></script>
+  <script src="dependencies/auth0-lock/build/auth0-lock.js"></script>
+  <script src="dependencies/auth0.js/build/auth0.js"></script>
+  <script src="dependencies/auth0-angular/build/auth0-angular.js"></script>
+  <script src="dependencies/angular-jwt/dist/angular-jwt.js"></script>
+  <script src="dependencies/angular-cookies/angular-cookies.js"></script>
+  <script src="dependencies/angular-resource/angular-resource.js"></script>
+  <script src="dependencies/angular-route/angular-route.js"></script>
+  <script src="dependencies/underscore/underscore.js"></script>
+  <script src="dependencies/a0-angular-storage/dist/angular-storage.js"></script>
+  <script src="dependencies/moment/moment.js"></script>
+  <script src="dependencies/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+  <script src="dependencies/ng-file-upload/ng-file-upload.js"></script>
+  <script src="dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
   <!-- endbower -->
 
-  <script src="assets/js/eventify.js"></script>
+  <!-- injector:js -->
+  <script src="js/app.js"></script>
+  <script src="js/components/CommentsDirective.js"></script>
+  <script src="js/components/EditableEventDirective.js"></script>
+  <script src="js/components/EventCardDirective.js"></script>
+  <script src="js/components/LocationCardDirective.js"></script>
+  <script src="js/components/RatingDirective.js"></script>
+  <script src="js/components/ShareSocialDirective.js"></script>
+  <script src="js/components/SimpleRateDirective.js"></script>
+  <script src="js/components/UploadImageDirective.js"></script>
+  <script src="js/config/AppConfig.js"></script>
+  <script src="js/config/AuthInterceptorConfig.js"></script>
+  <script src="js/config/JwtInterceptorConfig.js"></script>
+  <script src="js/config/RouteChangeSuccessConfig.js"></script>
+  <script src="js/config/RouteConfig.js"></script>
+  <script src="js/config/TokenValidationConfig.js"></script>
+  <script src="js/controllers/CategoriesController.js"></script>
+  <script src="js/controllers/EventDetailsController.js"></script>
+  <script src="js/controllers/EventsController.js"></script>
+  <script src="js/controllers/HomeController.js"></script>
+  <script src="js/controllers/LocationDetailsController.js"></script>
+  <script src="js/controllers/LocationsController.js"></script>
+  <script src="js/controllers/LoginController.js"></script>
+  <script src="js/custom/ScrollToTop.js"></script>
+  <script src="js/filters/Filters.js"></script>
+  <script src="js/resources/CategoriesResource.js"></script>
+  <script src="js/resources/CommentsResource.js"></script>
+  <script src="js/resources/EventsResource.js"></script>
+  <script src="js/resources/LocationsResource.js"></script>
+  <script src="js/resources/RatingsResource.js"></script>
+  <script src="js/resources/UsersResource.js"></script>
+  <script src="js/services/AnalyticsService.js"></script>
+  <script src="js/services/CommentService.js"></script>
+  <script src="js/services/EventService.js"></script>
+  <script src="js/services/MapsService.js"></script>
+  <script src="js/services/RatingService.js"></script>
+  <script src="js/services/SecurityService.js"></script>
+  <script src="js/services/UserService.js"></script>
+  <script src="js/services/UtilService.js"></script>
+  <!-- endinjector -->
+
+
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs"></script>
   <script>

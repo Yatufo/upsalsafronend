@@ -9,6 +9,8 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
   $scope.showAll  = false;
   $scope.showOnlyOne  = !$scope.showAll;
 
+
+  //TODO: just recount
   var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
     var currentVote = rating.vote;
@@ -74,7 +76,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
 };
 
 
-angular.module('eventify').directive('rating', function() {
+eventify.directive('rating', function() {
   return {
     restrict: 'E',
     replace: true,

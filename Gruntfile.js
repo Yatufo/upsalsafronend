@@ -26,11 +26,11 @@ module.exports = function(grunt) {
       //TODO: Use nginx like in production.
       proxies: [{
         context: '/api',
-        host: 'salsa.local',
-        port: 3002
+        host: 'localhost',
+        port: process.env.PORT || 3002
       }, {
         context: '/images',
-        host: 'salsa.local',
+        host: 'localhost',
         port: 3001,
         rewrite: {
           '^/images': ''
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
               proxySnippet,
               livereloadSnippet,
               //all angular routes go to index file
-              modRewrite (['!^/.*\\..*$ /index-local.html [L]']),
+              modRewrite(['!^/.*\\..*$ /index-local.html [L]']),
               serveStatic(path.resolve("app"), {
                 'index': ['index-local.html']
               })
@@ -57,11 +57,71 @@ module.exports = function(grunt) {
         files: 'Gruntfile.js'
       },
       html: {
-        tasks: ['build'],
         files: ['app/js/**/*.js', 'app/**/*.html', 'app/assets/css/*.css'],
         options: {
           livereload: true
         }
+      }
+    },
+    wiredep: {
+      target: {
+        src: 'app/index-local.html' // point to your HTML file.
+      },
+    },
+    injector: {
+      options: {
+        relative: true,
+        addRootSlash: false
+      },
+      local_dependencies: {
+        files: {
+          'app/index-local.html': ['app/js/**/*.js', 'app/assets/**/*.css'],
+        }
+      }
+    },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      beforebuild: ['app/js/**/*.js'],
+    },
+    fixmyjs: {
+      options: {
+        curly: true,
+        quotmark: 'single',
+        plusplus: true,
+        asi: false
+      },
+      all: {
+        files: [{
+          expand: true,
+          cwd: 'app/js/',
+          src: ['**/*.js'],
+          dest: 'app/js/',
+          ext: '.js'
+        }]
+      }
+    },
+    html2js: {
+      options: {
+        base: "app",
+        module: "eventify",
+        existingModule: true,
+        singleModule: true,
+        htmlmin: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        }
+      },
+      main: {
+        src: ['app/views/**/*.html'],
+        dest: 'app/assets/js/templates.js'
       }
     },
     uglify: {
@@ -75,53 +135,22 @@ module.exports = function(grunt) {
         dest: 'app/assets/js/<%= pkg.name %>.min.js'
       },
       deps: {
-        src: ['app/bower_components/**/angular-storage.min.js',
-          'app/bower_components/**/angular-cookies.min.js',
-          'app/bower_components/**/angular-jwt.min.js',
-          'app/bower_components/**/angular-resource.min.js',
-          'app/bower_components/**/angular-route.min.js',
-          'app/bower_components/**/ng-file-upload-all.min.js',
-          'app/bower_components/**/auth0-angular.min.js',
-          'app/bower_components/**/auth0-lock.min.js',
-          'app/bower_components/**/auth0.min.js',
-          'app/bower_components/**/moment.min.js',
-          'app/bower_components/**/ng-infinite-scroll.min.js',
-          'app/bower_components/**/underscore-min.js'
+        src: [
+          'app/dependencies/**/angular-storage.min.js',
+          'app/dependencies/**/angular-cookies.min.js',
+          'app/dependencies/**/angular-jwt.min.js',
+          'app/dependencies/**/angular-resource.min.js',
+          'app/dependencies/**/angular-route.min.js',
+          'app/dependencies/**/ng-file-upload-all.min.js',
+          'app/dependencies/**/auth0-angular.min.js',
+          'app/dependencies/**/auth0-lock.min.js',
+          'app/dependencies/**/auth0.min.js',
+          'app/dependencies/**/moment.min.js',
+          'app/dependencies/**/ng-infinite-scroll.min.js',
+          'app/dependencies/**/underscore-min.js',
+          'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
-      }
-    },
-    wiredep: {
-      target: {
-        src: 'app/index-local.html' // point to your HTML file.
-      }
-    },
-    concat: {
-      options: {
-        separator: ';',
-      },
-      app: {
-        src: ['app/js/**/*.js', 'app/assets/js/templates.js'],
-        dest: 'app/assets/js/<%= pkg.name %>.js',
-      },
-      deps: {
-        src: ['app/bower_components/**/angular-*.js',
-          'app/bower_components/**/build/*.js',
-          'app/bower_components/**/dist/*.js',
-          '!**/*.min.js'
-        ],
-        dest: 'app/assets/js/dependencies.js',
-      }
-    },
-    html2js: {
-      options: {
-        base: "app",
-        module: "eventifyTemplates",
-        singleModule: true
-      },
-      main: {
-        src: ['app/views/**/*.html'],
-        dest: 'app/assets/js/templates.js'
       }
     },
     aws_s3: {
@@ -146,36 +175,16 @@ module.exports = function(grunt) {
         }]
       }
     },
-    jshint: {
-      options: {jshintrc: '.jshintrc'},
-      beforeconcat: ['app/js/**/*.js'],
-      afterconcat: ['app/assets/js/<%= pkg.name %>.js']
-    },
-    fixmyjs: {
-      options: {
-        curly: true,
-        quotmark: 'single',
-        plusplus: true,
-        asi: false
-      },
-      all: {
-        files: [
-          {
-            expand: true,
-            cwd: 'app/js/',
-            src: ['**/*.js'],
-            dest: 'app/js/',
-            ext: '.js'
-          }
-        ]
-      }
+    concurrent: {
+      build: ['injector', 'wiredep']
     }
   });
 
   grunt.loadNpmTasks('grunt-fixmyjs');
+  grunt.loadNpmTasks('grunt-injector');
 
   grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
-  grunt.registerTask('build', ['html2js', 'concat:app']);
+  grunt.registerTask('build', ['concurrent:build']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

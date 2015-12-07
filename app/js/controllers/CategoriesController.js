@@ -1,7 +1,7 @@
 
 
 /* Controllers */
-var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusionService) {
+var CategoriesController = function($scope, $http, $routeParams, CONFIG) {
 
 
     $scope.isCollapsed = false;
@@ -79,11 +79,6 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
         }
     };
 
-    diffusionService.onChangeEvents($scope, function(message) {
-        $scope.eventsCategories = (message.eventsCategories ? message.eventsCategories : []);
-        changeCategoriesStatus();
-    });
-
     var changeCategoriesStatus = function() {
 
         $scope.root.categories.forEach(function(parent) {
@@ -130,5 +125,5 @@ var CategoriesController = function($scope, $http, $routeParams, CONFIG, diffusi
 
 
 
-angular.module('eventifyControllers')
-    .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', 'diffusionService', CategoriesController]);
+eventify
+    .controller('CategoriesController', ['$scope', '$http', '$routeParams', 'CONFIG', CategoriesController]);

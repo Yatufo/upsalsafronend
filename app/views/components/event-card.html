@@ -1,21 +1,22 @@
-<div class="panel panel-danger">
-    <div class="panel-heading">
-        <a href="#" ng-init="eventUrl = '/' + city + '/events/' + event.id " ng-href="{{eventUrl}}">{{event.title}}</a>
-        <a href="#" class="text-right" ng-if="event.sequence">#{{event.sequence}}</a>
-        <sharesocial data-message="'Check this out'" data-url="eventUrl | fullUrl">
-        </sharesocial>
+<div class="card shadow">
+  <div class="card-image">
+    <uploadimage data-item="event" data-type="'event'"></uploadimage>
+    <span class="elipsis card-title"><a ng-href="{{event.detailsUrl}}">{{event.name}}</a></span>
+  </div>
+  <div class="card-action clearfix">
+    <div class="pull-left">
+      <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | calendar }}
+      <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hour(s)</p>
+      <p><i class="fa fa-map-marker fa-lg"></i><a ng-href="{{event.detailsUrl}}">{{event.location.address}}</a></p>
     </div>
-
-    <div class="panel-body">
-        <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | date: 'EEEE, MMMM d h:mma' }}</p>
-        <p> <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hours</p>
-        <p><i ng-if="event.location" class="fa fa-map-marker fa-lg"></i> <a ng-href="/{{city}}/locations/{{event.location.id}}">{{event.location.name}} - {{event.location.address}}</a>
-        </p>
-        <p>
-            <ul class="list-inline">
-                <li class="fa fa-list fa-lg"></li>
-                <li ng-repeat="category in event.categories track by $index">{{category}}</li>
-            </ul>
-        </p>
+    <div class="pull-right">
+      <!-- <sharesocial data-message="'Check this out'" data-url="event.detailsUrl | fullUrl"></sharesocial> -->
+      <a class="btn btn-icon" ng-if="event.location.url" ng-href="{{event.location.url}}" target="window">
+        <i class="fa fa-globe fa-2x"></i>
+      </a>
+      <a class="btn btn-icon" ng-if="options.details" ng-href="{{event.detailsUrl}}">
+        <i class="fa fa-ellipsis-h fa-2x"></i>
+      </a>
     </div>
+  </div>
 </div>

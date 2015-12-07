@@ -10,14 +10,8 @@ var eventify = angular.module('eventify', [
   'angular-jwt',
   'infinite-scroll',
   'ngFileUpload',
-  'eventifyControllers',
-  'eventifyFilters',
-  'eventifyConfig',
-  'eventifyServices',
-  'eventifyResources',
-  'eventifyTemplates'
+  'ui.bootstrap.datetimepicker'
 ]);
-
 
 eventify.config(["authProvider", function (authProvider) {
   authProvider.init({
@@ -27,12 +21,6 @@ eventify.config(["authProvider", function (authProvider) {
 }]).run(["auth", function(auth) {
   auth.hookEvents();
 }]);
-
-
-angular.module('eventifyControllers', ['eventifyConfig', 'eventifyServices']);
-angular.module('eventifyFilters', ['eventifyConfig']);
-angular.module('eventifyServices', ['eventifyConfig']);
-angular.module('eventifyResources', ['ngResource']);
 
 
 //Production configuration

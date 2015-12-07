@@ -1,6 +1,6 @@
 /* App Module */
 
-angular.module('eventify').directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
+eventify.directive('sharesocial', ["$window", "AnalyticsService", function($window, analyticsService) {
   return {
     restrict: 'E',
     scope: {

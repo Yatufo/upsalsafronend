@@ -1,19 +1,17 @@
 /* Controllers */
 
-angular.module('eventifyControllers')
-  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService',
-    function($scope, $rootScope, $window, Location, maps, ratingService, analytics) {
+eventify
+  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService', 'UtilService',
+    function($scope, $rootScope, $window, Location, maps, ratingService, analytics, util) {
 
       $scope.allLocations = [];
       $scope.loading = true;
-      $scope.isMobile = maps.isMobile();
-      $scope.isListVisible = true;
-      $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
-      $scope.canToggleView = $scope.isMobile;
-      $scope.isMapLoaded = false;
       $scope.currentPage = 0;
       $scope.pageSize = 10;
       $scope.locations = [];
+
+
+
       var SHOW_COMMENTS = false;
 
       $scope.loadMore = function() {
@@ -32,17 +30,6 @@ angular.module('eventifyControllers')
         $scope.currentPage++;
       };
 
-
-      function reloadMap(forceReload) {
-        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
-          maps.init();
-          $scope.allLocations.forEach(function(location) {
-            maps.addLocation(location);
-          });
-          $scope.isMapLoaded = true;
-        }
-      }
-
       $rootScope.$watch("user.ratings", function(newValue, oldValue) {
         if (newValue) {
           resetSummaries();
@@ -59,15 +46,32 @@ angular.module('eventifyControllers')
         $scope.allLocations = locations;
 
         $scope.allLocations.forEach(function(location) {
-          location.detailsUrl = $window.location.origin + '/' + $rootScope.city + '/locations/' + location.id;
+          location.detailsUrl = util.getDetailsUrl(location, "location");
           location.showComments = SHOW_COMMENTS; // TODO: Change when there are too many comments
         });
 
         $scope.loadMore();
         resetSummaries();
-        reloadMap();
+        reloadMap($scope.allLocations);
         $scope.loading = false;
       });
+
+      //TODO: Reuse this code which is also in the locations
+      function reloadMap(locations, forceReload) {
+        if ($scope.isMapVisible && (forceReload || !$scope.isMapLoaded)) {
+          maps.init();
+          locations.forEach(function(location) {
+            maps.addLocation(location);
+          });
+          $scope.isMapLoaded = true;
+        }
+      }
+
+      $scope.isMobile = maps.isMobile();
+      $scope.isListVisible = true;
+      $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
+      $scope.canToggleView = $scope.isMobile;
+      $scope.isMapLoaded = false;
 
       $scope.toogleView = function() {
 
@@ -81,12 +85,14 @@ angular.module('eventifyControllers')
         $scope.isListVisible = !$scope.isListVisible;
 
 
-        reloadMap();
+        reloadMap($scope.allLocations);
       };
 
       $scope.highlightLocation = function(location) {
         maps.highlightLocation(location);
       };
+
+      //TODO: Reuse
 
       window.scrollTo(0, 0);
     }

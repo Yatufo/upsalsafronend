@@ -33,5 +33,5 @@ var UserService = function($rootScope, $q, User) {
   return service;
 
 };
-angular.module('eventifyServices')
+eventify
   .factory('UserService', ['$rootScope', '$q', 'UsersResource', UserService]);

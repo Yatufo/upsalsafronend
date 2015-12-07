@@ -1,0 +1,68 @@
+<div class="card shadow">
+  <div class="card-image">
+    <uploadimage data-item="event" data-type="'event'"></uploadimage>
+    <span class="elipsis card-title">
+      <a ng-href="{{event.detailsUrl}}">{{event.name}}</a>
+    </span>
+  </div>
+  <div class="card-content clearfix">
+    <form name="eventForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" ng-model="event.name" placeholder="Title" type="title">
+      </div>
+
+      <div class="form-group">
+        <label for="title">Url</label>
+        <input class="form-control" id="title" ng-model="event.location.url" placeholder="http://www.myevent.com" type="url">
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start:
+        </label>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
+            <div class="input-group">
+              <input class="form-control" data-ng-model="event.start.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+            </div>
+          </a>
+          <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.start.dateTime"></datetimepicker>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Until:
+        </label>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
+            <div class="input-group">
+              <input class="form-control" data-ng-model="event.end.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+            </div>
+          </a>
+          <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.end.dateTime"></datetimepicker>
+          </ul>
+        </div>
+      </div>
+      <label>Duration: {{getDuration()}} hour(s)</label>
+    </form>
+
+  </div>
+  <div class="card-action clearfix">
+    <div class="pull-right">
+      <a class="btn btn-icon" ng-click="save()">
+        <i class="fa fa-save fa-2x"></i>
+      </a>
+      <a class="btn btn-icon" ng-click="cancel()">
+        <i class="fa fa-remove fa-2x"></i>
+      </a>
+    </div>
+  </div>
+</div>

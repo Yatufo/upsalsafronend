@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('eventifyControllers')
+eventify
   .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', 'CategoriesResource', 'SecurityService', HomeController]);
 
 function HomeController($scope, $rootScope, analytics, CONFIG, CategoriesResource, security) {

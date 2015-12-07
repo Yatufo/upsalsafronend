@@ -36,5 +36,5 @@ var RatingService = function($rootScope, $q, Comment) {
   return service;
 
 };
-angular.module('eventifyServices')
+eventify
   .factory('CommentService', ['$rootScope', '$q', 'CommentResource', RatingService]);

@@ -92,5 +92,5 @@ var MapsService = function() {
 };
 
 
-angular.module('eventifyServices')
+eventify
   .factory('MapsService', MapsService);

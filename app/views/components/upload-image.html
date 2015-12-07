@@ -1,11 +1,11 @@
 <div>
   <div class="main-image" ng-show="!image">
-    <img ng-src="{{location.imageUrl}}"></img>
+    <img ng-src="{{item.imageUrl}}"></img>
     <div accept="image/*" class="drop-box" ng-model="image"
     ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'"
     ngf-select >
       <a class="btn btn-icon" ng-if="isDefaultImage">
-        <i class="fa fa-cloud-upload fa-2x"></i>
+        <i class="fa fa-camera fa-2x"></i>
       </a>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <img ngf-src="image">
     <div class="options">
       <a class="btn btn-icon blue" ng-click="upload()" ng-show="showUpload()">
-        <i class="fa fa-cloud-upload fa-2x"></i>
+        <i class="fa fa-save fa-2x"></i>
       </a>
       <a class="btn btn-icon blue" ng-click="cancel()" ng-show="showUpload()">
         <i class="fa fa-remove fa-2x"></i>

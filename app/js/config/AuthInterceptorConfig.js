@@ -1,6 +1,6 @@
 
 
-var eventify = angular.module('eventify');
+var eventify = eventify;
 
 var AuthInterceptor = function($q, $location, security) {
   return {

@@ -84,5 +84,5 @@ var RatingService = function($rootScope, $q, Rating) {
   return service;
 
 };
-angular.module('eventifyServices')
+eventify
   .factory('RatingService', ['$rootScope', '$q', 'RatingResource', RatingService]);

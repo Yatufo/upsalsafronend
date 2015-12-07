@@ -5,17 +5,27 @@ var LocationCardController = function ($scope) {
   $scope.toogleComments = function () {
     $scope.showComments = !$scope.showComments;
   }
+
+  $scope.createEvent = function() {
+    $scope.creatingEvent = true;
+  }
+
+  $scope.$on('event', function(event) {
+    $scope.creatingEvent = false;
+  });
+
+
+
 }
 
 /* App Module */
 
-angular.module('eventify').directive('locationcard', function() {
+eventify.directive('locationcard', function() {
     return {
         restrict: 'E',
-        replace : true,
         scope: {
             location: '=',
-            city: '='
+            options: '='
         },
         controller: ['$scope', LocationCardController],
         templateUrl: 'views/components/location-card.html'

@@ -2,7 +2,7 @@
 
 /* Service */
 
-angular.module('eventifyResources').factory('CategoriesResource', ['$resource', function($resource) {
+eventify.factory('CategoriesResource', ['$resource', function($resource) {
   return $resource('/api/categories/:categoryId', {
     'categoryId': '@id'
   }, {

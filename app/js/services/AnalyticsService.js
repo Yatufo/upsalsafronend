@@ -19,5 +19,5 @@ var AnalyticsService = function ($rootScope, $window, $location) {
     return service;
 };
 
-angular.module('eventifyServices')
+eventify
     .factory('AnalyticsService', ['$rootScope', '$window', '$location', AnalyticsService]);
