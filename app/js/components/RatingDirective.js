@@ -9,6 +9,8 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
   $scope.showAll  = false;
   $scope.showOnlyOne  = !$scope.showAll;
 
+
+  //TODO: just recount
   var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
     var currentVote = rating.vote;

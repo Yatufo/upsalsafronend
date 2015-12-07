@@ -14,7 +14,8 @@
       <a class="btn btn-icon" ng-if="event.location.url" ng-href="{{event.location.url}}" target="window">
         <i class="fa fa-globe fa-2x"></i>
       </a>
-      <a class="btn btn-icon" ng-href="{{event.detailsUrl}}">
+      {{options}}
+      <a class="btn btn-icon" ng-if="options.details" ng-href="{{event.detailsUrl}}">
         <i class="fa fa-ellipsis-h fa-2x"></i>
       </a>
     </div>

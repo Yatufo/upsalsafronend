@@ -16,7 +16,6 @@ eventify
       };
 
       $scope.$on('event', function(e, event) {
-        console.log(event);
         if (event) {
           $scope.events.push(event);
         }
@@ -36,7 +35,6 @@ eventify
         maps.init(location, 14);
         maps.addLocation(location);
         location.showComments = true;
-
         $scope.location = location;
         resetSummaries();
       });
