@@ -23,6 +23,7 @@
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-concat": "latest",
     "grunt-contrib-connect": "latest",
+    "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-nodeunit": "latest",

@@ -2,5 +2,6 @@
 node_modules/**
 app/dependencies/**
 data/db/**
+**eventify.min.*
 app/assets/js
 *.DS_Store

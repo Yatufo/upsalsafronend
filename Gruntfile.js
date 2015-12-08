@@ -16,12 +16,12 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    env : {
-      dev : {
-        INDEX : 'index-local.html'
+    env: {
+      dev: {
+        INDEX: 'index-local.html'
       },
-      prod : {
-        INDEX : 'index.html'
+      prod: {
+        INDEX: 'index.html'
       }
     },
     // The actual grunt server settings
@@ -47,7 +47,6 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           middleware: function(connect) {
-            console.log('Demonio' + process.env.INDEX);
             return [
               proxySnippet,
               livereloadSnippet,
@@ -162,6 +161,19 @@ module.exports = function(grunt) {
         dest: 'app/assets/js/dependencies.min.js',
       }
     },
+    cssmin: {
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: [{
+          dest: 'app/assets/css/<%= pkg.name %>.min.css',
+          ext: '.min.css',
+          src: ['app/assets/css/*.css', 'app/dependencies/angular-bootstrap-datetimepicker/src/css/datetimepicker.css']
+        }]
+      }
+    },
     aws_s3: {
       options: {
         uploadConcurrency: 5, // 5 simultaneous uploads
@@ -193,8 +205,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-injector');
 
   grunt.registerTask('default', ['env:dev', 'concurrent:build', 'serve']);
-  grunt.registerTask('prod',    ['env:prod', 'package','serve']);
-  grunt.registerTask('serve',   ['configureProxies:connect', 'connect:livereload', 'watch']);
-  grunt.registerTask('package', ['html2js', 'uglify']);
+  grunt.registerTask('prod', ['env:prod', 'package', 'serve']);
+  grunt.registerTask('serve', ['configureProxies:connect', 'connect:livereload', 'watch']);
+  grunt.registerTask('package', ['html2js', 'uglify', 'cssmin']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };
