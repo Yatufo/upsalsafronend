@@ -16,6 +16,14 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    env : {
+      dev : {
+        INDEX : 'index-local.html'
+      },
+      prod : {
+        INDEX : 'index.html'
+      }
+    },
     // The actual grunt server settings
     connect: {
       options: {
@@ -39,13 +47,14 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           middleware: function(connect) {
+            console.log('Demonio' + process.env.INDEX);
             return [
               proxySnippet,
               livereloadSnippet,
               //all angular routes go to index file
-              modRewrite(['!^/.*\\..*$ /index-local.html [L]']),
+              modRewrite(['!^/.*\\..*$ /' + process.env.INDEX + ' [L]']),
               serveStatic(path.resolve("app"), {
-                'index': ['index-local.html']
+                'index': [process.env.INDEX]
               })
             ];
           }
@@ -183,8 +192,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-fixmyjs');
   grunt.loadNpmTasks('grunt-injector');
 
-  grunt.registerTask('default', ['configureProxies:connect', 'connect:livereload', 'build', 'watch']);
-  grunt.registerTask('build', ['concurrent:build']);
+  grunt.registerTask('default', ['env:dev', 'concurrent:build', 'serve']);
+  grunt.registerTask('prod',    ['env:prod', 'package','serve']);
+  grunt.registerTask('serve',   ['configureProxies:connect', 'connect:livereload', 'watch']);
   grunt.registerTask('package', ['html2js', 'uglify']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

@@ -27,6 +27,7 @@
     "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-watch": "latest",
+    "grunt-env": "^0.4.4",
     "grunt-fixmyjs": "^0.3.0",
     "grunt-notify": "^0.4.3",
     "grunt-s3": "^0.1.0",
