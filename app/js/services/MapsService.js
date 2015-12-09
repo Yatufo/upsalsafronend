@@ -50,7 +50,7 @@ var MapsService = function() {
       map = new google.maps.Map(this.getMapCanvas(), mapOptions);
     },
     addLocation: function(location) {
-      if (location && !markerByLocation[location.id] && !_.isEmpty(map)) {
+      if (location && location.coordinates && !markerByLocation[location.id] && !_.isEmpty(map)) {
 
         var infowindow = new google.maps.InfoWindow({
           content: infowindowContent(location)
