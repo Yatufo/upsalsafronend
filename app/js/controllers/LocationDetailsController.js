@@ -7,7 +7,7 @@ eventify
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
-      $scope.categories = ['party', 'week'];
+      $scope.categories = ['party'];
 
       var resetSummaries = function() {
         if ($scope.location) {
