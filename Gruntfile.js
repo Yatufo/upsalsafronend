@@ -7,7 +7,6 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
   var serveStatic = require('serve-static');
   var modRewrite = require('connect-modrewrite');
   var path = require('path');
@@ -30,25 +29,10 @@ module.exports = function(grunt) {
         port: 5000,
         hostname: '0.0.0.0'
       },
-      //TODO: use default dev servers so as not to depend to a local enviroment.
-      //TODO: Use nginx like in production.
-      proxies: [{
-        context: '/api',
-        host: 'localhost',
-        port: process.env.PORT || 3002
-      }, {
-        context: '/images',
-        host: 'localhost',
-        port: 3001,
-        rewrite: {
-          '^/images': ''
-        }
-      }],
       livereload: {
         options: {
           middleware: function(connect) {
             return [
-              proxySnippet,
               livereloadSnippet,
               //all angular routes go to index file
               modRewrite(['!^/.*\\..*$ /' + process.env.INDEX + ' [L]']),

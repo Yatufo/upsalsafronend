@@ -16,29 +16,14 @@ docker login
 ```
 export AWS_ACCESS_KEY_ID=AKIAIMKUJAVKMMFQDQYA
 export AWS_SECRET_ACCESS_KEY=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
+export FRONTEND_SERVER=192.168.2.11:5000
+export BACKEND_NETWORK=salsanet
+export MONGO_CONNECTION=mongodb://localhost:27017
 ```
 
 ```
-docker run -d --name upsalsa-api \
--e "DEPLOY_ENVIRONMENT=dev" \
--e "MONGO_CONNECTION=mongodb://api:api@ds053794.mongolab.com:53794/upsalsa-dev" \
--e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
--e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
--p 3002:3002 upsalsa/upsalsa-api
+  docker-compose up -d
 ```
-
-[OPTIONAL]To be able to retrieve the uploaded images and show them in the app it's necessary to run the image server
-
-```
-docker run -d --name image-server \
--p 3001:3001 \
--e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
--e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
--e AWS_REGION=us-east-1 \
--e S3_BUCKET=salsa.local \
-brendanyounger/image-resizer
-```
-
 
 #### Run the app
 
@@ -48,7 +33,7 @@ brendanyounger/image-resizer
 
 #### Open in Browser.
 
-Go to (http://localhost:5000/)
+Go to (http://localhost:3002/)
 
 
 #### Domain.
@@ -58,7 +43,7 @@ The authentication requires a proper domain to work, so update your hosts file (
 127.0.0.1 salsa.local localhost
 ```
 
-Go to (http://salsa.local:5000/)
+Go to (http://salsa.local:3002/)
 
 
 #### Deploy to production.
@@ -66,8 +51,8 @@ Go to (http://salsa.local:5000/)
 To upload the generated static files to S3:
 
 ```
-export AWS_ACCESS_KEY_ID=myaccesskey
-export AWS_SECRET_ACCESS_KEY=mysecretkey
+export AWS_ACCESS_KEY_ID=productionkey
+export AWS_SECRET_ACCESS_KEY=productionsecretkey
 ```
 
 ```
