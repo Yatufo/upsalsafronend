@@ -18,7 +18,7 @@ images:
     AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
     AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
     AWS_REGION: us-east-1
-    S3_BUCKET: salsa.local
+    S3_BUCKET: "${S3_BUCKET}"
   image: brendanyounger/image-resizer
   net: "${BACKEND_NETWORK}"
   container_name: "images"
