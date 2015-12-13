@@ -6,13 +6,15 @@ From the root folder:
 
 ```npm install```
 
-#### Run backend with Docker
+## Run backend with Docker
 To be able to download the docker image for the backend it's necessary to login:
 
 ```
 docker login
 ```
 
+
+Create the env variable to run the server
 ```
 export AWS_ACCESS_KEY_ID=AKIAIMKUJAVKMMFQDQYA
 export AWS_SECRET_ACCESS_KEY=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
@@ -23,8 +25,15 @@ export S3_BUCKET=salsa.local
 docker network create --driver bridge $BACKEND_NETWORK
 ```
 
+
+### Start the backend
 ```
   docker-compose up -d
+```
+
+### Initialize the data (mongo backend must be running)
+```
+  mongorestore
 ```
 
 #### Run the app
