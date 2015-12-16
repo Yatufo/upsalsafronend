@@ -1,26 +1,28 @@
-<div class="left-pane" ng-show="isListVisible">
-  <div class="row">
-    <div class="col-xs-12 col-md-5 col-md-offset-1">
-      <div class="">
-        <h1>
-          Events
-        </h1>
-        <p ng-if="loading">
-          <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </p>
+<div class="container-fluid">
+  <div class="left-pane" ng-show="isListVisible">
+    <div class="row">
+      <div class="col-xs-12 col-md-5 col-md-offset-1">
+        <div class="">
+          <h1>
+            Events
+          </h1>
+          <p ng-if="loading">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+          </p>
+        </div>
+        <div ng-repeat="event in events | orderBy : event.start.dateTime ">
+          <eventcard data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
+        </div>
       </div>
-      <div ng-repeat="event in events | orderBy : event.start.dateTime ">
-        <eventcard data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
-      </div>
+      <div class="col-md-6"></div>
     </div>
-    <div class="col-md-6"></div>
   </div>
-</div>
-<div ng-class="{'right-pane' : !isMobile, fullscreen : isMobile}">
-  <div class="row">
-    <div class="col-xs-12 col-md-10">
-      <div class="google-maps" ng-show="isMapVisible">
-        <iframe frameborder="0" id="maps-iframe" style="border:0"></iframe>
+  <div ng-class="{'right-pane' : !isMobile, fullscreen : isMobile}">
+    <div class="row">
+      <div class="col-xs-12 col-md-10">
+        <div class="google-maps" ng-show="isMapVisible">
+          <iframe frameborder="0" id="maps-iframe" style="border:0"></iframe>
+        </div>
       </div>
     </div>
   </div>
