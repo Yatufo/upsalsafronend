@@ -21,17 +21,26 @@
     "moment": "~2.10.6",
     "ngInfiniteScroll": "~1.2.1",
     "ng-file-upload": "~9.1.2",
-    "angular-bootstrap-datetimepicker": "~0.4.0"
+    "angular-bootstrap-datetimepicker": "~0.4.0",
+    "smart-area": "~1.1.0"
   },
   "overrides": {
     "angular-bootstrap-datetimepicker": {
-      "main": ["src/js/datetimepicker.js", "src/css/datetimepicker.css"]
+      "main": [
+        "src/js/datetimepicker.js",
+        "src/css/datetimepicker.css"
+      ]
     },
-    "bootstrap" :{
-      "main": ["dist/js/bootstrap.js", "dist/css/bootstrap.css"]
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css"
+      ]
     },
-    "font-awesome" : {
-      "main": ["css/font-awesome.css"]
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
     }
   }
 }

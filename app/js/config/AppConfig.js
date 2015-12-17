@@ -18,5 +18,7 @@ eventify.constant('CONFIG', {
         LOCATIONS_DEFAULT_IMAGE :'locations/montreal.jpg',
         EVENT_DEFAULT_IMAGE :'events/default.jpg',
         DEFAULT_IMAGE_ENDPOINT : "api/images",
-        ARRAY_PARAM_SEPARATOR : ","
+        ARRAY_PARAM_SEPARATOR : ",",
+        EXTRACT_HASHTAG_REGEX : /#\w+/g, 
+        HIDDEN_CATEGORIES : ["root", "happenson"]
     });

@@ -10,7 +10,8 @@ var eventify = angular.module('eventify', [
   'angular-jwt',
   'infinite-scroll',
   'ngFileUpload',
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+  'smartArea'
 ]);
 
 eventify.config(["authProvider", function (authProvider) {
