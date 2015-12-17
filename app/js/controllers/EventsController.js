@@ -13,6 +13,9 @@ eventify
 
       if ($routeParams.categories) {
         $scope.categories = $routeParams.categories.split(SPLIT_PARAM);
+        if (! _.isEmpty($scope.categories)) {
+          $scope.hashtag = conf.HASHTAG + $scope.categories[0];
+        }
       }
 
 
