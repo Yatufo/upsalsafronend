@@ -1,12 +1,10 @@
 var EditableEventCardController = function($scope, $rootScope, service, CONFIG, util) {
 
-    var HASHTAG = '#';
-
     //only categories after third level.
     var hashtags = _.compact(_.values($rootScope.categories)
     .map(function(category) {
       if (category.parent && !_.contains(CONFIG.HIDDEN_CATEGORIES, category.parent)){
-        return HASHTAG + category.id;
+        return CONFIG.HASHTAG + category.id;
       }
     }));
 
@@ -52,7 +50,7 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
       $scope.event.categories = $scope.event.description
         .match(CONFIG.EXTRACT_HASHTAG_REGEX)
         .map(function (hashtag) {
-          return hashtag.replace(HASHTAG, '');
+          return hashtag.replace(CONFIG.HASHTAG, '');
         });
 
       return (!_.isEmpty($scope.event.categories) && $scope.event.end && $scope.event.end.dateTime > $scope.event.start.dateTime) &&

@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+  var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
   var serveStatic = require('serve-static');
   var modRewrite = require('connect-modrewrite');
   var path = require('path');
@@ -29,10 +30,20 @@ module.exports = function(grunt) {
         port: 5000,
         hostname: '0.0.0.0'
       },
+      proxies: [{
+        context: '/api',
+        host: 'localhost',
+        port: process.env.PORT || 3002
+      }, {
+        context: '/images',
+        host: 'localhost',
+        port: 3002
+      }],
       livereload: {
         options: {
           middleware: function(connect) {
             return [
+              proxySnippet,
               livereloadSnippet,
               //all angular routes go to index file
               modRewrite(['!^/.*\\..*$ /' + process.env.INDEX + ' [L]']),

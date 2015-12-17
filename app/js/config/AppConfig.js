@@ -19,6 +19,7 @@ eventify.constant('CONFIG', {
         EVENT_DEFAULT_IMAGE :'events/default.jpg',
         DEFAULT_IMAGE_ENDPOINT : "api/images",
         ARRAY_PARAM_SEPARATOR : ",",
-        EXTRACT_HASHTAG_REGEX : /#\w+/g, 
+        HASHTAG : '#',
+        EXTRACT_HASHTAG_REGEX : /#\w+/g,
         HIDDEN_CATEGORIES : ["root", "happenson"]
     });

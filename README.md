@@ -44,7 +44,7 @@ docker network create --driver bridge $BACKEND_NETWORK
 
 #### Open in Browser.
 
-Go to (http://localhost:3002/)
+Go to (http://localhost:5000/)
 
 
 #### Domain.
@@ -54,7 +54,7 @@ The authentication requires a proper domain to work, so update your hosts file (
 127.0.0.1 salsa.local localhost
 ```
 
-Go to (http://salsa.local:3002/)
+Go to (http://salsa.local:5000/)
 
 
 #### Deploy to production.

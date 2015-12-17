@@ -3,6 +3,9 @@
     <uploadimage data-item="event" data-type="'event'"></uploadimage>
     <span class="elipsis card-title"><a ng-href="{{event.detailsUrl}}">{{event.name}}</a></span>
   </div>
+  <div class="card-content clearfix">
+    <p ng-bind-html="event.description | hashtags"></p>
+  </div>
   <div class="card-action clearfix">
     <div class="pull-left">
       <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | calendar }}

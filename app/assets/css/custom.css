@@ -376,7 +376,11 @@ i .number {
   max-width: 640px;
 }
 
-
+.card .card-content{
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
 .card .btn-icon {
 	border-radius:50%;
 	width:50px;
