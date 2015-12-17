@@ -28,7 +28,7 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
       $scope.event = {
         location: toLocation($scope.location),
         description: "",
-        categories: ['party'], //TODO Get the categories as hashtags from the desciption
+        categories: [],
         images: [],
         imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
         start: {
@@ -47,11 +47,14 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
 
     $scope.canSave = function() {
 
-      $scope.event.categories = $scope.event.description
-        .match(CONFIG.EXTRACT_HASHTAG_REGEX)
-        .map(function (hashtag) {
-          return hashtag.replace(CONFIG.HASHTAG, '');
+      $scope.event.categories = [];
+      var hashtags = $scope.event.description.match(CONFIG.EXTRACT_HASHTAG_REGEX)
+
+      if (hashtags) {
+        hashtags.forEach(function (hashtag) {
+          $scope.event.categories.push(hashtag.replace(CONFIG.HASHTAG, ''));
         });
+      }
 
       return (!_.isEmpty($scope.event.categories) && $scope.event.end && $scope.event.end.dateTime > $scope.event.start.dateTime) &&
         !_.isEmpty($scope.event.location.url)

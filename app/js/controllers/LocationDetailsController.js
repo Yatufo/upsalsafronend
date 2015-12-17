@@ -7,7 +7,6 @@ eventify
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
-      $scope.categories = ['party'];
 
       var resetSummaries = function() {
         if ($scope.location) {
@@ -41,7 +40,7 @@ eventify
 
       Location.getEvents({
         locationId: $routeParams.locationId,
-        categories: $scope.categories.join(conf.ARRAY_PARAM_SEPARATOR)
+        categories: []
       }, function(events) {
         $scope.events = events || [];
         $scope.events.forEach(function(event) {
