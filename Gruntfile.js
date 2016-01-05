@@ -166,7 +166,9 @@ module.exports = function(grunt) {
         files: [{
           dest: 'app/assets/css/<%= pkg.name %>.min.css',
           ext: '.min.css',
-          src: ['app/assets/css/*.css', 'app/dependencies/angular-bootstrap-datetimepicker/src/css/datetimepicker.css']
+          src: ['app/assets/css/*.css',
+                'app/dependencies/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
+                'app/dependencies/smart-area/dist/smart-area.min.css']
         }]
       }
     },
