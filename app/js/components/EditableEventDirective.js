@@ -21,7 +21,9 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
       return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
     }
 
-    function init(argument) {
+    function init() {
+      if($scope.event) return;
+
       var start = moment().startOf('hour').add(1, 'hours');
 
 
@@ -75,7 +77,7 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
     }
 
     $scope.getDuration = function() {
-      return moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours');
+      return $scope.event.end ? moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours') : 0;
     }
 
     init();
@@ -87,6 +89,7 @@ eventify.directive('editableeventcard', function() {
     restrict: 'E',
     scope: {
       location: '=',
+      event: '=',
       onCancel: '&',
       onSave: '&',
     },

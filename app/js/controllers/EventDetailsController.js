@@ -3,26 +3,23 @@
 /* Controllers */
 
 eventify
-    .controller('EventDetailsController', ['$scope', '$http', '$routeParams', 'CONFIG', 'MapsService',
-        function($scope, $http, $routeParams, CONFIG, MapsService) {
+    .controller('EventDetailsController', ['$scope', '$routeParams', 'EventsResource', 'MapsService', 'UtilService',
+        function($scope, $routeParams, Event, maps, util) {
 
+          $scope.event = {};
 
-            $scope.event = {};
+          Event.get({
+            id: $routeParams.eventId
+          }, function(event) {
 
-            $http.get(CONFIG.EVENTS_ENDPOINT + '/' + $routeParams.eventId).
-            success(function(data, status, headers, config) {
-                $scope.event = data;
+            maps.init(event.location, 14);
+            maps.addLocation(event.location);
 
-                if ($scope.event) {
-                    MapsService.init($scope.event.location, 14);
-                    MapsService.addLocation($scope.event.location);
-                }
-                
-            }).
-            error(function(data, status, headers, config) {
-                console.log("Something went wrong");
-            });
+            event.detailsUrl = util.getDetailsUrl(event, "event");
 
-            window.scrollTo(0, 0);
+            $scope.event = event;
+
+          });
+
         }
     ]);
