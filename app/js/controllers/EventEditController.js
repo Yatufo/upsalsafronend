@@ -3,11 +3,11 @@
 /* Controllers */
 
 eventify
-    .controller('EventEditController', ['$scope', '$routeParams', 'EventsResource', 'MapsService', 'UtilService',
-        function($scope, $routeParams, Event, maps, util) {
+    .controller('EventEditController', ['$scope', '$routeParams', 'EventsResource', 'MapsService', 'UtilService', '$location',
+        function($scope, $routeParams, Event, maps, util, $location) {
 
           Event.get({
-            eventId: $routeParams.eventId
+            id: $routeParams.eventId
           }, function(event) {
 
             maps.init(event.location, 14);
@@ -22,7 +22,7 @@ eventify
           });
 
           $scope.$on('event', function(e, event) {
-            console.log("redirect");
+            $location.path(util.getDetailsPath(event, "event"))
           });
 
         }
