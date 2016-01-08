@@ -22,7 +22,7 @@ eventify
           });
 
           $scope.$on('event', function(e, event) {
-            $location.path(util.getDetailsPath(event, "event"))
+            $location.path(util.getDetailsPath($scope.event, "event"))
           });
 
         }

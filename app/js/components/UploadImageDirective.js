@@ -16,7 +16,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
       $scope.item.imageUrl = root + $scope.item.images[0].url
     } else {
       $scope.item.imageUrl = root + CONFIG.LOCATIONS_DEFAULT_IMAGE;
-      $scope.isDefaultImage = true;
+      $scope.options = _.extend($scope.options ? $scope.options : {}, {editimage : true});
     }
   };
 
@@ -75,7 +75,8 @@ eventify.directive('uploadimage', function() {
     replace : true,
     scope: {
       item: "=",
-      type: "="
+      type: "=",
+      options: "="
     },
     controller: ['$scope', 'Upload', 'CONFIG', UploadImageController],
     templateUrl: 'views/components/upload-image.html'

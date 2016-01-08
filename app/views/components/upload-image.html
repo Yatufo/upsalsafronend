@@ -4,12 +4,11 @@
     <div accept="image/*" class="drop-box" ng-model="image"
     ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'"
     ngf-select >
-      <a class="btn btn-icon" ng-if="isDefaultImage">
+      <a class="btn btn-icon" ng-if="options.editimage">
         <i class="fa fa-camera fa-2x"></i>
       </a>
     </div>
   </div>
-
   <div class="preview" ng-if="image">
     <img ngf-src="image">
     <div class="options">
