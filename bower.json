@@ -16,13 +16,13 @@
     "angular-cookies": "~1.4.3",
     "angular-resource": "~1.4.3",
     "angular-route": "~1.4.3",
-    "underscore": "~1.8.3",
     "a0-angular-storage": "~0.0.12",
     "moment": "~2.10.6",
     "ngInfiniteScroll": "~1.2.1",
     "ng-file-upload": "~9.1.2",
     "angular-bootstrap-datetimepicker": "~0.4.0",
-    "smart-area": "~1.1.0"
+    "smart-area": "~1.1.0",
+    "lodash": "~3.10.1"
   },
   "overrides": {
     "angular-bootstrap-datetimepicker": {

@@ -150,7 +150,7 @@ module.exports = function(grunt) {
           'app/dependencies/**/auth0.min.js',
           'app/dependencies/**/moment.min.js',
           'app/dependencies/**/ng-infinite-scroll.min.js',
-          'app/dependencies/**/underscore-min.js',
+          'app/dependencies/**/lodash.min.js',
           'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
           'app/dependencies/smart-area/dist/smart-area.min.js'
         ],
