@@ -53,9 +53,11 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
       var hashtags = $scope.event.description.match(CONFIG.EXTRACT_HASHTAG_REGEX)
 
       if (hashtags) {
+        var categories = [];
         hashtags.forEach(function (hashtag) {
-          $scope.event.categories.push(hashtag.replace(CONFIG.HASHTAG, ''));
+          categories.push(hashtag.replace(CONFIG.HASHTAG, '').toLowerCase());
         });
+        $scope.event.categories = _.uniq(categories);
       }
 
       return (!_.isEmpty($scope.event.categories) && $scope.event.end && $scope.event.end.dateTime > $scope.event.start.dateTime) &&

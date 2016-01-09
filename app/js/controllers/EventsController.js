@@ -12,7 +12,10 @@ eventify
       $scope.loading = true;
 
       if ($routeParams.categories) {
-        $scope.categories = $routeParams.categories.split(SPLIT_PARAM);
+         $scope.categories = _.uniq($routeParams.categories.split(SPLIT_PARAM).map(function (c) {
+           return c.toLowerCase();
+         }));
+
         if (! _.isEmpty($scope.categories)) {
           $scope.hashtag = conf.HASHTAG + $scope.categories[0];
         }
