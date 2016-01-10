@@ -32,6 +32,10 @@ eventify.config(['$routeProvider',
       templateUrl: 'views/events-edit.html',
       controller: 'EventEditController'
     }).
+    when('/:city/locations/create', {
+      templateUrl: 'views/locations-create.html',
+      controller: 'LocationsCreateController'
+    }).
     when('/:city/locations', {
       templateUrl: 'views/locations.html',
       controller: 'LocationsController',
