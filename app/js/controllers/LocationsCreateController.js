@@ -6,8 +6,6 @@ eventify
     .controller('LocationsCreateController', ['$scope', '$routeParams', 'EventsResource', 'MapsService', 'UtilService', '$location',
         function($scope, Location, maps, util, $location) {
 
-          $scope.location.address = { formattedAddress : ""};
-
           $scope.addressCompleted = function(data) {
             $scope.address = data;
           }
