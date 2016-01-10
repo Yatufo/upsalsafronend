@@ -92,7 +92,6 @@ eventify
         maps.highlightLocation(location);
       };
 
-      //TODO: Reuse
 
       window.scrollTo(0, 0);
     }

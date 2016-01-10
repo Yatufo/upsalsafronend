@@ -1,0 +1,60 @@
+<div class="card shadow">
+  <div class="card-image">
+    <uploadimage data-item="location" data-options="{editimage : true}" data-type="'location'"></uploadimage>
+    <span class="elipsis card-title">
+      <a ng-href="{{location.detailsUrl}}">{{location.name}}</a>
+    </span>
+  </div>
+  <div class="card-content clearfix">
+    <form name="locationForm">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" ng-model="location.name" placeholder="Title" type="title">
+      </div>
+
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control code"  id="description" msd-elastic name="description" ng-model="location.description"
+         ng-trim="false" smart-area="options.description" spellcheck="false"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Url</label>
+        <input class="form-control" id="title" ng-model="location.location.url" placeholder="http://www.mylocation.com" type="url">
+      </div>
+
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-10">
+        <form role="form" id="addressFormId" name="addressForm">
+          <div class="form-group">
+            <label for="addressId">Address</label>
+            <input type="input" class="form-control" name="address" id="addressId" autocomplete completed="addressCompleted(data)"
+            placeholder="Address" ng-model="address.formattedAddress">
+          </div>
+        </form>
+      </div>
+
+    </div>
+    </div>
+
+    
+    </form>
+
+  </div>
+  <div class="card-action clearfix">
+    <div class="pull-right">
+      <a class="btn btn-icon" ng-click="save()">
+        <i class="fa fa-save fa-2x"></i>
+      </a>
+      <a class="btn btn-icon" ng-click="cancel()">
+        <i class="fa fa-remove fa-2x"></i>
+      </a>
+    </div>
+  </div>
+</div>
