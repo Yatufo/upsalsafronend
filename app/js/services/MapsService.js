@@ -2,7 +2,7 @@
 
 
 
-var MapsService = function() {
+var MapsService = function(cfg) {
   var map;
   var markers = [];
   var markerByLocation;
@@ -37,6 +37,10 @@ var MapsService = function() {
       return mapElement[0];
     },
     init: function(location, lZoom) {
+
+      location = location ? location : cfg.DEFAULT_LOCATION;
+      lZoom = lZoom ? lZoom : cfg.DEFAULT_LOCATION_ZOOM;
+
       map = {};
       markerByLocation = {};
       var mapOptions = {
@@ -93,4 +97,4 @@ var MapsService = function() {
 
 
 eventify
-  .factory('MapsService', MapsService);
+  .factory('MapsService', ['CONFIG', MapsService]);

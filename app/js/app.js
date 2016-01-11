@@ -11,7 +11,8 @@ var eventify = angular.module('eventify', [
   'infinite-scroll',
   'ngFileUpload',
   'ui.bootstrap.datetimepicker',
-  'smartArea'
+  'smartArea',
+  'internationalPhoneNumber'
 ]);
 
 eventify.config(["authProvider", function (authProvider) {

@@ -6,31 +6,37 @@ var AutocompleteDirectiveController = function($log, $window, $q) {
   return {
     restrict: 'A',
     require: '?ngModel',
-    scope : {
-      inputid:'@id',
-      completed:'&'
+    scope: {
+      inputid: '@id',
+      completed: '&',
+      location: '='
     },
+    link: function(scope, element, attrs, ngModelCtrl) {
+      if (!ngModelCtrl) {
+        return;
+      }
 
-    link : function(scope, element, attrs, ngModelCtrl) {
-      if(!ngModelCtrl) { return; }
-
-       var placeSearch, autocomplete;
-
-       scope.inputid = scope.inputid ? scope.inputid : 'autocomplete';
+      scope.inputid = scope.inputid ? scope.inputid : 'autocomplete';
 
       function init() {
         // Create the autocomplete object, restricting the search to geographical
         // location types.
         var input = document.getElementById(scope.inputid);
-        autocomplete = new google.maps.places.Autocomplete(input);
+        scope.autocomplete = new google.maps.places.Autocomplete(input);
 
         // When the user selects an address from the dropdown, populate the address
         // fields in the form.
-        autocomplete.addListener('place_changed', onPlaceChanged);
+        scope.autocomplete.addListener('place_changed', onPlaceChanged);
       }
 
       function onPlaceChanged() {
-        console.log(autocomplete.getPlace());
+        var place = scope.autocomplete.getPlace();
+
+        scope.location.address = place.formatted_address;
+        scope.location.coordinates = {
+          longitude: place.geometry.location.lng(),
+          latitude: place.geometry.location.lat()
+        };
       }
 
       init();

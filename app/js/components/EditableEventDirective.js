@@ -1,4 +1,4 @@
-var EditableEventCardController = function($scope, $rootScope, service, CONFIG, util) {
+var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
     //only categories after third level.
     var hashtags = _.compact(_.values($rootScope.categories)
@@ -11,7 +11,7 @@ var EditableEventCardController = function($scope, $rootScope, service, CONFIG, 
     $scope.options = {
       description: {
         autocomplete: [{
-          words: hashtags,
+          words: categoryService.getHashTags(),
           cssClass: 'hashtags'
         }]
       }
@@ -95,7 +95,7 @@ eventify.directive('editableeventcard', function() {
       onCancel: '&',
       onSave: '&',
     },
-    controller: ['$scope', '$rootScope', 'EventService', 'CONFIG', 'UtilService', EditableEventCardController],
+    controller: ['$scope', '$rootScope', 'EventService', 'CategoryService', 'CONFIG', 'UtilService', EditableEventCardController],
     templateUrl: 'views/components/editable-event-card.html'
   };
 });
