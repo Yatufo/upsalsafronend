@@ -5,7 +5,7 @@
 var CategoryService = function($rootScope) {
 
   var cfg = $rootScope.CONFIG;
-  
+
   //only categories after third level.
   var hashtags = _.compact(_.values($rootScope.categories)
     .map(function(category) {
@@ -19,6 +19,20 @@ var CategoryService = function($rootScope) {
     //TODO: get hashtags from the server or in a smarter way
     getHashTags: function(partial) {
       return hashtags
+    },
+    extractCategories : function (text) {
+      var categories = [];
+      if (!text) return categories;
+
+      var hashtags = text.match(cfg.EXTRACT_HASHTAG_REGEX)
+
+      if (hashtags) {
+        hashtags.forEach(function(hashtag) {
+          categories.push(hashtag.replace(cfg.HASHTAG, '').toLowerCase());
+        });
+        result = _.uniq(categories);
+      }
+      return categories;
     }
   };
 

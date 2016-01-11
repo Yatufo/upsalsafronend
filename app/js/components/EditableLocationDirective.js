@@ -23,17 +23,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
 
   $scope.canSave = function() {
 
-    $scope.location.categories = [];
-    var hashtags = $scope.location.description.match(CONFIG.EXTRACT_HASHTAG_REGEX)
-
-    if (hashtags) {
-      var categories = [];
-      hashtags.forEach(function(hashtag) {
-        categories.push(hashtag.replace(CONFIG.HASHTAG, '').toLowerCase());
-      });
-      $scope.location.categories = _.uniq(categories);
-    }
-
+    $scope.location.categories = categoryService.extractCategories($scope.location.description);
     return $scope.locationForm.$valid && ! _.isEmpty($scope.location.categories);
   }
 
