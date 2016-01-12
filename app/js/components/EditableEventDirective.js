@@ -1,82 +1,84 @@
 var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
-    $scope.options = {
-      description: {
-        autocomplete: [{
-          words: categoryService.getHashTags(),
-          cssClass: 'hashtags'
-        }]
-      }
+  $scope.smartarea = {
+    description: {
+      autocomplete: [{
+        words: categoryService.getHashTags(),
+        cssClass: 'hashtags'
+      }]
     }
-
-    function toLocation(location) {
-      return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
-    }
-
-    function init() {
-      if ($scope.event) return;
-
-      var start = moment().startOf('hour').add(1, 'hours');
-
-
-      $scope.event = {
-        location: toLocation($scope.location),
-        description: "",
-        categories: [],
-        images: [],
-        imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
-        start: {
-          dateTime: start.toDate()
-        }
-      };
-    };
-
-    $scope.$watch("event.start.dateTime", function(newVal) {
-      if (newVal) {
-        $scope.event.end = {
-          dateTime: new moment(newVal).add(1, 'hours').toDate()
-        };
-      }
-    });
-
-    $scope.canSave = function() {
-      $scope.location.categories = categoryService.extractCategories($scope.event.description);
-      var validDates = $scope.event.end.dateTime > $scope.event.start.dateTime;
-
-      return $scope.eventForm.$valid && !_.isEmpty($scope.location.categories) && validDates;
-    };
-
-
-    $scope.save = function() {
-      if ($scope.canSave()) {
-        service.saveOrUpdate($scope.event)
-          .then(function(saved) {
-            saved.detailsUrl = util.getDetailsUrl(saved, "event");
-            $scope.$emit('event', saved);
-          });
-      }
-    }
-
-    $scope.cancel = function() {
-      $scope.$emit('event');
-    }
-
-    $scope.getDuration = function() {
-      return $scope.event.end ? moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours') : 0;
-    }
-
-    init();
   }
-  /* App Module */
 
+
+  function toLocation(location) {
+    return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
+  }
+
+  function init() {
+    if ($scope.event) return;
+
+    var start = moment().startOf('hour').add(1, 'hours');
+
+
+    $scope.event = {
+      location: toLocation($scope.location),
+      description: "",
+      categories: [],
+      images: [],
+      imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
+      start: {
+        dateTime: start.toDate()
+      }
+    };
+  };
+
+  $scope.$watch("event.start.dateTime", function(newVal) {
+    if (newVal) {
+      $scope.event.end = {
+        dateTime: new moment(newVal).add(1, 'hours').toDate()
+      };
+    }
+  });
+
+  $scope.canSave = function() {
+    $scope.event.categories = categoryService.extractCategories($scope.event.description);
+    var validDates = $scope.event.end.dateTime > $scope.event.start.dateTime;
+
+    return $scope.eventForm.$valid && !_.isEmpty($scope.event.categories) && validDates;
+  };
+
+
+  $scope.save = function() {
+    if ($scope.canSave()) {
+      service.saveOrUpdate($scope.event)
+        .then(function(saved) {
+          saved.detailsUrl = util.getDetailsUrl(saved, "event");
+          $scope.$emit('event', saved);
+        });
+    }
+  }
+
+  $scope.cancel = function() {
+    $scope.$emit('event');
+  }
+
+  $scope.getDuration = function() {
+    return $scope.event.end ? moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours') : 0;
+  }
+
+  init();
+}
+
+/* App Module */
 eventify.directive('editableeventcard', function() {
   return {
     restrict: 'E',
     scope: {
       location: '=',
       event: '=',
+      options: '=',
       onCancel: '&',
-      onSave: '&',
+      onSave: '&'
     },
     controller: ['$scope', '$rootScope', 'EventService', 'CategoryService', 'CONFIG', 'UtilService', EditableEventCardController],
     templateUrl: 'views/components/editable-event-card.html'

@@ -16,9 +16,9 @@ var AutocompleteDirectiveController = function($log, $window, $q) {
         return;
       }
 
-      scope.inputid = scope.inputid ? scope.inputid : 'autocomplete';
-
       function init() {
+        scope.inputid = scope.inputid ? scope.inputid : 'autocomplete';
+
         // Create the autocomplete object, restricting the search to geographical
         // location types.
         var input = document.getElementById(scope.inputid);
