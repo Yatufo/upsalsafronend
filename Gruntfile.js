@@ -139,20 +139,23 @@ module.exports = function(grunt) {
       },
       deps: {
         src: [
-          'app/dependencies/**/angular-storage.min.js',
-          'app/dependencies/**/angular-cookies.min.js',
-          'app/dependencies/**/angular-jwt.min.js',
-          'app/dependencies/**/angular-resource.min.js',
-          'app/dependencies/**/angular-route.min.js',
-          'app/dependencies/**/ng-file-upload-all.min.js',
-          'app/dependencies/**/auth0-angular.min.js',
-          'app/dependencies/**/auth0-lock.min.js',
-          'app/dependencies/**/auth0.min.js',
-          'app/dependencies/**/moment.min.js',
-          'app/dependencies/**/ng-infinite-scroll.min.js',
-          'app/dependencies/**/lodash.min.js',
+          'app/dependencies/auth0-lock/build/auth0-lock.js',
+          'app/dependencies/auth0.js/build/auth0.js',
+          'app/dependencies/auth0-angular/build/auth0-angular.js',
+          'app/dependencies/angular-jwt/dist/angular-jwt.js',
+          'app/dependencies/angular-cookies/angular-cookies.js',
+          'app/dependencies/angular-resource/angular-resource.js',
+          'app/dependencies/angular-route/angular-route.js',
+          'app/dependencies/a0-angular-storage/dist/angular-storage.js',
+          'app/dependencies/moment/moment.js',
+          'app/dependencies/ngInfiniteScroll/build/ng-infinite-scroll.js',
+          'app/dependencies/ng-file-upload/ng-file-upload.js',
           'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
-          'app/dependencies/smart-area/dist/smart-area.min.js'
+          'app/dependencies/smart-area/dist/smart-area.js',
+          'app/dependencies/lodash/lodash.js',
+          'app/dependencies/intl-tel-input/build/js/intlTelInput.min.js',
+          'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js',
+          'app/dependencies/international-phone-number/releases/international-phone-number.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
       }
@@ -168,7 +171,8 @@ module.exports = function(grunt) {
           ext: '.min.css',
           src: ['app/assets/css/*.css',
                 'app/dependencies/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
-                'app/dependencies/smart-area/dist/smart-area.min.css']
+                'app/dependencies/smart-area/dist/smart-area.min.css',
+                'app/dependencies/intl-tel-input/build/css/intlTelInput.css']
         }]
       }
     },

@@ -1,13 +1,5 @@
 var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
-    //only categories after third level.
-    var hashtags = _.compact(_.values($rootScope.categories)
-      .map(function(category) {
-        if (category.parent && !_.contains(CONFIG.HIDDEN_CATEGORIES, category.parent)) {
-          return CONFIG.HASHTAG + category.id;
-        }
-      }));
-
     $scope.options = {
       description: {
         autocomplete: [{

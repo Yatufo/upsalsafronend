@@ -30,7 +30,7 @@ var CategoryService = function($rootScope) {
         hashtags.forEach(function(hashtag) {
           categories.push(hashtag.replace(cfg.HASHTAG, '').toLowerCase());
         });
-        result = _.uniq(categories);
+        categories = _.uniq(categories);
       }
       return categories;
     }
