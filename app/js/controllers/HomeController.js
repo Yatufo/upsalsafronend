@@ -3,22 +3,9 @@
 /* Controllers */
 
 eventify
-  .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'CONFIG', 'CategoriesResource', 'SecurityService', HomeController]);
+  .controller('HomeController', ['$scope', '$rootScope', 'AnalyticsService', 'SecurityService', HomeController]);
 
-function HomeController($scope, $rootScope, analytics, CONFIG, CategoriesResource, security) {
-  $rootScope.CONFIG = CONFIG;
-
-  if (!$rootScope.categories) {
-    $rootScope.categories = [];
-    CategoriesResource.query({}, function(categories) {
-      var results = {};
-      categories.forEach(function(category) {
-        results[category.id] = category;
-      });
-
-      $rootScope.categories = results;
-    });
-  };
+function HomeController($scope, $rootScope, analytics, security) {
 
   $scope.logout = function() {
     security.logout();

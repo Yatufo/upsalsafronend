@@ -2,13 +2,16 @@ var EditableEventCardController = function($scope, $rootScope, service, category
 
   $scope.smartarea = {
     description: {
-      autocomplete: [{
-        words: categoryService.getHashTags(),
-        cssClass: 'hashtags'
-      }]
+      autocomplete: []
     }
-  }
+  };
 
+  categoryService.getCategories().then(function(categories) {
+    $scope.smartarea.description.autocomplete = [{
+      words: categoryService.getHashTags(categories),
+      cssClass: 'hashtags'
+    }]
+  });
 
   function toLocation(location) {
     return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')

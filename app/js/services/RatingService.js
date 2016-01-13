@@ -2,12 +2,13 @@
 
 /* Service */
 
-var RatingService = function($rootScope, $q, Rating) {
+var RatingService = function($rootScope, $q, Rating, categoryService) {
+
 
   // would get the next category the user would rate
-  var getRateableCategories = function(location) {
+  function getRateableCategories(categories) {
     return ['favorite', 'class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
-      return $rootScope.categories[id];
+      return categories[id];
     });
   };
 
@@ -26,7 +27,8 @@ var RatingService = function($rootScope, $q, Rating) {
   };
 
   var service = {
-    generateSummaries: function(location) {
+    generateSummaries: function(location, categories) {
+      
       var generated = [];
       var ratedCategories = [];
       if (! location || !location.ratings)
@@ -35,7 +37,7 @@ var RatingService = function($rootScope, $q, Rating) {
 
       location.ratings.forEach(function(rating) {
         var summary = {
-          category: $rootScope.categories[rating.category],
+          category: categories[rating.category],
           votes: rating.votes,
           location: location
         };
@@ -45,7 +47,7 @@ var RatingService = function($rootScope, $q, Rating) {
         generated.push(summary);
       });
 
-      getRateableCategories().forEach(function(category) {
+      getRateableCategories(categories).forEach(function(category) {
         if (!_.contains(ratedCategories, category)) {
           var emptySummary = {
             category: category,
@@ -85,4 +87,4 @@ var RatingService = function($rootScope, $q, Rating) {
 
 };
 eventify
-  .factory('RatingService', ['$rootScope', '$q', 'RatingResource', RatingService]);
+  .factory('RatingService', ['$rootScope', '$q', 'RatingResource', 'CategoryService', RatingService]);

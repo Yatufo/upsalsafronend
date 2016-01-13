@@ -1,8 +1,8 @@
 /* Controllers */
 
 eventify
-  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'AnalyticsService', 'UtilService',
-    function($scope, $rootScope, $window, Location, maps, ratingService, analytics, util) {
+  .controller('LocationsController', ['$scope', '$rootScope', '$window', 'Location', 'MapsService', 'RatingService', 'CategoryService', 'AnalyticsService', 'UtilService',
+    function($scope, $rootScope, $window, Location, maps, ratingService, categoryService, analytics, util) {
 
       $scope.allLocations = [];
       $scope.loading = true;
@@ -37,8 +37,12 @@ eventify
       });
 
       var resetSummaries = function() {
-        $scope.allLocations.forEach(function(location) {
-          location.summaries = ratingService.generateSummaries(location);
+        categoryService.getCategories().then(function(categories) {
+
+          $scope.allLocations.forEach(function(location) {
+            location.summaries = ratingService.generateSummaries(location, categories);
+          });
+
         });
       };
 

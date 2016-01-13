@@ -1,13 +1,19 @@
 var EditableLocationCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
-  $scope.options = {
+
+  $scope.smartarea = {
     description: {
-      autocomplete: [{
-        words: categoryService.getHashTags(),
-        cssClass: 'hashtags'
-      }]
+      autocomplete: []
     }
-  }
+  };
+
+  categoryService.getCategories().then(function(categories) {
+    $scope.smartarea.description.autocomplete = [{
+      words: categoryService.getHashTags(categories),
+      cssClass: 'hashtags'
+    }]
+  });
+
 
   function init() {
     if ($scope.location) return;
@@ -24,7 +30,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
   $scope.canSave = function() {
 
     $scope.location.categories = categoryService.extractCategories($scope.location.description);
-    return $scope.locationForm.$valid && ! _.isEmpty($scope.location.categories);
+    return $scope.locationForm.$valid && !_.isEmpty($scope.location.categories);
   }
 
   $scope.save = function() {

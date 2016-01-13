@@ -2,7 +2,7 @@
 
 /* Service */
 
-eventify.factory('CategoriesResource', ['$resource', function($resource) {
+eventify.factory('Category', ['$resource', function($resource) {
   return $resource('/api/categories/:categoryId', {
     'categoryId': '@id'
   }, {

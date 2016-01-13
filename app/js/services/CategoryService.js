@@ -1,26 +1,44 @@
-
-
 /* Service */
 
-var CategoryService = function($rootScope) {
-
-  var cfg = $rootScope.CONFIG;
-
-  //only categories after third level.
-  var hashtags = _.compact(_.values($rootScope.categories)
-    .map(function(category) {
-      if (category.parent && !_.contains(cfg.HIDDEN_CATEGORIES, category.parent)) {
-        return cfg.HASHTAG + category.id;
-      }
-    }));
-
+var CategoryService = function($rootScope, Category, $q, cfg) {
 
   var service = {
+    getCategories: function getCategories() {
+
+      return $q(function(resolve, reject) {
+
+        if ($rootScope.categories) {
+          resolve($rootScope.categories)
+        } else {
+
+          Category.query({}, function(categories) {
+            var results = {};
+            categories.forEach(function(c) {
+              results[c.id] = c;
+            });
+
+            $rootScope.categories = results;
+            resolve($rootScope.categories)
+          });
+        }
+
+      });
+
+    },
     //TODO: get hashtags from the server or in a smarter way
-    getHashTags: function(partial) {
+    getHashTags: function getHashTags(categories) {
+
+      //only categories after third level.
+      var hashtags = _.compact(_.values(categories)
+        .map(function(category) {
+          if (category.parent && !_.contains(cfg.HIDDEN_CATEGORIES, category.parent)) {
+            return cfg.HASHTAG + category.id;
+          }
+        }));
+
       return hashtags
     },
-    extractCategories : function (text) {
+    extractCategories: function(text) {
       var categories = [];
       if (!text) return categories;
 
@@ -40,4 +58,4 @@ var CategoryService = function($rootScope) {
 
 };
 eventify
-  .factory('CategoryService', ['$rootScope', CategoryService]);
+  .factory('CategoryService', ['$rootScope', 'Category', '$q', 'CONFIG', CategoryService]);

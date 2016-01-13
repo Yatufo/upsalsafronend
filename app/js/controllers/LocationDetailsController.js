@@ -1,17 +1,19 @@
 /* Controllers */
 
 eventify
-  .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService', 'CONFIG', 'UtilService',
-    function($rootScope, $scope, $routeParams, Location, maps, ratingService, conf, util) {
+  .controller('LocationDetailsController', ['$rootScope', '$scope', '$routeParams', 'Location', 'MapsService', 'RatingService', 'CategoryService', 'UtilService',
+    function($rootScope, $scope, $routeParams, Location, maps, ratingService, categoryService, util) {
 
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
-      $scope.isMapVisible = ! ($scope.isMobile && $scope.isListVisible)
+      $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
 
       var resetSummaries = function() {
-        if ($scope.location) {
-          $scope.location.summaries = ratingService.generateSummaries($scope.location);
-        }
+        categoryService.getCategories().then(function(categories) {
+          if ($scope.location) {
+            $scope.location.summaries = ratingService.generateSummaries($scope.location, categories);
+          }
+        });
       };
 
       $scope.$on('event', function(e, event) {
