@@ -89,6 +89,7 @@
 
   // Custom Globals
   "globals": {
+    "eventify": true,
     "google": true,
     "angular": true,
     "_": true,

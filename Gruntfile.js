@@ -131,7 +131,7 @@ module.exports = function(grunt) {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
         beautify: true,
-        mangle: true
+        mangle: false
       },
       app: {
         src: ['app/js/**/*.js', 'app/assets/js/templates.js'],
