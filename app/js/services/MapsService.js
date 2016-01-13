@@ -45,10 +45,10 @@ var MapsService = function(cfg) {
       markerByLocation = {};
       var mapOptions = {
         center: {
-          lat: (location ? location.coordinates.latitude : 45.560),
-          lng: (location ? location.coordinates.longitude : -73.712)
+          lat: location.coordinates.latitude,
+          lng: location.coordinates.longitude
         },
-        zoom: (lZoom ? lZoom : 10)
+        zoom: lZoom
       };
 
       map = new google.maps.Map(this.getMapCanvas(), mapOptions);
@@ -59,8 +59,7 @@ var MapsService = function(cfg) {
         var infowindow = new google.maps.InfoWindow({
           content: infowindowContent(location)
         });
-
-
+        
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
           map: map,

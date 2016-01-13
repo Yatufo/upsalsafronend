@@ -12,10 +12,14 @@ eventify
             id: $routeParams.eventId
           }, function(event) {
 
+            event.detailsUrl = util.getDetailsUrl(event, "event");
+            event.location.id = event.id;
+            event.location.name = event.name;
+            event.location.detailsUrl = event.detailsUrl;
+
             maps.init(event.location, 14);
             maps.addLocation(event.location);
 
-            event.detailsUrl = util.getDetailsUrl(event, "event");
 
             $scope.event = event;
 

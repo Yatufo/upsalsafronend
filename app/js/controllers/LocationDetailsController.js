@@ -8,6 +8,8 @@ eventify
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
 
+      maps.init();
+
       var resetSummaries = function() {
         categoryService.getCategories().then(function(categories) {
           if ($scope.location) {
@@ -32,8 +34,6 @@ eventify
       Location.get({
         locationId: $routeParams.locationId
       }, function(location) {
-
-        maps.init(location, 14);
         maps.addLocation(location);
         location.showComments = true;
         $scope.location = location;
@@ -47,8 +47,17 @@ eventify
         $scope.events = events || [];
         $scope.events.forEach(function(event) {
           event.detailsUrl = util.getDetailsUrl(event, "event");
+          event.location.id = event.id;
+          event.location.name = event.name;
+          event.location.detailsUrl = event.detailsUrl;
+
+          maps.addLocation(event.location);
         })
       })
+
+      $scope.highlightLocation = function(location) {
+        maps.highlightLocation(location);
+      };
 
       window.scrollTo(0, 0);
     }

@@ -26,5 +26,5 @@ eventify.constant('CONFIG', {
       longitude: -73.712
     }
   },
-  DEFAULT_LOCATION_ZOOM : 14
+  DEFAULT_LOCATION_ZOOM : 10
 });
