@@ -5,7 +5,7 @@
 var MapsService = function(cfg) {
   var map;
   var markers = [];
-  var markerByLocation;
+  var markerByLocation = {};
   var currentMarker;
   var defaultIcon = "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png";
   var highlightIcon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
@@ -22,7 +22,7 @@ var MapsService = function(cfg) {
           marker.setMap(null);
         });
         markers = [];
-        markerByLocation = [];
+        markerByLocation = {};
       }
     },
     isMobile: function() {
@@ -59,7 +59,7 @@ var MapsService = function(cfg) {
         var infowindow = new google.maps.InfoWindow({
           content: infowindowContent(location)
         });
-        
+
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.coordinates.latitude, location.coordinates.longitude),
           map: map,

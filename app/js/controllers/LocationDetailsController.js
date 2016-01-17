@@ -8,7 +8,6 @@ eventify
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
 
-      maps.init();
 
       var resetSummaries = function() {
         categoryService.getCategories().then(function(categories) {
@@ -34,6 +33,7 @@ eventify
       Location.get({
         locationId: $routeParams.locationId
       }, function(location) {
+        maps.init(location, 14);
         maps.addLocation(location);
         location.showComments = true;
         $scope.location = location;
