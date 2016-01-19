@@ -13,6 +13,13 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     }]
   });
 
+  var dowIds = [RRule.SU, RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR, RRule.SA];
+  var i = 0;
+  $scope.dows = dowIds.map(function(id) {
+    return { id: id, name: moment.weekdays(i++) };
+  });
+
+
   function toLocation(location) {
     return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
   }
