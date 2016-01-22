@@ -86,14 +86,15 @@
         {{getDuration()}}
         hour(s)</label>
 
+      <div class="form-group">
+        <label><input ng-model="selections.repeat" type="checkbox">Season</label>
+        <label ng-if="selections.repeat"><input max="15" min="0" name="input" ng-model="selections.count" required type="number">Times</label>
+      </div>
+      <div class="form-group" ng-if="selections.repeat">
+        <label ng-repeat="dow in allDows"><input ng-model="selections.dows[dow.id]" type="checkbox">{{dow.name}}</label>
+      </div>
 
-        <div class="form-group">
-          <label><input ng-model="selections.repeat" type="checkbox">Season</label>
-          <label ng-if="selections.repeat"><input max="15" min="0" name="input" ng-model="selections.count" required type="number">Times</label>
-        </div>
-        <div class="form-group" ng-if="selections.repeat">
-          <label ng-repeat="dow in dows"><input ng-model="selections.dows[dow.id]" type="checkbox">{{dow.name}}</label>
-        </div>
+      <label>{{selections.ruleText}}</label>
 
     </form>
 

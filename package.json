@@ -5,7 +5,7 @@
   "description": "A cloud based events displayer app",
   "repository": "https://bitbucket.org/upsalsa/frontend",
   "scripts": {
-    "start" : "docker-compose up & grunt"
+    "start": "docker-compose up & grunt"
   },
   "dependencies": {
     "bower": "latest",
@@ -27,11 +27,11 @@
     "grunt-contrib-connect": "latest",
     "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-jshint": "latest",
-    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-env": "^0.4.4",
     "grunt-fixmyjs": "^0.3.0",
+    "grunt-injector": "^0.6.1",
     "grunt-notify": "^0.4.3",
     "grunt-s3": "^0.1.0",
     "grunt-wiredep": "latest",

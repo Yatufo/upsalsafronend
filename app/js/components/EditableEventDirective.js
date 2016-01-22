@@ -13,11 +13,53 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     }]
   });
 
+  $scope.selections = {
+    repeat: false,
+    count: 6,
+    dows: {}
+  }
+
   var dowIds = [RRule.SU, RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR, RRule.SA];
   var i = 0;
-  $scope.dows = dowIds.map(function(id) {
-    return { id: id, name: moment.weekdays(i++) };
+  $scope.allDows = dowIds.map(function(id) {
+    return {
+      id: id,
+      name: moment.weekdays(i++)
+    };
   });
+
+  $scope.$watch("[selections.repeat, selections.count]", function() {
+    resetRecurrenceRule();
+  });
+  $scope.$watchCollection("selections.dows", function() {
+    resetRecurrenceRule();
+  });
+
+  function resetRecurrenceRule() {
+    if ($scope.selections.repeat) {
+      var selectedDows = _.compact(dowIds.map(function(id) {
+        if ($scope.selections.dows[id]) {
+          return id;
+        }
+      }));
+      rule = new RRule({
+        freq: RRule.DAILY,
+        count: $scope.selections.count,
+        byweekday: selectedDows,
+        dtstart: $scope.event.start.dateTime
+      })
+
+      $scope.selections.ruleText = rule.toText();
+      $scope.event.recurrence = {
+        rule: rule.toString()
+      }
+
+    } else {
+      $scope.selections.ruleText = "";
+      $scope.event.recurrence = {};
+    }
+  }
+
 
 
   function toLocation(location) {
@@ -44,6 +86,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
 
   $scope.$watch("event.start.dateTime", function(newVal) {
     if (newVal) {
+      resetRecurrenceRule();
       $scope.event.end = {
         dateTime: new moment(newVal).add(1, 'hours').toDate()
       };
