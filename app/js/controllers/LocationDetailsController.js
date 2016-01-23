@@ -55,6 +55,11 @@ eventify
         })
       })
 
+      $scope.$on('eventCreated', function(e, eventCreated) {
+        $scope.events.push(eventCreated);
+      });
+
+
       $scope.highlightLocation = function(location) {
         maps.highlightLocation(location);
       };

@@ -40,6 +40,8 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
           saved.detailsUrl = util.getDetailsUrl(saved, "location");
           $scope.$emit('location', saved);
         });
+    }else {
+      console.debug($scope.locationForm);
     }
   }
 

@@ -155,7 +155,9 @@ module.exports = function(grunt) {
           'app/dependencies/lodash/lodash.js',
           'app/dependencies/intl-tel-input/build/js/intlTelInput.min.js',
           'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js',
-          'app/dependencies/international-phone-number/releases/international-phone-number.js'
+          'app/dependencies/international-phone-number/releases/international-phone-number.js',
+          'app/dependencies/rrule/lib/rrule.js',
+          'app/dependencies/rrule/lib/nlp.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
       }

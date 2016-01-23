@@ -42,7 +42,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
           return id;
         }
       }));
-      rule = new RRule({
+      var rule = new RRule({
         freq: RRule.DAILY,
         count: $scope.selections.count,
         byweekday: selectedDows,
@@ -108,6 +108,8 @@ var EditableEventCardController = function($scope, $rootScope, service, category
           saved.detailsUrl = util.getDetailsUrl(saved, "event");
           $scope.$emit('eventCreated', saved);
         });
+    } else {
+      console.debug($scope.eventForm);
     }
   }
 
