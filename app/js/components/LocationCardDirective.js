@@ -10,10 +10,13 @@ var LocationCardController = function ($scope) {
     $scope.creatingEvent = true;
   }
 
-  $scope.$on('event', function(event) {
+  $scope.$on('eventCreated', function(event) {
     $scope.creatingEvent = false;
   });
 
+  $scope.$on('eventCancelled', function() {
+    $scope.creatingEvent = false;
+  });
 
 
 }

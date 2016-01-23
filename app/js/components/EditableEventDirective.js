@@ -106,13 +106,13 @@ var EditableEventCardController = function($scope, $rootScope, service, category
       service.saveOrUpdate($scope.event)
         .then(function(saved) {
           saved.detailsUrl = util.getDetailsUrl(saved, "event");
-          $scope.$emit('event', saved);
+          $scope.$emit('eventCreated', saved);
         });
     }
   }
 
   $scope.cancel = function() {
-    $scope.$emit('event');
+    $scope.$emit('eventCancelled');
   }
 
   $scope.getDuration = function() {
