@@ -43,7 +43,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
         }
       }));
       var rule = new RRule({
-        freq: RRule.DAILY,
+        freq: RRule.WEEKLY,
         count: $scope.selections.count,
         byweekday: selectedDows,
         dtstart: $scope.event.start.dateTime
