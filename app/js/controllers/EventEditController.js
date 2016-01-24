@@ -21,7 +21,7 @@ eventify
 
           });
 
-          $scope.$on('event', function(e, event) {
+          $scope.$on('eventSaved', function(e, event) {
             $location.path(util.getDetailsPath($scope.event, "event"))
           });
 

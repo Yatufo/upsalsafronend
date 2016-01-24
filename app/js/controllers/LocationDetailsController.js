@@ -55,8 +55,8 @@ eventify
         })
       })
 
-      $scope.$on('eventCreated', function(e, eventCreated) {
-        $scope.events.push(eventCreated);
+      $scope.$on('eventSaved', function(e, eventSaved) {
+        $scope.events.push(eventSaved);
       });
 
 

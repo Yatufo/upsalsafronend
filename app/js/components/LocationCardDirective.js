@@ -10,7 +10,7 @@ var LocationCardController = function ($scope) {
     $scope.creatingEvent = true;
   }
 
-  $scope.$on('eventCreated', function(event) {
+  $scope.$on('eventSaved', function(event) {
     $scope.creatingEvent = false;
   });
 
