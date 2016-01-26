@@ -8,7 +8,7 @@
   </div>
   <div class="card-action clearfix">
     <div class="pull-left">
-      <p><i class="fa fa-calendar fa-lg"> </i> {{event.start.dateTime | calendar }}
+      <p><i class="fa fa-calendar fa-lg"> </i> {{event.start | calendar }}
       <i class="fa fa-clock-o fa-lg"></i> {{event.duration}} hour(s)</p>
       <p><i class="fa fa-map-marker fa-lg"></i><a ng-href="{{event.detailsUrl}}">{{event.location.address}}</a></p>
     </div>

@@ -157,7 +157,8 @@ module.exports = function(grunt) {
           'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js',
           'app/dependencies/international-phone-number/releases/international-phone-number.js',
           'app/dependencies/rrule/lib/rrule.js',
-          'app/dependencies/rrule/lib/nlp.js'
+          'app/dependencies/rrule/lib/nlp.js',
+          'app/dependencies/moment-timezone/builds/moment-timezone-with-data.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
       }

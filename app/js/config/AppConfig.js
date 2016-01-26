@@ -24,7 +24,8 @@ eventify.constant('CONFIG', {
     coordinates: {
       latitude: 45.560,
       longitude: -73.712
-    }
+    },
+    timeZone : "America/New_York"
   },
   DEFAULT_LOCATION_ZOOM : 10
 });

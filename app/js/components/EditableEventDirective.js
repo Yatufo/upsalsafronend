@@ -1,5 +1,7 @@
 var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
+ var TIMEZONE = CONFIG.DEFAULT_LOCATION.timeZone;
+
   $scope.smartarea = {
     description: {
       autocomplete: []
@@ -70,7 +72,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   function init() {
     if ($scope.event) return;
 
-    var start = moment().startOf('hour').add(1, 'hours');
+    var start = moment().tz(TIMEZONE).startOf('hour').add(1, 'hours');
 
 
     $scope.event = {
@@ -80,7 +82,8 @@ var EditableEventCardController = function($scope, $rootScope, service, category
       images: [],
       imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
       start: {
-        dateTime: start.toDate()
+        dateTime: start.toDate(),
+        timeZone: TIMEZONE
       }
     };
   };
@@ -89,7 +92,8 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     if (newVal) {
       resetRecurrenceRule();
       $scope.event.end = {
-        dateTime: new moment(newVal).add(1, 'hours').toDate()
+        dateTime: new moment(newVal).tz(TIMEZONE).add(1, 'hours').toDate(),
+        timeZone: TIMEZONE
       };
     }
   });
