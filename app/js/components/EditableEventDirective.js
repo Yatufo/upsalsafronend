@@ -1,6 +1,6 @@
 var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
- var TIMEZONE = CONFIG.DEFAULT_LOCATION.timeZone;
+  var TIMEZONE = CONFIG.DEFAULT_LOCATION.timeZone;
 
   $scope.smartarea = {
     description: {
@@ -15,10 +15,16 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     }]
   });
 
+
+  var start = moment().startOf('hour').add(1, 'hours');
+
   $scope.selections = {
     repeat: false,
     count: 6,
-    dows: {}
+    dows: {},
+    localTime: {
+      start: start.toDate()
+    }
   }
 
   var dowIds = [RRule.SU, RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR, RRule.SA];
@@ -72,34 +78,45 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   function init() {
     if ($scope.event) return;
 
-    var start = moment().tz(TIMEZONE).startOf('hour').add(1, 'hours');
-
-
     $scope.event = {
       location: toLocation($scope.location),
       description: "",
       categories: [],
       images: [],
-      imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
-      start: {
-        dateTime: start.toDate(),
-        timeZone: TIMEZONE
-      }
+      imageUrl: CONFIG.EVENT_DEFAULT_IMAGE
     };
   };
 
-  $scope.$watch("event.start.dateTime", function(newVal) {
+  $scope.$watch("selections.localTime.start", function(newVal) {
     if (newVal) {
       resetRecurrenceRule();
-      $scope.event.end = {
-        dateTime: new moment(newVal).tz(TIMEZONE).add(1, 'hours').toDate(),
-        timeZone: TIMEZONE
-      };
+      var localTime = $scope.selections.localTime
+      if (!localTime.end || localTime.end < localTime.start) {
+        localTime.end = new moment(newVal).add(4, 'hours').toDate();
+      }
     }
   });
 
+  function convertTimeZome(localDate, timeZone) {
+    var localHour = moment(localDate).format(CONFIG.ISO_TIME_UNTIL_HOUR);
+    return moment.tz(localHour, timeZone).toDate();
+  }
+
+
   $scope.canSave = function() {
+
     $scope.event.categories = categoryService.extractCategories($scope.event.description);
+
+    $scope.event.start = {
+      dateTime: convertTimeZome($scope.selections.localTime.start, TIMEZONE),
+      timeZone: TIMEZONE
+    };
+
+    $scope.event.end = {
+      dateTime: convertTimeZome($scope.selections.localTime.end, TIMEZONE),
+      timeZone: TIMEZONE
+    };
+
     var validDates = $scope.event.end.dateTime > $scope.event.start.dateTime;
 
     return $scope.eventForm.$valid && !_.isEmpty($scope.event.categories) && validDates;
@@ -123,7 +140,8 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   }
 
   $scope.getDuration = function() {
-    return $scope.event.end ? moment($scope.event.end.dateTime).diff($scope.event.start.dateTime, 'hours') : 0;
+    var localTime = $scope.selections.localTime
+    return localTime.end ? moment(localTime.end).diff(localTime.start, 'hours') : 0;
   }
 
   init();

@@ -5,7 +5,7 @@
   "description": "A cloud based events displayer app",
   "repository": "https://bitbucket.org/upsalsa/frontend",
   "scripts": {
-    "start": "docker-compose up & grunt"
+    "start": "docker-compose up -d & grunt"
   },
   "dependencies": {
     "bower": "latest",
