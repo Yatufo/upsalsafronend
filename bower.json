@@ -10,7 +10,7 @@
     "font-awesome": "~4.4.0",
     "angular": "~1.4.3",
     "jquery": "~2.1.4",
-    "auth0-lock": "~7.6.2",
+    "auth0-lock": "~8.2.2",
     "auth0-angular": "~4.0.5",
     "angular-jwt": "~0.0.9",
     "angular-cookies": "~1.4.3",
