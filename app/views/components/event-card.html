@@ -14,6 +14,9 @@
     </div>
     <div class="pull-right">
       <!-- <sharesocial data-message="'Check this out'" data-url="event.detailsUrl | fullUrl"></sharesocial> -->
+      <a class="btn btn-icon" ng-if="options.delete" ng-click="delete()">
+        <i class="fa fa-remove fa-2x"></i>
+      </a>
       <a class="btn btn-icon" ng-if="options.edit" ng-href="{{event.detailsUrl}}/edit">
         <i class="fa fa-edit fa-2x"></i>
       </a>

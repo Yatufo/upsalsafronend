@@ -11,8 +11,10 @@ eventify
 eventify
   .filter('calendar', ['CONFIG', function(cfg) {
     return function(timeInfo) {
+      if (!timeInfo) return "";
+
       var CALENDAR_FORMAT = "dddd, MMM Do, h:mm a"
-      var TIMEZONE = timeInfo.timeZone || cfg.DEFAULT_LOCATION.timeZone
+      var TIMEZONE = (timeInfo || cfg.DEFAULT_LOCATION).timeZone
       var dateTime = moment(timeInfo.dateTime).tz(TIMEZONE);
 
       return dateTime.calendar(null, {
