@@ -20,6 +20,7 @@ eventify.constant('CONFIG', {
   HASHTAG: '#',
   EXTRACT_HASHTAG_REGEX: /#\w+/g,
   HIDDEN_CATEGORIES: ["root", "happenson"],
+  ISO_TIME_UNTIL_HOUR : "YYYY-MM-DDTHH:mm",
   DEFAULT_LOCATION: {
     coordinates: {
       latitude: 45.560,

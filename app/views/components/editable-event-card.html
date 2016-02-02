@@ -53,14 +53,14 @@
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="event.start.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input class="form-control" data-ng-model="selections.localTime.start" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
             </div>
           </a>
           <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.start.dateTime"></datetimepicker>
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="selections.localTime.start"></datetimepicker>
           </ul>
         </div>
       </div>
@@ -71,14 +71,14 @@
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="event.end.dateTime" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input class="form-control" data-ng-model="selections.localTime.end" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
             </div>
           </a>
           <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="event.end.dateTime"></datetimepicker>
+            <datetimepicker data-datetimepicker-config="{ minView : 'minute' }" data-ng-model="selections.localTime.end"></datetimepicker>
           </ul>
         </div>
       </div>
