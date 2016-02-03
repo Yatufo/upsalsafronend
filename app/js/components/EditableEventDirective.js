@@ -154,7 +154,7 @@ eventify.directive('editableeventcard', function() {
     scope: {
       location: '=',
       event: '=',
-      options: '=',
+      options: '=?',
       onCancel: '&',
       onSave: '&'
     },

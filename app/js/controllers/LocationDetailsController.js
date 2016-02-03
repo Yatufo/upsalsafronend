@@ -17,7 +17,7 @@ eventify
         });
       };
 
-      $scope.$on('event', function(e, event) {
+      $scope.$on('eventSaved', function(e, event) {
         if (event) {
           $scope.events.push(event);
         }
@@ -54,10 +54,6 @@ eventify
           maps.addLocation(event.location);
         })
       })
-
-      $scope.$on('eventSaved', function(e, eventSaved) {
-        $scope.events.push(eventSaved);
-      });
 
 
       $scope.highlightLocation = function(location) {

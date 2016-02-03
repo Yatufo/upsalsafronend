@@ -27,7 +27,7 @@
         Upcoming Events
       </h1>
     </div>
-    <div ng-repeat="event in events | orderBy : event.start.dateTime ">
+    <div ng-repeat="event in events track by $index | orderBy : event.start.dateTime ">
       <eventcard data-options="{details:true}" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
     </div>
   </div>

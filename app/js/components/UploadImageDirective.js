@@ -77,7 +77,7 @@ eventify.directive('uploadimage', function() {
     scope: {
       item: "=",
       type: "=",
-      options: "="
+      options: "=?"
     },
     controller: ['$scope', 'Upload', 'CONFIG', UploadImageController],
     templateUrl: 'views/components/upload-image.html'
