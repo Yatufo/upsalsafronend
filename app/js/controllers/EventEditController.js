@@ -25,5 +25,9 @@ eventify
             $location.path(util.getDetailsPath($scope.event, "event"))
           });
 
+          $scope.$on('eventCancelled', function() {
+            $location.path(util.getDetailsPath($scope.event, "event"))
+          });
+
         }
     ]);
