@@ -72,7 +72,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
 
 
   function toLocation(location) {
-    return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates')
+    return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates');
   }
 
   function init() {
@@ -153,7 +153,7 @@ eventify.directive('editableeventcard', function() {
     restrict: 'E',
     scope: {
       location: '=',
-      event: '=',
+      event: '=?',
       options: '=?',
       onCancel: '&',
       onSave: '&'
