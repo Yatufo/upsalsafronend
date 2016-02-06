@@ -35,6 +35,7 @@ eventify
       }, function(location) {
         maps.init(location, 14);
         maps.addLocation(location);
+        location.detailsUrl = util.getDetailsUrl(location, "location");
         location.showComments = true;
         $scope.location = location;
         resetSummaries();

@@ -5,7 +5,10 @@
   "description": "A cloud based events displayer app",
   "repository": "https://bitbucket.org/upsalsa/frontend",
   "scripts": {
-    "start": "docker-compose up -d & grunt"
+    "start": "docker-compose up -d & grunt",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e/conf.js"
   },
   "dependencies": {
     "bower": "latest",

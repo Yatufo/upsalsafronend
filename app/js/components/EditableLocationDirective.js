@@ -38,7 +38,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
       service.saveOrUpdate($scope.location)
         .then(function(saved) {
           saved.detailsUrl = util.getDetailsUrl(saved, "location");
-          $scope.$emit('location', saved);
+          $scope.$emit('locationSaved', saved);
         });
     }else {
       console.debug($scope.locationForm);
@@ -46,7 +46,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
   }
 
   $scope.cancel = function() {
-    $scope.$emit('location');
+    $scope.$emit('locationCancelled');
   }
 
   init();

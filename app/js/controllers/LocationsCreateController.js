@@ -15,9 +15,14 @@ var LocationsCreateController =
       }
     })
 
-    $scope.$on('location', function(e, location) {
+    $scope.$on('locationSaved', function(e, location) {
       $location.path(util.getDetailsPath(location, "location"))
     });
+
+    $scope.$on('locationCancelled', function() {
+      $location.path("/")
+    });
+
 
   };
 
