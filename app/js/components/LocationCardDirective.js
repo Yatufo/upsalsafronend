@@ -1,8 +1,16 @@
+var LocationCardController = function($scope, util) {
 
-var LocationCardController = function ($scope) {
+
+  $scope.$watch("location", function(location) {
+    if (location) {
+      $scope.options.delete = $scope.options.delete && util.isUserOwned(location);
+      $scope.options.edit = $scope.options.edit && util.isUserOwned(location);
+    }
+  });
+
   $scope.showComments = false;
 
-  $scope.toogleComments = function () {
+  $scope.toogleComments = function() {
     $scope.showComments = !$scope.showComments;
   }
 
@@ -24,13 +32,13 @@ var LocationCardController = function ($scope) {
 /* App Module */
 
 eventify.directive('locationcard', function() {
-    return {
-        restrict: 'E',
-        scope: {
-            location: '=',
-            options: '=?'
-        },
-        controller: ['$scope', LocationCardController],
-        templateUrl: 'views/components/location-card.html'
-    };
+  return {
+    restrict: 'E',
+    scope: {
+      location: '=',
+      options: '=?'
+    },
+    controller: ['$scope', 'UtilService', LocationCardController],
+    templateUrl: 'views/components/location-card.html'
+  };
 });
