@@ -49,6 +49,15 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     $scope.$emit('locationCancelled');
   }
 
+
+  $scope.delete = function() {
+    if (confirm("Are you sure to remove this location?")) {
+      $scope.location.$remove(function(e) {
+        alert("The location: " + $scope.location.name + " has been deleted");
+      });
+    };
+  }
+
   init();
 }
 
