@@ -10,7 +10,7 @@
 
       <div class="form-group">
         <label for="title">Title</label>
-        <input class="form-control" id="title" ng-model="location.name" placeholder="Title" type="title" required="true">
+        <input class="form-control" id="title" ng-model="location.name" placeholder="Title" type="title">
       </div>
 
       <div class="form-group">
@@ -19,25 +19,26 @@
       </div>
 
       <div class="form-group">
-        <label for="title">Url</label>
-        <input class="form-control" id="title" ng-model="location.url" placeholder="http://www.mylocation.com" type="url" required="true">
+        <label for="title">Phone Number</label>
+        <br/>
+        <input class="form-control" default-country="ca" id="phone" international-phone-number ng-model="location.phone">
       </div>
 
       <div class="form-group">
-        <label for="title">Phone Number</label> <br/>
-        <input class="form-control" id="phone" international-phone-number  default-country="ca" ng-model="location.phone">
+        <label for="title">Url</label>
+        <input class="form-control" id="title" ng-model="location.url" placeholder="http://www.mylocation.com" type="url">
       </div>
 
       <div class="form-group">
         <label for="addressId">Address</label>
-        <input autocomplete class="form-control" data-location="location" id="addressId" name="address" ng-model="location.address" placeholder="Address" type="input"  required="true">
+        <input autocomplete class="form-control" data-location="location" id="addressId" name="address" ng-model="location.address" placeholder="Address" required="true" type="input">
       </div>
       <div class="form-inline">
-        <label>Coordinates: </label>
-        <input class="form-control" ng-model="location.coordinates.longitude" placeholder="Longitude" type="input" type="number" required="true" >
-        <input class="form-control" ng-model="location.coordinates.latitude" placeholder="Latitude" type="input" type="number"  required="true" >
+        <label>Coordinates:
+        </label>
+        <input class="form-control" ng-model="location.coordinates.longitude" placeholder="Longitude" required="true" type="input" type="number">
+        <input class="form-control" ng-model="location.coordinates.latitude" placeholder="Latitude" required="true" type="input" type="number">
       </div>
-
     </div>
   </div>
 
@@ -50,6 +51,9 @@
     <i class="fa fa-save fa-2x"></i>
   </a>
   <a class="btn btn-icon" ng-click="cancel()">
+    <i class="fa fa-undo fa-2x"></i>
+  </a>
+  <a class="btn btn-icon" ng-click="delete()">
     <i class="fa fa-remove fa-2x"></i>
   </a>
 </div>

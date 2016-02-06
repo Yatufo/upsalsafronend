@@ -1,7 +1,13 @@
 
-var EventCardController = function($scope, $rootScope, Event) {
-  $scope.options.delete = $scope.options.delete && $rootScope.user && _.isEqual($scope.event.createdBy, $rootScope.user._id);
+var EventCardController = function($scope, $rootScope, Event, util) {
 
+  $scope.$watch("event", function(event) {
+    if (event) {
+      $scope.options.delete = $scope.options.delete && util.isUserOwned(event);
+      $scope.options.edit = $scope.options.edit && util.isUserOwned(event);
+    }
+  });
+  
   $scope.delete = function () {
     if (confirm("Are you sure to remove this event?")) {
       $scope.event.$remove(function(e) {
@@ -17,9 +23,9 @@ eventify.directive('eventcard', function() {
         restrict: 'E',
         scope: {
             event: '=',
-            options: '='
+            options: '=?'
         },
-        controller: ['$scope', '$rootScope', 'EventsResource', EventCardController],
+        controller: ['$scope', '$rootScope', 'EventsResource', 'UtilService', EventCardController],
         templateUrl: 'views/components/event-card.html'
     };
 });

@@ -22,6 +22,12 @@
       </div>
       <div class="pull-right">
         <simplerate class="btn-icon" data-category="'favorite'" data-rateable="location"></simplerate>
+        <a class="btn btn-icon" ng-if="options.delete" ng-click="delete()">
+          <i class="fa fa-remove fa-2x"></i>
+        </a>
+        <a class="btn btn-icon" ng-if="options.edit" ng-href="{{location.detailsUrl}}/edit">
+          <i class="fa fa-edit fa-2x"></i>
+        </a>
         <a class="btn btn-icon" ng-click="toogleComments()" ng-if="location.comments.length > 0">
           <i class="fa fa-comments fa-2x">
             <span class="number">{{location.comments.length}}</span>
