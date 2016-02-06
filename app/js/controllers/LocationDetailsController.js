@@ -31,7 +31,7 @@ eventify
 
 
       Location.get({
-        locationId: $routeParams.locationId
+        id: $routeParams.locationId
       }, function(location) {
         maps.init(location, 14);
         maps.addLocation(location);
