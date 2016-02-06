@@ -1,7 +1,9 @@
 /* Service */
 
 eventify.factory('Location', ['$resource', function($resource) {
-  return $resource('/api/locations/:id', {}, {
+  return $resource('/api/locations/:id', {
+    'id' : '@_id'
+  }, {
     'update': {
       method: 'PUT'
     },
