@@ -54,8 +54,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
         freq: RRule.WEEKLY,
         wkst: RRule.SU,
         count: $scope.selections.count,
-        byweekday: selectedDows,
-        dtstart: $scope.event.start.dateTime
+        byweekday: selectedDows
       })
 
       $scope.selections.ruleText = rule.toText();
