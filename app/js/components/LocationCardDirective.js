@@ -2,7 +2,7 @@ var LocationCardController = function($scope, util) {
 
 
   $scope.$watch("location", function(location) {
-    if (location) {
+    if (! _.isEmpty(location)) {
       $scope.options.delete = $scope.options.delete && util.isUserOwned(location);
       $scope.options.edit = $scope.options.edit && util.isUserOwned(location);
     }

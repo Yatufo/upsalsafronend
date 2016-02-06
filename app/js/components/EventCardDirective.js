@@ -2,12 +2,12 @@
 var EventCardController = function($scope, $rootScope, Event, util) {
 
   $scope.$watch("event", function(event) {
-    if (event) {
+    if (! _.isEmpty(event)) {
       $scope.options.delete = $scope.options.delete && util.isUserOwned(event);
       $scope.options.edit = $scope.options.edit && util.isUserOwned(event);
     }
   });
-  
+
   $scope.delete = function () {
     if (confirm("Are you sure to remove this event?")) {
       $scope.event.$remove(function(e) {
