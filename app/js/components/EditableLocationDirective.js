@@ -1,6 +1,6 @@
 var EditableLocationCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
-
+  $scope.submitted = false;
   $scope.smartarea = {
     description: {
       autocomplete: []
@@ -33,7 +33,12 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     return $scope.locationForm.$valid && !_.isEmpty($scope.location.categories);
   }
 
+  $scope.isInvalid = function (field) {
+      return $scope.submitted && !$scope.locationForm[field].$valid;
+  }
+
   $scope.save = function() {
+    $scope.submitted = true;
     if ($scope.canSave()) {
       service.saveOrUpdate($scope.location)
         .then(function(saved) {
