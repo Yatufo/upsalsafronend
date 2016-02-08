@@ -1,7 +1,7 @@
 var EditableEventCardController = function($scope, $rootScope, service, categoryService, CONFIG, util) {
 
   var TIMEZONE = CONFIG.DEFAULT_LOCATION.timeZone;
-
+  $scope.submitted = false;
   $scope.smartarea = {
     description: {
       autocomplete: []
@@ -79,7 +79,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
 
     $scope.event = {
       location: toLocation($scope.location),
-      description: "",
+      description: "Should contain at least #party or #event",
       categories: [],
       images: [],
       imageUrl: CONFIG.EVENT_DEFAULT_IMAGE
@@ -122,7 +122,13 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   };
 
 
+  $scope.isInvalid = function (field) {
+      return $scope.submitted && !$scope.eventForm[field].$valid;
+  }
+
+
   $scope.save = function() {
+    $scope.submitted = true;
     if ($scope.canSave()) {
       service.saveOrUpdate($scope.event)
         .then(function(saved) {

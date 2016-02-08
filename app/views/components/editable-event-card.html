@@ -8,14 +8,14 @@
   <div class="card-content clearfix">
     <form name="eventForm">
 
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error' : isInvalid('title')}">
         <label for="title">Title</label>
-        <input class="form-control" id="title" ng-model="event.name" placeholder="Title" type="title">
+        <input name="title" required="true" class="form-control" id="title" ng-model="event.name" placeholder="Title" type="title">
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error' : isInvalid('description')}">
         <label for="description">Description</label>
-        <textarea class="form-control code" id="description" msd-elastic name="description" ng-model="event.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false"></textarea>
+        <textarea name="description" required="true" class="form-control code" id="description" msd-elastic name="description" ng-model="event.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false"></textarea>
       </div>
 
       <div class="form-group">
@@ -24,36 +24,36 @@
       </div>
 
       <div ng-if="!options.samelocation">
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error' : isInvalid('phone')}">
           <label for="title">Phone Number</label>
           <br/>
-          <input class="form-control" default-country="ca" id="phone" international-phone-number ng-model="event.location.phone">
+          <input name="phone" class="form-control" default-country="ca" id="phone" international-phone-number ng-model="event.location.phone">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error' : isInvalid('url')}">
           <label for="title">Url</label>
-          <input class="form-control" id="title" ng-model="event.location.url" placeholder="http://www.myevent.com" type="url">
+          <input name="url" required="true" class="form-control" id="title" ng-model="event.location.url" placeholder="http://www.myevent.com" type="url">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error' : isInvalid('address')}">
           <label for="addressId">Address</label>
-          <input autocomplete class="form-control" data-location="event.location" id="addressId" name="address" ng-model="event.location.address" placeholder="Address" required="true" type="input">
+          <input name="address" required="true"  autocomplete class="form-control" data-location="event.location" id="addressId" name="address" ng-model="event.location.address" placeholder="Address" required="true" type="input">
         </div>
-        <div class="form-inline">
+        <div class="form-inline" ng-class="{'has-error' : isInvalid('lng') ||  isInvalid('lng')}">
           <label>Coordinates:
           </label>
-          <input class="form-control" ng-model="event.location.coordinates.longitude" placeholder="Longitude" required="true" type="input" type="number">
-          <input class="form-control" ng-model="event.location.coordinates.latitude" placeholder="Latitude" required="true" type="input" type="number">
+          <input name="lng" required="true" class="form-control" ng-model="event.location.coordinates.longitude" placeholder="Longitude" required="true" type="input" type="number">
+          <input name="lat" required="true" class="form-control" ng-model="event.location.coordinates.latitude" placeholder="Latitude" required="true" type="input" type="number">
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error' : isInvalid('startTime')}">
         <label for="startDate">Start:
         </label>
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="selections.localTime.start" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input name="startTime" required="true" class="form-control" data-ng-model="selections.localTime.start" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
@@ -65,13 +65,13 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error' : isInvalid('endTime')}">
         <label for="startDate">Until:
         </label>
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
             <div class="input-group">
-              <input class="form-control" data-ng-model="selections.localTime.end" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
+              <input name="endTime" required="true" class="form-control" data-ng-model="selections.localTime.end" name="input" placeholder="yyyy-MM-ddTHH:mm" required type="datetime-local"/>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>

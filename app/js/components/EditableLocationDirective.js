@@ -19,7 +19,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     if ($scope.location) return;
 
     $scope.location = {
-      description: "",
+      description: "#school",
       categories: [],
       images: [],
       imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
@@ -28,9 +28,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
 
 
   $scope.canSave = function() {
-
-    $scope.location.categories = categoryService.extractCategories($scope.location.description);
-    return $scope.locationForm.$valid && !_.isEmpty($scope.location.categories);
+    return $scope.locationForm.$valid;
   }
 
   $scope.isInvalid = function (field) {
