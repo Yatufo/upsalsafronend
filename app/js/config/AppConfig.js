@@ -28,5 +28,6 @@ eventify.constant('CONFIG', {
     },
     timeZone : "America/New_York"
   },
-  DEFAULT_LOCATION_ZOOM : 10
+  DEFAULT_LOCATION_ZOOM : 10,
+  RATEABLE_CATEGORIES :['favorite']
 });

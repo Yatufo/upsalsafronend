@@ -2,12 +2,12 @@
 
 /* Service */
 
-var RatingService = function($rootScope, $q, Rating, categoryService) {
+var RatingService = function($rootScope, $q, Rating, categoryService, cfg) {
 
 
   // would get the next category the user would rate
   function getRateableCategories(categories) {
-    return ['favorite', 'class', 'party', 'salsa', 'bachata', 'kizomba'].map(function(id) {
+    return cfg.RATEABLE_CATEGORIES.map(function(id) {
       return categories[id];
     });
   };
@@ -28,11 +28,10 @@ var RatingService = function($rootScope, $q, Rating, categoryService) {
 
   var service = {
     generateSummaries: function(location, categories) {
-      
+
       var generated = [];
       var ratedCategories = [];
-      if (! location || !location.ratings)
-        return;
+      if (!location || !location.ratings) return;
 
 
       location.ratings.forEach(function(rating) {
@@ -87,4 +86,4 @@ var RatingService = function($rootScope, $q, Rating, categoryService) {
 
 };
 eventify
-  .factory('RatingService', ['$rootScope', '$q', 'RatingResource', 'CategoryService', RatingService]);
+  .factory('RatingService', ['$rootScope', '$q', 'RatingResource', 'CategoryService', 'CONFIG', RatingService]);

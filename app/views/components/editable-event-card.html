@@ -14,7 +14,7 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('description')}">
-        <label for="description">Description</label>
+        <label for="description">Description (use #hashtags)</label>
         <textarea name="description" required="true" class="form-control code" id="description" msd-elastic name="description" ng-model="event.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false"></textarea>
       </div>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group" ng-class="{'has-error' : isInvalid('url')}">
-          <label for="title">Url</label>
+          <label for="title">Website</label>
           <input name="url" required="true" class="form-control" id="title" ng-model="event.location.url" placeholder="http://www.myevent.com" type="url">
         </div>
 

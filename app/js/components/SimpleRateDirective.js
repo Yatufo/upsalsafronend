@@ -12,8 +12,6 @@ var SimpleRateDirectiveController = function($scope, service) {
     }
   }
 
-  $scope.init();
-
   var updateVoteSummaryLocally = function(rating, oldVote) {
     rating.votes = rating.votes || [];
     var currentVote = rating.vote;
@@ -30,8 +28,10 @@ var SimpleRateDirectiveController = function($scope, service) {
     return rating && rating.vote === vote;
   };
 
-  $scope.$watch("rateable", function(newValue) {
-    $scope.init();
+  $scope.$watchGroup(["rateable.summaries", "category"], function() {
+    if($scope.rateable && $scope.rateable.summaries && $scope.category){
+      $scope.init();
+    }
   });
 
   $scope.rate = function() {

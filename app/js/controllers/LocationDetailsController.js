@@ -23,8 +23,12 @@ eventify
         }
       });
 
-      $rootScope.$watch("user.ratings", function(newValue, oldValue) {
-        if (newValue) {
+      $scope.$watch('location', function() {
+        resetSummaries();
+      });
+
+      $rootScope.$watch('user.ratings', function(ratings) {
+        if(ratings){
           resetSummaries();
         }
       });
@@ -38,7 +42,6 @@ eventify
         location.detailsUrl = util.getDetailsUrl(location, "location");
         location.showComments = true;
         $scope.location = location;
-        resetSummaries();
       });
 
       Location.getEvents({

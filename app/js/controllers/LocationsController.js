@@ -17,34 +17,44 @@ eventify
       $scope.loadMore = function() {
 
         var fromIndex = $scope.currentPage * $scope.pageSize;
-        var toIndex = fromIndex + $scope.pageSize - 1;
+        var toIndex = fromIndex + $scope.pageSize;
 
         if (!$scope.allLocations || $scope.allLocations.length <= fromIndex) return;
 
-        for (var i = fromIndex; i <= toIndex; i++) {
-          if ($scope.allLocations[i]) {
-            $scope.locations.push($scope.allLocations[i]);
-          }
-        }
+        var batch = _.slice($scope.allLocations, fromIndex, toIndex)
+
+        resetSummaries(batch);
+
+        batch.forEach(function(location) {
+          $scope.locations.push(location);
+        });
 
         $scope.currentPage++;
       };
 
-      $rootScope.$watch("user.ratings", function(newValue, oldValue) {
-        if (newValue) {
-          resetSummaries();
+
+      categoryService.getCategories().then(function(categories) {
+        $scope.categories = categories;
+      });
+
+      $scope.$watch('categories', function() {
+        resetSummaries($scope.locations);
+      });
+
+      $rootScope.$watch('user.ratings', function(ratings) {
+        if (ratings) {
+          resetSummaries($scope.locations);
         }
       });
 
-      var resetSummaries = function() {
-        categoryService.getCategories().then(function(categories) {
-
-          $scope.allLocations.forEach(function(location) {
-            location.summaries = ratingService.generateSummaries(location, categories);
+      var resetSummaries = function(locations) {
+        if ($scope.categories) {
+          locations.forEach(function(location) {
+            location.summaries = ratingService.generateSummaries(location, $scope.categories);
           });
-
-        });
+        }
       };
+
 
       Location.query({}, function(locations) {
         $scope.allLocations = locations;
@@ -55,7 +65,6 @@ eventify
         });
 
         $scope.loadMore();
-        resetSummaries();
         reloadMap($scope.allLocations);
         $scope.loading = false;
       });
@@ -71,6 +80,11 @@ eventify
         }
       }
 
+
+
+
+
+      //TODO: Reuse
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
