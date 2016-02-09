@@ -19,7 +19,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     if ($scope.location) return;
 
     $scope.location = {
-      description: "#school",
+      description: "#school ",
       categories: [],
       images: [],
       imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
