@@ -125,8 +125,24 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   };
 
 
+  $scope.hasCoordinates = function() {
+    var c = $scope.event.location.coordinates;
+    return !_.isEmpty(c) && _.isNumber(c.latitude) && _.isNumber(c.longitude);
+  }
+
   $scope.isInvalid = function (field) {
-      return $scope.submitted && !$scope.eventForm[field].$valid;
+      var isInvalid = false;
+
+      if (field === 'address'){
+        isInvalid = !$scope.hasCoordinates()
+      }
+
+      if (field === 'description'){
+        var REQUIRED_CATEGORIES = ['class', 'party']
+        isInvalid = _.isEmpty(_.intersection(categoryService.extractCategories($scope.event.description), REQUIRED_CATEGORIES))
+      }
+
+      return $scope.submitted && (!$scope.eventForm[field].$valid || isInvalid);
   }
 
 

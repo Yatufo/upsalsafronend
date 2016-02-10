@@ -16,6 +16,7 @@
       <div class="form-group" ng-class="{'has-error' : isInvalid('description')}">
         <label for="description">Description (use #hashtags)</label>
         <textarea name="description" required="true" class="form-control code" id="description" msd-elastic name="description" ng-model="event.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false"></textarea>
+        <span class="has-error" ng-show="isInvalid('description')">The description should contain at least #party or #class </span>
       </div>
 
       <div class="form-group">
@@ -23,7 +24,7 @@
         <input ng-model="options.samelocation" type="checkbox">
       </div>
 
-      <div ng-if="!options.samelocation">
+      <div ng-show="!options.samelocation || isInvalid('address') || isInvalid('url')">
         <div class="form-group" ng-class="{'has-error' : isInvalid('phone')}">
           <label for="title">Phone Number</label>
           <br/>
@@ -36,9 +37,10 @@
         </div>
 
         <div class="form-group" ng-class="{'has-error' : isInvalid('address')}">
-          <label for="addressId">Address</label>
-          <input name="address"  autocomplete class="form-control" data-location="event.location" id="addressId" name="address" ng-model="event.location.address" placeholder="Address" required="true" type="input">
-          <div class="text-center" ng-if="event.location.coordinates.longitude && event.location.coordinates.latitude">
+          <label for="address">Address</label>
+          <input name="address"  autocomplete class="form-control" data-location="event.location" id="address" ng-model="event.location.address" placeholder="Address" required="true" type="input">
+          <span class="has-error" ng-show="isInvalid('address')">The address should valid and located on the map</span>
+          <div class="text-center" ng-if="hasCoordinates()">
             <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=terrain&amp;center={{event.location.coordinates.latitude}},{{event.location.coordinates.longitude}}&amp;markers=color:blue|label:A|{{event.location.coordinates.latitude}},{{event.location.coordinates.longitude}}&amp;zoom=14&amp;size=320x200&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs">
           </div>
         </div>
@@ -86,9 +88,9 @@
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('times')}">
         <label><input ng-model="selections.repeat" type="checkbox">Season</label>
-        <label ng-if="selections.repeat"><input max="15" min="0" name="times" ng-model="selections.count" required type="number">Times (15 max)</label>
+        <label ng-show="selections.repeat"><input max="15" min="0" name="times" ng-model="selections.count" required type="number">Times (15 max)</label>
       </div>
-      <div class="form-group" ng-if="selections.repeat">
+      <div class="form-group" ng-show="selections.repeat">
         <label ng-repeat="dow in allDows"><input ng-model="selections.dows[dow.id]" type="checkbox">{{dow.name}}</label>
       </div>
 

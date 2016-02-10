@@ -42,7 +42,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
       if (field === 'address'){
         isInvalid = !$scope.hasCoordinates()
       }
-      
+
       return $scope.submitted && (!$scope.locationForm[field].$valid || isInvalid);
   }
 
