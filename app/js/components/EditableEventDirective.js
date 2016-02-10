@@ -116,9 +116,12 @@ var EditableEventCardController = function($scope, $rootScope, service, category
       timeZone: TIMEZONE
     };
 
+    var c = $scope.event.location.coordinates;
+    var hasCoordinates = _.isNumber(c.latitude) && _.isNumber(c.longitude);
+
     var validDates = $scope.event.end.dateTime > $scope.event.start.dateTime;
 
-    return $scope.eventForm.$valid && !_.isEmpty($scope.event.categories) && validDates;
+    return $scope.eventForm.$valid && !_.isEmpty($scope.event.categories) && validDates && hasCoordinates;
   };
 
 

@@ -18,11 +18,15 @@ var AutocompleteDirectiveController = function($scope) {
   function onPlaceChanged() {
     var place = $scope.autocomplete.getPlace();
 
-    $scope.location.address = place.formatted_address;
-    $scope.location.coordinates = {
-      longitude: place.geometry.location.lng(),
-      latitude: place.geometry.location.lat()
-    };
+    $scope.$apply(function () {
+
+      $scope.location.address = place.formatted_address;
+      $scope.location.coordinates = {
+        longitude: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat()
+      };
+
+    });
   }
 
   init();

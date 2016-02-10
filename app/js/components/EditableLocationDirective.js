@@ -28,7 +28,9 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
 
 
   $scope.canSave = function() {
-    return $scope.locationForm.$valid;
+    var c = $scope.location.coordinates;
+    var hasCoordinates = _.isNumber(c.latitude) && _.isNumber(c.longitude);
+    return hasCoordinates && $scope.locationForm.$valid;
   }
 
   $scope.isInvalid = function (field) {
