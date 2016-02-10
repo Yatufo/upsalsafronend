@@ -28,13 +28,22 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
 
 
   $scope.canSave = function() {
+    return $scope.hasCoordinates() && $scope.locationForm.$valid;
+  }
+
+  $scope.hasCoordinates = function() {
     var c = $scope.location.coordinates;
-    var hasCoordinates = _.isNumber(c.latitude) && _.isNumber(c.longitude);
-    return hasCoordinates && $scope.locationForm.$valid;
+    return !_.isEmpty(c) && _.isNumber(c.latitude) && _.isNumber(c.longitude);
   }
 
   $scope.isInvalid = function (field) {
-      return $scope.submitted && !$scope.locationForm[field].$valid;
+      var isInvalid = false;
+
+      if (field === 'address'){
+        isInvalid = !$scope.hasCoordinates()
+      }
+      
+      return $scope.submitted && (!$scope.locationForm[field].$valid || isInvalid);
   }
 
   $scope.save = function() {

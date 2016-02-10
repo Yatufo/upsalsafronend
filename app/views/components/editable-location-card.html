@@ -30,9 +30,10 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('address')}">
-        <label for="addressId">Address</label>
-        <input name="address" autocomplete class="form-control" data-location="location" id="addressId" name="address" ng-model="location.address" placeholder="Address" required="true" type="input">
-        <div class="text-center" ng-if="location.coordinates.longitude && location.coordinates.latitude">
+        <label for="address">Address</label>
+        <input name="address" autocomplete class="form-control" data-location="location" id="address" name="address" ng-model="location.address" placeholder="Address" required="true" type="input">
+        <span class="has-error" ng-show="isInvalid('address')">The address should valid and located on the map</span>
+        <div class="text-center" ng-if="hasCoordinates()">
           <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=terrain&amp;center={{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;markers=color:blue|label:A|{{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;zoom=14&amp;size=320x200&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs">
         </div>
       </div>
