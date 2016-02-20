@@ -10,17 +10,10 @@
   </div>
 </div>
 
-<div ng-class="{'right-pane' : !isMobile, fullscreen : isMobile}">
+<div ng-class="{'right-pane' : !isMobile}">
   <div class="row">
-    <div class="col-xs-12 col-md-10">
-      <div class="google-maps" ng-show="isMapVisible">
-        <iframe frameborder="0" id="maps-iframe" style="border:0"></iframe>
-      </div>
+    <div style="text-align: center" class="col-xs-12 col-md-10">
+      <div ng-include="'views/components/right-side-intro.html'"></div>
     </div>
   </div>
-</div>
-<div id="toogle-map" ng-click="toogleView()" ng-if="canToggleView">
-  <p>
-    <i class="fa fa-2x" ng-class="isMapVisible ? 'fa-list' : 'fa-map-o' "></i>
-    {{isMapVisible ? 'Show List' : 'Show Map' }}</p>
 </div>

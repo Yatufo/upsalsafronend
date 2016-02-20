@@ -6,14 +6,6 @@ var LocationsCreateController =
     $scope.isListVisible = true;
     $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
 
-    maps.init();
-
-    $scope.$watch("location.coordinates", function(newValue) {
-      if (newValue) {
-        maps.reset();
-        maps.addLocation($scope.location);
-      }
-    })
 
     $scope.$on('locationSaved', function(e, location) {
       $location.path(util.getDetailsPath(location, "location"))
