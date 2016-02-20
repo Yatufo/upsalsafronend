@@ -12,6 +12,8 @@ eventify
 
         if (event.id) {
           _.extend(event, util.getUrls(event, "event"))
+          util.changeSEOtags(event, "event");
+
           event.location.id = event.id;
           event.location.name = event.name;
           event.location.detailsUrl = event.detailsUrl;

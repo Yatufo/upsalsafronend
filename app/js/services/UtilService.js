@@ -11,14 +11,14 @@ var UtilService = function($rootScope, $window, $location, cfg) {
 
   function getImageUrl(item, type) {
     //TODO: Remove window dependency.
-    var root = $(window).width() > cfg.HI_RES_WIDTH ? cfg.LO_RES_IMAGES : cfg.HI_RES_IMAGES;
+    var imageSizePath = $(window).width() > cfg.HI_RES_WIDTH ? cfg.LO_RES_IMAGES : cfg.HI_RES_IMAGES;
     var imageUrl = cfg.DEAFULT_IMAGES[type];
 
     if (!_.isEmpty(item.images)) {
       imageUrl = _.sortByOrder(item.images, ['created'], ['desc'])[0].url
     }
 
-    return root + imageUrl;
+    return $window.location.origin + '/' + imageSizePath + imageUrl;
   }
 
   var service = {
