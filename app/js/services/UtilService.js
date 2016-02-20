@@ -9,28 +9,30 @@ var UtilService = function($rootScope, $window, $location, cfg) {
     return $window.location.origin + '/' + getDetailsPath(item, type);
   }
 
-  function getImageUrl(item, type) {
+  function getImageInfo(item, type) {
     //TODO: Remove window dependency.
-    var imageSizePath = $(window).width() > cfg.HI_RES_WIDTH ? cfg.LO_RES_IMAGES : cfg.HI_RES_IMAGES;
+    var resolution = $(window).width() > cfg.HI_RES_WIDTH ? cfg.IMAGE_RESOLUTIONS.low : cfg.IMAGE_RESOLUTIONS.high;
+    var imageSizePath = 'images/w' + resolution.width + '-h' + resolution.height + '-cscale/images/';
     var imageUrl = cfg.DEAFULT_IMAGES[type];
 
     if (!_.isEmpty(item.images)) {
       imageUrl = _.sortByOrder(item.images, ['created'], ['desc'])[0].url
     }
+    var url = { url : $window.location.origin + '/' + imageSizePath + imageUrl} ;
 
-    return $window.location.origin + '/' + imageSizePath + imageUrl;
+    return _.extend(resolution , url);
   }
 
   var service = {
     getUrls: function(item, type) {
       return {
         detailsUrl: getDetailsUrl(item, type),
-        imageUrl: getImageUrl(item, type)
+        imageUrl: getImageInfo(item, type).url
       };
     },
     changeSEOtags: function(item, type) {
       $rootScope.seo.url = getDetailsUrl(item, type);
-      $rootScope.seo.image = getImageUrl(item, type);
+      $rootScope.seo.image = getImageInfo(item, type);
       $rootScope.seo.description = item.description;
       $rootScope.seo.title = item.name;
     },

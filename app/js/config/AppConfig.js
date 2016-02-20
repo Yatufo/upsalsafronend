@@ -10,9 +10,16 @@ eventify.constant('CONFIG', {
     "musictype": "salsa"
   },
   HI_RESOLUTION_WIDTH: 640,
-  // TODO: use a path in the same domain.
-  LO_RES_IMAGES: 'images/w320-h200-cscale/images/',
-  HI_RES_IMAGES: 'images/w640-h400-cscale/images/',
+  IMAGE_RESOLUTIONS : {
+    low : {
+      width : 320,
+      height : 200
+    },
+    high : {
+      width : 640,
+      height : 400
+    }
+  },
   DEAFULT_IMAGES: {
     location: 'locations/montreal.jpg',
     event: 'events/default.jpg'
