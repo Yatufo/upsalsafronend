@@ -9,14 +9,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
       current: "initial"
     };
 
-    //TODO: Remove window dependency.
-    var root = $(window).width() > CONFIG.HI_RES_WIDTH ? CONFIG.LO_RES_IMAGES : CONFIG.HI_RES_IMAGES;
-
-    if (!_.isEmpty($scope.item.images)) {
-      $scope.item.images = _.sortByOrder($scope.item.images, ['created'], ['desc'])
-      $scope.item.imageUrl = root + $scope.item.images[0].url
-    } else {
-      $scope.item.imageUrl = root + CONFIG.LOCATIONS_DEFAULT_IMAGE;
+    if (_.isEmpty($scope.item.images)) {
       $scope.options = _.extend($scope.options ? $scope.options : {}, {editimage : true});
     }
   };

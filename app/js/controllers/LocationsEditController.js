@@ -13,7 +13,7 @@ eventify
             maps.init(location, 14);
             maps.addLocation(location);
             location.description = location.description || ""
-            location.detailsUrl = util.getDetailsUrl(location, "location");
+            _.extend(location, util.getUrls(location, "location"))
             $scope.location = location;
 
           });

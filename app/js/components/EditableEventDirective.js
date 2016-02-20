@@ -151,7 +151,7 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     if ($scope.canSave()) {
       service.saveOrUpdate($scope.event)
         .then(function(saved) {
-          saved.detailsUrl = util.getDetailsUrl(saved, "event");
+          _.extend(saved, util.getUrls(saved, "event"))
           $scope.$emit('eventSaved', saved);
         });
     } else {

@@ -21,9 +21,10 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     $scope.location = {
       description: "#school ",
       categories: [],
-      images: [],
-      imageUrl: CONFIG.EVENT_DEFAULT_IMAGE,
+      images: []
     };
+
+    _.extend($scope.location, util.getUrls($scope.location, "location"));
   };
 
 
@@ -51,7 +52,7 @@ var EditableLocationCardController = function($scope, $rootScope, service, categ
     if ($scope.canSave()) {
       service.saveOrUpdate($scope.location)
         .then(function(saved) {
-          saved.detailsUrl = util.getDetailsUrl(saved, "location");
+          _.extend(saved, util.getUrls(saved, "location"));
           $scope.$emit('locationSaved', saved);
         });
     }else {

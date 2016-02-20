@@ -60,7 +60,7 @@ eventify
         $scope.allLocations = locations;
 
         $scope.allLocations.forEach(function(location) {
-          location.detailsUrl = util.getDetailsUrl(location, "location");
+          _.extend(location, util.getUrls(location, "location"))
           location.showComments = SHOW_COMMENTS; // TODO: Change when there are too many comments
         });
 

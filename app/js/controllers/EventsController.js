@@ -28,7 +28,7 @@ eventify
           $scope.events = events;
 
           $scope.events.forEach(function(event) {
-            event.detailsUrl = util.getDetailsUrl(event, "event");
+            _.extend(event, util.getUrls(event, "event"))
           });
 
           $scope.locations = $scope.events.map(function(event) {

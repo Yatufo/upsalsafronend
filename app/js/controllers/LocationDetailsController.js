@@ -39,8 +39,10 @@ eventify
       }, function(location) {
         maps.init(location, 14);
         maps.addLocation(location);
-        location.detailsUrl = util.getDetailsUrl(location, "location");
         location.showComments = true;
+
+        _.extend(location, util.getUrls(location, "location"));
+        util.changeSEOtags(location, "location");
         $scope.location = location;
       });
 
@@ -50,7 +52,8 @@ eventify
       }, function(events) {
         $scope.events = events || [];
         $scope.events.forEach(function(event) {
-          event.detailsUrl = util.getDetailsUrl(event, "event");
+          _.extend(event, util.getUrls(event, "event"))
+
           event.location.id = event.id;
           event.location.name = event.name;
           event.location.detailsUrl = event.detailsUrl;

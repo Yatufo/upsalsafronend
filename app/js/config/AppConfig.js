@@ -13,21 +13,24 @@ eventify.constant('CONFIG', {
   // TODO: use a path in the same domain.
   LO_RES_IMAGES: 'images/w320-h200-cscale/images/',
   HI_RES_IMAGES: 'images/w640-h400-cscale/images/',
-  LOCATIONS_DEFAULT_IMAGE: 'locations/montreal.jpg',
+  DEAFULT_IMAGES: {
+    location: 'locations/montreal.jpg',
+    event: 'events/default.jpg'
+  },
   EVENT_DEFAULT_IMAGE: 'events/default.jpg',
   DEFAULT_IMAGE_ENDPOINT: "api/images",
   ARRAY_PARAM_SEPARATOR: ",",
   HASHTAG: '#',
   EXTRACT_HASHTAG_REGEX: /#\w+/g,
   HIDDEN_CATEGORIES: ["root", "happenson"],
-  ISO_TIME_UNTIL_HOUR : "YYYY-MM-DDTHH:mm",
+  ISO_TIME_UNTIL_HOUR: "YYYY-MM-DDTHH:mm",
   DEFAULT_LOCATION: {
     coordinates: {
       latitude: 45.560,
       longitude: -73.712
     },
-    timeZone : "America/New_York"
+    timeZone: "America/New_York"
   },
-  DEFAULT_LOCATION_ZOOM : 10,
-  RATEABLE_CATEGORIES :['favorite']
+  DEFAULT_LOCATION_ZOOM: 10,
+  RATEABLE_CATEGORIES: ['favorite']
 });

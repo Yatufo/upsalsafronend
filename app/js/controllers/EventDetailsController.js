@@ -11,7 +11,7 @@ eventify
       }, function(event) {
 
         if (event.id) {
-          event.detailsUrl = util.getDetailsUrl(event, "event");
+          _.extend(event, util.getUrls(event, "event"))
           event.location.id = event.id;
           event.location.name = event.name;
           event.location.detailsUrl = event.detailsUrl;

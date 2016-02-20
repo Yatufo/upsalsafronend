@@ -29,6 +29,7 @@ nginx:
   image: upsalsa/nginx
   environment:
     FRONTEND_SERVER: "${FRONTEND_SERVER}"
+    PRERENDER_TOKEN: "${PRERENDER_TOKEN}"
   ports:
     - "3002:80"
   net: "${BACKEND_NETWORK}"

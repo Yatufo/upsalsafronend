@@ -13,7 +13,7 @@ eventify
             maps.init(event.location, 14);
             maps.addLocation(event.location);
 
-            event.detailsUrl = util.getDetailsUrl(event, "event");
+            _.extend(event, util.getUrls(event, "event"))
             event.end.dateTime = moment(event.end.dateTime).toDate();
             event.start.dateTime = moment(event.start.dateTime).toDate();
 
