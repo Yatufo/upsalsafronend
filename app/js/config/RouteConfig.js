@@ -14,6 +14,9 @@ eventify.config(['$routeProvider',
     when('/privacy', {
       templateUrl: 'views/privacy.html'
     }).
+    when('/about', {
+      templateUrl: 'views/about.html'
+    }).
     when('/terms', {
       templateUrl: 'views/terms.html'
     }).
