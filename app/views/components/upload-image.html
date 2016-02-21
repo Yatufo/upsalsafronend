@@ -1,6 +1,6 @@
 <div>
   <div class="main-image" ng-show="!image">
-    <img ng-src="{{item.imageUrl}}"></img>
+    <img ng-src="{{item.imageUrl}}" alt="{{item.name}}"></img>
     <div accept="image/*" class="drop-box" ng-model="image"
     ngf-drag-over-class="'dragover'" ngf-drop ngf-multiple="false" ngf-pattern="'image/*'"
     ngf-select >
