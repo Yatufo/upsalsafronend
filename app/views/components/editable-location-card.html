@@ -37,24 +37,22 @@
           <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=terrain&amp;center={{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;markers=color:blue|label:A|{{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;zoom=14&amp;size=320x200&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs">
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
-</form>
-
-</div>
-<div class="card-action clearfix">
-<div class="pull-left">
-  <a class="btn btn-icon" ng-click="delete()">
-    <i class="fa fa-remove fa-2x"></i>
-  </a>
-</div>
-<div class="pull-right">
-  <a class="btn btn-icon" ng-click="save()">
-    <i class="fa fa-save fa-2x"></i>
-  </a>
-  <a class="btn btn-icon" ng-click="cancel()">
-    <i class="fa fa-undo fa-2x"></i>
-  </a>
-</div>
+  <div class="card-action clearfix">
+    <div class="pull-left">
+      <a class="btn btn-icon" ng-click="delete()">
+        <i class="fa fa-remove fa-2x"></i>
+      </a>
+    </div>
+    <div class="pull-right">
+      <a class="btn btn-icon" ng-click="save()">
+        <i class="fa fa-save fa-2x"></i>
+      </a>
+      <a class="btn btn-icon" ng-click="cancel()">
+        <i class="fa fa-undo fa-2x"></i>
+      </a>
+    </div>
+  </div>
 </div>
