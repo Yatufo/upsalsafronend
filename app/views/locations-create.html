@@ -1,19 +1,15 @@
 <div class="container-fluid">
   <div class="left-pane" ng-show="isListVisible">
     <div class="row">
-      <div class="col-xs-12 col-md-5 col-md-offset-1">
-
-        <editablelocationcard data-location="location"></editablelocationcard>
-
+      
+      <div class="col-xs-12 col-md-5 col-md-push-6">
+        <div ng-include="'views/components/right-side-intro.html'"></div>
       </div>
-    </div>
-  </div>
-</div>
 
-<div ng-class="{'right-pane' : !isMobile}">
-  <div class="row">
-    <div style="text-align: center" class="col-xs-12 col-md-10">
-      <div ng-include="'views/components/right-side-intro.html'"></div>
+      <div class="col-xs-12 col-md-5 col-md-pull-4">
+        <editablelocationcard data-location="location"></editablelocationcard>
+      </div>
+
     </div>
   </div>
 </div>
