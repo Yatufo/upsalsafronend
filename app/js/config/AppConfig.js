@@ -21,10 +21,9 @@ eventify.constant('CONFIG', {
     }
   },
   DEAFULT_IMAGES: {
-    location: 'locations/montreal.jpg',
+    location: 'locations/default.jpg',
     event: 'events/default.jpg'
   },
-  EVENT_DEFAULT_IMAGE: 'events/default.jpg',
   DEFAULT_IMAGE_ENDPOINT: "api/images",
   ARRAY_PARAM_SEPARATOR: ",",
   HASHTAG: '#',

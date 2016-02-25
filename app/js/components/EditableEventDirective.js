@@ -81,9 +81,11 @@ var EditableEventCardController = function($scope, $rootScope, service, category
       location: toLocation($scope.location),
       description: "Should contain at least #party or #event",
       categories: [],
-      images: [],
-      imageUrl: CONFIG.EVENT_DEFAULT_IMAGE
+      images: []
     };
+
+    _.extend($scope.event, util.getUrls($scope.event, "event"));
+
   };
 
   $scope.$watch("selections.localTime.start", function(newVal) {
