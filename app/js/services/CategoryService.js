@@ -31,7 +31,7 @@ var CategoryService = function($rootScope, Category, $q, cfg) {
       //only categories after third level.
       var hashtags = _.compact(_.values(categories)
         .map(function(category) {
-          if (category.parent && !_.contains(cfg.HIDDEN_CATEGORIES, category.parent)) {
+          if (category.parent && !_.includes(cfg.HIDDEN_CATEGORIES, category.parent)) {
             return cfg.HASHTAG + category.id;
           }
         }));

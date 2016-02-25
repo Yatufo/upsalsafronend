@@ -16,7 +16,7 @@ var UtilService = function($rootScope, $window, $location, cfg) {
     var imageUrl = cfg.DEAFULT_IMAGES[type];
 
     if (!_.isEmpty(item.images)) {
-      imageUrl = _.sortByOrder(item.images, ['created'], ['desc'])[0].url
+      imageUrl = _.orderBy(item.images, ['created'], ['desc'])[0].url
     }
     var url = { url : $window.location.origin + '/' + imageSizePath + imageUrl} ;
 

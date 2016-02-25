@@ -34,7 +34,7 @@ var RatingDirectiveController = function($scope, $rootScope, service) {
       if ($scope.showAll || $scope.ratings.length - $scope.displayRatings.length <= UNRATED_THRESHHOLD) {
         $scope.displayRatings = $scope.ratings;
       } else {
-        var unrated = _.findWhere($scope.ratings, { "votes" : null});
+        var unrated = _.find($scope.ratings, { "votes" : null});
         $scope.displayRatings.push(unrated);
       }
     }

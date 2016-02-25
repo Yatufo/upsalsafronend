@@ -133,24 +133,24 @@ module.exports = function(grunt) {
         beautify: false,
         mangle: true,
         compress: {
-          sequences     : true,  // join consecutive statemets with the “comma operator”
-          properties    : true,  // optimize property access: a["foo"] → a.foo
-          dead_code     : true,  // discard unreachable code
-          drop_debugger : true,  // discard “debugger” statements
-          unsafe        : false, // some unsafe optimizations (see below)
-          conditionals  : true,  // optimize if-s and conditional expressions
-          comparisons   : true,  // optimize comparisons
-          evaluate      : true,  // evaluate constant expressions
-          booleans      : true,  // optimize boolean expressions
-          loops         : true,  // optimize loops
-          unused        : true,  // drop unused variables/functions
-          hoist_funs    : true,  // hoist function declarations
-          hoist_vars    : false, // hoist variable declarations
-          if_return     : true,  // optimize if-s followed by return/continue
-          join_vars     : true,  // join var declarations
-          cascade       : true,  // try to cascade `right` into `left` in sequences
-          side_effects  : true,  // drop side-effect-free statements
-          warnings      : true,
+          sequences: true, // join consecutive statemets with the “comma operator”
+          properties: true, // optimize property access: a["foo"] → a.foo
+          dead_code: true, // discard unreachable code
+          drop_debugger: true, // discard “debugger” statements
+          unsafe: false, // some unsafe optimizations (see below)
+          conditionals: true, // optimize if-s and conditional expressions
+          comparisons: true, // optimize comparisons
+          evaluate: true, // evaluate constant expressions
+          booleans: true, // optimize boolean expressions
+          loops: true, // optimize loops
+          unused: true, // drop unused variables/functions
+          hoist_funs: true, // hoist function declarations
+          hoist_vars: false, // hoist variable declarations
+          if_return: true, // optimize if-s followed by return/continue
+          join_vars: true, // join var declarations
+          cascade: true, // try to cascade `right` into `left` in sequences
+          side_effects: true, // drop side-effect-free statements
+          warnings: true,
         },
         preserveComments: false
       },
@@ -173,9 +173,9 @@ module.exports = function(grunt) {
           'app/dependencies/ng-file-upload/ng-file-upload.js',
           'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
           'app/dependencies/smart-area/dist/smart-area.js',
-          'app/dependencies/lodash/lodash.js',
+          'app/dependencies/lodash/lodash.build.js',
           'app/dependencies/intl-tel-input/build/js/intlTelInput.min.js',
-          'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js',
+          //'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js', 200K
           'app/dependencies/international-phone-number/releases/international-phone-number.js',
           'app/dependencies/rrule/lib/rrule.js',
           'app/dependencies/rrule/lib/nlp.js',
@@ -225,6 +225,24 @@ module.exports = function(grunt) {
     },
     concurrent: {
       build: ['injector', 'wiredep']
+    },
+    lodash: {
+      build: {
+        dest: 'app/dependencies/lodash/lodash.build.js',
+        options: {
+          exports: ['none']
+        }
+      }
+    },
+    lodashAutobuild: {
+      app: {
+        src: ['app/js/**/*.js'],
+        options: {
+          lodashConfigPath: 'lodash.build.options.include',
+          lodashObjects: ['_'],
+          lodashTargets: ['build']
+        }
+      }
     }
   });
 
@@ -234,6 +252,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['env:dev', 'concurrent:build', 'serve']);
   grunt.registerTask('prod', ['env:prod', 'package', 'serve']);
   grunt.registerTask('serve', ['configureProxies:connect', 'connect:livereload', 'watch']);
-  grunt.registerTask('package', ['html2js', 'uglify', 'cssmin']);
+  grunt.registerTask('package', ['html2js', 'lodashAutobuild', 'uglify', 'cssmin']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

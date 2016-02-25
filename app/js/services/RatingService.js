@@ -47,7 +47,7 @@ var RatingService = function($rootScope, $q, Rating, categoryService, cfg) {
       });
 
       getRateableCategories(categories).forEach(function(category) {
-        if (!_.contains(ratedCategories, category)) {
+        if (!_.includes(ratedCategories, category)) {
           var emptySummary = {
             category: category,
             location: location,

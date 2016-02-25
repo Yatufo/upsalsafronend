@@ -22,7 +22,7 @@ var UploadImageController = function($scope, upload, CONFIG) {
 
 
   $scope.showUpload = function() {
-    return _.contains(["failed", "initial"], $scope.status.current);
+    return _.includes(["failed", "initial"], $scope.status.current);
   };
 
   $scope.cancel = function () {

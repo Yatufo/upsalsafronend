@@ -35,6 +35,8 @@
     "grunt-env": "^0.4.4",
     "grunt-fixmyjs": "^0.3.0",
     "grunt-injector": "^0.6.1",
+    "grunt-lodash": "^0.5.1",
+    "grunt-lodash-autobuild": "^0.3.0",
     "grunt-notify": "^0.4.3",
     "grunt-s3": "^0.1.0",
     "grunt-wiredep": "latest",
