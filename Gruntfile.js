@@ -160,7 +160,6 @@ module.exports = function(grunt) {
       },
       deps: {
         src: [
-          'app/dependencies/auth0-lock/build/auth0-lock.js',
           'app/dependencies/auth0.js/build/auth0.js',
           'app/dependencies/auth0-angular/build/auth0-angular.js',
           'app/dependencies/angular-jwt/dist/angular-jwt.js',
@@ -175,7 +174,7 @@ module.exports = function(grunt) {
           'app/dependencies/smart-area/dist/smart-area.js',
           'app/dependencies/lodash/lodash.build.js',
           'app/dependencies/intl-tel-input/build/js/intlTelInput.min.js',
-          //'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js', 200K
+          'app/dependencies/intl-tel-input/lib/libphonenumber/build/utils.js',
           'app/dependencies/international-phone-number/releases/international-phone-number.js',
           'app/dependencies/rrule/lib/rrule.js',
           'app/dependencies/rrule/lib/nlp.js',
