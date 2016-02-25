@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.8.7\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_CA\n"
+
+#: app/views/components/theme-header.html:26
+msgid "About Us"
+msgstr "A propos"
+
+#: app/views/components/theme-header.html:17
+msgid "Add Your School"
+msgstr "Ajoutez votre école"
+
+#: app/views/components/theme-header.html:23
+msgid "Events"
+msgstr "Évènements"
+
+#: app/views/components/theme-header.html:32
+msgid "Log In"
+msgstr "Se connecter"
+
+#: app/views/components/theme-header.html:29
+msgid "Log Out"
+msgstr "Déconnexion"
+
+#: app/views/components/theme-header.html:20
+msgid "Schools"
+msgstr "Écoles"
+
+#: app/views/components/theme-header.html:4
+msgid "Toggle navigation"
+msgstr "Activer/désactiver la navigation"

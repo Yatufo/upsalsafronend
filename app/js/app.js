@@ -12,7 +12,8 @@ var eventify = angular.module('eventify', [
   'ngFileUpload',
   'ui.bootstrap.datetimepicker',
   'smartArea',
-  'internationalPhoneNumber'
+  'internationalPhoneNumber',
+  'gettext'
 ]);
 
 eventify.config(["authProvider", function (authProvider) {

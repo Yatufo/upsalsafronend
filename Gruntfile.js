@@ -178,7 +178,8 @@ module.exports = function(grunt) {
           'app/dependencies/international-phone-number/releases/international-phone-number.js',
           'app/dependencies/rrule/lib/rrule.js',
           'app/dependencies/rrule/lib/nlp.js',
-          'app/dependencies/moment-timezone/builds/moment-timezone-with-data.js'
+          'app/dependencies/moment-timezone/builds/moment-timezone-with-data.js',
+          'app/dependencies/angular-gettext/dist/angular-gettext.js'
         ],
         dest: 'app/assets/js/dependencies.min.js',
       }
@@ -242,6 +243,20 @@ module.exports = function(grunt) {
           lodashTargets: ['build']
         }
       }
+    },
+    nggettext_extract: {
+      pot: {
+        files: {
+          'po/template.pot': ['app/**/*.html']
+        }
+      }
+    },
+    nggettext_compile: {
+      all: {
+        files: {
+          'app/js/config/translations.js': ['po/*.po']
+        }
+      },
     }
   });
 
@@ -251,6 +266,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['env:dev', 'concurrent:build', 'serve']);
   grunt.registerTask('prod', ['env:prod', 'package', 'serve']);
   grunt.registerTask('serve', ['configureProxies:connect', 'connect:livereload', 'watch']);
-  grunt.registerTask('package', ['html2js', 'lodashAutobuild', 'uglify', 'cssmin']);
+  grunt.registerTask('package', ['html2js', 'nggettext_compile', 'lodashAutobuild', 'uglify', 'cssmin']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };

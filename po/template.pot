@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: app/views/components/theme-header.html:26
+msgid "About Us"
+msgstr ""
+
+#: app/views/components/theme-header.html:17
+msgid "Add Your School"
+msgstr ""
+
+#: app/views/components/theme-header.html:23
+msgid "Events"
+msgstr ""
+
+#: app/views/components/theme-header.html:32
+msgid "Log In"
+msgstr ""
+
+#: app/views/components/theme-header.html:29
+msgid "Log Out"
+msgstr ""
+
+#: app/views/components/theme-header.html:20
+msgid "Schools"
+msgstr ""
+
+#: app/views/components/theme-header.html:4
+msgid "Toggle navigation"
+msgstr ""
