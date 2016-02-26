@@ -82,13 +82,11 @@
           </ul>
         </div>
       </div>
-      <label translate>Duration:
-        {{getDuration()}}
-        hour(s)</label>
+      <label translate>Duration: {{getDuration()}} hour(s)</label>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('times')}">
-        <label><input ng-model="selections.repeat" type="checkbox">Season</label>
-        <label ng-show="selections.repeat"><input max="15" min="0" name="times" ng-model="selections.count" required type="number">Times (15 max)</label>
+        <label><input ng-model="selections.repeat" type="checkbox"><span translate>Season</span></label>
+        <label ng-show="selections.repeat"><input max="15" min="0" name="times" ng-model="selections.count" required type="number"><span translate>Times (15 max)</span></label>
       </div>
       <div class="form-group" ng-show="selections.repeat">
         <label ng-repeat="dow in allDows"><input ng-model="selections.dows[dow.id]" type="checkbox">{{dow.name}}</label>

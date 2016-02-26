@@ -16,22 +16,24 @@ function HomeController($scope, $rootScope, $window, analytics, security, i18n) 
   analytics.init();
 
 
-  var supportedLanguages = ['en', 'fr_CA']
+  var supportedLanguages = ['en', 'fr']
 
-  if (!$scope.currentLanguage){
-    setUserLanguage();    
+  if (!$rootScope.currentLanguage){
+    setUserLanguage();
   }
 
   function setUserLanguage() {
     //sets user language based on the browser
     var userLanguage = $window.navigator.userLanguage || $window.navigator.language || '';
-    $scope.currentLanguage = userLanguage.startsWith('en') ? supportedLanguages[0] : supportedLanguages[1]
-    i18n.setCurrentLanguage($scope.currentLanguage)
+    $rootScope.currentLanguage = userLanguage.startsWith('en') ? supportedLanguages[0] : supportedLanguages[1]
+    i18n.setCurrentLanguage($rootScope.currentLanguage)
+    moment.locale($rootScope.currentLanguage);
   }
 
   $scope.toogleLanguage = function() {
-    $scope.currentLanguage = $scope.currentLanguage === supportedLanguages[0] ? supportedLanguages[1] : supportedLanguages[0];
-    i18n.setCurrentLanguage($scope.currentLanguage);
+    $rootScope.currentLanguage = $rootScope.currentLanguage === supportedLanguages[0] ? supportedLanguages[1] : supportedLanguages[0];
+    i18n.setCurrentLanguage($rootScope.currentLanguage);
+    moment.locale($rootScope.currentLanguage);
   }
 
 

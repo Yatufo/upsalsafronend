@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 
 #: app/views/components/theme-footer.html:9
-msgid "2015 &copy; All Rights Reserved."
+msgid "2016 &copy; All Rights Reserved."
 msgstr ""
 
 #: app/views/components/theme-header.html:26
@@ -42,10 +42,7 @@ msgid "Description (use #hashtags)"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:85
-msgid ""
-"Duration:\n"
-"        {{getDuration()}}\n"
-"        hour(s)"
+msgid "Duration: {{getDuration()}} hour(s)"
 msgstr ""
 
 #: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:17
@@ -139,6 +136,10 @@ msgstr ""
 msgid "Schools / Places"
 msgstr ""
 
+#: app/views/components/editable-event-card.html:88
+msgid "Season"
+msgstr ""
+
 #: app/dependencies/auth0.js/example/index.html:191
 msgid "sms passcode"
 msgstr ""
@@ -162,6 +163,10 @@ msgstr ""
 
 #: app/views/components/editable-event-card.html:19
 msgid "The description should contain at least #party or #class"
+msgstr ""
+
+#: app/views/components/editable-event-card.html:89
+msgid "Times (15 max)"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:13

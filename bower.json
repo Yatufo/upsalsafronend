@@ -46,6 +46,12 @@
         "css/font-awesome.css"
       ]
     },
+    "moment": {
+      "main": [
+        "moment.js",
+        "locale/fr.js"
+      ]
+    },
     "moment-timezone": {
       "main": [
         "builds/moment-timezone-with-data.js"

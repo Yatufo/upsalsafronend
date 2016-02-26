@@ -168,6 +168,7 @@ module.exports = function(grunt) {
           'app/dependencies/angular-route/angular-route.js',
           'app/dependencies/a0-angular-storage/dist/angular-storage.js',
           'app/dependencies/moment/moment.js',
+          'app/dependencies/moment/locale/fr.js',
           'app/dependencies/ngInfiniteScroll/build/ng-infinite-scroll.js',
           'app/dependencies/ng-file-upload/ng-file-upload.js',
           'app/dependencies/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
