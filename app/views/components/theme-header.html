@@ -14,9 +14,6 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a ng-href="/{{city}}/locations/create" translate>Add Your School</a>
-        </li>
-        <li>
           <a ng-href="/{{city}}/locations" translate>Schools</a>
         </li>
         <li>
@@ -26,13 +23,16 @@
           <a ng-href="/about" translate>About Us</a>
         </li>
         <li>
-          <a href="#" ng-click="toogleLanguage()" >{{currentLanguage | uppercase}}</a>
+          <a ng-href="/{{city}}/locations/create" translate>Add Your School</a>
         </li>
         <li ng-if="auth.isAuthenticated">
           <a href="#" ng-click="logout()" translate>Log Out</a>
         </li>
         <li ng-if="!auth.isAuthenticated">
           <a href="#" ng-click="signin()" translate>Log In</a>
+        </li>
+        <li>
+          <a href="#" ng-click="toogleLanguage()" >{{currentLanguage | uppercase}}</a>
         </li>
       </ul>
     </div>
