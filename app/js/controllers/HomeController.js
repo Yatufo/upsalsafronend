@@ -18,10 +18,16 @@ function HomeController($scope, $rootScope, $window, analytics, security, i18n) 
 
   var supportedLanguages = ['en', 'fr_CA']
 
-  //sets user language based on the browser
-  var userLanguage = $window.navigator.userLanguage || $window.navigator.language || '';
-  $scope.currentLanguage = userLanguage.startsWith('en') ? supportedLanguages[0] : supportedLanguages[1]
-  i18n.setCurrentLanguage($scope.currentLanguage)
+  if (!$scope.currentLanguage){
+    setUserLanguage();    
+  }
+
+  function setUserLanguage() {
+    //sets user language based on the browser
+    var userLanguage = $window.navigator.userLanguage || $window.navigator.language || '';
+    $scope.currentLanguage = userLanguage.startsWith('en') ? supportedLanguages[0] : supportedLanguages[1]
+    i18n.setCurrentLanguage($scope.currentLanguage)
+  }
 
   $scope.toogleLanguage = function() {
     $scope.currentLanguage = $scope.currentLanguage === supportedLanguages[0] ? supportedLanguages[1] : supportedLanguages[0];
