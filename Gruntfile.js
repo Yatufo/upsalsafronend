@@ -246,6 +246,9 @@ module.exports = function(grunt) {
     },
     nggettext_extract: {
       pot: {
+        options: {
+          attributes: ['placeholder']
+        },
         files: {
           'po/template.pot': ['app/**/*.html']
         }
