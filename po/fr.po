@@ -1,0 +1,231 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: app/views/components/theme-footer.html:9
+msgid "2016 &copy; All Rights Reserved."
+msgstr "2016 © tous droits réservés."
+
+#: app/views/components/theme-header.html:26
+msgid "About Us"
+msgstr "A propos"
+
+#: app/views/components/location-card.html:20
+msgid "Add Event/Class"
+msgstr "Ajoutez classe/événements"
+
+#: app/views/components/theme-header.html:17
+msgid "Add Your School"
+msgstr "Ajoutez votre école"
+
+#: app/views/components/editable-event-card.html:40
+#: app/views/components/editable-event-card.html:41
+#: app/views/components/editable-location-card.html:33
+#: app/views/components/editable-location-card.html:34
+msgid "Address"
+msgstr "Adresse postale"
+
+#: app/views/components/right-side-intro.html:9
+msgid "Benefit from our presence on social media."
+msgstr "Bénéficier de notre présence sur les médias sociaux."
+
+#: app/dependencies/intl-tel-input/examples/gen/country-sync.html:89
+#: app/dependencies/intl-tel-input/examples/partials/countrySync.html:9
+msgid "City"
+msgstr "Ville"
+
+#: app/views/components/editable-event-card.html:17
+#: app/views/components/editable-location-card.html:17
+msgid "Description (use #hashtags)"
+msgstr "Description (utilisez #hashtags)"
+
+#: app/views/components/editable-event-card.html:85
+msgid "Duration: {{getDuration()}} hour(s)"
+msgstr "Durée: {{getDuration()}} heure(s)"
+
+#: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:17
+#: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:6
+#: app/dependencies/auth0.js/example/index.html:161
+msgid "email"
+msgstr "courriel"
+
+#: app/views/components/theme-header.html:23 app/views/home.html:27
+msgid "Events"
+msgstr "Évènements"
+
+#: app/views/events.html:6
+msgid "Events {{hashtag}}"
+msgstr "Évènements {{hashtag}}"
+
+#: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:21
+msgid "favorite color"
+msgstr "couleur préférée"
+
+#: app/views/home.html:4
+msgid "FIND A GREAT PLACE TO DANCE IN {{city | uppercase}}!"
+msgstr "TROUVER A GREAT PLACE TO DANCE IN {{city | uppercase}} !"
+
+#: app/views/components/right-side-intro.html:7
+msgid "Get more visibility in search engines."
+msgstr "Obtenez plus de visibilité dans les moteurs de recherche."
+
+#: app/dependencies/intl-tel-input/examples/gen/country-sync.html:88
+#: app/dependencies/intl-tel-input/examples/partials/countrySync.html:8
+msgid "House name/number"
+msgstr "Nom/numéro de la maison"
+
+#: app/views/components/editable-event-card.html:36
+msgid "http://www.myevent.com"
+msgstr "http://www.evenement.com"
+
+#: app/views/components/editable-location-card.html:29
+msgid "http://www.mylocation.com"
+msgstr "http://www.monecole.com"
+
+#: app/views/components/theme-header.html:35
+msgid "Log In"
+msgstr "Se connecter"
+
+#: app/views/components/theme-header.html:32
+msgid "Log Out"
+msgstr "Déconnexion"
+
+#: app/views/home.html:7
+msgid "Look for the best places with the music of your preference now."
+msgstr "Trouvez les meilleurs endroits avec la musique de votre choix maintenant."
+
+#: app/views/components/right-side-intro.html:10
+msgid "Obtain a mobile friendly page and improved SEO."
+msgstr "Obtenir une page imprimable mobile et référencement amélioré."
+
+#: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:19
+#: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:8
+msgid "password"
+msgstr "mot de passe"
+
+#: app/dependencies/auth0.js/example/index.html:177
+msgid "phone number"
+msgstr "numéro de téléphone"
+
+#: app/views/components/editable-event-card.html:29
+#: app/views/components/editable-location-card.html:22
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: app/views/components/theme-footer.html:10
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: app/views/components/right-side-intro.html:8
+msgid "Promote your classes, workshops and events to our community."
+msgstr "Promouvoir vos classes, des ateliers et des événements de notre communauté."
+
+#: app/views/components/right-side-intro.html:6
+msgid "Reach more students/dancers."
+msgstr "Atteindre plus étudiants/danseurs."
+
+#: app/views/components/theme-header.html:20 app/views/home.html:19
+msgid "Schools"
+msgstr "Écoles"
+
+#: app/views/locations.html:6
+msgid "Schools / Places"
+msgstr "Écoles / Lieux"
+
+#: app/views/components/editable-event-card.html:88
+msgid "Season"
+msgstr "Saison"
+
+#: app/dependencies/auth0.js/example/index.html:191
+msgid "sms passcode"
+msgstr "mot de passe SMS"
+
+#: app/views/components/editable-event-card.html:51
+msgid "Start:"
+msgstr "Commence à"
+
+#: app/dependencies/intl-tel-input/examples/gen/country-sync.html:90
+#: app/dependencies/intl-tel-input/examples/partials/countrySync.html:10
+msgid "State"
+msgstr "Province"
+
+#: app/views/components/theme-footer.html:10
+msgid "Terms of Service"
+msgstr "Conditions d’Utilisation"
+
+#: app/views/components/editable-location-card.html:35
+msgid "The address should be valid and located on the map"
+msgstr "L’adresse doit être valide et situé sur la carte"
+
+#: app/views/components/editable-event-card.html:19
+msgid "The description should contain at least #party or #class"
+msgstr "La description doit contenir au moins #party ou #class"
+
+#: app/views/components/editable-event-card.html:89
+msgid "Times (15 max)"
+msgstr "Fois (15 max)"
+
+#: app/views/components/editable-event-card.html:13
+#: app/views/components/editable-location-card.html:12
+#: app/views/components/editable-location-card.html:13
+msgid "Title"
+msgstr "Titre"
+
+#: app/views/components/theme-header.html:4
+msgid "Toggle navigation"
+msgstr "Activer/désactiver la navigation"
+
+#: app/views/components/editable-event-card.html:69
+msgid "Until:"
+msgstr "Jusqu’à :"
+
+#: app/views/components/editable-event-card.html:23
+msgid "Use the same address and phone"
+msgstr "Utiliser la même adresse et téléphone"
+
+#: app/views/components/editable-event-card.html:35
+#: app/views/components/editable-location-card.html:28
+msgid "Website"
+msgstr "Site web"
+
+#: app/views/components/comments.html:4
+msgid "What do you think about this place?"
+msgstr "Que pensez-vous de cet endroit ?"
+
+#: app/views/components/right-side-intro.html:4
+msgid "Why your school should be on <i style=\"color:red\">UpSalsa</i> ?"
+msgstr "Pourquoi votre école doit être sur <i style=“color:red”>UpSalsa</i> ?"
+
+#: app/views/components/editable-event-card.html:56
+#: app/views/components/editable-event-card.html:74
+msgid "yyyy-MM-ddTHH:mm"
+msgstr ""
+
+#: app/dependencies/intl-tel-input/examples/gen/country-sync.html:91
+#: app/dependencies/intl-tel-input/examples/partials/countrySync.html:11
+msgid "Zip code"
+msgstr "Code postal"
+
+#~ msgid "2015 &copy; All Rights Reserved."
+#~ msgstr "2015 © tous droits réservés."
+
+#~ msgid ""
+#~ "Duration:\n"
+#~ "        {{getDuration()}}\n"
+#~ "        hour(s)"
+#~ msgstr "Durée: {{getDuration()}} heure(s)"
+
+#~ msgid ""
+#~ "FIND A GREAT PLACE TO DANCE IN\n"
+#~ "        {{city | uppercase}}!"
+#~ msgstr "TROUVER A GREAT PLACE TO DANCE IN {{ville | uppercase}} !"
