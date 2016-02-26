@@ -22,7 +22,7 @@
     "ng-file-upload": "~9.1.2",
     "angular-bootstrap-datetimepicker": "~0.4.0",
     "smart-area": "~1.1.0",
-    "lodash": "~3.10.1",
+    "lodash": "~4.5.1",
     "international-phone-number": "~0.0.16",
     "rrule": "~2.1.0",
     "moment-timezone": "~0.5.0",

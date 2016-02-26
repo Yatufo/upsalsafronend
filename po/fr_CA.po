@@ -1,41 +1,124 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.8.7\n"
 "Last-Translator: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Team: \n"
 "Language: fr_CA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/views/components/theme-header.html:26
 msgid "About Us"
 msgstr "A propos"
 
+#: app/views/components/location-card.html:20
+msgid "Add Event/Class"
+msgstr "Ajoutez classe/événements"
+
 #: app/views/components/theme-header.html:17
 msgid "Add Your School"
 msgstr "Ajoutez votre école"
+
+#: app/views/components/editable-event-card.html:40
+#: app/views/components/editable-location-card.html:33
+msgid "Address"
+msgstr "Adresse postale"
+
+#: app/views/components/right-side-intro.html:9
+msgid "Benefit from our presence on social media."
+msgstr "Bénéficier de notre présence sur les médias sociaux."
+
+#: app/views/components/editable-event-card.html:17
+#: app/views/components/editable-location-card.html:17
+msgid "Description (use #hashtags)"
+msgstr "Description (utilisez #hashtags)"
+
+#: app/views/components/editable-event-card.html:85
+msgid ""
+"Duration:\n"
+"        {{getDuration()}}\n"
+"        hour(s)"
+msgstr "Durée: {{getDuration()}} heure (s)"
 
 #: app/views/components/theme-header.html:23
 msgid "Events"
 msgstr "Évènements"
 
-#: app/views/components/theme-header.html:32
+#: app/views/components/right-side-intro.html:7
+msgid "Get more visibility in search engines."
+msgstr "Obtenez plus de visibilité dans les moteurs de recherche."
+
+#: app/views/components/theme-header.html:35
 msgid "Log In"
 msgstr "Se connecter"
 
-#: app/views/components/theme-header.html:29
+#: app/views/components/theme-header.html:32
 msgid "Log Out"
 msgstr "Déconnexion"
+
+#: app/views/components/right-side-intro.html:10
+msgid "Obtain a mobile friendly page and improved SEO."
+msgstr "Obtenir une page imprimable mobile et référencement amélioré."
+
+#: app/views/components/editable-event-card.html:29
+#: app/views/components/editable-location-card.html:22
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: app/views/components/right-side-intro.html:8
+msgid "Promote your classes, workshops and events to our community."
+msgstr "Promouvoir vos classes, des ateliers et des événements de notre communauté."
+
+#: app/views/components/right-side-intro.html:6
+msgid "Reach more students/dancers."
+msgstr "Atteindre plus étudiants/danseurs."
 
 #: app/views/components/theme-header.html:20
 msgid "Schools"
 msgstr "Écoles"
 
+#: app/views/locations.html:6
+msgid "Schools / Places"
+msgstr "Écoles / Lieux"
+
+#: app/views/components/editable-event-card.html:51
+msgid "Start:"
+msgstr "Commence à"
+
+#: app/views/components/editable-location-card.html:35
+msgid "The address should be valid and located on the map"
+msgstr "L’adresse doit être valide et situé sur la carte"
+
+#: app/views/components/editable-event-card.html:19
+msgid "The description should contain at least #party or #class"
+msgstr "La description doit contenir au moins #party ou #class"
+
+#: app/views/components/editable-location-card.html:12
+msgid "Title"
+msgstr "Titre"
+
 #: app/views/components/theme-header.html:4
 msgid "Toggle navigation"
 msgstr "Activer/désactiver la navigation"
+
+#: app/views/components/editable-event-card.html:69
+msgid "Until:"
+msgstr "Jusqu’à :"
+
+#: app/views/components/editable-event-card.html:23
+msgid "Use the same address and phone"
+msgstr "Utiliser la même adresse et téléphone"
+
+#: app/views/components/editable-event-card.html:35
+#: app/views/components/editable-location-card.html:28
+msgid "Website"
+msgstr "Site web"
+
+#: app/views/components/right-side-intro.html:4
+msgid "Why your school should be on <i style=\"color:red\">UpSalsa</i> ?"
+msgstr "Pourquoi votre école doit être sur <i style=“color:red”>UpSalsa</i> ?"

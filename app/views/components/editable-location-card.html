@@ -9,30 +9,30 @@
     <form name="locationForm">
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('title')}">
-        <label for="title">Title</label>
+        <label for="title" translate>Title</label>
         <input name="title" class="form-control" id="title" ng-model="location.name" placeholder="Title" type="title" required="true">
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('description')}">
-        <label for="description">Description (use #hashtags)</label>
+        <label for="description" translate>Description (use #hashtags)</label>
         <textarea name="description" class="form-control code" id="description" msd-elastic name="description" ng-model="location.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false" required="true"></textarea>
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('phone')}">
-        <label for="title">Phone Number</label>
+        <label for="title" translate>Phone Number</label>
         <br/>
         <input name="phone" class="form-control" default-country="ca" id="phone" international-phone-number ng-model="location.phone" required="false">
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('url')}">
-        <label for="title">Website</label>
+        <label for="title" translate>Website</label>
         <input name="url" class="form-control" id="title" ng-model="location.url" placeholder="http://www.mylocation.com" type="url" required="true">
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('address')}">
-        <label for="address">Address</label>
+        <label for="address" translate>Address</label>
         <input name="address" autocomplete class="form-control" data-location="location" id="address" name="address" ng-model="location.address" placeholder="Address" required="true" type="input">
-        <span class="has-error" ng-show="isInvalid('address')">The address should valid and located on the map</span>
+        <span class="has-error" ng-show="isInvalid('address')" translate>The address should be valid and located on the map</span>
         <div class="text-center" ng-if="hasCoordinates()">
           <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=terrain&amp;center={{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;markers=color:blue|label:A|{{location.coordinates.latitude}},{{location.coordinates.longitude}}&amp;zoom=14&amp;size=320x200&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs">
         </div>

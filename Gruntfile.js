@@ -224,7 +224,7 @@ module.exports = function(grunt) {
       }
     },
     concurrent: {
-      build: ['injector', 'wiredep']
+      build: ['injector', 'wiredep', 'nggettext_compile']
     },
     lodash: {
       build: {

@@ -14,32 +14,32 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('description')}">
-        <label for="description">Description (use #hashtags)</label>
+        <label for="description" translate>Description (use #hashtags)</label>
         <textarea name="description" required="true" class="form-control code" id="description" msd-elastic name="description" ng-model="event.description" ng-trim="false" smart-area="smartarea.description" spellcheck="false"></textarea>
-        <span class="has-error" ng-show="isInvalid('description')">The description should contain at least #party or #class </span>
+        <span class="has-error" ng-show="isInvalid('description')" translate>The description should contain at least #party or #class </span>
       </div>
 
       <div class="form-group">
-        <label for="samelocation">Use the same address and phone</label>
+        <label for="samelocation" translate>Use the same address and phone</label>
         <input ng-model="options.samelocation" type="checkbox">
       </div>
 
       <div ng-show="!options.samelocation || isInvalid('address') || isInvalid('url')">
         <div class="form-group" ng-class="{'has-error' : isInvalid('phone')}">
-          <label for="title">Phone Number</label>
+          <label for="title" translate>Phone Number</label>
           <br/>
           <input name="phone" class="form-control" default-country="ca" id="phone" international-phone-number ng-model="event.location.phone">
         </div>
 
         <div class="form-group" ng-class="{'has-error' : isInvalid('url')}">
-          <label for="title">Website</label>
+          <label for="title" translate>Website</label>
           <input name="url" required="true" class="form-control" id="title" ng-model="event.location.url" placeholder="http://www.myevent.com" type="url">
         </div>
 
         <div class="form-group" ng-class="{'has-error' : isInvalid('address')}">
-          <label for="address">Address</label>
+          <label for="address" translate>Address</label>
           <input name="address"  autocomplete class="form-control" data-location="event.location" id="address" ng-model="event.location.address" placeholder="Address" required="true" type="input">
-          <span class="has-error" ng-show="isInvalid('address')">The address should valid and located on the map</span>
+          <span class="has-error" ng-show="isInvalid('address')">The address should be valid and located on the map</span>
           <div class="text-center" ng-if="hasCoordinates()">
             <img src="https://maps.googleapis.com/maps/api/staticmap?maptype=terrain&amp;center={{event.location.coordinates.latitude}},{{event.location.coordinates.longitude}}&amp;markers=color:blue|label:A|{{event.location.coordinates.latitude}},{{event.location.coordinates.longitude}}&amp;zoom=14&amp;size=320x200&amp;key=AIzaSyBMz9TgJkerLAN9fTCUZajRx5RDxYSzuDs">
           </div>
@@ -48,7 +48,7 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('startTime')}">
-        <label for="startDate">Start:
+        <label for="startDate" translate>Start:
         </label>
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
@@ -66,7 +66,7 @@
       </div>
 
       <div class="form-group" ng-class="{'has-error' : isInvalid('endTime')}">
-        <label for="startDate">Until:
+        <label for="startDate" translate>Until:
         </label>
         <div class="dropdown">
           <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="startDateSelector" role="button">
@@ -82,7 +82,7 @@
           </ul>
         </div>
       </div>
-      <label>Duration:
+      <label translate>Duration:
         {{getDuration()}}
         hour(s)</label>
 
