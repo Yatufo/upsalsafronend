@@ -26,13 +26,13 @@
           <a ng-href="/about" translate>About Us</a>
         </li>
         <li>
-          <a ng-click="toogleLanguage()" >{{currentLanguage | uppercase}}</a>
+          <a href="#" ng-click="toogleLanguage()" >{{currentLanguage | uppercase}}</a>
         </li>
         <li ng-if="auth.isAuthenticated">
-          <a ng-click="logout()" translate>Log Out</a>
+          <a href="#" ng-click="logout()" translate>Log Out</a>
         </li>
         <li ng-if="!auth.isAuthenticated">
-          <a ng-click="signin()" translate>Log In</a>
+          <a href="#" ng-click="signin()" translate>Log In</a>
         </li>
       </ul>
     </div>
