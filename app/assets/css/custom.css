@@ -422,10 +422,51 @@ i .number {
 	padding:8px
 }
 
-.right-side h1 span {
+.right-side h2 span {
     font-size: 30px;
     font-weight: 700;
     margin: 0em 0em 0em 2em;
+}
+
+/*--about start here--*/
+.about {
+  background: #f4f4f4;
+}
+.about-top {
+  text-align: center;
+  padding: 0em 0em 3em 0em;
+}
+.about {
+  background:rgba(194, 194, 194, 0.07);
+  padding: 4em 0em 15em 0em;
+}
+.about-top h3 {
+  font-size: 3em;
+  font-weight: 700;
+  color: #D20010;
+  font-family: 'SintonyRegular';
+  margin: 0em 0em 0.5em 0em;
+}
+.about-top h4 {
+  font-size: 30px;
+}
+.about-top p {
+  font-size: 1em;
+  font-weight: 400;
+  color: #000;
+  width: 60%;
+}
+
+.about-wedo-right h4 a:hover{
+	text-decoration:none;
+	color:#000;
+}
+.about-wedo-right p {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.6em;
+  margin-left:5px;
 }
 
 /*TODO: Decouple the phone css*/
