@@ -25,7 +25,7 @@ function HomeController($scope, $rootScope, $window, analytics, security, i18n) 
   function setUserLanguage() {
     //sets user language based on the browser
     var userLanguage = $window.navigator.userLanguage || $window.navigator.language || '';
-    $rootScope.currentLanguage = userLanguage.startsWith('en') ? supportedLanguages[0] : supportedLanguages[1]
+    $rootScope.currentLanguage = _.startsWith(userLanguage, 'en') ? supportedLanguages[0] : supportedLanguages[1]
     i18n.setCurrentLanguage($rootScope.currentLanguage)
     moment.locale($rootScope.currentLanguage);
   }
