@@ -16,15 +16,15 @@ msgstr ""
 msgid "2016 &copy; All Rights Reserved."
 msgstr "2016 © tous droits réservés."
 
-#: app/views/components/theme-header.html:26
+#: app/views/components/theme-header.html:23
 msgid "About Us"
 msgstr "A propos"
 
 #: app/views/components/location-card.html:20
 msgid "Add Event/Class"
-msgstr "Ajoutez classe/événements"
+msgstr "Ajoutez un événements/un cours"
 
-#: app/views/components/theme-header.html:17
+#: app/views/components/theme-header.html:26
 msgid "Add Your School"
 msgstr "Ajoutez votre école"
 
@@ -37,7 +37,7 @@ msgstr "Adresse postale"
 
 #: app/views/components/right-side-intro.html:9
 msgid "Benefit from our presence on social media."
-msgstr "Bénéficier de notre présence sur les médias sociaux."
+msgstr "Bénéficiez de notre présence sur les médias sociaux."
 
 #: app/dependencies/intl-tel-input/examples/gen/country-sync.html:89
 #: app/dependencies/intl-tel-input/examples/partials/countrySync.html:9
@@ -59,7 +59,7 @@ msgstr "Durée: {{getDuration()}} heure(s)"
 msgid "email"
 msgstr "courriel"
 
-#: app/views/components/theme-header.html:23 app/views/home.html:27
+#: app/views/components/theme-header.html:20 app/views/home.html:29
 msgid "Events"
 msgstr "Évènements"
 
@@ -71,9 +71,9 @@ msgstr "Évènements {{hashtag}}"
 msgid "favorite color"
 msgstr "couleur préférée"
 
-#: app/views/home.html:4
+#: app/views/home.html:6
 msgid "FIND A GREAT PLACE TO DANCE IN {{city | uppercase}}!"
-msgstr "TROUVER A GREAT PLACE TO DANCE IN {{city | uppercase}} !"
+msgstr "LES MEILLEURS ENDROITS POUR DANSER À {{city | uppercase}}!"
 
 #: app/views/components/right-side-intro.html:7
 msgid "Get more visibility in search engines."
@@ -92,21 +92,24 @@ msgstr "http://www.evenement.com"
 msgid "http://www.mylocation.com"
 msgstr "http://www.monecole.com"
 
-#: app/views/components/theme-header.html:35
+#: app/views/components/theme-header.html:32
 msgid "Log In"
 msgstr "Se connecter"
 
-#: app/views/components/theme-header.html:32
+#: app/views/components/theme-header.html:29
 msgid "Log Out"
 msgstr "Déconnexion"
 
-#: app/views/home.html:7
+#: app/views/home.html:9
 msgid "Look for the best places with the music of your preference now."
-msgstr "Trouvez les meilleurs endroits avec la musique de votre choix maintenant."
+msgstr ""
+"Trouvez les meilleurs endroits avec la musique de votre choix maintenant!"
 
 #: app/views/components/right-side-intro.html:10
 msgid "Obtain a mobile friendly page and improved SEO."
-msgstr "Obtenir une page imprimable mobile et référencement amélioré."
+msgstr ""
+"Obtenez une page “mobile friendly” et améliorez votre référencement sur les "
+"moteurs de recherches."
 
 #: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:19
 #: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:8
@@ -128,13 +131,14 @@ msgstr "Politique de confidentialité"
 
 #: app/views/components/right-side-intro.html:8
 msgid "Promote your classes, workshops and events to our community."
-msgstr "Promouvoir vos classes, des ateliers et des événements de notre communauté."
+msgstr ""
+"Promouvoir vos classes, ateliers et évènements auprès de notre communauté."
 
 #: app/views/components/right-side-intro.html:6
 msgid "Reach more students/dancers."
-msgstr "Atteindre plus étudiants/danseurs."
+msgstr "Avoir plus d’étudiants/danseurs."
 
-#: app/views/components/theme-header.html:20 app/views/home.html:19
+#: app/views/components/theme-header.html:17 app/views/home.html:21
 msgid "Schools"
 msgstr "Écoles"
 
@@ -165,7 +169,7 @@ msgstr "Conditions d’Utilisation"
 
 #: app/views/components/editable-location-card.html:35
 msgid "The address should be valid and located on the map"
-msgstr "L’adresse doit être valide et situé sur la carte"
+msgstr "L’adresse doit être valide et présente sur la carte"
 
 #: app/views/components/editable-event-card.html:19
 msgid "The description should contain at least #party or #class"
@@ -193,6 +197,10 @@ msgstr "Jusqu’à :"
 msgid "Use the same address and phone"
 msgstr "Utiliser la même adresse et téléphone"
 
+#: app/views/components/right-side-intro.html:13
+msgid "Watch the video and create your profile today!"
+msgstr "Regardez la vidéo et créez votre profil aujourd’hui!"
+
 #: app/views/components/editable-event-card.html:35
 #: app/views/components/editable-location-card.html:28
 msgid "Website"
@@ -201,10 +209,6 @@ msgstr "Site web"
 #: app/views/components/comments.html:4
 msgid "What do you think about this place?"
 msgstr "Que pensez-vous de cet endroit ?"
-
-#: app/views/components/right-side-intro.html:4
-msgid "Why your school should be on <i style=\"color:red\">UpSalsa</i> ?"
-msgstr "Pourquoi votre école doit être sur <i style=“color:red”>UpSalsa</i> ?"
 
 #: app/views/components/editable-event-card.html:56
 #: app/views/components/editable-event-card.html:74
@@ -215,6 +219,13 @@ msgstr ""
 #: app/dependencies/intl-tel-input/examples/partials/countrySync.html:11
 msgid "Zip code"
 msgstr "Code postal"
+
+#~ msgid "FIND A GREAT PLACE TO DANCE {{city | uppercase}}!"
+#~ msgstr "TROUVEZ LES MEILLEURS ENDROITS POUR DANSER {{city | uppercase}}!"
+
+#~ msgid "Why your school should be on <i style=\"color:red\">UpSalsa</i> ?"
+#~ msgstr ""
+#~ "Pourquoi votre école doit être sur <i style=“color:red”>UpSalsa</i> ?"
 
 #~ msgid "2015 &copy; All Rights Reserved."
 #~ msgstr "2015 © tous droits réservés."

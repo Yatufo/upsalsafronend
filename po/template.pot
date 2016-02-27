@@ -8,7 +8,7 @@ msgstr ""
 msgid "2016 &copy; All Rights Reserved."
 msgstr ""
 
-#: app/views/components/theme-header.html:26
+#: app/views/components/theme-header.html:23
 msgid "About Us"
 msgstr ""
 
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add Event/Class"
 msgstr ""
 
-#: app/views/components/theme-header.html:17
+#: app/views/components/theme-header.html:26
 msgid "Add Your School"
 msgstr ""
 
@@ -51,8 +51,8 @@ msgstr ""
 msgid "email"
 msgstr ""
 
-#: app/views/components/theme-header.html:23
-#: app/views/home.html:27
+#: app/views/components/theme-header.html:20
+#: app/views/home.html:29
 msgid "Events"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 msgid "favorite color"
 msgstr ""
 
-#: app/views/home.html:4
+#: app/views/home.html:6
 msgid "FIND A GREAT PLACE TO DANCE IN {{city | uppercase}}!"
 msgstr ""
 
@@ -85,15 +85,15 @@ msgstr ""
 msgid "http://www.mylocation.com"
 msgstr ""
 
-#: app/views/components/theme-header.html:35
+#: app/views/components/theme-header.html:32
 msgid "Log In"
 msgstr ""
 
-#: app/views/components/theme-header.html:32
+#: app/views/components/theme-header.html:29
 msgid "Log Out"
 msgstr ""
 
-#: app/views/home.html:7
+#: app/views/home.html:9
 msgid "Look for the best places with the music of your preference now."
 msgstr ""
 
@@ -127,8 +127,8 @@ msgstr ""
 msgid "Reach more students/dancers."
 msgstr ""
 
-#: app/views/components/theme-header.html:20
-#: app/views/home.html:19
+#: app/views/components/theme-header.html:17
+#: app/views/home.html:21
 msgid "Schools"
 msgstr ""
 
@@ -187,6 +187,10 @@ msgstr ""
 msgid "Use the same address and phone"
 msgstr ""
 
+#: app/views/components/right-side-intro.html:13
+msgid "Watch the video and create your profile today!"
+msgstr ""
+
 #: app/views/components/editable-event-card.html:35
 #: app/views/components/editable-location-card.html:28
 msgid "Website"
@@ -194,10 +198,6 @@ msgstr ""
 
 #: app/views/components/comments.html:4
 msgid "What do you think about this place?"
-msgstr ""
-
-#: app/views/components/right-side-intro.html:4
-msgid "Why your school should be on <i style=\"color:red\">UpSalsa</i> ?"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:56
