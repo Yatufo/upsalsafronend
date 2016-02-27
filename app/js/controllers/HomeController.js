@@ -16,7 +16,8 @@ function HomeController($scope, $rootScope, $window, analytics, security, i18n) 
   analytics.init();
 
 
-  var supportedLanguages = ['en', 'fr']
+  var ENGLISH = 'en';
+  var FRENCH = 'fr';
 
   if (!$rootScope.currentLanguage){
     setUserLanguage();
@@ -25,13 +26,19 @@ function HomeController($scope, $rootScope, $window, analytics, security, i18n) 
   function setUserLanguage() {
     //sets user language based on the browser
     var userLanguage = $window.navigator.userLanguage || $window.navigator.language || '';
-    $rootScope.currentLanguage = _.startsWith(userLanguage, 'en') ? supportedLanguages[0] : supportedLanguages[1]
+    var isEnglish = _.startsWith(userLanguage, 'en');
+    $rootScope.currentLanguage = isEnglish ? ENGLISH : FRENCH
+    $scope.otherLanguage = isEnglish ?  FRENCH : ENGLISH
+
     i18n.setCurrentLanguage($rootScope.currentLanguage)
     moment.locale($rootScope.currentLanguage);
   }
 
   $scope.toogleLanguage = function() {
-    $rootScope.currentLanguage = $rootScope.currentLanguage === supportedLanguages[0] ? supportedLanguages[1] : supportedLanguages[0];
+    var swap = $rootScope.currentLanguage
+    $rootScope.currentLanguage = $scope.otherLanguage;
+    $scope.otherLanguage = swap;
+    
     i18n.setCurrentLanguage($rootScope.currentLanguage);
     moment.locale($rootScope.currentLanguage);
   }
