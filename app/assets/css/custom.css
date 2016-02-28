@@ -38,7 +38,7 @@ body {
   position: absolute;
   top: 130px;
 }
-.home .mainimage > div > h2 > i {
+.home .mainimage > div > h2 > i > span {
   font-size: 36px;
   font-style: normal;
   padding: 0px 5px;
@@ -51,7 +51,7 @@ body {
   left: 0;
   background: url(../img/bg-white-text.png) repeat;
 }
-.home .mainimage > div > p > i {
+.home .mainimage > div > p > i > span{
   background: url(../img/bg-text.png) repeat;
   font-style: normal;
   font-family: "Open Sans", sans-serif;
@@ -183,12 +183,12 @@ sharesocial {
     background: url(../img/bg-mobile.jpg) repeat-x;
     height: 240px;
   }
-  .home .mainimage > div > h2 > i {
+  .home .mainimage > div > h2 > i > span {
     padding: 0px 0px;
     font-size: 20px;
     line-height: 0.5;
   }
-  .home .mainimage > div > p > i {
+  .home .mainimage > div > p > i > span {
     font-size: 10px;
   }
   div .image-selector h3 {
