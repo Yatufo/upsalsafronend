@@ -37,7 +37,7 @@ msgstr "Adresse postale"
 
 #: app/views/components/right-side-intro.html:9
 msgid "Benefit from our presence on social media."
-msgstr "Bénéficiez de notre présence sur les médias sociaux."
+msgstr "Bénéficier de notre présence sur les médias sociaux."
 
 #: app/dependencies/intl-tel-input/examples/gen/country-sync.html:89
 #: app/dependencies/intl-tel-input/examples/partials/countrySync.html:9
@@ -77,7 +77,7 @@ msgstr "LES MEILLEURS ENDROITS POUR DANSER À {{city | uppercase}}!"
 
 #: app/views/components/right-side-intro.html:7
 msgid "Get more visibility in search engines."
-msgstr "Obtenez plus de visibilité dans les moteurs de recherche."
+msgstr "Obtenir plus de visibilité dans les moteurs de recherche."
 
 #: app/views/components/theme-header.html:17
 msgid "Home"
@@ -112,7 +112,7 @@ msgstr ""
 #: app/views/components/right-side-intro.html:10
 msgid "Obtain a mobile friendly page and improved SEO."
 msgstr ""
-"Obtenez une page “mobile friendly” et améliorez votre référencement sur les "
+"Obtenir une page “mobile friendly” et améliorer votre référencement sur les "
 "moteurs de recherches."
 
 #: app/dependencies/auth0-angular/examples/custom-signup/client/views/login.html:19
