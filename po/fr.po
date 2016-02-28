@@ -101,7 +101,7 @@ msgid "Log Out"
 msgstr "Déconnexion"
 
 #: app/views/home.html:9
-msgid "Look for the best places with the music of your preference now."
+msgid "Look for the best places with the music of your preference now!"
 msgstr ""
 "Trouvez les meilleurs endroits avec la musique de votre choix maintenant!"
 
