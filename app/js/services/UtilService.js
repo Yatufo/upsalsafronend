@@ -15,7 +15,7 @@ var UtilService = function($rootScope, $window, $location, cfg) {
     var imageSizePath = 'images/w' + resolution.width + '-h' + resolution.height + '-cscale/images/';
     var imageUrl = cfg.DEAFULT_IMAGES[type];
 
-    if (!_.isEmpty(item.images)) {
+    if (item && !_.isEmpty(item.images)) {
       imageUrl = _.orderBy(item.images, ['created'], ['desc'])[0].url
     }
     var url = { url : $window.location.origin + '/' + imageSizePath + imageUrl} ;
@@ -31,6 +31,7 @@ var UtilService = function($rootScope, $window, $location, cfg) {
       };
     },
     changeSEOtags: function(item, type) {
+      $rootScope.seo = $rootScope.seo || {};
       $rootScope.seo.url = getDetailsUrl(item, type);
       $rootScope.seo.image = getImageInfo(item, type);
       $rootScope.seo.description = item.description;

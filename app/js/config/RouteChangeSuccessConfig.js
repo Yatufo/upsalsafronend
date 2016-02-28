@@ -1,17 +1,17 @@
 var eventify = eventify;
 
-var routeChangeSuccess = function($rootScope, userService) {
+var routeChangeSuccess = function($rootScope, userService, util) {
 
 
   $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 
     if (current.params.city) {
       $rootScope.city = current.params.city.toProperCase();
-      $rootScope.seo = {
-        image : getImageInfo({}, 'site'),
-        title: "Up Salsa in " + $rootScope.city + " : Best places to dance Salsa, Bachata, Kizomba, etc.",
+      var site = {
+        name: "Up Salsa in " + $rootScope.city + " : Best places to dance Salsa, Bachata, Kizomba, etc.",
         description: "Find the best places and events to learn or dance in " + $rootScope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
       };
+      util.changeSEOtags(site, 'site');
     }
 
     reloadUser(!_.isEmpty($rootScope.user));
@@ -32,4 +32,4 @@ var routeChangeSuccess = function($rootScope, userService) {
   }
 };
 
-eventify.run(["$rootScope", "UserService", routeChangeSuccess]);
+eventify.run(["$rootScope", "UserService", "UtilService", routeChangeSuccess]);
