@@ -8,7 +8,7 @@ msgstr ""
 msgid "2016 &copy; All Rights Reserved."
 msgstr ""
 
-#: app/views/components/theme-header.html:23
+#: app/views/components/theme-header.html:26
 msgid "About Us"
 msgstr ""
 
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add Event/Class"
 msgstr ""
 
-#: app/views/components/theme-header.html:26
+#: app/views/components/theme-header.html:29
 msgid "Add Your School"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 msgid "email"
 msgstr ""
 
-#: app/views/components/theme-header.html:20
+#: app/views/components/theme-header.html:23
 #: app/views/home.html:29
 msgid "Events"
 msgstr ""
@@ -72,6 +72,10 @@ msgstr ""
 msgid "Get more visibility in search engines."
 msgstr ""
 
+#: app/views/components/theme-header.html:17
+msgid "Home"
+msgstr ""
+
 #: app/dependencies/intl-tel-input/examples/gen/country-sync.html:88
 #: app/dependencies/intl-tel-input/examples/partials/countrySync.html:8
 msgid "House name/number"
@@ -85,11 +89,11 @@ msgstr ""
 msgid "http://www.mylocation.com"
 msgstr ""
 
-#: app/views/components/theme-header.html:32
+#: app/views/components/theme-header.html:35
 msgid "Log In"
 msgstr ""
 
-#: app/views/components/theme-header.html:29
+#: app/views/components/theme-header.html:32
 msgid "Log Out"
 msgstr ""
 
@@ -127,7 +131,7 @@ msgstr ""
 msgid "Reach more students/dancers."
 msgstr ""
 
-#: app/views/components/theme-header.html:17
+#: app/views/components/theme-header.html:20
 #: app/views/home.html:21
 msgid "Schools"
 msgstr ""
@@ -198,6 +202,10 @@ msgstr ""
 
 #: app/views/components/comments.html:4
 msgid "What do you think about this place?"
+msgstr ""
+
+#: app/views/components/right-side-intro.html:4
+msgid "Why your school should be on"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:56

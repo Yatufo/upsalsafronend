@@ -60,7 +60,7 @@ body {
   line-height: 25px;
   color: #FFF;
 }
-h2 span {
+.home h2 span {
   color: white;
   font: bold 24px/45px Helvetica, Sans-Serif;
   letter-spacing: -1px;
@@ -422,10 +422,9 @@ i .number {
 	padding:8px
 }
 
-.right-side h2 span {
-    font-size: 30px;
+.right-side h2 span span {
+    font-size: 26px;
     font-weight: 700;
-    margin: 0em 0em 0em 2em;
 }
 
 /*--about start here--*/
