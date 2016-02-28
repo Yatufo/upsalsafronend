@@ -8,6 +8,7 @@ var routeChangeSuccess = function($rootScope, userService) {
     if (current.params.city) {
       $rootScope.city = current.params.city.toProperCase();
       $rootScope.seo = {
+        image : getImageInfo({}, 'site'),
         title: "Up Salsa in " + $rootScope.city + " : Best places to dance Salsa, Bachata, Kizomba, etc.",
         description: "Find the best places and events to learn or dance in " + $rootScope.city + "any latin music like salsa, bachata, chacha, kizomba, etc."
       };

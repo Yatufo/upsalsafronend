@@ -21,6 +21,7 @@ eventify.constant('CONFIG', {
     }
   },
   DEAFULT_IMAGES: {
+    site : 'default.jpg',
     location: 'locations/default.jpg',
     event: 'events/default.jpg'
   },
