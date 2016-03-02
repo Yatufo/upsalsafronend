@@ -1,1 +1,4 @@
 User-agent: *
+Disallow: /*/edit$
+Disallow: /*/Edit$
+Disallow: /*.html*$
