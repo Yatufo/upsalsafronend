@@ -23,10 +23,13 @@
           <a ng-href="/{{city}}/categories/party/events" translate>Events</a>
         </li>
         <li>
-          <a ng-href="/about" translate>About Us</a>
+          <a ng-href="/{{city}}/locations/create" translate>Add Your School</a>
         </li>
         <li>
-          <a ng-href="/{{city}}/locations/create" translate>Add Your School</a>
+          <a  target="_blank" href="http://upsalsa.wordpress.com">Blog</a>
+        </li>
+        <li>
+          <a ng-href="/about" translate>About Us</a>
         </li>
         <li ng-if="auth.isAuthenticated">
           <a href="#" ng-click="logout()" translate>Log Out</a>
