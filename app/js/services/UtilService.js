@@ -2,11 +2,11 @@
 var UtilService = function($rootScope, $window, $location, cfg) {
 
   function getDetailsPath(item, type) {
-    return $rootScope.city + '/' + type + 's/' + item.id;
+    return (item && item.id) ? '/' + $rootScope.city + '/' + type + 's/' + item.id : $location.url();
   }
 
   function getDetailsUrl(item, type) {
-    return $window.location.origin + '/' + getDetailsPath(item, type);
+    return $window.location.origin + getDetailsPath(item, type);
   }
 
   function getImageInfo(item, type) {
