@@ -12,11 +12,61 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: app/views/about.html:3
+msgid ""
+"<div class=\"about-top\">\n"
+"        <h3>ABOUT US</h3>\n"
+"        <h4>Welcome to Up Salsa</h4>\n"
+"      </div>\n"
+"      <div class=\"about-wedo\">\n"
+"        <div class=\"col-md-4 about-top-img\">\n"
+"          <img src=\"assets/img/logo1-default.png\" alt=\"\" class=\"img-"
+"responsive\" height=\"130\" width=\"350\">\n"
+"        </div>\n"
+"        <div class=\"col-md-8 about-wedo-right\">\n"
+"          <div class=\"about-a\">\n"
+"            <p>You love dancing salsa, bachata, kizomba...?</p>\n"
+"            <p align=\"justify\">\n"
+"              Up Salsa is the place where you will find all classes, "
+"workshops, events and special offers in your city.\n"
+"            </p><br>\n"
+"            <p>You have a school and you are looking to promote it?</p>\n"
+"            <p>Up Salsa is the perfect place to find new students and "
+"announce your classes and events!</p>\n"
+"          </div>\n"
+"        </div>\n"
+"        <div class=\"clearfix\"></div>\n"
+"      </div>"
+msgstr ""
+"<div class=\"about-top\">\n"
+"        <h3>A PROPOS</h3>\n"
+"        <h4>Bienvenue à Up Salsa</h4>\n"
+"      </div>\n"
+"      <div class=\"about-wedo\">\n"
+"        <div class=\"col-md-4 about-top-img\">\n"
+"          <img src=\"assets/img/logo1-default.png\" alt=\"\" class=\"img-"
+"responsive\" height=\"130\" width=\"350\">\n"
+"        </div>\n"
+"        <div class=\"col-md-8 about-wedo-right\">\n"
+"          <div class=\"about-a\">\n"
+"            <p>Vouz aimez danser salsa, bachata, kizomba...?</p>\n"
+"            <p align=\"justify\">\n"
+"              Up Salsa est l’endroit où vous allez trouver tous les cours, "
+"ateliers, événements et offres spéciales dans votre ville.\n"
+"            </p><br>\n"
+"            <p>Vous avez une école et vous voulez le promouvoir?</p>\n"
+"            <p>Up Salsa est l’endroit parfait pour trouver des étudiants et "
+"annoncer vos cours et événements!</p>\n"
+"          </div>\n"
+"        </div>\n"
+"        <div class=\"clearfix\"></div>\n"
+"      </div>"
+
 #: app/views/components/theme-footer.html:9
 msgid "2016 &copy; All Rights Reserved."
 msgstr "2016 © tous droits réservés."
 
-#: app/views/components/theme-header.html:26
+#: app/views/components/theme-header.html:32
 msgid "About Us"
 msgstr "A propos"
 
@@ -24,7 +74,7 @@ msgstr "A propos"
 msgid "Add Event/Class"
 msgstr "Ajoutez un événements/un cours"
 
-#: app/views/components/theme-header.html:29
+#: app/views/components/theme-header.html:26
 msgid "Add Your School"
 msgstr "Ajoutez votre école"
 
@@ -96,11 +146,11 @@ msgstr "http://www.evenement.com"
 msgid "http://www.mylocation.com"
 msgstr "http://www.monecole.com"
 
-#: app/views/components/theme-header.html:35
+#: app/views/components/theme-header.html:38
 msgid "Log In"
 msgstr "Se connecter"
 
-#: app/views/components/theme-header.html:32
+#: app/views/components/theme-header.html:35
 msgid "Log Out"
 msgstr "Déconnexion"
 
