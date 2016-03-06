@@ -4,36 +4,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: app/views/about.html:3
-msgid ""
-"<div class=\"about-top\">\n"
-"        <h3>ABOUT US</h3>\n"
-"        <h4>Welcome to Up Salsa</h4>\n"
-"      </div>\n"
-"      <div class=\"about-wedo\">\n"
-"        <div class=\"col-md-4 about-top-img\">\n"
-"          <img src=\"assets/img/logo1-default.png\" alt=\"\" class=\"img-responsive\" height=\"130\" width=\"350\">\n"
-"        </div>\n"
-"        <div class=\"col-md-8 about-wedo-right\">\n"
-"          <div class=\"about-a\">\n"
-"            <p>You love dancing salsa, bachata, kizomba...?</p>\n"
-"            <p align=\"justify\">\n"
-"              Up Salsa is the place where you will find all classes, workshops, events and special offers in your city.\n"
-"            </p><br>\n"
-"            <p>You have a school and you are looking to promote it?</p>\n"
-"            <p>Up Salsa is the perfect place to find new students and announce your classes and events!</p>\n"
-"          </div>\n"
-"        </div>\n"
-"        <div class=\"clearfix\"></div>\n"
-"      </div>"
-msgstr ""
-
 #: app/views/components/theme-footer.html:9
 msgid "2016 &copy; All Rights Reserved."
 msgstr ""
 
 #: app/views/components/theme-header.html:32
 msgid "About Us"
+msgstr ""
+
+#: app/views/about.html:5
+msgid "ABOUT US"
 msgstr ""
 
 #: app/views/components/location-card.html:20
@@ -211,6 +191,14 @@ msgstr ""
 msgid "Until:"
 msgstr ""
 
+#: app/views/about.html:19
+msgid "Up Salsa is the perfect place to find new students and announce your classes and events!"
+msgstr ""
+
+#: app/views/about.html:15
+msgid "Up Salsa is the place where you will find all classes, workshops, events and special offers in your city."
+msgstr ""
+
 #: app/views/components/editable-event-card.html:23
 msgid "Use the same address and phone"
 msgstr ""
@@ -224,12 +212,24 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
+#: app/views/about.html:6
+msgid "Welcome to Up Salsa"
+msgstr ""
+
 #: app/views/components/comments.html:4
 msgid "What do you think about this place?"
 msgstr ""
 
 #: app/views/components/right-side-intro.html:4
 msgid "Why your school should be on"
+msgstr ""
+
+#: app/views/about.html:18
+msgid "You have a school and you are looking to promote it?"
+msgstr ""
+
+#: app/views/about.html:14
+msgid "You love dancing salsa, bachata, kizomba...?"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:56
