@@ -25,6 +25,15 @@ images:
   net: "${BACKEND_NETWORK}"
   container_name: "images"
   restart: always
+prerender:
+  image: upsalsa/prerender
+  environment:
+    AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+    AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+    S3_BUCKET_NAME: "${S3_BUCKET}"
+  net: "${BACKEND_NETWORK}"
+  container_name: "prerender"
+  restart: always
 nginx:
   image: upsalsa/nginx
   environment:
