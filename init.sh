@@ -6,7 +6,6 @@ export FRONTEND_SERVER=192.168.2.11:5000
 export BACKEND_NETWORK=salsanet
 export MONGO_CONNECTION=mongodb://localhost:27017
 export S3_BUCKET=salsa.local
-export PRERENDER_TOKEN=invalid
 docker network create --driver bridge $BACKEND_NETWORK
 
 docker-compose up -d & grunt
