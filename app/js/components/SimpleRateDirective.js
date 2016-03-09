@@ -35,8 +35,8 @@ var SimpleRateDirectiveController = function($scope, service) {
   });
 
   $scope.rate = function() {
-    var userVote = userVote || DEFAULT_VOTE;
     var rating = $scope.rating;
+    var userVote = (rating.vote !== DEFAULT_VOTE ? DEFAULT_VOTE : 'down');
 
     //if there are no changes in the vote
     if (rating.vote && rating.vote === userVote) {
