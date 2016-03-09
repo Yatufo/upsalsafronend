@@ -21,6 +21,7 @@ body {
 .left-pane {
   top : 60px;
   width: 100%;
+  min-height: 800px;
 }
 
 #logo-header {
