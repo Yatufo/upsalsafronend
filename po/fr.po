@@ -222,8 +222,8 @@ msgid "Use the same address and phone"
 msgstr "Utiliser la même adresse et téléphone"
 
 #: app/views/components/right-side-intro.html:13
-msgid "Watch the video and create your profile today!"
-msgstr "Regardez la vidéo et créez votre profil aujourd’hui!"
+msgid "Watch the video and create your profile today for FREE!"
+msgstr "Regardez la vidéo et créez GRATUITEMENT votre profil aujourd’hui!"
 
 #: app/views/components/editable-event-card.html:35
 #: app/views/components/editable-location-card.html:28
@@ -259,6 +259,9 @@ msgstr ""
 #: app/dependencies/intl-tel-input/examples/partials/countrySync.html:11
 msgid "Zip code"
 msgstr "Code postal"
+
+#~ msgid "Watch the video and create your profile today!"
+#~ msgstr "Regardez la vidéo et créez votre profil aujourd’hui!"
 
 #~ msgid ""
 #~ "<div class=\"about-top\">\n"

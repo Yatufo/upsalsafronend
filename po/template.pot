@@ -204,7 +204,7 @@ msgid "Use the same address and phone"
 msgstr ""
 
 #: app/views/components/right-side-intro.html:13
-msgid "Watch the video and create your profile today!"
+msgid "Watch the video and create your profile today for FREE!"
 msgstr ""
 
 #: app/views/components/editable-event-card.html:35
