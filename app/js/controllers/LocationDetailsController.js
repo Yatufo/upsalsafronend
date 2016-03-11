@@ -7,7 +7,10 @@ eventify
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
-      $scope.locationId = util.stripIdFromURI($routeParams.locationId)
+
+      //TODO: Remove in one month
+      $scope.locationId = ($routeParams.locationId.indexOf("SYLVIAERA") === -1 ? util.stripIdFromURI($routeParams.locationId) : "56d5e062dd7aa00100647143");
+      console.log($scope.locationId);
 
       var resetSummaries = function() {
         categoryService.getCategories().then(function(categories) {
