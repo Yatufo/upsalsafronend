@@ -9,6 +9,20 @@
     <div class="col-md-6">
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-5 col-md-offset-1">
+      <div class="">
+        <h1 ng-if="events.length">
+          Upcoming Events
+        </h1>
+      </div>
+      <div ng-repeat="event in events track by $index | orderBy : event.start.dateTime ">
+        <eventcard data-options="{details:true}" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div ng-class="{'right-pane' : !isMobile, fullscreen : isMobile}">
   <div class="row">
@@ -22,17 +36,4 @@
     </div>
   </div>
 
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-md-5 col-md-offset-1">
-    <div class="">
-      <h1 ng-if="events.length">
-        Upcoming Events
-      </h1>
-    </div>
-    <div ng-repeat="event in events track by $index | orderBy : event.start.dateTime ">
-      <eventcard data-options="{details:true}" data-event="event" data-ng-mouseenter="highlightLocation(event.location)"></eventcard>
-    </div>
-  </div>
 </div>
