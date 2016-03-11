@@ -44,6 +44,8 @@ var EditableEventCardController = function($scope, $rootScope, service, category
   });
 
   function resetRecurrenceRule() {
+    if (!$scope.event) return false;
+
     if ($scope.selections.repeat) {
       var selectedDows = _.compact(dowIds.map(function(id) {
         if ($scope.selections.dows[id]) {
@@ -68,23 +70,25 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     }
   }
 
-
-
   function toLocation(location) {
     return _.pick(location, 'id', 'name', 'address', 'url', 'phone', 'coordinates');
   }
 
   function init() {
-    if ($scope.event) return;
-
     $scope.event = {
       location: toLocation($scope.location),
-      description: "Should contain at least #party or #event",
+      description: "Should contain at least #party or #class",
       categories: [],
       images: $scope.location.images || []
     };
     _.extend($scope.event, util.getUrls($scope.event, "event"));
   };
+
+  $scope.$watch("location", function(newVal) {
+    if (!$scope.event && ! _.isEmpty(newVal)){
+      init();
+    }
+  })
 
   $scope.$watch("selections.localTime.start", function(newVal) {
     if (newVal) {
@@ -126,11 +130,15 @@ var EditableEventCardController = function($scope, $rootScope, service, category
 
 
   $scope.hasCoordinates = function() {
+    if (!$scope.event) return false;
+
     var c = $scope.event.location.coordinates;
     return !_.isEmpty(c) && _.isNumber(c.latitude) && _.isNumber(c.longitude);
   }
 
   $scope.isInvalid = function (field) {
+      if (!$scope.event) return true;
+
       var isInvalid = false;
 
       if (field === 'address'){
@@ -168,7 +176,6 @@ var EditableEventCardController = function($scope, $rootScope, service, category
     return localTime.end ? moment(localTime.end).diff(localTime.start, 'hours') : 0;
   }
 
-  init();
 }
 
 /* App Module */
