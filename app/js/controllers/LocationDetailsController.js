@@ -7,7 +7,7 @@ eventify
       $scope.isMobile = maps.isMobile();
       $scope.isListVisible = true;
       $scope.isMapVisible = !($scope.isMobile && $scope.isListVisible)
-
+      $scope.locationId = util.stripIdFromURI($routeParams.locationId)
 
       var resetSummaries = function() {
         categoryService.getCategories().then(function(categories) {
@@ -35,7 +35,7 @@ eventify
 
 
       Location.get({
-        id: util.stripIdFromURI($routeParams.locationId)
+        id: $scope.locationId
       }, function(location) {
         maps.init(location, 14);
         maps.addLocation(location);
@@ -47,7 +47,7 @@ eventify
       });
 
       Location.getEvents({
-        locationId: $routeParams.locationId,
+        locationId: $scope.locationId,
         categories: []
       }, function(events) {
         $scope.events = events || [];

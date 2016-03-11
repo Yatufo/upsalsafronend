@@ -5,9 +5,10 @@
 eventify
     .controller('LocationsEditController', ['$scope', '$routeParams', 'Location', 'MapsService', 'UtilService', '$location',
         function($scope, $routeParams, Location, maps, util, $location) {
+          $scope.locationId = util.stripIdFromURI($routeParams.locationId)
 
           Location.get({
-            id: util.stripIdFromURI($routeParams.locationId)
+            id: util.stripIdFromURI($scope.locationId)
           }, function(location) {
 
             maps.init(location, 14);
