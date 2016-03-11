@@ -1,8 +1,11 @@
 /* Service */
 var UtilService = function($rootScope, $window, $location, cfg) {
 
+  var SEPARATOR = "-";
+
   function getDetailsPath(item, type) {
-    return (item && item.id) ? '/' + $rootScope.city + '/' + type + 's/' + item.id : $location.url();
+    var id = (_.isString(item.code) ? item.code + SEPARATOR : "") + item.id;
+    return (item && item.id) ? '/' + $rootScope.city + '/' + type + 's/' + id : $location.url();
   }
 
   function getDetailsUrl(item, type) {
@@ -46,7 +49,11 @@ var UtilService = function($rootScope, $window, $location, cfg) {
       var isOwner = _.isEqual(object.createdBy, user._id);
 
       return isOwner || isAdmin
+    },
+    stripIdFromURI : function(uri) {
+      return _.last(_.split(uri, SEPARATOR));
     }
+
   };
 
   return service;

@@ -7,7 +7,7 @@ eventify
         function($scope, $routeParams, Event, maps, util, $location) {
 
           Event.get({
-            id: $routeParams.eventId
+            id: util.stripIdFromURI($routeParams.eventId)
           }, function(event) {
 
             maps.init(event.location, 14);

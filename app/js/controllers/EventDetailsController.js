@@ -7,7 +7,7 @@ eventify
       $scope.event = {};
 
       Event.get({
-        id: $routeParams.eventId
+        id: util.stripIdFromURI($routeParams.eventId)
       }, function(event) {
 
         if (event.id) {
