@@ -36,7 +36,7 @@ var CommentDirectiveController = function($scope, $rootScope, $sce, service) {
         comment.formattedDate = moment(comment.lastUpdate).fromNow();
         comment.formattedComment = $sce.trustAsHtml(comment.comment.replace(/\n/g, "<br/>"));
         comment.isEditable = function() {
-          return $rootScope.user && _.isEqual(comment.user, $rootScope.user._id);
+          return $rootScope.user && _.isEqual(comment.createdBy, $rootScope.user._id);
         };
       });
     }

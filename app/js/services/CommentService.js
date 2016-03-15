@@ -11,7 +11,7 @@ var RatingService = function($rootScope, $q, Comment) {
         return true;
 
       var userId = $rootScope.user._id;
-      return _.isEmpty(_.find(commentable.comments, {user : userId}));
+      return _.isEmpty(_.find(commentable.comments, {createdBy : userId}));
     },
     saveOrUpdateComment: function(comment) {
       return $q(function(resolve, reject) {
