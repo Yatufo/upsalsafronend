@@ -39,6 +39,12 @@ The authentication requires a proper domain to work, so update your hosts file (
 
 Go to (http://salsa.local:5000/)
 
+### Run tests
+Run the backend in the background and then the frontend.
+```
+  grunt test [--browser Chrome|PhantomJS] [--debug]
+  grunt test --browser Chrome --debug
+```
 
 #### Deploy to production.
 

@@ -261,6 +261,11 @@ module.exports = function(grunt) {
           'app/js/config/translations.js': ['po/*.po']
         }
       },
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
 
@@ -271,5 +276,6 @@ module.exports = function(grunt) {
   grunt.registerTask('prod', ['env:prod', 'package', 'serve']);
   grunt.registerTask('serve', ['configureProxies:connect', 'connect:livereload', 'watch']);
   grunt.registerTask('package', ['html2js', 'nggettext_compile', 'lodashAutobuild', 'uglify', 'cssmin']);
+  grunt.registerTask('test', ['uglify:deps', 'karma']);
   grunt.registerTask('publish', ['package', 'aws_s3:production']);
 };
